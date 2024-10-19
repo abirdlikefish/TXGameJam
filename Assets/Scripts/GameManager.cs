@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    List<IInit> inits;
+    private void Awake()
     {
-        
-    }
+        inits = new()
+        {
+            MateSelectManager.Instance,
+            UIMate.Instance
+        };
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (var item in inits)
+        {
+            item.Initialize();
+        }
     }
 }
