@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MateSelectManager : Singleton<MateSelectManager>,IInit
 {
     public enum STATE
@@ -42,7 +43,8 @@ public class MateSelectManager : Singleton<MateSelectManager>,IInit
             }
         }
     }
-
+    public static Vector3 MoveX = new (1f, 0f, 0f);
+    public static Vector3 MoveY = new (0f, 1f, 0f);
 
     public void Initialize()
     {
