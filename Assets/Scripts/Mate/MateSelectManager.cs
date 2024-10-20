@@ -40,11 +40,14 @@ public class MateSelectManager : Singleton<MateSelectManager>,IInit
             {
                 curMateSelect.selected.SetActive(true);
                 State = STATE.SELECTED;
+                UIMate.Instance.OnSelect();
             }
         }
     }
     public static Vector3 MoveX = new (1f, 0f, 0f);
-    public static Vector3 MoveY = new (0f, 1f, 0f);
+    public GameObject px;
+    public static Vector3 MoveZ = new (0f, 0f, 1f);
+    public GameObject pz;
 
     public void Initialize()
     {

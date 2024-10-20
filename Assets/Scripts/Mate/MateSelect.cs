@@ -44,10 +44,21 @@ public class MateSelect : MonoBehaviour
             MateSelectManager.Instance.CurMateSelect = value;
         }
     }
-    Vector3 MoveX => MateSelectManager.MoveX;
-    Vector3 MoveY => MateSelectManager.MoveY;
 
-    Camera main => Camera.main;
+    Camera cameraMain => Camera.main;
+
+    void AlignPlaneToNormal(GameObject plane, Vector3 normal, Vector3 center)
+    {
+        plane.transform.position = center;
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
+        plane.transform.rotation = rotation;
+    }
+    void DrawIntersectionPoint(Vector3 hitPoint)
+    {
+        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.transform.position = hitPoint;
+        sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // 缩小球的大小
+    }
     private void OnMouseDown()
     {
         if (State != MateSelectManager.STATE.IDLE && State != MateSelectManager.STATE.SELECTED)
@@ -66,41 +77,18 @@ public class MateSelect : MonoBehaviour
             return;
         State = MateSelectManager.STATE.DRAGING;
 
-        
 
-        //Vector3 mateScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-        //SetZToZero(ref mateScreenPos);
-        //dragDelta = mouseWorld - transform.position;
-        //dragDeltaScreen = Camera.main.WorldToScreenPoint(dragDelta);
-        //SetZToZero(ref dragDeltaScreen);
-        //Vector3[] magnetDir = new[] { MoveX, -MoveX, MoveY, -MoveY };
-        ////找到最接近的磁铁方向
-        //float minAngle = 360;
-        //int minIndex = -1;
-        //Vector3 tarDir =Vector3.left;
-        //for (int i = 0; i < magnetDir.Length; i++)
-        //{
-        //    Vector3 tempDirScreen = Camera.main.WorldToScreenPoint(magnetDir[i]) - Camera.main.WorldToScreenPoint(Vector3.zero);
-        //    SetZToZero(ref tempDirScreen);
-        //    float angle = Vector3.Angle(dragDeltaScreen, tempDirScreen);
-        //    if (angle < minAngle)
-        //    {
-        //        minAngle = angle;
-        //        minIndex = i;
-        //        tarDir = tempDirScreen;
-        //    }
-        //}
-        ////获取dragDelta在d上的分量
-        //if (minIndex != -1)
-        //{
-        //    dragDelta = Vector3.Project(dragDelta, tarDir);
-        //}
-
-
-        //dragDelta = Vector3.ClampMagnitude(dragDelta, DeliConfig.DragMaxDistance);
-
-        //UIMate.DrawStraightArrow(dragDelta, transform.position + dragDelta);
-
+        Vector3 mousePosWorld = cameraMain.ScreenToWorldPoint(new(Input.mousePosition.x, Input.mousePosition.y,0));
+        Ray ray = new (mousePosWorld, cameraMain.transform.forward);
+        AlignPlaneToNormal(MateSelectManager.Instance.px, Vector3.right, transform.position);
+        AlignPlaneToNormal(MateSelectManager.Instance.pz, Vector3.forward, transform.position);
+        float enter;
+        Plane plane = new (Vector3.right, transform.position);
+        if (plane.Raycast(ray, out enter))
+        {
+            Vector3 hitPoint = ray.GetPoint(enter);
+            DrawIntersectionPoint(hitPoint);
+        }
 
     }
     //松开时添加力
