@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BaseCube : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Vector3Int position;
+    public Vector3Int Position{ get => position; set {position = value; transform.position = value;}}
+    public int Height{get => Mathf.RoundToInt(CameraManager.Instance.GetDepth(Position));}
 
-    // Update is called once per frame
-    void Update()
+    public Vector2Int GetCameraSpacePosition()
     {
-        
+        Vector3Int mid = Vector3Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(Position));
+        return new Vector2Int(mid.x, mid.z);
     }
 }
