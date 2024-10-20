@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    List<IInit> inits;
+    IOnGameAwakeInit[] OnGameAwakes => transform.GetComponentsInChildren<IOnGameAwakeInit>();
     private void Awake()
     {
-        inits = new()
-        {
-            MateInput.Instance,
-        };
         // MapManager.Instance.AddCube(new Vector3Int(0,0,0));
         // MapManager.Instance.AddCube(new Vector3Int(1,0,0));
         // MapManager.Instance.AddCube(new Vector3Int(2,0,0));
         // MapManager.Instance.RefreshCameraSpace();
         // Debug.Log("GameManager Start");
     
-        foreach (var item in inits)
+        foreach (var it in OnGameAwakes)
         {
-            item.Initialize();
+            it.InitializeOnGameAwake();
         }
     }
 }

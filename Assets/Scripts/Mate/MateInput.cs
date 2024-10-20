@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MateInput : Singleton<MateInput>,IInit
+public class MateInput : MonoBehaviour
 {
     public enum MoveDir
     {
@@ -19,27 +19,24 @@ public class MateInput : Singleton<MateInput>,IInit
     SerializableDictionary<KeyCode, MoveDir> mate2_key_dir;
 
 
-    public Mate mate1;
-    public Mate mate2;
-    public Dictionary<MoveDir, Vector3> dir_vec;
-
-    public void Initialize()
-    {
-        dir_vec = new()
+    MateMover mate1 => MateManager.Instance.mates[0].GetComponent<MateMover>();
+    MateMover mate2 => MateManager.Instance.mates[1].GetComponent<MateMover>();
+    public static Dictionary<MoveDir, Vector3> dir_vec =
+        new()
         {
             { MoveDir.LeftUp, new Vector3(0,0, -1) },
             { MoveDir.RightDown, new Vector3(0,0, 1) },
             { MoveDir.LeftDown, new Vector3(1,0, 0) },
             { MoveDir.RightUp, new Vector3(-1,0, 0) },
         };
-    }
+
     private void Update()
     {
         HandleInput();
     }
     //日本語を　話　ましょう！
-    public bool canTooru = true;
-    public bool CanTooru(Vector3 nextCenter) => canTooru;//通る
+    //通る
+    public static bool CanTooru(Vector3 nextCenter) => true;// EventManager.Instance.IsPassive(new Vector2Int(Mathf.RoundToInt(nextCenter.x), Mathf.RoundToInt(nextCenter.z)));
     void HandleInput()
     {
         foreach (var key in mate1_key_dir.Keys)
@@ -52,13 +49,18 @@ public class MateInput : Singleton<MateInput>,IInit
                 break;
             }
         }
-        mate1.Move1();
+        mate1.Move();
         foreach (var key in mate2_key_dir.Keys)
         {
             if (Input.GetKey(key))
             {
+                Vector3 ultiDelta = dir_vec[mate2_key_dir[key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
+                    + dir_vec[mate2_key_dir[key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
+                mate2.SetNextMove(ultiDelta);
+                break;
             }
         }
+        mate2.Move();
     }
     Vector3 V2ToV3(Vector2Int v2)
     {
