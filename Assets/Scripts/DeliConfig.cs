@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DeliConfig : MonoBehaviour
+public class DeliConfig : Singleton<DeliConfig>
 {
-    public float dragForce;
-    public static float DragForce;
-
-    public float dragMaxDistance;
-    public static float DragMaxDistance;
-
-    private void Awake()
-    {
-        DragForce = dragForce;
-        DragMaxDistance = dragMaxDistance;
-    }
+    public float maxDistanceToCenterWhenBlocked = 0.4f;
+    public float moveSpeed = 0.01f;
 }

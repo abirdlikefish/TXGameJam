@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     {
         inits = new()
         {
-            MateSelectManager.Instance,
-            UIMate.Instance
+            MateInput.Instance,
         };
 
         foreach (var item in inits)
