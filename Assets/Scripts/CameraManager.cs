@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
             if (instance == null)
             {
                 instance = Camera.main.gameObject.AddComponent<CameraManager>();
-                instance.transform.position = instance.GetCameraDirection();
+                instance.transform.position = instance.GetCameraDirection() * 100;
             }
             return instance;
         }
@@ -36,6 +36,7 @@ public class CameraManager : MonoBehaviour
     public Vector2 GetCameraSpacePosition(Vector3 position)
     {
         Vector3 mid = position - position.y * (Vector3)GetCameraDirection();
+        mid += Vector3.one * 100;
         return new Vector2(mid.x, mid.z);
     }
     public float GetDepth(Vector3 position)

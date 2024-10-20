@@ -6,5 +6,7 @@ public interface ICameraSpaceManager
 {
     void ClearNodeMap();
     void DrawGrid(BaseCube cube);
-    bool IsPassable(Vector2Int position);
+    int IsPassable(Vector2Int position);
+    public List<BaseCube> GetCubes(Vector2Int position);
+    public bool IsCubeExposed(Vector2Int position);
 }
