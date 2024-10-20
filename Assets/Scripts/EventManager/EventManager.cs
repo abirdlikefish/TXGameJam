@@ -36,21 +36,14 @@ public class EventManager
         RemoveCubeEvent_before?.Invoke(position);
         bool isSucceed = RemoveCubeEvent_on?.Invoke(position) ?? false;
         RemoveCubeEvent_after?.Invoke(isSucceed);
-    }
-
-    public event Action<Vector3Int> OpenColliderEvent_before;
-    public event Func<Vector3Int, bool> OpenColliderEvent_on;
-    public event Action<bool> OpenColliderEvent_after;
-    public void OpenCollider(Vector3Int position)
-    {
-        OpenColliderEvent_before?.Invoke(position);
-        bool isSucceed = OpenColliderEvent_on?.Invoke(position) ?? false;
-        OpenColliderEvent_after?.Invoke(isSucceed);
+// CameraManager.Instance.GetCameraSpacePosition
     }
 
 
 
+    public Func<Vector2Int , bool> IsPassive;
 
-
-
+    // public delegate void GetMovePositionEvent(Vector3 position, Vector2Int direction, out Vector3 movePosition, out Vector3Int targetPosition);
+    // public GetMovePositionEvent GetMovePosition;
+    // public Action<Vector3Int , Vector2Int , out Vector3 , out Vector3Int> GetMovePosition;
 }

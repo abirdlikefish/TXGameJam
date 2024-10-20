@@ -116,6 +116,10 @@ public class CameraSpaceManager : ICameraSpaceManager
         }
     }
 
+    public bool IsPassable(Vector2Int position)
+    {
+        return nodeMap[position.x, position.y].isPassable;
+    }
     // public void ChangeCameraDirection()
     // {
     //     cameraDirectionIndex = 1^cameraDirectionIndex;
