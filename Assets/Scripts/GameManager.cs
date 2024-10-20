@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         // MapManager.Instance.AddCube(new Vector3Int(2,0,0));
         // MapManager.Instance.RefreshCameraSpace();
         // Debug.Log("GameManager Start");
-    }
+    
         foreach (var item in inits)
         {
             item.Initialize();

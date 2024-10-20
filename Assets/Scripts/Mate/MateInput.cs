@@ -37,20 +37,20 @@ public class MateInput : Singleton<MateInput>,IInit
     {
         HandleInput();
     }
-
-    public bool canTooru;
+    //ÈÕ±¾ÕZ¤ò¡¡Ô’¡¡¤Þ¤·¤ç¤¦£¡
+    public bool canTooru = true;
+    public bool CanTooru(Vector3 nextCenter) => canTooru;//Í¨¤ë
     void HandleInput()
     {
-        mate1.SetMove(Vector3.zero, false);
         foreach (var key in mate1_key_dir.Keys)
         {
             if (Input.GetKey(key))
             {
-                //CameraManager.Instance.GetOffetX();
-                mate1.SetMove(dir_vec[mate1_key_dir[key]],canTooru);
-                
+                Vector3 ultiDelta = dir_vec[mate1_key_dir[key]].x * V2ToV3( CameraManager.Instance.GetOffetX())
+                    + dir_vec[mate1_key_dir[key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
+                mate1.SetNextMove(ultiDelta);
+                break;
             }
-            
         }
         mate1.Move1();
         foreach (var key in mate2_key_dir.Keys)
@@ -60,5 +60,8 @@ public class MateInput : Singleton<MateInput>,IInit
             }
         }
     }
-
+    Vector3 V2ToV3(Vector2Int v2)
+    {
+        return new(v2.x, 0, v2.y);
+    }
 }

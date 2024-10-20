@@ -15,14 +15,11 @@ public class Mate : MonoBehaviour
             Mathf.RoundToInt(transform.position.y),
             Mathf.RoundToInt(transform.position.z));
     Vector3 nextCenter;
-
-
     Vector3 moveDir;
-    bool canTooru;//ͨ�롡
-    public void SetMove(Vector3 moveDir,bool canTooru)
+    bool canTooru => MateInput.Instance.CanTooru(nextCenter);
+    public void SetNextMove(Vector3 moveDir)
     {
         this.moveDir = moveDir;
-        this.canTooru = canTooru;
         nextCenter = thisCenter + moveDir;
     }
 
@@ -38,23 +35,25 @@ public class Mate : MonoBehaviour
         float restrictZ = canTooru ? nextCenter.z : Mathf.Lerp(thisCenter.z, nextCenter.z, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
         return new Vector3(transform.position.x, transform.position.y, restrictZ);
     }
-
+    
     public void Move1()
     {
         Move();
         #region ResetDeadZone
         foreach(var it in MateInput.Instance.dir_vec.Values)
         {
-            SetMove(it, false);
+            SetNextMove(it);
             if (IsInDeadZone())
                 Move();
         }
-        SetMove(Vector3.zero, false);
+        SetNextMove(Vector3.zero);
         #endregion
     }
 
     bool IsInDeadZone()
     {
+        if (canTooru)
+            return false;
         if(moveDir.x != 0)
         {
             return Mathf.Abs(transform.position.x - (thisCenter.x + nextCenter.x)/2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
