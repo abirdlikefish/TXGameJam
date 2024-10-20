@@ -8,4 +8,7 @@ public interface IWorldSpaceManager
     public bool RemoveCube(BaseCube cube);
     public List<BaseCube> GetCubes();
     public BaseCube FindByPosition(Vector3Int position);
+    public void MergeGroup(int groupID1, int groupID2);
+    public void IncreaseDepth(int groupID, int depth);
+    public void DecreaseDepth(int groupID, int depth);
 }
