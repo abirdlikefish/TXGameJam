@@ -61,7 +61,20 @@ public class CameraSpaceManager : ICameraSpaceManager
                     ans += 1;
                 }
                 return ans;
-                // return (leftNode.type == NodeType.top ? 2 : 0) + (rightNode.type == NodeType.top ? 1 : 0);
+                }
+            }
+        public int isEmpty{
+            get{
+                int ans = 0;
+                if(leftNode.IsEmpty)
+                {
+                    ans += 2;
+                }
+                if(rightNode.IsEmpty)
+                {
+                    ans += 1;
+                }
+                return ans;
                 }
             }
     }
@@ -121,6 +134,10 @@ public class CameraSpaceManager : ICameraSpaceManager
     public int IsPassable(Vector2Int position)
     {
         return nodeMap[position.x, position.y].isPassable;
+    }
+    public int IsEmpty(Vector2Int position)
+    {
+        return nodeMap[position.x, position.y].isEmpty;
     }
     
     public BaseCube GetCube_L(Vector2Int position)
