@@ -36,12 +36,22 @@ public class EventManager
         RemoveCubeEvent_before?.Invoke(position);
         bool isSucceed = RemoveCubeEvent_on?.Invoke(position) ?? false;
         RemoveCubeEvent_after?.Invoke(isSucceed);
-// CameraManager.Instance.GetCameraSpacePosition
+    }
+
+    public event Action<Vector3Int , int> AddCube_ChangeDepthEvent_before;
+    public event Func<Vector3Int , int , bool> AddCube_ChangeDepthEvent_on;
+    public event Action<bool> AddCube_ChangeDepthEvent_after;
+    public void AddCube_ChangeDepth(Vector3Int position, int depth)
+    {
+        AddCube_ChangeDepthEvent_before?.Invoke(position, depth);
+        bool isSucceed = AddCube_ChangeDepthEvent_on?.Invoke(position, depth) ?? false;
+        AddCube_ChangeDepthEvent_after?.Invoke(isSucceed);
     }
 
 
 
-    public Func<Vector2Int , bool> IsPassive;
+    // public Func<Vector2Int , bool> IsPassable;
+    public Func<Vector2Int , int> IsPassable;
 
     // public delegate void GetMovePositionEvent(Vector3 position, Vector2Int direction, out Vector3 movePosition, out Vector3Int targetPosition);
     // public GetMovePositionEvent GetMovePosition;

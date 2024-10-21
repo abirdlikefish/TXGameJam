@@ -9,7 +9,7 @@ public class CameraSpaceManager : ICameraSpaceManager
         if(instance == null)
         {
             instance = new CameraSpaceManager();
-            instance.nodeMap = new Node[100,100];
+            instance.nodeMap = new Node[200,200];
             instance.mapManager = mapManager;
             return instance;
         }
@@ -49,7 +49,7 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         public HalfNode leftNode;
         public HalfNode rightNode;
-        public bool isPassable{get{return leftNode.type == NodeType.top && rightNode.type == NodeType.top;}}
+        public int isPassable{get{return (leftNode.type == NodeType.top ? 2 : 0) + (rightNode.type == NodeType.top ? 1 : 0);}}
     }
 
     private Node[,] nodeMap;
@@ -67,26 +67,14 @@ public class CameraSpaceManager : ICameraSpaceManager
     }
     public void DrawGrid(BaseCube cube)
     {
-        // Vector2Int[,] offset = new Vector2Int[2,2]{{Vector2Int.right, Vector2Int.up}, {Vector2Int.up, Vector2Int.left}};
-        // Vector3Int mid = cube.Position;
-        // mid -= mid.y * cameraDirection[cameraDirectionIndex];
-        // Vector2Int pos = new Vector2Int(mid.x, mid.z);
-        // Debug.Log("DrawGrid " + pos);
-
         DrawGrid_L(cube.GetCameraSpacePosition(), cube, NodeType.top);
         DrawGrid_R(cube.GetCameraSpacePosition(), cube, NodeType.top);
-        // DrawGrid_L(pos, cube, NodeType.top);
-        // DrawGrid_R(pos, cube, NodeType.top);
-
-        // DrawGrid_L(pos + offset[cameraDirectionIndex,0] + offset[cameraDirectionIndex , 1], cube, NodeType.side);
-        // DrawGrid_R(pos + offset[cameraDirectionIndex,0] + offset[cameraDirectionIndex , 1], cube, NodeType.side);
+        
         DrawGrid_L(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY(), cube, NodeType.side);
         DrawGrid_R(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY(), cube, NodeType.side);
 
         DrawGrid_L(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetY(), cube, NodeType.side);
         DrawGrid_R(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX(), cube, NodeType.side);
-        // Debug.Log("show grid");
-        // Debug.Log("nodeMap size = " + nodeMap.Count);
 
     }
     void DrawGrid_L(Vector2Int pos, BaseCube cube , NodeType type)
@@ -116,14 +104,49 @@ public class CameraSpaceManager : ICameraSpaceManager
         }
     }
 
-    public bool IsPassable(Vector2Int position)
+    public int IsPassable(Vector2Int position)
     {
         return nodeMap[position.x, position.y].isPassable;
     }
-    // public void ChangeCameraDirection()
-    // {
-    //     cameraDirectionIndex = 1^cameraDirectionIndex;
-    //     Debug.Log("current camera direction = " + cameraDirectionIndex);
-    // }
+    
+    public BaseCube GetCube_L(Vector2Int position)
+    {
+        return nodeMap[position.x, position.y].leftNode.cube;
+    }
+    public BaseCube GetCube_R(Vector2Int position)
+    {
+        return nodeMap[position.x, position.y].rightNode.cube;
+    }
+    public List<BaseCube> GetCubes(Vector2Int position)
+    {
+        List<BaseCube> cubes = new List<BaseCube>();
+        cubes.Add(GetCube_L(position));
+        cubes.Add(GetCube_R(position));
+        cubes.Add(GetCube_L(position + CameraManager.Instance.GetOffetY()));
+        cubes.Add(GetCube_R(position + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY()));
+        cubes.Add(GetCube_L(position + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY()));
+        cubes.Add(GetCube_R(position + CameraManager.Instance.GetOffetX()));
+        return cubes;
+    }
+
+    public bool IsCubeExposed(Vector2Int position)
+    {
+        BaseCube isExposed = GetCube_L(position);
+        if(isExposed == null)
+            return false;
+        if(isExposed != GetCube_R(position))
+            return false;
+        if(isExposed != GetCube_L(position + CameraManager.Instance.GetOffetY()))
+            return false;
+        if(isExposed != GetCube_R(position + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY()))
+            return false;
+        if(isExposed != GetCube_L(position + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY()))
+            return false;
+        if(isExposed != GetCube_R(position + CameraManager.Instance.GetOffetX()))
+            return false;
+        return true;
+
+    }
+
 
 }

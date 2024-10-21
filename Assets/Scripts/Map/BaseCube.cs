@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseCube : MonoBehaviour
 {
+    public int groupID = -1;
     private Vector3Int position;
     public Vector3Int Position{ get => position; set {position = value; transform.position = value;}}
     public int Height{get => Mathf.RoundToInt(CameraManager.Instance.GetDepth(Position));}
@@ -13,4 +14,5 @@ public class BaseCube : MonoBehaviour
         Vector3Int mid = Vector3Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(Position));
         return new Vector2Int(mid.x, mid.z);
     }
+    
 }

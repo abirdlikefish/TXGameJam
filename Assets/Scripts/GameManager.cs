@@ -7,10 +7,7 @@ public class GameManager : MonoBehaviour
     List<IOnGameAwakeInit> OnGameAwakes;
     private void Awake()
     {
-        // MapManager.Instance.AddCube(new Vector3Int(0,0,0));
-        // MapManager.Instance.AddCube(new Vector3Int(1,0,0));
-        // MapManager.Instance.AddCube(new Vector3Int(2,0,0));
-        // MapManager.Instance.RefreshCameraSpace();
+
         // Debug.Log("GameManager Start");
         OnGameAwakes = new()
         {
@@ -21,5 +18,19 @@ public class GameManager : MonoBehaviour
         {
             it.InitializeOnGameAwake();
         }
+        MapManager.AddListener();
+        EventManager.Instance.AddCube(new Vector3Int(0,0,0));
+        EventManager.Instance.AddCube(new Vector3Int(0,-2,-2));
+        // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
+        Debug.Log("GameManager Start");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+            EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,0,0), 1);
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+            EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,1,0), 0);
     }
 }
