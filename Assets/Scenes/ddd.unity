@@ -1364,9 +1364,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 917553516}
-  - component: {fileID: 917553517}
-  - component: {fileID: 917553518}
   - component: {fileID: 917553519}
+  - component: {fileID: 917553518}
+  - component: {fileID: 917553521}
+  - component: {fileID: 917553522}
+  - component: {fileID: 917553517}
   - component: {fileID: 917553520}
   m_Layer: 0
   m_Name: BombEntity
@@ -1469,6 +1471,54 @@ MonoBehaviour:
   a: 0
   b: 1
   div: 0.35
+--- !u!54 &917553521
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917553515}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!135 &917553522
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917553515}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.49999997
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &964920720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2292,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1461160002}
+  - {fileID: 2061142293}
   m_Father: {fileID: 288794309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1218745017
@@ -2257,6 +2308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 0
+  entityP: {fileID: 2061142293}
+  blocks: []
 --- !u!1 &1275391367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,7 +2650,7 @@ MonoBehaviour:
   damage: 1
   crossRange: 2
   bombEntity: {fileID: 917553515}
-  entityExistTime: 2
+  entityExistTime: 3
   explosion: {fileID: 505404032}
   explosionExistTime: 0.5
 --- !u!1 &1505878789
@@ -3570,6 +3623,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4685758145851106589, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
   m_PrefabInstance: {fileID: 2057462865}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2061142292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061142293}
+  m_Layer: 0
+  m_Name: EntityPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2061142293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061142292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1218745016}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2071391980
 PrefabInstance:
   m_ObjectHideFlags: 0

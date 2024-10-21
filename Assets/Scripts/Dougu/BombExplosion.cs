@@ -21,6 +21,8 @@ public class BombExplosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.GetComponent<BombEntity>())
+            other.gameObject.GetComponent<BombEntity>().Explode();
         if (other.gameObject.GetComponent<Mate>())
             other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
         

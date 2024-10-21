@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 1401112189195100702}
   m_Layer: 0
   m_Name: Mate
-  m_TagString: Mate
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,3 +215,4 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 89516b6d68f018a41af1dcd622679964, type: 2}
   a: 0.5
   b: 1
+  div: 5

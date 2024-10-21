@@ -12,9 +12,9 @@ public class DouguBomb : Dougu
     public float explosionExistTime = 0.5f;
     public override bool OnUse()
     {
-        if (!MyIns(bombEntity, user.CurCenter))
+        GameObject go = MyInsBlock(bombEntity, user.CurCenter);
+        if (go == null)
             return false;
-        GameObject go = MyIns(bombEntity, user.CurCenter);
         go.SetActive(true);
         OnUseEnd();
         return true;

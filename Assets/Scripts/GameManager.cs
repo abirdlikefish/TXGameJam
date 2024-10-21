@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
         {
             MateManager.Instance.curMates[0],
             MateManager.Instance.curMates[1],
+            DouguManager.Instance
         };
         OnLevelEnter();
         MapManager.AddListener();

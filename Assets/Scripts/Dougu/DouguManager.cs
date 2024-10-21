@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit
+public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEnterInit
 {
+    public Transform entityP;
     List<Dougu> prefabDougus;
+    [SerializeField]
+    List<Vector3> blocks;
     public void InitializeOnGameAwake()
     {
         prefabDougus = new();
@@ -18,13 +21,35 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit
             }
         }
     }
-
-    public static bool Hit(Vector3 from,Vector3 to)
+    public void InitializeOnLevelEnter()
     {
-        return false;
+        ClearChild(entityP);
+        blocks = new();
+    }
+
+
+    public void AddBlock(Vector3 pos)
+    {
+        Vector3 posY0 = new(pos.x, 0, pos.z);
+        blocks.Add(posY0);
+    }
+    public void RemoveBlock(Vector3 pos)
+    {
+        Vector3 posY0 = new(pos.x, 0, pos.z);
+        blocks.Remove(posY0);
+    }
+    void ClearChild(Transform p)
+    {
+        for (int i = 0; i < p.transform.childCount; i++)
+            Destroy(transform.GetChild(i).gameObject);
+    }
+    public bool CanTooru(Vector3 pos)
+    {
+        return !blocks.Contains(pos);
     }
     public T GetDougu<T>() where T : Dougu
     {
         return prefabDougus.Find(d => d is T) as T;
     }
+
 }

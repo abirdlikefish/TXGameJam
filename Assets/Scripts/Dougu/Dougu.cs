@@ -18,17 +18,24 @@ public abstract class Dougu : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public static GameObject MyIns(GameObject go,Vector3 pos)
+    public static GameObject MyInsBlock(GameObject go,Vector3 pos)
     {
-        Vector3 posY0 = new Vector3(pos.x, 0, pos.z);
+        Vector3 posY0 = new(pos.x, 0, pos.z);
+        if (!MateInput.CanTooru(posY0) || !DouguManager.Instance.CanTooru(posY0))
+            return null;
+        return MyIns(go, pos);
+    }
+    public static GameObject MyInsEffect(GameObject go,Vector3 pos)
+    {
+        Vector3 posY0 = new(pos.x, 0, pos.z);
         if (!MateInput.CanTooru(posY0))
             return null;
-        GameObject g = Instantiate(go, pos, Quaternion.identity);
+        return MyIns(go, pos);
+    }
+    static GameObject MyIns(GameObject go, Vector3 pos)
+    {
+        GameObject g = Instantiate(go, pos, Quaternion.identity, DouguManager.Instance.entityP);
         g.SetActive(true);
         return g;
     }
-    //public static GameObject MyIns(GameObject go,Vector3 lastPos,Vector3 nextPos)
-    //{
-    //    if(IsTooru)
-    //}
 }
