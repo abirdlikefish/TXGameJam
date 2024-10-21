@@ -40,6 +40,12 @@ public class WorldSpaceManager : IWorldSpaceManager
         position += Vector3Int.one * 100;
         worldMap[position.x, position.y, position.z] = cube;
     }
+    public int GetNewID()
+    {
+
+        cubeGroupList.Add(new List<BaseCube>());
+        return maxGroupID++;
+    }
     private int cubeCnt = 0;
     public bool AddCube(BaseCube cube)
     {
@@ -48,9 +54,11 @@ public class WorldSpaceManager : IWorldSpaceManager
             cube.gameObject.name = "Cube" + cubeCnt++;
             if(cube.groupID == -1)
             {
-                cube.groupID = maxGroupID;
-                cubeGroupList.Add(new List<BaseCube>());
-                maxGroupID++;
+                // cube.groupID = maxGroupID;
+                // cubeGroupList.Add(new List<BaseCube>());
+                // maxGroupID++;
+                Debug.LogWarning("Cube.groupID is -1");
+                return false;
             }
             SetWorldMap(cube.Position , cube);
             // worldMap[cube.Position.x, cube.Position.y, cube.Position.z] = cube;
@@ -82,19 +90,58 @@ public class WorldSpaceManager : IWorldSpaceManager
             return false;
         }
     }
-    public void MergeGroup(int groupID1, int groupID2)
+    public void MergeGroup(List<int> groupIDList)
     {
-        if(groupID1 == groupID2)
+        Debug.Log("mergeGroup :" + string.Join("," , groupIDList));
+        if(groupIDList.Count == 0)
         {
-            Debug.LogWarning("groupID1 == groupID2");
+            // Debug.LogWarning("groupIDList.Count == 0");
             return;
         }
-        foreach(BaseCube cube in cubeGroupList[groupID2])
+        for(int i = 1 ; i < groupIDList.Count ; i++)
         {
-            cube.groupID = groupID1;
+            if(groupIDList[i] == groupIDList[0])
+            {
+                continue;
+            }
+            foreach(BaseCube cube in cubeGroupList[groupIDList[i]])
+            {
+                cube.groupID = groupIDList[0];
+            }
+            cubeGroupList[groupIDList[0]].AddRange(cubeGroupList[groupIDList[i]]);
+            cubeGroupList[groupIDList[i]].Clear();
+
         }
-        cubeGroupList[groupID1].AddRange(cubeGroupList[groupID2]);
-        cubeGroupList[groupID2].Clear();
+    }
+    public List<BaseCube> GetCubesByGroupID(int groupID)
+    {
+        return cubeGroupList[groupID];
+    }
+    public void CleanGroup(int groupID)
+    {
+        foreach(BaseCube cube in cubeGroupList[groupID])
+        {
+            cube.groupID = -1;
+        }
+        cubeGroupList[groupID].Clear();
+    }
+    public void CleanGroup_all()
+    {
+        maxGroupID = 0;
+        cubeGroupList.Clear();
+        foreach(BaseCube cube in cubeList)
+        {
+            cube.groupID = -1;
+        }
+    }
+    public void AddCubeToGroup(BaseCube cube)
+    {
+        if(cube.groupID == -1)
+        {
+            Debug.LogWarning("Cube.groupID is -1");
+            return;
+        }
+        cubeGroupList[cube.groupID].Add(cube);
     }
     public void IncreaseDepth(int groupID, int depth)
     {
