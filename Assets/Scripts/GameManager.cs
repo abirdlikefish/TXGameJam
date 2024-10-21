@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         {
             MateManager.Instance,
             UIManager.Instance,
+            DouguManager.Instance,
         };
         foreach (var it in OnGameAwakes)
         {

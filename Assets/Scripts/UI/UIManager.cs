@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
 {
-
-    public List<UIMate> uiMates;
-    
     void IOnGameAwakeInit.InitializeOnGameAwake()
     {
-        ShowAllMates();
+        //TODO ShowAllMates();
     }
+
+    #region UIMate
+    public List<UIMate> uiMates;
+    
     public void ShowAllMates()
     {
         MateManager.Instance.LoadJson();
@@ -52,4 +53,5 @@ public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
     {
         return new Color(c.r, c.g, c.b, a);
     }
+    #endregion
 }

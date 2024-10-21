@@ -36,9 +36,17 @@ public class MateInput : MonoBehaviour
     }
     //ÈÕ±¾ÕZ¤ò¡¡Ô’¡¡¤Þ¤·¤ç¤¦£¡
     //Í¨¤ë
-    public static bool CanTooru(Vector3 nextCenter) => true;// EventManager.Instance.IsPassive(new Vector2Int(Mathf.RoundToInt(nextCenter.x), Mathf.RoundToInt(nextCenter.z)));
+    public static bool CanTooru(Vector3 nextCenter)
+    {
+        Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        int ret = EventManager.Instance.IsPassable(pos);
+        Debug.Log(nextCenter + " " + pos + " " + ret);
+        return ret == 3;
+    }
+    // EventManager.Instance.IsPassive(new Vector2Int(Mathf.RoundToInt(nextCenter.x), Mathf.RoundToInt(nextCenter.z)));
     void HandleInput()
     {
+    
         foreach (var key in mate1_key_dir.Keys)
         {
             if (Input.GetKey(key))
@@ -50,17 +58,17 @@ public class MateInput : MonoBehaviour
             }
         }
         mate1.Move();
-        foreach (var key in mate2_key_dir.Keys)
-        {
-            if (Input.GetKey(key))
-            {
-                Vector3 ultiDelta = dir_vec[mate2_key_dir[key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
-                    + dir_vec[mate2_key_dir[key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
-                mate2.SetNextMove(ultiDelta);
-                break;
-            }
-        }
-        mate2.Move();
+        //foreach (var key in mate2_key_dir.Keys)
+        //{
+        //    if (Input.GetKey(key))
+        //    {
+        //        Vector3 ultiDelta = dir_vec[mate2_key_dir[key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
+        //            + dir_vec[mate2_key_dir[key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
+        //        mate2.SetNextMove(ultiDelta);
+        //        break;
+        //    }
+        //}
+        //mate2.Move();
     }
     Vector3 V2ToV3(Vector2Int v2)
     {
