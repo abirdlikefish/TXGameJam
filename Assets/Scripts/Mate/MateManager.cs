@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -15,7 +16,7 @@ public class MateDataList
 {
     public List<MateData> mateDatas;
 }
-public class MateManager : Singleton<MateManager>,IOnGameAwakeInit, IJsonIO<MateDataList>
+public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<MateDataList>
 {
     string dataPre = "MateData";
     string dataName = "AllMates";
@@ -41,8 +42,7 @@ public class MateManager : Singleton<MateManager>,IOnGameAwakeInit, IJsonIO<Mate
     }
     public MateData CreateMate(string newName, Color newColor)
     {
-        
-        foreach(var it in mateDataList.mateDatas)
+        foreach (var it in mateDatas)
         {
             if (it.name == newName)
             {
@@ -60,5 +60,18 @@ public class MateManager : Singleton<MateManager>,IOnGameAwakeInit, IJsonIO<Mate
         mateDataList.mateDatas.Add(mateData);
         SaveJson();
         return mateData;
+    }
+    public MateData SetMateColor(string baseName, Color newColor)
+    {
+        foreach (var it in mateDatas)
+        {
+            if (it.name == baseName)
+            {
+                it.color = newColor;
+                SaveJson();
+                return it;
+            }
+        }
+        return CreateMate(baseName, newColor);
     }
 }

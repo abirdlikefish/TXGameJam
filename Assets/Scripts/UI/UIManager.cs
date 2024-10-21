@@ -15,9 +15,14 @@ public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
     public void ShowAllMates()
     {
         MateManager.Instance.LoadJson();
-        
-        if (MateManager.Instance.mateDataList == default || MateManager.Instance.mateDatas.Count < 2)
+        if (MateManager.Instance.mateDataList == default)
         {
+            MateManager.Instance.mateDataList = new();
+            MateManager.Instance.mateDataList.mateDatas = new();
+        }
+        if (MateManager.Instance.mateDatas.Count < 2)
+        {
+            
             MateManager.Instance.CreateMate("abirdlikefish",Color.red);
             MateManager.Instance.CreateMate("Deli_", Color.blue);
             ShowAllMates();

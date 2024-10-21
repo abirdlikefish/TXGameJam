@@ -15,15 +15,20 @@ public class UIMate : Singleton<UIMate>
 
 
     public Button btConfirmEdit;
-    public void BtChangeColor()
+
+    string editName = null;
+    Color editColor = Color.clear;
+    public void OnEditChangeColor()
     {
-        mateName.color = RandomColor();
+        editColor = RandomColor();
+        MateData mateData = MateManager.Instance.SetMateColor(mateName.text,editColor);
+        UIManager.Instance.ShowMate(mateData, this);
     }
-    public void OnEditAny()
+    public void OnEditChangeName()
     {
-        string editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
-        MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
-        UIManager.Instance.ShowMate(mateData,this);
+        editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
+        MateData mateData = MateManager.Instance.SetMateName(editName, mateName.color);
+        UIManager.Instance.ShowMate(mateData, this);
     }
 
     Color RandomColor()
