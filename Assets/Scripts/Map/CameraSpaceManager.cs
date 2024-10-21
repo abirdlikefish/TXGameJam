@@ -49,7 +49,21 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         public HalfNode leftNode;
         public HalfNode rightNode;
-        public int isPassable{get{return (leftNode.type == NodeType.top ? 2 : 0) + (rightNode.type == NodeType.top ? 1 : 0);}}
+        public int isPassable{
+            get{
+                int ans = 0;
+                if(leftNode.IsEmpty == false && leftNode.type == NodeType.top)
+                {
+                    ans += 2;
+                }
+                if(rightNode.IsEmpty == false && rightNode.type == NodeType.top)
+                {
+                    ans += 1;
+                }
+                return ans;
+                // return (leftNode.type == NodeType.top ? 2 : 0) + (rightNode.type == NodeType.top ? 1 : 0);
+                }
+            }
     }
 
     private Node[,] nodeMap;
