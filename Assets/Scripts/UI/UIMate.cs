@@ -27,7 +27,7 @@ public class UIMate : Singleton<UIMate>
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
-        MateData mateData = MateManager.Instance.SetMateName(editName, mateName.color);
+        MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
         UIManager.Instance.ShowMate(mateData, this);
     }
 
