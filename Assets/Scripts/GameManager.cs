@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         }
         MapManager.AddListener();
         EventManager.Instance.AddCube(new Vector3Int(0,0,0));
-        EventManager.Instance.AddCube(new Vector3Int(0,-2,-2));
+        //EventManager.Instance.AddCube(new Vector3Int(0,-2,-2));
         // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
         // Debug.Log("GameManager Start");
     }

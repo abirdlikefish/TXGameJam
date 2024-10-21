@@ -38,10 +38,13 @@ public class MateInput : MonoBehaviour
     //═иды
     public static bool CanTooru(Vector3 nextCenter)
     {
-        Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
-        int ret = EventManager.Instance.IsPassable(pos);
-        Debug.Log(nextCenter + " " + pos + " " + ret);
+        //Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        //int ret = EventManager.Instance.IsPassable(pos);
+        int ret = EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(Vector3Int.right));
+        Debug.Log(ret);
         return ret == 3;
+        //Debug.Log(nextCenter + " " + pos + " " + ret);
+        //return ret == 3;
     }
     // EventManager.Instance.IsPassive(new Vector2Int(Mathf.RoundToInt(nextCenter.x), Mathf.RoundToInt(nextCenter.z)));
     void HandleInput()
