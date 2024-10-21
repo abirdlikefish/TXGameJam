@@ -10,7 +10,7 @@ public class Mate : Entity
 
     public MateData mateData;
     List<Dougu> onHeadDougu = new();
-
+    
 
     public void ResetDougu()
     {

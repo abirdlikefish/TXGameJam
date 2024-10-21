@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     List<IOnGameAwakeInit> OnGameAwakes;
+    List<IOnLevelEnterInit> OnLevelEnters;
     private void Awake()
     {
 
@@ -15,16 +16,33 @@ public class GameManager : MonoBehaviour
             UIManager.Instance,
             DouguManager.Instance,
         };
-        foreach (var it in OnGameAwakes)
+        OnGameAwake();
+        OnLevelEnters = new()
         {
-            it.InitializeOnGameAwake();
-        }
+            MateManager.Instance.curMates[0],
+            MateManager.Instance.curMates[1],
+        };
+        OnLevelEnter();
         MapManager.AddListener();
         EventManager.Instance.AddCube(new Vector3Int(0,0,0));
         // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
         // Debug.Log("GameManager Start");
     }
+    void OnGameAwake()
+    {
+        foreach (var it in OnGameAwakes)
+        {
+            it.InitializeOnGameAwake();
+        }
 
+    }
+    public void OnLevelEnter()
+    {
+        foreach (var it in OnLevelEnters)
+        {
+            it.InitializeOnLevelEnter();
+        }
+    }
     // Update is called once per frame
     void Update()
     {

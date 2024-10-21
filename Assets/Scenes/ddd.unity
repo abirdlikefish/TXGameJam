@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028384, g: 0.22571418, b: 0.3069244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,7 +256,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -315,13 +315,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89690113}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.08714561, y: -0.88683033, z: 0.4135357, w: -0.18688439}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -203.8, z: 0}
 --- !u!1 &158204732
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbeb177dae902644ea0f57a9af9b5ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  global: 0
 --- !u!1 &403220854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1367,7 @@ GameObject:
   - component: {fileID: 917553517}
   - component: {fileID: 917553518}
   - component: {fileID: 917553519}
+  - component: {fileID: 917553520}
   m_Layer: 0
   m_Name: BombEntity
   m_TagString: Untagged
@@ -1451,6 +1453,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917553515}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &917553520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917553515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63a261dade0ce041ac9fa11e9bb446f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 98b4313b9d560904daf483c7dc3684c2, type: 2}
+  a: 0
+  b: 1
+  div: 0.35
 --- !u!1 &964920720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,7 +3068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   global: 0
   maxDistanceToCenterWhenBlocked: 0.2
-  moveSpeed: 1
+  moveSpeed: 2
+  takeDamageInterval: 3
 --- !u!224 &1759824098 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2303465062266439825, guid: b2d556f5742734343975b60c98d69d67, type: 3}
@@ -3563,17 +3582,37 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6db8412f848d69f4096238c7053e2950, type: 2}
+    - target: {fileID: 1098992120467311767, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95ee46f65373cfd4fa3bf4e44b7a2f1f, type: 2}
+    - target: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: MaxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: curHealth
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 819041847}
+    - target: {fileID: 1401112189195100702, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401112189195100702, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: div
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401112189195100702, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6db8412f848d69f4096238c7053e2950, type: 2}
     - target: {fileID: 3110820751028259553, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3956984332609678846, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3840,16 +3879,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 492943713}
     m_Modifications:
     - target: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: MaxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: curHealth
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1759824099}
+    - target: {fileID: 1401112189195100702, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401112189195100702, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: div
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401112189195100702, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 794a4a134f4f4d34f8f3207725b7b418, type: 2}
     - target: {fileID: 3110820751028259553, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3956984332609678846, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
       propertyPath: m_LocalPosition.x

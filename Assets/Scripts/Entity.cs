@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour,IOnLevelEnterInit
 {
+    float lastTakeDamageTime;
     public float MaxHealth = 3f;
     [SerializeField]
     float curHealth;
@@ -16,18 +18,26 @@ public class Entity : MonoBehaviour
         }
         set
         {
+            if(value < curHealth)
+            {
+                if (Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval)
+                    return;
+                lastTakeDamageTime = Time.time;
+            }
             if (value > MaxHealth)
             {
                 curHealth = MaxHealth;
             }
             else if (value <= 0)
             {
-                curHealth = 0f;
-                OnHealthZero();
+                curHealth = 0;
+                
             }
             else
                 curHealth = value;
             healthBar.fillAmount = curHealth / MaxHealth;
+            if (curHealth <= 0)
+                OnHealthZero();
         }
     }
     public Image healthBar;
@@ -38,5 +48,17 @@ public class Entity : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurHealth -= damage;
+    }
+    public void InitializeOnLevelEnter()
+    {
+        lastTakeDamageTime = -DeliConfig.Instance.takeDamageInterval;
+        CurHealth = MaxHealth;
+    }
+
+    public virtual void Update()
+    {
+        GetComponent<Flash>().enabled = Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval;
+        if(GetComponent<Flash>().enabled)
+            Debug.Log(name + " is flashing");
     }
 }

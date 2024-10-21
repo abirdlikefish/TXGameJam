@@ -27,8 +27,12 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
     public void InitializeOnGameAwake()
     {
         curMates = new();
+        LoadJson();
         for (int i = 0; i < transform.childCount; i++)
+        {
             curMates.Add(transform.GetChild(i).GetComponent<Mate>());
+            curMates[i].mateData = mateDatas[i];
+        }
     }
 
     public void SaveJson()
@@ -38,7 +42,19 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
 
     public MateDataList LoadJson()
     {
-        return mateDataList = JsonIO.ReadCurSheet<MateDataList>(dataPre, dataName);
+        mateDataList = JsonIO.ReadCurSheet<MateDataList>(dataPre, dataName);
+        if(mateDataList == default)
+        {
+            mateDataList = new();
+            mateDataList.mateDatas = new();
+        }
+        if (mateDatas.Count < 2)
+        {
+            CreateMate("abirdlikefish", Color.red);
+            CreateMate("Deli_", Color.blue);
+            SaveJson();
+        }
+        return mateDataList;
     }
     public MateData CreateMate(string newName, Color newColor)
     {

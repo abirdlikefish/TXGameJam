@@ -12,10 +12,6 @@ public class BombEntity : MonoBehaviour
 
     private void Update()
     {
-        //让c的a值在0-0.5之间变化
-        Color c = GetComponent<MeshRenderer>().materials[1].GetColor("_Diffuse");
-        c.a = Mathf.PingPong(Time.time, 0.5f);
-        GetComponent<MeshRenderer>().materials[1].SetColor("_Diffuse", c);
         existTimer += Time.deltaTime;
         if (existTimer >= existTime)
         {

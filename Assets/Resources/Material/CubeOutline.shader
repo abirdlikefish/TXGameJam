@@ -3,7 +3,7 @@
     Properties 
     {
 
-        _Color("Color",Color)=(1.0,1.0,1.0,1.0)
+        _Diffuse("_Diffuse",Color)=(1.0,1.0,1.0,1.0)
         _EdgeColor("Edge Color",Color)=(1.0,1.0,1.0,1.0)
         _Width("Width",Range(0,1))=0
 
@@ -41,7 +41,7 @@
                 half4 pos : SV_POSITION ;
                 half4 uv : TEXCOORD0  ;            
             };
-            fixed4 _Color;
+            fixed4 _Diffuse;
             fixed4 _EdgeColor;
             float _Width;
     
@@ -61,7 +61,7 @@
                 float ly = step(_Width, i.uv.y);
                 float hx = step(i.uv.x, 1.0 - _Width);
                 float hy = step(i.uv.y, 1.0 - _Width);
-                col = lerp(_EdgeColor, _Color, lx*ly*hx*hy);
+                col = lerp(_EdgeColor, _Diffuse, lx*ly*hx*hy);
                 return col;
             }
         ENDCG
@@ -87,7 +87,7 @@
                 half4 pos : SV_POSITION ;
                 half4 uv : TEXCOORD0  ;            
             };
-            fixed4 _Color;
+            fixed4 _Diffuse;
             fixed4 _EdgeColor;
             float _Width;
     
@@ -107,7 +107,7 @@
                 float ly = step(_Width, i.uv.y);
                 float hx = step(i.uv.x, 1.0 - _Width);
                 float hy = step(i.uv.y, 1.0 - _Width);
-                col = lerp(_EdgeColor, _Color, lx*ly*hx*hy);
+                col = lerp(_EdgeColor, _Diffuse, lx*ly*hx*hy);
                 return col;
         }
         ENDCG

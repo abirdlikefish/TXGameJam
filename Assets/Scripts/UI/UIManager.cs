@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
 {
-    void IOnGameAwakeInit.InitializeOnGameAwake()
+    public void InitializeOnGameAwake()
     {
-        //TODO ShowAllMates();
+        ShowAllMates();
     }
 
     #region UIMate
@@ -15,20 +15,6 @@ public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
     
     public void ShowAllMates()
     {
-        MateManager.Instance.LoadJson();
-        if (MateManager.Instance.mateDataList == default)
-        {
-            MateManager.Instance.mateDataList = new();
-            MateManager.Instance.mateDataList.mateDatas = new();
-        }
-        if (MateManager.Instance.mateDatas.Count < 2)
-        {
-            
-            MateManager.Instance.CreateMate("abirdlikefish",Color.red);
-            MateManager.Instance.CreateMate("Deli_", Color.blue);
-            ShowAllMates();
-            return;
-        }
         for (int i = 0; i < 2; i++)
         {
             ShowMate(MateManager.Instance.mateDatas[i], uiMates[i]);
