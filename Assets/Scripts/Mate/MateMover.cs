@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class MateMover : MonoBehaviour
 {
-    [SerializeField]
-    Vector3 target;
-    Vector3 Target
-    {
-        get => target = SpecialLerp();
-    }
+    Vector3 Target => SpecialLerp();
     Vector3 thisCenter =>
         new(Mathf.RoundToInt(transform.position.x),
             Mathf.RoundToInt(transform.position.y),
             Mathf.RoundToInt(transform.position.z));
     Vector3 nextCenter;
     Vector3 moveDir;
-    bool canTooru => MateInput.CanTooru(nextCenter);
+    public Vector3 InputDir { get; set; }
+    bool CanTooru => MateInput.CanTooru(nextCenter);
+
     public void SetNextMove(Vector3 moveDir)
     {
         this.moveDir = moveDir;
@@ -29,10 +26,10 @@ public class MateMover : MonoBehaviour
             return transform.position;
         if (moveDir.x != 0)
         {
-            float restrictX = canTooru ? nextCenter.x : Mathf.Lerp(thisCenter.x, nextCenter.x, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
+            float restrictX = CanTooru ? nextCenter.x : Mathf.Lerp(thisCenter.x, nextCenter.x, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
             return new Vector3(restrictX,transform.position.y, transform.position.z);
         }
-        float restrictZ = canTooru ? nextCenter.z : Mathf.Lerp(thisCenter.z, nextCenter.z, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
+        float restrictZ = CanTooru ? nextCenter.z : Mathf.Lerp(thisCenter.z, nextCenter.z, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
         return new Vector3(transform.position.x, transform.position.y, restrictZ);
     }
     
@@ -52,7 +49,7 @@ public class MateMover : MonoBehaviour
 
     bool IsInDeadZone()
     {
-        if (canTooru)
+        if (CanTooru)
             return false;
         if(moveDir.x != 0)
         {
@@ -62,6 +59,6 @@ public class MateMover : MonoBehaviour
     }
     void MoveByCurKey()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.Instance.moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.Instance.moveSpeed * Time.deltaTime);
     }
 }

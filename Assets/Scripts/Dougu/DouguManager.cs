@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,5 +17,14 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit
                 prefabDougus.Add(go.GetComponent<Dougu>());
             }
         }
+    }
+
+    public static bool Hit(Vector3 from,Vector3 to)
+    {
+        return false;
+    }
+    public T GetDougu<T>() where T : Dougu
+    {
+        return prefabDougus.Find(d => d is T) as T;
     }
 }

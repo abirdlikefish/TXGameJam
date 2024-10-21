@@ -1740,7 +1740,7 @@
             <summary>Tweens a Material's named color property to the given value.
             Also stores the material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The end value to reach</param>
-            <param name="property">The name of the material property to tween (like _Tint or _SpecColor)</param>
+            <param name="property">The name of the material property to tween (like _Tint or _MySpecColor)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOColor(UnityEngine.Material,UnityEngine.Color,System.Int32,System.Single)">
@@ -1761,7 +1761,7 @@
             (will have no effect unless your material supports transparency).
             Also stores the material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The end value to reach</param>
-            <param name="property">The name of the material property to tween (like _Tint or _SpecColor)</param>
+            <param name="property">The name of the material property to tween (like _Tint or _MySpecColor)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOFade(UnityEngine.Material,System.Single,System.Int32,System.Single)">
@@ -2132,7 +2132,7 @@
             instead than fight each other as multiple DOColor would do.
             Also stores the Material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The value to tween to</param>
-            <param name="property">The name of the material property to tween (like _Tint or _SpecColor)</param>
+            <param name="property">The name of the material property to tween (like _Tint or _MySpecColor)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOBlendableColor(UnityEngine.Material,UnityEngine.Color,System.Int32,System.Single)">
