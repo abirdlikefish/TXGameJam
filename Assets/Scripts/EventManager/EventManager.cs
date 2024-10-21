@@ -38,13 +38,13 @@ public class EventManager
         RemoveCubeEvent_after?.Invoke(isSucceed);
     }
 
-    public event Action<Vector3Int , int> AddCube_ChangeDepthEvent_before;
-    public event Func<Vector3Int , int , bool> AddCube_ChangeDepthEvent_on;
+    public event Action<Vector3Int , Vector3Int> AddCube_ChangeDepthEvent_before;
+    public event Func<Vector3Int , Vector3Int , bool> AddCube_ChangeDepthEvent_on;
     public event Action<bool> AddCube_ChangeDepthEvent_after;
-    public void AddCube_ChangeDepth(Vector3Int position, int depth)
+    public void AddCube_ChangeDepth(Vector3Int parentPosition, Vector3Int position)
     {
-        AddCube_ChangeDepthEvent_before?.Invoke(position, depth);
-        bool isSucceed = AddCube_ChangeDepthEvent_on?.Invoke(position, depth) ?? false;
+        AddCube_ChangeDepthEvent_before?.Invoke(parentPosition, position);
+        bool isSucceed = AddCube_ChangeDepthEvent_on?.Invoke(parentPosition , position) ?? false;
         AddCube_ChangeDepthEvent_after?.Invoke(isSucceed);
     }
 

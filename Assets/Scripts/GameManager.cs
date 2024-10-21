@@ -22,15 +22,18 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.AddCube(new Vector3Int(0,0,0));
         EventManager.Instance.AddCube(new Vector3Int(0,-2,-2));
         // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
-        Debug.Log("GameManager Start");
+        // Debug.Log("GameManager Start");
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha0))
-            EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,0,0), 1);
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-            EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,1,0), 0);
+            EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(0 , 0 , 0) , new Vector3Int(1,0,0));
+            // EventManager.Instance.AddCube(new Vector3Int(1,0,0));
+            // EventManager.Instance.RemoveCube(new Vector3Int(0,-1,-1));
+        //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,0,0), 1);
+        // if(Input.GetKeyDown(KeyCode.Alpha1))
+        //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,1,0), 0);
     }
 }

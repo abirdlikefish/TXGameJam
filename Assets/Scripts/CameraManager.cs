@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 // using System.Numerics;
@@ -39,6 +40,12 @@ public class CameraManager : MonoBehaviour
         mid += Vector3.one * 100;
         return new Vector2(mid.x, mid.z);
     }
+    public Vector2Int GetCameraSpacePosition(Vector3Int position)
+    {
+        Vector3Int mid = position - position.y * GetCameraDirection();
+        mid += Vector3Int.one * 100;
+        return new Vector2Int(mid.x, mid.z);
+    }
     public float GetDepth(Vector3 position)
     {
         return Vector3.Dot(position, GetCameraDirection());
@@ -64,5 +71,40 @@ public class CameraManager : MonoBehaviour
         {
             return new Vector2Int(-1, 0);
         }
+    }
+    public int GetDirection_WorldDirectionInCamera(Vector3Int direction)
+    {
+        if(Math.Abs(direction.x) + Math.Abs(direction.y) + Math.Abs(direction.z) != 1)
+        {
+            Debug.LogWarning("Error direction");
+            return -1;
+        }
+        Vector2Int midDir = new Vector2Int(direction.x, direction.z);
+        if(direction.y == 1)
+        {
+            return 0;
+        }
+        if(midDir == -GetOffetX())
+        {
+            return 1;
+        }
+        if(midDir == GetOffetY())
+        {
+            return 2;
+        }
+        if(direction.y == -1)
+        {
+            return 3;
+        }
+        if(midDir == GetOffetX())
+        {
+            return 4;
+        }
+        if(midDir == -GetOffetY())
+        {
+            return 5;
+        }
+        Debug.LogWarning("Error direction");
+        return -1;
     }
 }
