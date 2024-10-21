@@ -11,8 +11,7 @@ public class BaseCube : MonoBehaviour
 
     public Vector2Int GetCameraSpacePosition()
     {
-        Vector3Int mid = Vector3Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(Position));
-        return new Vector2Int(mid.x, mid.z);
+        return CameraManager.Instance.GetCameraSpacePosition(Position);
     }
     
 }
