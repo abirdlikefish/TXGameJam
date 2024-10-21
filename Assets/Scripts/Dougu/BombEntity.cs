@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class BombEntity : MonoBehaviour,IBlock
+public class BombEntity : MonoBehaviour
 {
     public DouguBomb douguBase => DouguManager.Instance.GetDougu<DouguBomb>();
     float existTime => douguBase.entityExistTime;
@@ -31,13 +31,5 @@ public class BombEntity : MonoBehaviour,IBlock
         }
         Destroy(gameObject);
     }
-    public void OnEnable()
-    {
-        DouguManager.Instance.AddBlock(transform.position);
-    }
-
-    public void OnDisable()
-    {
-        DouguManager.Instance.RemoveBlock(transform.position);
-    }
+    
 }
