@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         }
         MapManager.AddListener();
         EventManager.Instance.AddCube(new Vector3Int(0,0,0));
-        //EventManager.Instance.AddCube(new Vector3Int(0,-2,-2));
         // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
         // Debug.Log("GameManager Start");
     }
@@ -29,8 +28,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
-            EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(0 , 0 , 0) , new Vector3Int(1,0,0));
+        // if(Input.GetKeyDown(KeyCode.Alpha0))
+        //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(0 , 0 , 0) , new Vector3Int(1,0,0));
             // EventManager.Instance.AddCube(new Vector3Int(1,0,0));
             // EventManager.Instance.RemoveCube(new Vector3Int(0,-1,-1));
         //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,0,0), 1);
