@@ -3,40 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MateManager : Singleton<MateManager>,IOnGameAwakeInit
+[Serializable]
+public class MateData
+{
+    public string name;
+    public Color color;
+    public int winCount;
+}
+[Serializable]
+public class MateDataList
+{
+    public List<MateData> mateDatas;
+}
+public class MateManager : Singleton<MateManager>,IOnGameAwakeInit, IJsonIO<MateDataList>
 {
     string dataPre = "MateData";
-    Func<int,string> DataName = (int id) => { return "Mate" + id.ToString(); } ;
-    public List<Mate> mates;
+    string dataName = "AllMates";
+    //Func<int,string> DataName = (int id) => { return "Mate" + id.ToString(); } ;
+    public List<Mate> curMates;
+    public MateDataList mateDataList;
+    public List<MateData> mateDatas => mateDataList.mateDatas;
     public void InitializeOnGameAwake()
     {
-        mates = new();
+        curMates = new();
         for (int i = 0; i < transform.childCount; i++)
-            mates.Add(transform.GetChild(i).GetComponent<Mate>());
+            curMates.Add(transform.GetChild(i).GetComponent<Mate>());
     }
-    private void Update()
+
+    public void SaveJson()
     {
-        if(Input.GetKeyDown(KeyCode.S))
-            WriteAllMateData();
-        if (Input.GetKeyDown(KeyCode.L))
-            TryReadAllMateData();
+        JsonIO.WriteCurSheet(dataPre, dataName, mateDataList);
     }
-    public bool TryReadAllMateData()
+
+    public MateDataList LoadJson()
     {
-        for(int i = 0; i < mates.Count; i++)
+        return mateDataList = JsonIO.ReadCurSheet<MateDataList>(dataPre, dataName);
+    }
+    public MateData CreateMate(string newName, Color newColor)
+    {
+        
+        foreach(var it in mateDataList.mateDatas)
         {
-            Mate mate = mates[i];
-            if(mate.LoadJson(dataPre, DataName(i)) == default)
-                return false;
+            if (it.name == newName)
+            {
+                it.color = newColor;
+                SaveJson();
+                return it;
+            }
         }
-        return true;
-    }
-    public void WriteAllMateData()
-    {
-        for (int i = 0; i < mates.Count; i++)
+        MateData mateData = new()
         {
-            Mate mate = mates[i];
-            mate.SaveJson(dataPre, DataName(i));
-        }
+            name = newName,
+            color = newColor,
+            winCount = 0
+        };
+        mateDataList.mateDatas.Add(mateData);
+        SaveJson();
+        return mateData;
     }
 }

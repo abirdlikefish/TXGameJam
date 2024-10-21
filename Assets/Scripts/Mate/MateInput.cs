@@ -19,8 +19,8 @@ public class MateInput : MonoBehaviour
     SerializableDictionary<KeyCode, MoveDir> mate2_key_dir;
 
 
-    MateMover mate1 => MateManager.Instance.mates[0].GetComponent<MateMover>();
-    MateMover mate2 => MateManager.Instance.mates[1].GetComponent<MateMover>();
+    MateMover mate1 => MateManager.Instance.curMates[0].GetComponent<MateMover>();
+    MateMover mate2 => MateManager.Instance.curMates[1].GetComponent<MateMover>();
     public static Dictionary<MoveDir, Vector3> dir_vec =
         new()
         {
