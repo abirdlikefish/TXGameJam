@@ -58,7 +58,9 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     }
     public bool HasSameEffect(Vector3 posY0, Type type)
     {
-        return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
+        return false;
+        //TOTO ÌØÐ§ÖØµþ
+        //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
     }
     public T GetDougu<T>() where T : Dougu
     {

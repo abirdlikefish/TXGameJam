@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Mate : Entity
 {
-    public Vector3 CurCenter => new(Mathf.RoundToInt(transform.position.x), transform.position.y, Mathf.RoundToInt(transform.position.z));
-    public Vector3 InputDir => GetComponent<MateMover>().InputDir;
-
+    public Vector3 CurCenter => GetComponent<MateMover>().CurCenter;
+    public Vector3 Target => GetComponent<MateMover>().Target;
     public MateData mateData;
+    [SerializeField]
     List<Dougu> onHeadDougu = new();
     
 

@@ -26,7 +26,7 @@ public class DepthSetterEntity : MonoBehaviour
                 yield return 0;
                 continue;
             }
-            d1 = 3000 + h1 + h2;
+            d1 = 3000 + h1 + h2 + 1;
             GetComponent<NewMaterial>().Material.renderQueue = d1;
             yield return 0;
         }

@@ -8,10 +8,11 @@ public class DouguBomb : Dougu
     public int crossRange = 2;
     public Block bombEntity;
     public float entityExistTime = 2f;
-    public BombExplosion explosion;
-    public float explosionExistTime = 0.5f;
+    public BombEffect explosion;
+    public float effectTime = 0.5f;
     public override bool OnUse()
     {
+        base.OnUse();
         GameObject go = MyInsBlock(bombEntity, user.CurCenter);
         if (go == null)
             return false;

@@ -8,8 +8,8 @@ public class BombEntity : Block
     float existTime => douguBase.entityExistTime;
     float existTimer = 0f;
     int crossRange => douguBase.crossRange;
-    BombExplosion explosion => douguBase.explosion;
-    
+    BombEffect explosion => douguBase.explosion;
+    bool exploded = false;
     private void Update()
     {
         existTimer += Time.deltaTime;
@@ -20,6 +20,9 @@ public class BombEntity : Block
     }
     public void Explode()
     {
+        if(exploded)
+            return;
+        exploded = true;
         Dougu.MyInsEffect(explosion, transform.position);
         foreach (var dir in Dougu.Dirs)
         {

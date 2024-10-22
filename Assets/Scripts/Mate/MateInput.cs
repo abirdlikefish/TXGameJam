@@ -19,8 +19,6 @@ public class MateInput : MonoBehaviour
     SerializableDictionary<KeyCode, MoveDir> mate2_key_dir;
 
 
-    MateMover mate1 => MateManager.Instance.curMates[0].GetComponent<MateMover>();
-    MateMover mate2 => MateManager.Instance.curMates[1].GetComponent<MateMover>();
     public static Dictionary<MoveDir, Vector3> dir_vec =
         new()
         {
@@ -34,12 +32,12 @@ public class MateInput : MonoBehaviour
     public KeyCode mate1_dougu_key;
     public List<KeyCode> mate2_dougu_keys;
 
+    MateMover mate1 => MateManager.Instance.curMates[0].GetComponent<MateMover>();
+    MateMover mate2 => MateManager.Instance.curMates[1].GetComponent<MateMover>();
     private void Update()
     {
         HandleInput();
     }
-    //日本語を　話　ましょう！
-    //通る
      static bool IsPassableLeft(int x)
     {
         return x == 2 || x == 3;
@@ -48,6 +46,8 @@ public class MateInput : MonoBehaviour
     {
         return x == 1 || x == 3;
     }
+    //日本語を　話　ましょう！
+    //通る
     public static bool CanTooruY0(Vector3 thisCenter,Vector3 nextCenter)
     {
         Vector2Int pos1 = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(thisCenter));
@@ -86,7 +86,6 @@ public class MateInput : MonoBehaviour
             if (Input.GetKey(key))
             {
                 Vector3 ultiDelta = InputKeyToDir1(key);
-                mate1.InputDir = ultiDelta;
                 mate1.SetNextMove(ultiDelta);
                 break;
             }
@@ -102,7 +101,6 @@ public class MateInput : MonoBehaviour
             if (Input.GetKey(key))
             {
                 Vector3 ultiDelta = InputKeyToDir2(key);
-                mate2.InputDir = ultiDelta;
                 mate2.SetNextMove(ultiDelta);
                 break;
             }

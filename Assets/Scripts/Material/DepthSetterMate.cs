@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class DepthSetterMate : MonoBehaviour
 {
-    //public static float setInterval = 1f;
     public int d1;
     public int d2;
     public int d3;
-    Vector3 ThisCenter => GetComponent<MateMover>().thisCenter;
-    Vector3 NextCenter => GetComponent<MateMover>().nextCenter;
+    Vector3 ThisCenter => GetComponent<MateMover>().CurCenter;
+    //Vector3 NextCenter => GetComponent<MateMover>().Target; TODO
     private void Start()
     {
         StartCoroutine(SetDepth());
@@ -31,10 +30,10 @@ public class DepthSetterMate : MonoBehaviour
                 continue;
             }
             d1 = 3000 + h1 + h2;
-            h1 = GetLeftCube(NextCenter);
-            h2 = GetRightCube(NextCenter);
-            d2 = 3000 + h1 + h2;
-            d3 = Mathf.Max(d1, d2) + 1;
+            //h1 = GetLeftCube(NextCenter);
+            //h2 = GetRightCube(NextCenter);
+            //d2 = 3000 + h1 + h2;
+            d3 = Mathf.Max(d1, d1) + 1;
             GetComponent<NewMaterial>().Material.renderQueue = d3;
             yield return 0;
         }
