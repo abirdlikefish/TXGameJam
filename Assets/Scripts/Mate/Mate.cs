@@ -15,10 +15,10 @@ public class Mate : Entity
 
 
     public float lastDouguTime;
-    float douguInterval = 1f;
+    
     private void Awake()
     {
-        lastDouguTime = -douguInterval;
+        lastDouguTime = - DeliConfig.Instance.douguInterval;
     }
     public override void Update()
     {
@@ -27,7 +27,7 @@ public class Mate : Entity
     }
     public void HandleInput()
     {
-        if(Time.time - lastDouguTime < douguInterval)
+        if(Time.time - lastDouguTime < -DeliConfig.Instance.douguInterval)
         {
             return;
         }
