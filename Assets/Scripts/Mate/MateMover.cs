@@ -12,7 +12,7 @@ public class MateMover : MonoBehaviour
     Vector3 nextCenter;
     Vector3 moveDir;
     public Vector3 InputDir { get; set; }
-    bool CanTooru => MateInput.CanTooru(nextCenter) && DouguManager.Instance.CanTooru(nextCenter);
+    bool CanTooru => MateInput.CanTooru(nextCenter) && !DouguManager.Instance.HasEntityBlock(nextCenter);
 
     public void SetNextMove(Vector3 moveDir)
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class BombEntity : MonoBehaviour
+public class BombEntity : Block
 {
     public DouguBomb douguBase => DouguManager.Instance.GetDougu<DouguBomb>();
     float existTime => douguBase.entityExistTime;

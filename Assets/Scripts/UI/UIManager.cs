@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
 {
+
     public void InitializeOnGameAwake()
     {
         ShowAllMates();

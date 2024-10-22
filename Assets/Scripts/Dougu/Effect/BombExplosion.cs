@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombExplosion : MonoBehaviour
+public class BombExplosion : Effect
 {
     public DouguBomb douguBase => DouguManager.Instance.GetDougu<DouguBomb>();
     public float existTime => douguBase.explosionExistTime;
@@ -17,14 +17,11 @@ public class BombExplosion : MonoBehaviour
         }
 
     }
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<BombEntity>())
             other.gameObject.GetComponent<BombEntity>().Explode();
         if (other.gameObject.GetComponent<Mate>())
             other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
-        
     }
 }

@@ -212,7 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63a261dade0ce041ac9fa11e9bb446f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 89516b6d68f018a41af1dcd622679964, type: 2}
+  meshRenderer: {fileID: 1098992120467311767}
+  materialId: 0
   a: 0.5
   b: 1
   div: 5

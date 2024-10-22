@@ -9,6 +9,8 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     List<Dougu> prefabDougus;
     [SerializeField]
     List<Vector3> blocks;
+    [SerializeField]
+    List<Vector3> effects;
     public void InitializeOnGameAwake()
     {
         prefabDougus = new();
@@ -25,6 +27,7 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     {
         ClearChild(entityP);
         blocks = new();
+        effects = new();
     }
 
 
@@ -38,14 +41,28 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
         Vector3 posY0 = new(pos.x, 0, pos.z);
         blocks.Remove(posY0);
     }
+    public void AddEffect(Vector3 pos)
+    {
+        Vector3 posY0 = new(pos.x, 0, pos.z);
+        effects.Add(posY0);
+    }
+    public void RemoveEffect(Vector3 pos)
+    {
+        Vector3 posY0 = new(pos.x, 0, pos.z);
+        effects.Remove(posY0);
+    }
     void ClearChild(Transform p)
     {
         for (int i = 0; i < p.transform.childCount; i++)
             Destroy(transform.GetChild(i).gameObject);
     }
-    public bool CanTooru(Vector3 pos)
+    public bool HasEntityBlock(Vector3 pos)
     {
-        return !blocks.Contains(pos);
+        return blocks.Contains(pos);
+    }
+    public bool HasEffect(Vector3 pos)
+    {
+        return effects.Contains(pos);
     }
     public T GetDougu<T>() where T : Dougu
     {

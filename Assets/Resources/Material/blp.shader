@@ -1,8 +1,8 @@
-Shader "Shader Test/Chapter 6/Diffuse Vertex-Level"
+Shader "Custom/blp"
 {
     Properties
     {
-        _Diffuse("Diffuse",Color) = (1,1,1,1) // 控制材质颜色及其透明度
+        _Diffuse("_Diffuse",Color) = (1,1,1,1) // 控制材质颜色及其透明度
     }
 
     SubShader

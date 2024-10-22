@@ -21,14 +21,14 @@ public abstract class Dougu : MonoBehaviour
     public static GameObject MyInsBlock(GameObject go,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
-        if (!MateInput.CanTooru(posY0) || !DouguManager.Instance.CanTooru(posY0))
+        if (!MateInput.CanTooru(posY0) || DouguManager.Instance.HasEntityBlock(posY0))
             return null;
         return MyIns(go, pos);
     }
     public static GameObject MyInsEffect(GameObject go,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
-        if (!MateInput.CanTooru(posY0))
+        if (!MateInput.CanTooru(posY0) || DouguManager.Instance.HasEffect(posY0))
             return null;
         return MyIns(go, pos);
     }
