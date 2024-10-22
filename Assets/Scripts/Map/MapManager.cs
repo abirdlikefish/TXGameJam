@@ -22,6 +22,7 @@ public class MapManager
     GameObject prefab_cube;
     ICameraSpaceManager cameraSpaceManager;
     IWorldSpaceManager worldSpaceManager;
+    public CameraSpaceManager MyCameraSpaceManager => (CameraSpaceManager)cameraSpaceManager;
     public void Init()
     {
         cameraSpaceManager = CameraSpaceManager.Init(this);

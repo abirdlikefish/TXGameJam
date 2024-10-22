@@ -5,11 +5,11 @@ using UnityEngine;
 public class MateMover : MonoBehaviour
 {
     Vector3 Target => SpecialLerp();
-    Vector3 thisCenter =>
+    public Vector3 thisCenter =>
         new(Mathf.RoundToInt(transform.position.x),
             Mathf.RoundToInt(transform.position.y),
             Mathf.RoundToInt(transform.position.z));
-    Vector3 nextCenter;
+    public Vector3 nextCenter;
     Vector3 moveDir;
     public Vector3 InputDir { get; set; }
     bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(thisCenter,nextCenter) : MateInput.CanTooruY0(nextCenter) )&& !DouguManager.Instance.HasEntityBlock(nextCenter);

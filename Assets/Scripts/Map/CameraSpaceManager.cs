@@ -122,7 +122,7 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         return nodeMap[position.x, position.y].isPassable;
     }
-    
+
     public BaseCube GetCube_L(Vector2Int position)
     {
         return nodeMap[position.x, position.y].leftNode.cube;

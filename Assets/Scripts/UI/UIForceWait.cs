@@ -25,7 +25,8 @@ public class UIForceWait : MonoBehaviour
     {
         onWaitEnd.Invoke();
         UIManager.Instance.RemoveWait(this);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+
     }
     void Update()
     {

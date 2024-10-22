@@ -67,7 +67,7 @@ public class MateInput : MonoBehaviour
         }
         else//delta == Vector3.zero
             ret = true;
-        Debug.Log($"delta : {delta} {thisCenter}{ret1} {nextCenter}{ret2} ret = {ret}");
+        //Debug.Log($"delta : {delta} {thisCenter}{ret1} {nextCenter}{ret2} ret = {ret}");
         return ret;
     }
     public static bool CanTooruY0(Vector3 nextCenter)

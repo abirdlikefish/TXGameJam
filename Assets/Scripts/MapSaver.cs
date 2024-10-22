@@ -6,7 +6,6 @@ public class MapSaver : Singleton<MapSaver>,IOnGameAwakeInit
 {
     public List<Vector3Int> cubes = new();
     public List<Vector3Int> temp_cubes = new();
-    public bool clear = false;
     public bool load = false;
     public void InitializeOnGameAwake()
     {
@@ -21,20 +20,17 @@ public class MapSaver : Singleton<MapSaver>,IOnGameAwakeInit
     }
     void Update()
     {
-        if(clear)
-        {
-            clear = false;
-            for(int i = cubes.Count - 1; i >= 0; i--)
-            {
-                EventManager.Instance.RemoveCube(cubes[i]);
-            }
-        }
         if (load)
         {
             load = false;
             for (int i = cubes.Count - 1; i >= 0; i--)
             {
-                EventManager.Instance.AddCube(cubes[i]);
+                EventManager.Instance.RemoveCube(cubes[i]);
+            }
+            cubes.Clear();
+            for (int i = temp_cubes.Count - 1; i >= 0; i--)
+            {
+                EventManager.Instance.AddCube(temp_cubes[i]);
             }
         }
     }

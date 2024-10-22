@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-
+using System.Collections.Generic;
 public class CustomWindow : EditorWindow
 {
     // 创建一个Vector3Int字段用于输入
@@ -35,10 +35,13 @@ public class CustomWindow : EditorWindow
             EventManager.Instance.AddCube(m_position);
 
         }
-        if(GUILayout.Button("Add Cube_ChangeDepth"))
-        {
-            EventManager.Instance.AddCube_ChangeDepth(m_positionParent, m_position);
-        }
+        //if(GUILayout.Button("Get Cube by curMate0"))
+        //{
+        //    Vector2Int curMate1ScreenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(MateManager.Instance.curMates[0].GetComponent<MateMover>().transform.position));
+
+        //    List<BaseCube> cubes = MapManager.Instance.MyCameraSpaceManager.GetCubes(curMate1ScreenPos);
+
+        //}
         if (GUILayout.Button("Remove Cube"))
         {
             EventManager.Instance.RemoveCube(m_position);

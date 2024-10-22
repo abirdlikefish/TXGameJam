@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3473149051558683914}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.78, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3110820751028259553}
   - component: {fileID: 6583328336149927052}
   - component: {fileID: 1401112189195100702}
+  - component: {fileID: 8007440257228018225}
   m_Layer: 0
   m_Name: Mate
   m_TagString: Untagged
@@ -170,8 +171,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Radius: 0.275
+  m_Center: {x: 0, y: 0.78, z: 0}
 --- !u!54 &6583328336149927052
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,3 +217,15 @@ MonoBehaviour:
   a: 0
   b: 1
   div: 0.2
+--- !u!114 &8007440257228018225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159397266882043168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083196fe75cc2d349aa693e7ab5bbd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
