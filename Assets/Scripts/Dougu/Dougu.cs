@@ -10,7 +10,7 @@ public abstract class Dougu : MonoBehaviour
     public int remainUseCount = 3;
     public float damage = 1f;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public virtual bool OnUse() { remainUseCount--;return true; }
+    public virtual int OnUse() { remainUseCount--;return 0; }
     public virtual void OnUseEnd()
     {
         if(remainUseCount <= 0)

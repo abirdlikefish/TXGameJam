@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MateInput : MonoBehaviour
+public class MateInput : Singleton<MateInput>
 {
     public enum MoveDir
     {
@@ -12,12 +12,7 @@ public class MateInput : MonoBehaviour
         RightUp,
         RightDown
     }
-
-    [SerializeField]
-    SerializableDictionary<KeyCode, MoveDir> mate1_key_dir;
-    [SerializeField]
-    SerializableDictionary<KeyCode, MoveDir> mate2_key_dir;
-
+    public List<SerializableDictionary<KeyCode, MoveDir>> mate_key_dirs;
 
     public static Dictionary<MoveDir, Vector3> dir_vec =
         new()
@@ -28,17 +23,17 @@ public class MateInput : MonoBehaviour
             { MoveDir.RightUp, new Vector3(-1,0, 0) },
         };
 
+    public List<KeyCode> Get_mate_dougu_keys(int id)
+    {
+        return id == 0 ? mate1_dougu_keys : mate2_dougu_keys;
+    }
+
     [HelpBox("µÀ¾ß°´¼ü")]
-    public KeyCode mate1_dougu_key;
+    public List<KeyCode> mate1_dougu_keys;
     public List<KeyCode> mate2_dougu_keys;
 
-    MateMover mate1 => MateManager.Instance.curMates[0].GetComponent<MateMover>();
-    MateMover mate2 => MateManager.Instance.curMates[1].GetComponent<MateMover>();
-    private void Update()
-    {
-        HandleInput();
-    }
-     static bool IsPassableLeft(int x)
+
+    static bool IsPassableLeft(int x)
     {
         return x == 2 || x == 3;
     }
@@ -79,56 +74,14 @@ public class MateInput : MonoBehaviour
         Debug.Log(nextCenter + " " + pos + " " + ret);
         return can1;
     }
-    void HandleInput()
-    {
-        foreach (var key in mate1_key_dir.Keys)
-        {
-            if (Input.GetKey(key))
-            {
-                Vector3 ultiDelta = InputKeyToDir1(key);
-                mate1.SetNextMove(ultiDelta);
-                break;
-            }
-        }
-        mate1.Move();
-        if(Input.GetKeyDown(mate1_dougu_key))
-        {
-            mate1.GetComponent<Mate>().OnUseDougu();
-        }
 
-        foreach (var key in mate2_key_dir.Keys)
-        {
-            if (Input.GetKey(key))
-            {
-                Vector3 ultiDelta = InputKeyToDir2(key);
-                mate2.SetNextMove(ultiDelta);
-                break;
-            }
-        }
-        mate2.Move();
-        foreach (var key in mate2_dougu_keys)
-        {
-            if(Input.GetKeyDown(key))
-            {
-                mate2.GetComponent<Mate>().OnUseDougu();
-                break;
-            }
-        }
-        
-
-    }
     Vector3 V2ToV3(Vector2Int v2)
     {
         return new(v2.x, 0, v2.y);
     }
-    Vector3 InputKeyToDir1(KeyCode key)
+    public Vector3 InputKeyToDir(int id,KeyCode key)
     {
-        return dir_vec[mate1_key_dir[key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
-                    + dir_vec[mate1_key_dir[key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
-    }
-    Vector3 InputKeyToDir2(KeyCode key)
-    {
-        return dir_vec[mate2_key_dir[key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
-                    + dir_vec[mate2_key_dir[key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
+        return dir_vec[mate_key_dirs[id][key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
+                    + dir_vec[mate_key_dirs[id][key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
     }
 }

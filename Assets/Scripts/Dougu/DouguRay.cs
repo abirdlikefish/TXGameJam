@@ -8,9 +8,8 @@ public class DouguRay : Dougu
     public int rayRange = 5;
     public RayEffect rayEffect;
     public float effectTime;
-    public override bool OnUse()
+    public override int OnUse()
     {
-
         //MyInsEffect(rayEffect, user.CurCenter);
         for(int i=1;i<=rayRange;i++)
         {
@@ -18,14 +17,18 @@ public class DouguRay : Dougu
 
             if (go == null)
             {
-                if(i > 1)
+                if (i > 1)
+                {
                     remainUseCount--;
-                break;
+                    break;
+                }
+                else
+                    return 0;
             }    
             go.transform.rotation = user.transform.rotation;
         }
         OnUseEnd();
-        return true;
+        return 1;
     }
     public override void OnUseEnd()
     {

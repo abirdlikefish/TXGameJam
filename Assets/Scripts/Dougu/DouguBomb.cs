@@ -10,15 +10,15 @@ public class DouguBomb : Dougu
     public float entityExistTime = 2f;
     public BombEffect explosion;
     public float effectTime = 0.5f;
-    public override bool OnUse()
+    public override int OnUse()
     {
         base.OnUse();
         GameObject go = MyInsBlock(bombEntity, user.CurCenter);
         if (go == null)
-            return false;
+            return 0;
         go.SetActive(true);
         OnUseEnd();
-        return true;
+        return 0;
     }
     public override void OnUseEnd()
     {
