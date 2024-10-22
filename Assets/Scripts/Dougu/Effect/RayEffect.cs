@@ -5,6 +5,7 @@ using UnityEngine;
 public class RayEffect : Effect
 {
     public DouguRay douguBase => DouguManager.Instance.GetDougu<DouguRay>();
+    public Collider mycollider;
     public float EffectTime => douguBase.effectTime;
     public float effectTimer = 0f;
 
@@ -18,7 +19,8 @@ public class RayEffect : Effect
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<Mate>())
-            other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
+        other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
     }
+    //ÈçºÎ¼ì²âmycolliderµÄOnTriggerStay
+
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MateMover : MonoBehaviour
 {
+    public Vector3 flipDir;
     public Vector3 Target => SpecialLerp();
     public Vector3 CurCenter => new(Mathf.RoundToInt(transform.position.x),
             Mathf.RoundToInt(transform.position.y),
@@ -57,6 +58,11 @@ public class MateMover : MonoBehaviour
     }
     void MoveByCurKey()
     {
+        if(Target != transform.position)
+        {
+            transform.LookAt(Target);
+            flipDir = moveDir;
+        }
         transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.Instance.moveSpeed * Time.deltaTime);
     }
 }

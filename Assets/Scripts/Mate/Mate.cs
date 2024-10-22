@@ -6,7 +6,7 @@ using UnityEngine;
 public class Mate : Entity
 {
     public Vector3 CurCenter => GetComponent<MateMover>().CurCenter;
-    public Vector3 Target => GetComponent<MateMover>().Target;
+    public Vector3 FlipDir => GetComponent<MateMover>().flipDir;
     public MateData mateData;
     [SerializeField]
     List<Dougu> onHeadDougu = new();

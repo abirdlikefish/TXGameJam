@@ -10,12 +10,19 @@ public class DouguRay : Dougu
     public float effectTime;
     public override bool OnUse()
     {
-        base.OnUse();
-        Vector3 delta = user.Target - user.CurCenter;
+
         //MyInsEffect(rayEffect, user.CurCenter);
         for(int i=1;i<=rayRange;i++)
         {
-            MyInsEffect(rayEffect, user.CurCenter + delta * (i - 1), user.CurCenter + delta * i);
+            GameObject go = MyInsEffect(rayEffect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
+
+            if (go == null)
+            {
+                if(i > 1)
+                    remainUseCount--;
+                break;
+            }    
+            go.transform.rotation = user.transform.rotation;
         }
         OnUseEnd();
         return true;
