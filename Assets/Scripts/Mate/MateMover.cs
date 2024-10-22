@@ -34,13 +34,13 @@ public class MateMover : MonoBehaviour
     
     public void Move()
     {
-        MoveByCurKey();
+        MoveByCurKey(isInput:true);
         #region ResetDeadZone
         foreach(var it in MateInput.dir_vec.Values)
         {
             SetNextMove(it);
             if (IsInDeadZone())
-                MoveByCurKey();
+                MoveByCurKey(isInput:false);
         }
         SetNextMove(Vector3.zero);
         #endregion
@@ -56,12 +56,13 @@ public class MateMover : MonoBehaviour
         }
         return Mathf.Abs(transform.position.z - (CurCenter.z + nextCenter.z) / 2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
     }
-    void MoveByCurKey()
+    void MoveByCurKey(bool isInput)
     {
-        if(Target != transform.position)
+        if(isInput)
         {
-            transform.LookAt(Target);
-            flipDir = moveDir;
+            transform.LookAt(transform.position + moveDir);
+            if(moveDir != Vector3.zero)
+                flipDir = moveDir;
         }
         transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.Instance.moveSpeed * Time.deltaTime);
     }
