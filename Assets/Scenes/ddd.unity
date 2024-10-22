@@ -2946,6 +2946,7 @@ MonoBehaviour:
   maxDistanceToCenterWhenBlocked: 0.4
   moveSpeed: 3
   takeDamageInterval: 3
+  douguInterval: 0.5
 --- !u!224 &1759824098 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2303465062266439825, guid: b2d556f5742734343975b60c98d69d67, type: 3}
@@ -3023,7 +3024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1a44fc0efe0b544a1a78fec60e79f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user: {fileID: 2102583891}
+  user: {fileID: 705068342}
   remainUseCount: 10
   damage: 1
   rayRange: 5
@@ -3696,17 +3697,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3956984332609678846, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
   m_PrefabInstance: {fileID: 2071391980}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2102583891 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1133294911073551006, guid: 743170cc17de8794fb8180ffa700336a, type: 3}
-  m_PrefabInstance: {fileID: 2071391980}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adefda5d73e918d41aead6c17d212087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &99391552590134617
 Transform:
   m_ObjectHideFlags: 0

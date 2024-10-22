@@ -41,7 +41,7 @@ public class MateInput : Singleton<MateInput>
     {
         return x == 1 || x == 3;
     }
-    //日本語を　話　ましょう！
+    //日本語を　話し　ましょう！
     //通る
     public static bool CanTooruY0(Vector3 thisCenter,Vector3 nextCenter)
     {
@@ -74,7 +74,11 @@ public class MateInput : Singleton<MateInput>
         Debug.Log(nextCenter + " " + pos + " " + ret);
         return can1;
     }
-
+    public static bool IsEmpty(Vector3 nextCenter)
+    {
+        Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        return EventManager.Instance.IsPassable(pos) == 0;
+    }
     Vector3 V2ToV3(Vector2Int v2)
     {
         return new(v2.x, 0, v2.y);

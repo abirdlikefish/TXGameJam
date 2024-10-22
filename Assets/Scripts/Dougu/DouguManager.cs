@@ -56,12 +56,12 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     {
         return blocks.Contains(posY0);
     }
-    public bool HasSameEffect(Vector3 posY0, Type type)
-    {
-        return false;
-        //TOTO 特效重叠
-        //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
-    }
+    //public bool HasSameEffect(Vector3 posY0, Type type)
+    //{
+    //    return false;
+    //    //TOTO 特效重叠
+    //    //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
+    //}
     public T GetDougu<T>() where T : Dougu
     {
         return prefabDougus.Find(d => d is T) as T;

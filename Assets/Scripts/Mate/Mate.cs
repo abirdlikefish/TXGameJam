@@ -27,7 +27,7 @@ public class Mate : Entity
     }
     public void HandleInput()
     {
-        if(Time.time - lastDouguTime < -DeliConfig.Instance.douguInterval)
+        if(Time.time - lastDouguTime < DeliConfig.Instance.douguInterval)
         {
             return;
         }

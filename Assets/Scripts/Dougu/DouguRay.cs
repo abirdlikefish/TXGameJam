@@ -13,7 +13,7 @@ public class DouguRay : Dougu
         //MyInsEffect(rayEffect, user.CurCenter);
         for(int i=1;i<=rayRange;i++)
         {
-            GameObject go = MyInsEffect(rayEffect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
+            GameObject go = MyInsEffectRay(rayEffect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
 
             if (go == null)
             {
