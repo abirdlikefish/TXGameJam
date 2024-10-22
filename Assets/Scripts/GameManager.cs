@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
             MateManager.Instance,
             UIManager.Instance,
             DouguManager.Instance,
+            MapSaver.Instance,
         };
         OnGameAwake();
         OnLevelEnters = new()
