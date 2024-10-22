@@ -31,7 +31,9 @@ public abstract class Dougu : MonoBehaviour
     {
         Vector3 lastPosY0 = new(lastPos.x, 0, lastPos.z);
         Vector3 thisPosY0 = new(thisPos.x, 0, thisPos.z);
-        if (MateInput.CanTooruY0(lastPosY0, thisPosY0) || MateInput.IsEmpty(thisPosY0))
+        int thisEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(thisPosY0));
+        Debug.Log("MyInsEffectRay + thisPosEmpty = " + thisEmpty);
+        if (MateInput.CanTooruY0(lastPosY0, thisPosY0))
             return MyIns(rayEffect.gameObject, thisPosY0);
         return null;
     }

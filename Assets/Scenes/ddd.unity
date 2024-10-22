@@ -478,9 +478,7 @@ MonoBehaviour:
   cubes: []
   temp_cubes:
   - {x: 0, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
   - {x: 2, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
   - {x: 1, y: 0, z: 1}
   - {x: 2, y: 0, z: 1}
   - {x: 1, y: 1, z: 1}
@@ -502,11 +500,13 @@ MonoBehaviour:
   - {x: -3, y: -1, z: -3}
   - {x: -2, y: -1, z: -3}
   - {x: -1, y: -1, z: -3}
-  - {x: 0, y: 1, z: 1}
   - {x: -3, y: 0, z: 3}
   - {x: -3, y: 0, z: 4}
   - {x: 1, y: 0, z: 2}
   - {x: 2, y: 0, z: 2}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 1, z: 1}
   load: 0
 --- !u!1 &403220854
 GameObject:
@@ -2946,7 +2946,7 @@ MonoBehaviour:
   maxDistanceToCenterWhenBlocked: 0.4
   moveSpeed: 3
   takeDamageInterval: 3
-  douguInterval: 0.5
+  douguInterval: 0
 --- !u!224 &1759824098 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2303465062266439825, guid: b2d556f5742734343975b60c98d69d67, type: 3}
@@ -3025,7 +3025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 705068342}
-  remainUseCount: 10
+  remainUseCount: 654
   damage: 1
   rayRange: 5
   rayEffect: {fileID: 2050801237}

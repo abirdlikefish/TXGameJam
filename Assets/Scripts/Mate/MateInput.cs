@@ -45,9 +45,9 @@ public class MateInput : Singleton<MateInput>
     //═иды
     public static bool CanTooruY0(Vector3 thisCenter,Vector3 nextCenter)
     {
-        Vector2Int pos1 = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(thisCenter));
+        Vector2Int pos1 = MyWorldToScreen(thisCenter);
         int ret1 = EventManager.Instance.IsPassable(pos1);
-        Vector2Int pos2 = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        Vector2Int pos2 = MyWorldToScreen(nextCenter);
         int ret2 = EventManager.Instance.IsPassable(pos2);
         Vector3 delta = nextCenter - thisCenter;
         delta = new Vector3(Mathf.RoundToInt(delta.x), 0, Mathf.RoundToInt(delta.z));
@@ -67,7 +67,7 @@ public class MateInput : Singleton<MateInput>
     }
     public static bool CanTooruY0(Vector3 nextCenter)
     {
-        Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        Vector2Int pos = MyWorldToScreen(nextCenter);
         int ret = EventManager.Instance.IsPassable(pos);
         bool can1 = DeliConfig.tooruTest ? ret != 0 : ret == 3;
 
@@ -76,7 +76,7 @@ public class MateInput : Singleton<MateInput>
     }
     public static bool IsEmpty(Vector3 nextCenter)
     {
-        Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        Vector2Int pos = MyWorldToScreen(nextCenter);
         return EventManager.Instance.IsPassable(pos) == 0;
     }
     Vector3 V2ToV3(Vector2Int v2)
@@ -87,5 +87,9 @@ public class MateInput : Singleton<MateInput>
     {
         return dir_vec[mate_key_dirs[id][key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
                     + dir_vec[mate_key_dirs[id][key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
+    }
+    public static Vector2Int MyWorldToScreen(Vector3 pos)
+    {
+        return Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(pos));
     }
 }
