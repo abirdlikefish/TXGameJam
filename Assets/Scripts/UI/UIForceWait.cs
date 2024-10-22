@@ -11,18 +11,29 @@ public class UIForceWait : MonoBehaviour
     float timer;
     public UnityEvent onWaitEnd;
 
+    public void StartWait(UnityEvent onWaitEnd)
+    {
+        this.onWaitEnd = onWaitEnd;
+        gameObject.SetActive(true);
+    }
     private void OnEnable()
     {
         timer = time;
+        UIManager.Instance.AddWait(this);
     }
-    private void Update()
+    public void EndWait()
     {
-        timer -= Time.deltaTime;
+        onWaitEnd.Invoke();
+        UIManager.Instance.RemoveWait(this);
+        Destroy(gameObject);
+    }
+    void Update()
+    {
+        timer -= Time.unscaledDeltaTime;
         fillImage.fillAmount = timer / time;
         if (timer <= 0)
         {
-            onWaitEnd.Invoke();
-            gameObject.SetActive(false);
+            EndWait();
         }
     }
 }

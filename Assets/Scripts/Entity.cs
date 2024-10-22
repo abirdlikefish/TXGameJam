@@ -58,7 +58,5 @@ public class Entity : MonoBehaviour,IOnLevelEnterInit
     public virtual void Update()
     {
         GetComponent<Flash>().enabled = Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval;
-        if(GetComponent<Flash>().enabled)
-            Debug.Log(name + " is flashing");
     }
 }

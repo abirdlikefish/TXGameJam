@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
+public class UIManager : Singleton<UIManager>, IOnGameAwakeInit,IOnLevelEnterInit
 {
-
+    [SerializeField]
+    List<UIForceWait> forceWaits;
+    public void AddWait(UIForceWait wait)
+    {
+        if(!forceWaits.Contains(wait))
+            forceWaits.Add(wait);
+    }
+    public void RemoveWait(UIForceWait wait)
+    {
+        forceWaits.Remove(wait);
+    }
     public void InitializeOnGameAwake()
     {
         ShowAllMates();
@@ -41,4 +51,15 @@ public class UIManager : Singleton<UIManager>, IOnGameAwakeInit
         return new Color(c.r, c.g, c.b, a);
     }
     #endregion
+
+    public void InitializeOnLevelEnter()
+    {
+        forceWaits.Clear();
+        //throw new System.NotImplementedException();
+    }
+
+    private void Update()
+    {
+        Time.timeScale = forceWaits.Count == 0 ? 1f : 0.01f;
+   }
 }

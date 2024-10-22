@@ -10,7 +10,7 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     [SerializeField]
     List<Vector3> blocks;
     [SerializeField]
-    List<Vector3> effects;
+    List<Effect> effects;
     public void InitializeOnGameAwake()
     {
         prefabDougus = new();
@@ -31,38 +31,34 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     }
 
 
-    public void AddBlock(Vector3 pos)
+    public void AddBlock(Vector3 posY0)
     {
-        Vector3 posY0 = new(pos.x, 0, pos.z);
         blocks.Add(posY0);
     }
-    public void RemoveBlock(Vector3 pos)
+    public void RemoveBlock(Vector3 posY0)
     {
-        Vector3 posY0 = new(pos.x, 0, pos.z);
         blocks.Remove(posY0);
     }
-    public void AddEffect(Vector3 pos)
+    public void AddEffect(Effect effect)
     {
-        Vector3 posY0 = new(pos.x, 0, pos.z);
-        effects.Add(posY0);
+        effects.Add(effect);
     }
-    public void RemoveEffect(Vector3 pos)
+    public void RemoveEffect(Effect effect)
     {
-        Vector3 posY0 = new(pos.x, 0, pos.z);
-        effects.Remove(posY0);
+        effects.Remove(effect);
     }
     void ClearChild(Transform p)
     {
         for (int i = 0; i < p.transform.childCount; i++)
             Destroy(transform.GetChild(i).gameObject);
     }
-    public bool HasEntityBlock(Vector3 pos)
+    public bool HasEntityBlock(Vector3 posY0)
     {
-        return blocks.Contains(pos);
+        return blocks.Contains(posY0);
     }
-    public bool HasEffect(Vector3 pos)
+    public bool HasSameEffect(Vector3 posY0, Type type)
     {
-        return effects.Contains(pos);
+        return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
     }
     public T GetDougu<T>() where T : Dougu
     {

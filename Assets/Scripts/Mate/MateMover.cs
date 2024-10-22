@@ -12,7 +12,7 @@ public class MateMover : MonoBehaviour
     Vector3 nextCenter;
     Vector3 moveDir;
     public Vector3 InputDir { get; set; }
-    bool CanTooru => MateInput.CanTooru(nextCenter) && !DouguManager.Instance.HasEntityBlock(nextCenter);
+    bool CanTooru => MateInput.CanTooruYN0(nextCenter) && !DouguManager.Instance.HasEntityBlock(nextCenter);
 
     public void SetNextMove(Vector3 moveDir)
     {
@@ -53,7 +53,7 @@ public class MateMover : MonoBehaviour
             return false;
         if(moveDir.x != 0)
         {
-            return Mathf.Abs(transform.position.x - (thisCenter.x + nextCenter.x)/2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
+            return Mathf.Abs(transform.position.x - (thisCenter.x + nextCenter.x) / 2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
         }
         return Mathf.Abs(transform.position.z - (thisCenter.z + nextCenter.z) / 2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
     }

@@ -6,11 +6,11 @@ public class Effect : MonoBehaviour
 {
     public void OnEnable()
     {
-        DouguManager.Instance.AddEffect(transform.position);
+        DouguManager.Instance.AddEffect(this);
     }
 
     public void OnDisable()
     {
-        DouguManager.Instance.RemoveEffect(transform.position);
+        DouguManager.Instance.RemoveEffect(this);
     }
 }

@@ -6,9 +6,9 @@ public class DouguBomb : Dougu
 {
     [Header("DouguBomb")]
     public int crossRange = 2;
-    public GameObject bombEntity;
+    public Block bombEntity;
     public float entityExistTime = 2f;
-    public GameObject explosion;
+    public BombExplosion explosion;
     public float explosionExistTime = 0.5f;
     public override bool OnUse()
     {

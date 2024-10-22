@@ -41,7 +41,7 @@ public class MateInput : MonoBehaviour
     //»’±æ’Z§Ú°°‘í°°§ﬁ§∑§Á§¶£°
     //Õ®§Î
     
-    public static bool CanTooru(Vector3 nextCenter)
+    public static bool CanTooruYN0(Vector3 nextCenter)
     {
         Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
         int ret = EventManager.Instance.IsPassable(pos);

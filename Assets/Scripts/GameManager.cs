@@ -19,15 +19,22 @@ public class GameManager : Singleton<GameManager>
         OnGameAwake();
         OnLevelEnters = new()
         {
+            UIManager.Instance,
             MateManager.Instance.curMates[0],
             MateManager.Instance.curMates[1],
-            DouguManager.Instance
+            DouguManager.Instance,
         };
         OnLevelEnter();
         MapManager.AddListener();
-        EventManager.Instance.AddCube(new Vector3Int(0,0,0));
-        // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
-        // Debug.Log("GameManager Start");
+        EventManager.Instance.AddCube(new Vector3Int(0, 0, 0));
+        EventManager.Instance.AddCube(new Vector3Int(1, 0, 0));
+        EventManager.Instance.AddCube(new Vector3Int(2, 0, 0));
+        EventManager.Instance.AddCube(new Vector3Int(0, 0, 1));
+        EventManager.Instance.AddCube(new Vector3Int(1, 0, 1));
+        EventManager.Instance.AddCube(new Vector3Int(2, 0, 1));
+
+
+
     }
     void OnGameAwake()
     {
