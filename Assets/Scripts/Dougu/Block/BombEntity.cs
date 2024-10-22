@@ -25,8 +25,16 @@ public class BombEntity : Block
         {
             for (int i = 1; i <= crossRange; i++)
             {
-                if (!Dougu.MyInsEffect(explosion, transform.position + dir * i))
-                    break;
+                if (DeliConfig.tooruTest)
+                {
+                    if (!Dougu.MyInsEffect(explosion, transform.position + dir * (i - 1), transform.position + dir * i))
+                        break;
+                }
+                else
+                {
+                    if (!Dougu.MyInsEffect(explosion, transform.position + dir * i))
+                        break;
+                }
             }
         }
         Destroy(gameObject);

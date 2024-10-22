@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public abstract class Dougu : MonoBehaviour
 {
@@ -18,17 +19,26 @@ public abstract class Dougu : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public static GameObject MyInsBlock(Block go,Vector3 pos)
+
+    public static GameObject MyInsBlock(Block block,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
-        if (!MateInput.CanTooruYN0(pos) || DouguManager.Instance.HasEntityBlock(posY0))
+        if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasEntityBlock(posY0))
             return null;
-        return MyIns(go.gameObject, posY0);
+        return MyIns(block.gameObject, posY0);
+    }
+    public static GameObject MyInsEffect(Effect effect, Vector3 lastPos, Vector3 thisPos)
+    {
+        Vector3 lastPosY0 = new(lastPos.x, 0, lastPos.z);
+        Vector3 thisPosY0 = new(thisPos.x, 0, thisPos.z);
+        if (!MateInput.CanTooruY0(lastPosY0, thisPosY0) || DouguManager.Instance.HasSameEffect(thisPosY0, effect.GetType()))
+            return null;
+        return MyIns(effect.gameObject, thisPosY0);
     }
     public static GameObject MyInsEffect(Effect effect,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
-        if (!MateInput.CanTooruYN0(pos) || DouguManager.Instance.HasSameEffect(posY0, effect.GetType()))
+        if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasSameEffect(posY0, effect.GetType()))
             return null;
         return MyIns(effect.gameObject, posY0);
     }

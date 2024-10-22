@@ -40,17 +40,45 @@ public class MateInput : MonoBehaviour
     }
     //»’±æ’Z§Ú°°‘í°°§ﬁ§∑§Á§¶£°
     //Õ®§Î
-    
-    public static bool CanTooruYN0(Vector3 nextCenter)
+     static bool IsPassableLeft(int x)
+    {
+        return x == 2 || x == 3;
+    }
+    static bool IsPassableRight(int x)
+    {
+        return x == 1 || x == 3;
+    }
+    public static bool CanTooruY0(Vector3 thisCenter,Vector3 nextCenter)
+    {
+        Vector2Int pos1 = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(thisCenter));
+        int ret1 = EventManager.Instance.IsPassable(pos1);
+        Vector2Int pos2 = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
+        int ret2 = EventManager.Instance.IsPassable(pos2);
+        Vector3 delta = nextCenter - thisCenter;
+        delta = new Vector3(Mathf.RoundToInt(delta.x), 0, Mathf.RoundToInt(delta.z));
+        bool ret;
+        if (delta == new Vector3(1, 0, 0) || delta == new Vector3(0, 0, -1))
+        {
+            ret = IsPassableLeft(ret1) && IsPassableRight(ret2);
+        }
+        else if (delta == new Vector3(-1, 0, 0) || delta == new Vector3(0, 0, 1))
+        {
+            ret = IsPassableRight(ret1) && IsPassableLeft(ret2);
+        }
+        else//delta == Vector3.zero
+            ret = true;
+        Debug.Log($"delta : {delta} {thisCenter}{ret1} {nextCenter}{ret2} ret = {ret}");
+        return ret;
+    }
+    public static bool CanTooruY0(Vector3 nextCenter)
     {
         Vector2Int pos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(nextCenter));
         int ret = EventManager.Instance.IsPassable(pos);
-        bool can1 = ret == 3;
+        bool can1 = DeliConfig.tooruTest ? ret != 0 : ret == 3;
 
-        //Debug.Log(nextCenter + " " + pos + " " + ret);
+        Debug.Log(nextCenter + " " + pos + " " + ret);
         return can1;
     }
-    // EventManager.Instance.IsPassive(new Vector2Int(Mathf.RoundToInt(nextCenter.x), Mathf.RoundToInt(nextCenter.z)));
     void HandleInput()
     {
         foreach (var key in mate1_key_dir.Keys)

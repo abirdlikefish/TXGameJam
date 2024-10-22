@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3473149051558683914}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -61,7 +61,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 794a4a134f4f4d34f8f3207725b7b418, type: 2}
   - {fileID: 2100000, guid: 89516b6d68f018a41af1dcd622679964, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -145,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adefda5d73e918d41aead6c17d212087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 3
+  MaxHealth: 10
   curHealth: 0
   healthBar: {fileID: 0}
   mateData:
@@ -172,7 +171,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.3
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!54 &6583328336149927052
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -214,6 +213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1098992120467311767}
   materialId: 0
-  a: 0.5
+  a: 0
   b: 1
-  div: 5
+  div: 0.2

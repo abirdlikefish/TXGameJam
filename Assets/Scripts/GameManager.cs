@@ -26,6 +26,8 @@ public class GameManager : Singleton<GameManager>
         };
         OnLevelEnter();
         MapManager.AddListener();
+        
+
         EventManager.Instance.AddCube(new Vector3Int(0, 0, 0));
         EventManager.Instance.AddCube(new Vector3Int(1, 0, 0));
         EventManager.Instance.AddCube(new Vector3Int(2, 0, 0));
@@ -36,6 +38,7 @@ public class GameManager : Singleton<GameManager>
 
 
     }
+    
     void OnGameAwake()
     {
         foreach (var it in OnGameAwakes)

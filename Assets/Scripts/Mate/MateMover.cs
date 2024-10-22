@@ -12,7 +12,7 @@ public class MateMover : MonoBehaviour
     Vector3 nextCenter;
     Vector3 moveDir;
     public Vector3 InputDir { get; set; }
-    bool CanTooru => MateInput.CanTooruYN0(nextCenter) && !DouguManager.Instance.HasEntityBlock(nextCenter);
+    bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(thisCenter,nextCenter) : MateInput.CanTooruY0(nextCenter) )&& !DouguManager.Instance.HasEntityBlock(nextCenter);
 
     public void SetNextMove(Vector3 moveDir)
     {
@@ -59,6 +59,7 @@ public class MateMover : MonoBehaviour
     }
     void MoveByCurKey()
     {
+        Debug.Log("MoveByCurKey Call CanTooru()");
         transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.Instance.moveSpeed * Time.deltaTime);
     }
 }
