@@ -8,6 +8,11 @@ public class GameManager : Singleton<GameManager>
     List<IOnLevelEnterInit> OnLevelEnters;
     private void Awake()
     {
+        MapManager.AddListener();
+
+        // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
+        int midAns = EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(1,0,0)));
+        SaveManager.Instance.LoadLevelData();
 
         // Debug.Log("GameManager Start");
         OnGameAwakes = new()
@@ -26,15 +31,15 @@ public class GameManager : Singleton<GameManager>
             DouguManager.Instance,
         };
         OnLevelEnter();
-        MapManager.AddListener();
+        // MapManager.AddListener();
         
 
-        EventManager.Instance.AddCube(new Vector3Int(0, 0, 0));
-        EventManager.Instance.AddCube(new Vector3Int(1, 0, 0));
-        EventManager.Instance.AddCube(new Vector3Int(2, 0, 0));
-        EventManager.Instance.AddCube(new Vector3Int(0, 0, 1));
-        EventManager.Instance.AddCube(new Vector3Int(1, 0, 1));
-        EventManager.Instance.AddCube(new Vector3Int(2, 0, 1));
+        // EventManager.Instance.AddCube(new Vector3Int(0, 0, 0));
+        // EventManager.Instance.AddCube(new Vector3Int(1, 0, 0));
+        // EventManager.Instance.AddCube(new Vector3Int(2, 0, 0));
+        // EventManager.Instance.AddCube(new Vector3Int(0, 0, 1));
+        // EventManager.Instance.AddCube(new Vector3Int(1, 0, 1));
+        // EventManager.Instance.AddCube(new Vector3Int(2, 0, 1));
 
 
 
@@ -58,7 +63,11 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.Alpha0))
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+            foreach (Vector3Int cube in SaveManager.Instance.GetCubeList(0))
+            {
+                EventManager.Instance.AddCube(cube);
+            }
         //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(0 , 0 , 0) , new Vector3Int(1,0,0));
             // EventManager.Instance.AddCube(new Vector3Int(1,0,0));
             // EventManager.Instance.RemoveCube(new Vector3Int(0,-1,-1));
