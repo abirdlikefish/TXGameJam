@@ -12,7 +12,19 @@ public class BaseCube : MonoBehaviour
     public int Color
     {
         get => color;
-        set => color = value;
+        // set => color = value;
+        set
+        {
+            if(color != 0)
+            {
+                EventManager.Instance.ColorReaction(color + value , Position);
+                color = 0;
+            }
+            else
+            {
+                color = value;
+            }
+        }
     }
 
     public Vector2Int GetCameraSpacePosition()

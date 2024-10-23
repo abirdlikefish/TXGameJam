@@ -85,12 +85,6 @@ public class MapManager
         RefreshGroup(new List<int>(){cube.groupID});
         return true;
     }
-    // public bool RemoveCube(BaseCube cube)
-    // {
-    //     return worldSpaceManager.RemoveCube(cube);
-    // }
-
-    // public bool AddCube_ChangeDepth(Vector3Int position , int direction)
     public bool AddCube_ChangeDepth(Vector3Int parentPosition , Vector3Int position)
     {
         if(worldSpaceManager.FindByPosition(position) != null)
@@ -184,54 +178,6 @@ public class MapManager
             worldSpaceManager.CleanGroup(groupIDList[i]);
         }
         ResetGroupID(cubeList);
-
-        // Queue<BaseCube> unSearchedCube = new Queue<BaseCube>();
-        // foreach(BaseCube cube in cubeList)
-        // {
-        //     if(cube.groupID != -1)
-        //         continue;
-        //     List<BaseCube> connectedCubes = cameraSpaceManager.GetCubes(cube.GetCameraSpacePosition());
-        //     for(int i = 0 ; i < 6; i++)
-        //     {
-        //         if(connectedCubes[i] != null && connectedCubes[i].groupID != -1)
-        //         {
-        //             cube.groupID = connectedCubes[i].groupID;
-        //         }
-        //         if(connectedCubes[i] != null && connectedCubes[i].groupID == -1)
-        //         {
-        //             if(cube.groupID != -1)
-        //             {
-        //                 Debug.LogWarning("Error groupID");
-        //             }
-        //         }
-        //     }
-        //     if(cube.groupID == -1)
-        //         cube.groupID = worldSpaceManager.GetNewID();
-        //     for(int i = 0 ; i < 6; i++)
-        //     {
-        //         if(connectedCubes[i] != null && connectedCubes[i].groupID == -1)
-        //         {
-        //             connectedCubes[i].groupID = cube.groupID;
-        //             unSearchedCube.Enqueue(connectedCubes[i]);
-        //         }
-        //     }
-        //     while(unSearchedCube.Count != 0)
-        //     {
-        //         foreach(BaseCube midCube in cameraSpaceManager.GetCubes(unSearchedCube.Peek().GetCameraSpacePosition()))
-        //         {
-        //             if(midCube != null && midCube.groupID == -1)
-        //             {
-        //                 midCube.groupID = unSearchedCube.Peek().groupID;
-        //                 unSearchedCube.Enqueue(midCube);
-        //             }
-        //         }
-        //         unSearchedCube.Dequeue();
-        //     }
-        // }
-        // foreach(BaseCube cube in cubeList)
-        // {
-        //     worldSpaceManager.AddCubeToGroup(cube);
-        // }
     }
     public void RefreshGroup_all()
     {
@@ -306,6 +252,35 @@ public class MapManager
     }
 
 
+    public void SetCubeColor(Vector2Int position , int color)
+    {
+        int isPassable = cameraSpaceManager.IsPassable(position);
+        if(isPassable == 0)
+        {
+            cameraSpaceManager.GetCube_L(position).Color = color;
+        }
+        else if(isPassable == 1)
+        {
+            cameraSpaceManager.GetCube_R(position).Color = color;
+        }
+        else if(isPassable == 2)
+        {
+            cameraSpaceManager.GetCube_L(position).Color = color;
+        }
+        else
+        {
+            Debug.LogWarning("Error SetCubeColor");
+        }
+    }
+    public void SetCubeColor_L(Vector2Int position , int color)
+    {
+        cameraSpaceManager.GetCube_L(position).Color = color;
+    }
+    public void SetCubeColor_R(Vector2Int position , int color)
+    {
+        cameraSpaceManager.GetCube_R(position).Color = color;
+    }
+
     public int IsPassive(Vector2Int position)
     {
         return cameraSpaceManager.IsPassable(position);
@@ -315,15 +290,6 @@ public class MapManager
         return cameraSpaceManager.IsEmpty(position);
     }
 
-    // public void GetMovePosition(Vector3 position, Vector2Int direction, out Vector3 movePosition, out Vector3Int targetPosition)
-    // {
-    //     if(Math.Abs(direction.x) + Math.Abs(direction.y) != 1)
-    //     {
-    //         Debug.LogWarning("Error direction");
-    //     }
-    //     position -= Vector3.down;
-    //     Vector2Int currentPosition = CameraManager.Instance.GetCameraSpacePosition(position);
-    // }
 
 
 }
