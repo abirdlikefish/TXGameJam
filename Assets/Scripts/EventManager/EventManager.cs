@@ -128,4 +128,5 @@ public class EventManager
 
     public Func<Vector2Int , int> IsPassable;
     public Func<Vector2Int , int> IsEmpty;
+    #endregion
 }

@@ -17,9 +17,9 @@ public class DouguManager : Singleton<DouguManager>
     public override void Init()
     {
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
-        EventManager.Instance.ExitLevelEvent += OnEnterSmallLevel;
+        EventManager.Instance.EnterLevelEvent += EnterLevel;
     }
-    public void OnEnterSmallLevel()
+    public void EnterLevel(int id)
     {
         ClearChild(entityP);
         blocks = new();
