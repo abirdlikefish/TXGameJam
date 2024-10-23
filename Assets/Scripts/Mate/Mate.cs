@@ -9,6 +9,7 @@ public class Mate : Entity
     public MateMover MateMover => GetComponent<MateMover>();
     public int mateId => transform.GetSiblingIndex();
     public Vector3 CurCenter => GetComponent<MateMover>().CurCenter;
+    // public Vector3 CurCenter => MateMover.CurCenter;
     public Vector3 FlipDir => GetComponent<MateMover>().flipDir;
     [SerializeField]
     List<Dougu> onHeadDougu = new();
