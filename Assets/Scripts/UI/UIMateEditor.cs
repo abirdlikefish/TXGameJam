@@ -7,7 +7,7 @@ public class UIMateEditor : Singleton<UIMateEditor>
 {
     public override void Init()
     {
-        EventManager.Instance.OnEnterBigLevel += OnEnterBigLevel;
+        EventManager.Instance.EnterLevelEvent += OnEnterBigLevel;
     }
     public void OnEnterBigLevel(int levelId)
     {

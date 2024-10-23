@@ -26,8 +26,8 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     public List<MateData> mateDatas => mateDataList.mateDatas;
     public override void Init()
     {
-        EventManager.Instance.OnEnterBigLevel += OnEnterBigLevel;
-        EventManager.Instance.OnEnterSmallLevel += OnEnterSmallLevel;
+        EventManager.Instance.EnterLevelEvent += OnEnterBigLevel;
+        EventManager.Instance.ExitLevelEvent += OnEnterSmallLevel;
 
     }
     public void OnEnterBigLevel(int levelId)

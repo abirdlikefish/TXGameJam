@@ -17,7 +17,7 @@ public class DouguManager : Singleton<DouguManager>
     public override void Init()
     {
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
-        EventManager.Instance.OnEnterSmallLevel += OnEnterSmallLevel;
+        EventManager.Instance.ExitLevelEvent += OnEnterSmallLevel;
     }
     public void OnEnterSmallLevel()
     {
