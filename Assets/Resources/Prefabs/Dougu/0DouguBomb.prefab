@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58216d7a64ffc6e4b867873cc8a36c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  douguBase: {fileID: 6326522326333911046}
+  existTimer: 0
+  crossRange: 2
 --- !u!114 &2965768968810391002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,11 +346,12 @@ MonoBehaviour:
   user: {fileID: 0}
   remainUseCount: 3
   damage: 1
-  crossRange: 2
-  bombEntity: {fileID: 342450968211855346}
-  entityExistTime: 3
-  bombEffect: {fileID: 5723681579617257232}
+  block: {fileID: 342450968211855346}
+  blockExistTime: 2
+  effect: {fileID: 5723681579617257232}
   effectTime: 0.5
+  busy: []
+  crossRange: 2
 --- !u!1 &7719508861164533494
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95d871b6d5f11a44b4bfe9debee901b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  douguBase: {fileID: 6326522326333911046}
   existTimer: 0
 --- !u!114 &262786797889160760
 MonoBehaviour:

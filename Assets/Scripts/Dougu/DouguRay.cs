@@ -7,16 +7,14 @@ public class DouguRay : Dougu
     [Header("DouguRay")]
     public int rayRange = 5;
     public RayEffect rayEffect0;
-    public RayEffect rayEffect;
-    public float effectTime;
-    public override int OnUse()
+    public override int OnUse(Mate user = null)
     {
+        base.OnUse();
         GameObject go = MyInsEffect(rayEffect0, user.transform.position);
         go.transform.rotation = user.transform.rotation;
-
         for (int i=1;i<=rayRange;i++)
         {
-            go = MyInsEffect(rayEffect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
+            go = MyInsEffect(effect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
 
             if (go == null)
             {
@@ -24,7 +22,6 @@ public class DouguRay : Dougu
             }    
             go.transform.rotation = user.transform.rotation;
         }
-        remainUseCount--;
         OnUseEnd();
         return 1;
     }

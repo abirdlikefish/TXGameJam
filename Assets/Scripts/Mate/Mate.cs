@@ -66,9 +66,8 @@ public class Mate : Entity
     {
         if (onHeadDougu.Count == 0)
         {
-            Debug.LogError("use dougu fail");
             ResetDougu();
         }
-        return onHeadDougu[0].OnUse();
+        return onHeadDougu[0].OnUse(this);
     }
 }

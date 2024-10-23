@@ -9,17 +9,33 @@ public abstract class Dougu : MonoBehaviour
     public Mate user;
     public int remainUseCount = 3;
     public float damage = 1f;
+    public Block block;
+    public float blockExistTime = 2f;
+    public Effect effect;
+    public float effectTime = 0.5f;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public virtual int OnUse() { remainUseCount--;return 0; }
+    public virtual int OnUse(Mate user = null) { if (user != null) this.user = user; remainUseCount--;return 1; }
     public virtual void OnUseEnd()
     {
         if(remainUseCount <= 0)
         {
             user.ResetDougu();
-            Destroy(gameObject);
+            StartCoroutine(nameof(TryDestroy));
         }
     }
-
+    public List<GameObject> busy = new();
+    IEnumerator TryDestroy()
+    {
+        while(true)
+        {
+            if(busy.Count == 0)
+            {
+                Destroy(gameObject);
+                break;
+            }
+            yield return 0;
+        }
+    }
     public static GameObject MyInsBlock(Block block,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
@@ -37,6 +53,11 @@ public abstract class Dougu : MonoBehaviour
     //        return MyIns(rayEffect.gameObject, thisPosY0);
     //    return null;
     //}
+    public static GameObject MyInsEffectHammer(Effect effect,Vector3 thisPos)
+    {
+        Vector3 thisPosY0 = new(thisPos.x, 0, thisPos.z);
+        return MyIns(effect.gameObject, thisPosY0);
+    }
     public static GameObject MyInsEffect(Effect effect, Vector3 lastPos, Vector3 thisPos)
     {
         Vector3 lastPosY0 = new(lastPos.x, 0, lastPos.z);

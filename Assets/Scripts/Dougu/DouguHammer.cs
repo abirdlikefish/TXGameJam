@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class DouguHammer : Dougu
 {
-    [Header("DouguHammer")]
-    public HammerEffect hammerEffect;
-    public float effectTime = 0.1f;
-    public override int OnUse()
+    public override int OnUse(Mate user = null)
     {
         base.OnUse();
+        GameObject go = MyInsEffectHammer(effect,user.CurCenter + user.FlipDir);
+        go.transform.rotation = user.transform.rotation;
         return 1;
     }
 }

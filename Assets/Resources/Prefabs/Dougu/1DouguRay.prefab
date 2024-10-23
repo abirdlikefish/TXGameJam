@@ -215,10 +215,13 @@ MonoBehaviour:
   user: {fileID: 0}
   remainUseCount: 654
   damage: 1
+  block: {fileID: 0}
+  blockExistTime: 2
+  effect: {fileID: 8639149229454995108}
+  effectTime: 0.2
+  busy: []
   rayRange: 5
   rayEffect0: {fileID: 4331112066361114541}
-  rayEffect: {fileID: 8639149229454995108}
-  effectTime: 0.2
 --- !u!1 &5630080909328271807
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc686f63d70f6204eae1d670aa97c1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectTimer: 0
+  douguBase: {fileID: 3421699711210887829}
+  existTimer: 0
 --- !u!114 &6266168620822653658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc686f63d70f6204eae1d670aa97c1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectTimer: 0
+  douguBase: {fileID: 3421699711210887829}
+  existTimer: 0
 --- !u!114 &5571612570809070482
 MonoBehaviour:
   m_ObjectHideFlags: 0
