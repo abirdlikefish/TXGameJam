@@ -11,4 +11,11 @@ public class BombEffect : Effect
         if (other.gameObject.GetComponent<BombEntity>())
             other.gameObject.GetComponent<BombEntity>().Explode();
     }
+    public override void DyeCubeColor()
+    {
+        BaseCube cube = Test.GetCubeCanTooru(CurCenter);
+        if (cube == null)
+            return;
+        cube.GetComponent<NewMaterial>().Material.color = Color.red;
+    }
 }
