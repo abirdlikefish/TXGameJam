@@ -25,7 +25,17 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
     public List<Mate> curMates;
     public MateDataList mateDataList;
     public List<MateData> mateDatas => mateDataList.mateDatas;
-    public void InitializeOnGameAwake()
+    // public void InitializeOnGameAwake()
+    // {
+    //     curMates = new();
+    //     LoadJson();
+    //     for (int i = 0; i < 2; i++)
+    //     {
+    //         curMates.Add(Instantiate(Resources.Load<Mate>(rPath),gameObject.transform));
+    //         curMates[i].mateData = mateDatas[i];
+    //     }
+    // }
+    public override void Initialization()
     {
         curMates = new();
         LoadJson();
@@ -34,6 +44,9 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
             curMates.Add(Instantiate(Resources.Load<Mate>(rPath),gameObject.transform));
             curMates[i].mateData = mateDatas[i];
         }
+
+        // EventManager.Instance.EnterNextLevel += InitializateOnLevelEnter;
+        EventManager.Instance.ExitLevel += InitializateOnLevelEnter;
     }
 
     public void SaveJson()

@@ -377,7 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816a379f113391243ae7dd3b0626ba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  global: 0
   forceWaits: []
   uiMates:
   - {fileID: 3435779483078080529}
@@ -479,7 +478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7620827234266466001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -747,6 +746,10 @@ PrefabInstance:
     - target: {fileID: 5425448520540765944, guid: ccaf242b5b7b12b4d9999d4bdbb234cd, type: 3}
       propertyPath: m_Name
       value: Panel_ForceWait
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425448520540765944, guid: ccaf242b5b7b12b4d9999d4bdbb234cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7987079891616521076, guid: ccaf242b5b7b12b4d9999d4bdbb234cd, type: 3}
       propertyPath: m_AnchoredPosition.y

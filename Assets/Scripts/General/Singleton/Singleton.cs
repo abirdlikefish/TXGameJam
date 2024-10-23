@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 //单例
 //需要被继承 xxx : Singleton<xxx>
 //获取单例 xxx.Instance
@@ -10,10 +11,19 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         get
         {
+            // if(instance == null)
+            //     instance = Instantiate(Resources.Load<T>("Prefabs/" + typeof(T).Name));
             if(instance == null)
+            {
                 instance = Instantiate(Resources.Load<T>("Prefabs/" + typeof(T).Name));
+                instance.Initialization();
+            }
             return instance;
         }
+    }
+    public virtual void Initialization()
+    {
+
     }
     private void OnValidate()
     {
