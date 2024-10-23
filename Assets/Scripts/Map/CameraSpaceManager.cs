@@ -49,7 +49,34 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         public HalfNode leftNode;
         public HalfNode rightNode;
-        public int isPassable{get{return (leftNode.type == NodeType.top ? 2 : 0) + (rightNode.type == NodeType.top ? 1 : 0);}}
+        public int isPassable{
+            get{
+                int ans = 0;
+                if(leftNode.IsEmpty == false && leftNode.type == NodeType.top)
+                {
+                    ans += 2;
+                }
+                if(rightNode.IsEmpty == false && rightNode.type == NodeType.top)
+                {
+                    ans += 1;
+                }
+                return ans;
+                }
+            }
+        public int isEmpty{
+            get{
+                int ans = 0;
+                if(leftNode.IsEmpty)
+                {
+                    ans += 2;
+                }
+                if(rightNode.IsEmpty)
+                {
+                    ans += 1;
+                }
+                return ans;
+                }
+            }
     }
 
     private Node[,] nodeMap;
@@ -108,7 +135,10 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         return nodeMap[position.x, position.y].isPassable;
     }
-    
+    public int IsEmpty(Vector2Int position)
+    {
+        return nodeMap[position.x, position.y].isEmpty;
+    }
     public BaseCube GetCube_L(Vector2Int position)
     {
         return nodeMap[position.x, position.y].leftNode.cube;

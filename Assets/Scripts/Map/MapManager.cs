@@ -22,6 +22,7 @@ public class MapManager
     GameObject prefab_cube;
     ICameraSpaceManager cameraSpaceManager;
     IWorldSpaceManager worldSpaceManager;
+    public CameraSpaceManager MyCameraSpaceManager => (CameraSpaceManager)cameraSpaceManager;
     public void Init()
     {
         cameraSpaceManager = CameraSpaceManager.Init(this);
@@ -41,6 +42,7 @@ public class MapManager
         EventManager.Instance.AddCube_ChangeDepthEvent_after += Instance.RefreshCameraSpace;
 
         EventManager.Instance.IsPassable += Instance.IsPassive;
+        EventManager.Instance.IsEmpty += Instance.IsEmpty;
 
     }
 
@@ -307,6 +309,10 @@ public class MapManager
     public int IsPassive(Vector2Int position)
     {
         return cameraSpaceManager.IsPassable(position);
+    }
+    public int IsEmpty(Vector2Int position)
+    {
+        return cameraSpaceManager.IsEmpty(position);
     }
 
     // public void GetMovePosition(Vector3 position, Vector2Int direction, out Vector3 movePosition, out Vector3Int targetPosition)

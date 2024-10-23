@@ -52,6 +52,7 @@ public class EventManager
 
     // public Func<Vector2Int , bool> IsPassable;
     public Func<Vector2Int , int> IsPassable;
+    public Func<Vector2Int , int> IsEmpty;
 
     // public delegate void GetMovePositionEvent(Vector3 position, Vector2Int direction, out Vector3 movePosition, out Vector3Int targetPosition);
     // public GetMovePositionEvent GetMovePosition;
