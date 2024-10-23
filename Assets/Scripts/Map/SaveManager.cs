@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveManager
+public class SaveManager : MonoBehaviour
 {
     static SaveManager instance;
     LevelDataSO levelDataSO;
@@ -13,7 +13,9 @@ public class SaveManager
         {
             if (instance == null)
             {
-                instance = new SaveManager();
+                GameObject go = new GameObject("SaveManager");
+                instance = go.AddComponent<SaveManager>();
+                // instance = new SaveManager();
                 instance.levelDataSO = Resources.Load<LevelDataSO>("LevelDataSO");
             }
             return instance;
