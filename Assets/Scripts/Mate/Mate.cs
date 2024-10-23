@@ -17,8 +17,9 @@ public class Mate : Entity
 
     public float lastDouguTime;
     
-    private void Awake()
+    public override void OnEnable()
     {
+        base.OnEnable();
         lastDouguTime = - DeliConfig.Instance.douguInterval;
     }
     public override void Update()
@@ -69,6 +70,6 @@ public class Mate : Entity
         {
             ResetDougu();
         }
-        return onHeadDougu[0].OnUse(this);
+        return onHeadDougu[0].OnUse();
     }
 }

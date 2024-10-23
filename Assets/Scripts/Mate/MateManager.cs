@@ -16,39 +16,42 @@ public class MateDataList
 {
     public List<MateData> mateDatas;
 }
-public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<MateDataList>
+public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
 {
     string rPath = "Prefabs/Mate";
     string dataPre = "MateData";
     string dataName = "AllMates";
-    //Func<int,string> DataName = (int id) => { return "Mate" + id.ToString(); } ;
     public List<Mate> curMates;
     public MateDataList mateDataList;
     public List<MateData> mateDatas => mateDataList.mateDatas;
-    // public void InitializeOnGameAwake()
-    // {
-    //     curMates = new();
-    //     LoadJson();
-    //     for (int i = 0; i < 2; i++)
-    //     {
-    //         curMates.Add(Instantiate(Resources.Load<Mate>(rPath),gameObject.transform));
-    //         curMates[i].mateData = mateDatas[i];
-    //     }
-    // }
-    public override void Initialization()
+    public override void Init()
     {
+        EventManager.Instance.OnEnterBigLevel += OnEnterBigLevel;
+        EventManager.Instance.OnEnterSmallLevel += OnEnterSmallLevel;
+
+    }
+    public void OnEnterBigLevel(int levelId)
+    {
+        for(int i=0;i<transform.childCount;i++)
+            Destroy(transform.GetChild(i).gameObject);
         curMates = new();
         LoadJson();
+        Debug.Log("LoadJson");
         for (int i = 0; i < 2; i++)
         {
-            curMates.Add(Instantiate(Resources.Load<Mate>(rPath),gameObject.transform));
+            curMates.Add(Instantiate(Resources.Load<Mate>(rPath), gameObject.transform));
+            curMates[i].gameObject.SetActive(false);
             curMates[i].mateData = mateDatas[i];
         }
-
-        // EventManager.Instance.EnterNextLevel += InitializateOnLevelEnter;
-        EventManager.Instance.ExitLevel += InitializateOnLevelEnter;
     }
+    public void OnEnterSmallLevel()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            curMates[i].gameObject.SetActive(true);
 
+        }
+    }
     public void SaveJson()
     {
         JsonIO.WriteCurSheet(dataPre, dataName, mateDataList);
@@ -66,7 +69,6 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
         {
             CreateMate("abirdlikefish", Color.red);
             CreateMate("Deli_", Color.blue);
-            SaveJson();
         }
         return mateDataList;
     }
@@ -90,18 +92,5 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
         mateDataList.mateDatas.Add(mateData);
         SaveJson();
         return mateData;
-    }
-    public MateData SetMateColor(string baseName, Color newColor)
-    {
-        foreach (var it in mateDatas)
-        {
-            if (it.name == baseName)
-            {
-                it.color = newColor;
-                SaveJson();
-                return it;
-            }
-        }
-        return CreateMate(baseName, newColor);
     }
 }

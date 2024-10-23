@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class UIMateInLevel : MonoBehaviour
 {
-    public UIMateEdit uiMateEdit;
+    public UIMateEditInfo uiMateEdit;
     //TODO 关卡中中复用编辑玩家信息的UI
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMateEdit:MonoBehaviour
+public class UIMateEditInfo:MonoBehaviour
 {
     public Image mateBase;
     public Text mateName;
@@ -21,14 +21,14 @@ public class UIMateEdit:MonoBehaviour
     public void OnEditChangeColor()
     {
         editColor = RandomColor();
-        MateData mateData = MateManager.Instance.SetMateColor(mateName.text,editColor);
-        UIManager.Instance.ShowMate(mateData, this);
+        MateData mateData = MateManager.Instance.CreateMate(mateName.text,editColor);
+        UIMateEditor.Instance.ShowMate(mateData, this);
     }
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
-        UIManager.Instance.ShowMate(mateData, this);
+        UIMateEditor.Instance.ShowMate(mateData, this);
     }
 
     Color RandomColor()

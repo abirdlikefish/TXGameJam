@@ -14,7 +14,7 @@ public abstract class Dougu : MonoBehaviour
     public Effect effect;
     public float effectTime = 0.5f;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public virtual int OnUse(Mate user = null) { if (user != null) this.user = user; remainUseCount--;return 1; }
+    public virtual int OnUse() {remainUseCount--;return 1; }
     public virtual void OnUseEnd()
     {
         if(remainUseCount <= 0)
@@ -39,7 +39,7 @@ public abstract class Dougu : MonoBehaviour
     public static GameObject MyInsBlock(Block block,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
-        if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasEntityBlock(posY0))
+        if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasBlock(posY0))
             return null;
         return MyIns(block.gameObject, posY0);
     }

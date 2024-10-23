@@ -48,11 +48,13 @@ public class EventManager
         AddCube_ChangeDepthEvent_after?.Invoke(isSucceed);
     }
 
+    //¹Ø¿¨id
+    public Action<int> OnEnterBigLevel;
 
-    public event Action<int> EnterNextLevel;
+    public Action OnEnterSmallLevel;
 
-
-
+    //Íæ¼Òid£¬HPÖµ
+    public Action<int,float> OnHPChange;
 
     public Func<Vector2Int , int> IsPassable;
     public Func<Vector2Int , int> IsEmpty;

@@ -19,14 +19,17 @@ public class UIForceWait : MonoBehaviour
     private void OnEnable()
     {
         timer = time;
-        UIManager.Instance.AddWait(this);
+        //UIManager.Instance.AddWait(this);
     }
     public void EndWait()
     {
         onWaitEnd.Invoke();
-        UIManager.Instance.RemoveWait(this);
         gameObject.SetActive(false);
 
+    }
+    private void OnDisable()
+    {
+        //UIManager.Instance.RemoveWait(this);
     }
     void Update()
     {

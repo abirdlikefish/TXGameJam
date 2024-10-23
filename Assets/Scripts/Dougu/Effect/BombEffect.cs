@@ -8,8 +8,8 @@ public class BombEffect : Effect
     public override void OnTriggerStay(Collider other)
     {
         base.OnTriggerStay(other);
-        if (other.gameObject.GetComponent<BombEntity>())
-            other.gameObject.GetComponent<BombEntity>().Explode();
+        if (other.gameObject.GetComponent<BombBlock>())
+            other.gameObject.GetComponent<BombBlock>().Explode();
     }
     public override void DyeCubeColor()
     {

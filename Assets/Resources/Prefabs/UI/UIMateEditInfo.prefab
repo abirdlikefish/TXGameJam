@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 4880320172345436316}
   - component: {fileID: 8801104802435651690}
   m_Layer: 5
-  m_Name: UIMate
+  m_Name: UIMateEditInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

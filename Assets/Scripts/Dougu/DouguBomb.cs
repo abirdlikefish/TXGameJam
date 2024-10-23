@@ -7,7 +7,7 @@ public class DouguBomb : Dougu
     [Header("DouguBomb")]
     public int crossRange = 2;
     
-    public override int OnUse(Mate user = null)
+    public override int OnUse()
     {
         base.OnUse();
         GameObject go = MyInsBlock(block, user.CurCenter);

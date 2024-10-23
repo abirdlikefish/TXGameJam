@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : Singleton<LevelManager>, IOnGameAwakeInit
+public class LevelManager : Singleton<LevelManager>
 {
-    public void InitializeOnGameAwake()
+    public override void Init()
     {
         //TODO
     }
