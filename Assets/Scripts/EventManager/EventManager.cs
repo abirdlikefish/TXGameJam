@@ -109,6 +109,17 @@ public class EventManager
         SetCubeColorEvent?.Invoke(position , color);
     }
 
+    public event Action<Vector2Int , int> SetCubeColor_LEvent;
+    public void SetCubeColor_L(Vector2Int position , int color)
+    {
+        SetCubeColor_LEvent?.Invoke(position , color);
+    }
+    public event Action<Vector2Int , int> SetCubeColor_REvent;
+    public void SetCubeColor_R(Vector2Int position , int color)
+    {
+        SetCubeColor_REvent?.Invoke(position , color);
+    }
+
     public event Action<Vector3Int>  GenerateCubeDouguEvent;
     public void GenerateCubeDougu(Vector3Int position)
     {
