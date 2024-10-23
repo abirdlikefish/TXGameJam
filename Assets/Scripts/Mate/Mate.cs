@@ -61,7 +61,7 @@ public class Mate : Entity
     }
     public void AddDougu(Dougu dougu)
     {
-        dougu.user = this;
+        dougu.Init(this);
         onHeadDougu = new() { Instantiate(dougu, transform) };
     }
     public int OnUseDougu()

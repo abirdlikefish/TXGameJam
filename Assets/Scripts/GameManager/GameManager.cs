@@ -30,6 +30,6 @@ public class GameManager : MonoBehaviour
         UIMateEditor.Instance.Init();
         MapSaver.Instance.Init();
         EventManager.Instance.EnterLevel(0);
-        //EventManager.Instance.EnterTinyLevel(0);
+        EventManager.Instance.EnterTinyLevel(0);
     }
 }

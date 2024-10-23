@@ -13,11 +13,17 @@ public abstract class Dougu : MonoBehaviour
     public float blockExistTime = 2f;
     public Effect effect;
     public float effectTime = 0.5f;
+    public int colorId;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public virtual int OnUse() {remainUseCount--;return 1; }
+    public void Init(Mate user)
+    {
+        this.user = user;
+        colorId = 0;
+    }
+    public virtual int OnUse() { remainUseCount--; return 1; }
     public virtual void OnUseEnd()
     {
-        if(remainUseCount <= 0)
+        if (remainUseCount <= 0)
         {
             user.ResetDougu();
             StartCoroutine(nameof(TryDestroy));
@@ -26,9 +32,9 @@ public abstract class Dougu : MonoBehaviour
     public List<GameObject> busy = new();
     IEnumerator TryDestroy()
     {
-        while(true)
+        while (true)
         {
-            if(busy.Count == 0)
+            if (busy.Count == 0)
             {
                 Destroy(gameObject);
                 break;
@@ -36,7 +42,7 @@ public abstract class Dougu : MonoBehaviour
             yield return 0;
         }
     }
-    public static GameObject MyInsBlock(Block block,Vector3 pos)
+    public static GameObject MyInsBlock(Block block, Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
         if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasBlock(posY0))
@@ -53,7 +59,7 @@ public abstract class Dougu : MonoBehaviour
     //        return MyIns(rayEffect.gameObject, thisPosY0);
     //    return null;
     //}
-    public static GameObject MyInsEffectHammer(Effect effect,Vector3 thisPos)
+    public static GameObject MyInsEffectHammer(Effect effect, Vector3 thisPos)
     {
         Vector3 thisPosY0 = new(thisPos.x, 0, thisPos.z);
         return MyIns(effect.gameObject, thisPosY0);
@@ -66,7 +72,7 @@ public abstract class Dougu : MonoBehaviour
             return null;
         return MyIns(effect.gameObject, thisPosY0);
     }
-    public static GameObject MyInsEffect(Effect effect,Vector3 pos)
+    public static GameObject MyInsEffect(Effect effect, Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
         if (!MateInput.CanTooruY0(posY0))
