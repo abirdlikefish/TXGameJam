@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class EventManager
@@ -48,10 +49,79 @@ public class EventManager
         AddCube_ChangeDepthEvent_after?.Invoke(isSucceed);
     }
 
-    //¹Ø¿¨id
-    public Action<int> OnEnterBigLevel;
 
-    public Action OnEnterSmallLevel;
+    public event Action<Vector3Int> ColorReactionEvent_1;
+    public event Action<Vector3Int> ColorReactionEvent_2;
+    public event Action<Vector3Int> ColorReactionEvent_4;
+    public void ColorReaction(int color , Vector3Int position)
+    {
+        switch (color)
+        {
+            case 1:
+                ColorReactionEvent_1?.Invoke(position);
+                break;
+            case 2:
+                ColorReactionEvent_2?.Invoke(position);
+                break;
+            case 4:
+                ColorReactionEvent_4?.Invoke(position);
+                break;
+        }
+    }
+#region Level Event
+    public event Action<int> EnterLevelEvent;
+    public event Action<int> ExitLevelEvent;
+    public void EnterLevel(int level)
+    {
+        EnterLevelEvent?.Invoke(level);
+    }
+    public void ExitLevel(int level)
+    {
+        ExitLevelEvent?.Invoke(level);
+    }
+    public event Action<int> EnterTinyLevelEvent;
+    public event Action<int> ExitTinyLevelEvent;
+    public void EnterTinyLevel(int level)
+    {
+        EnterTinyLevelEvent?.Invoke(level);
+    }
+    public void ExitTinyLevel(int level)
+    {
+        ExitTinyLevelEvent?.Invoke(level);
+    }
+#endregion
+
+#region color reaction event
+    public event Action<int , int> AddNewColorReactionEvent;
+    public void AddNewColorReaction(int color , int reaction)
+    {
+        AddNewColorReactionEvent?.Invoke(color , reaction);
+    }
+    public void RemoveColorReaction_all()
+    {
+        ColorReactionEvent_1 = null;
+        ColorReactionEvent_2 = null;
+        ColorReactionEvent_4 = null;
+    }
+
+    public event Action<Vector2Int , int> SetCubeColorEvent;
+    public void SetCubeColor(Vector2Int position , int color)
+    {
+        SetCubeColorEvent?.Invoke(position , color);
+    }
+
+    public event Action<Vector3Int>  GenerateCubeDouguEvent;
+    public void GenerateCubeDougu(Vector3Int position)
+    {
+        GenerateCubeDouguEvent?.Invoke(position);
+    }
+
+    public event Action<Vector3Int> BoomEvent;
+    public void Boom(Vector3Int position)
+    {
+        BoomEvent?.Invoke(position);
+    }
+
 
     //Íæ¼Òid£¬HPÖµ
     public Action<int,float> OnHPChange;
