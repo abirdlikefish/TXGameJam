@@ -4,54 +4,63 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    List<IOnGameAwakeInit> OnGameAwakes;
-    List<IOnLevelEnterInit> OnLevelEnters;
+    // List<IOnGameAwakeInit> OnGameAwakes;
+    // List<IOnLevelEnterInit> OnLevelEnters;
+
     private void Awake()
     {
         MapManager.AddListener();
-        OnGameAwakes = new()
-        {
-            MateManager.Instance,
-            UIManager.Instance,
-            DouguManager.Instance,
-            LevelManager.Instance,
-            MapSaver.Instance,
-        };
+
+        // OnGameAwakes = new()
+        // {
+        //     MateManager.Instance,
+        //     UIManager.Instance,
+            
+        // };
         OnGameAwake();
-        OnLevelEnters = new()
-        {
-            UIManager.Instance,
-            MateManager.Instance.curMates[0],
-            MateManager.Instance.curMates[1],
-            DouguManager.Instance,
-        };
+        // OnLevelEnters = new()
+        // {
+        //     DouguManager.Instance,
+        //     LevelManager.Instance,
+        //     //MapSaver.Instance,
+        // };
         OnLevelEnter();
     }
     
     void OnGameAwake()
     {
-        foreach (var it in OnGameAwakes)
-        {
-            it.InitializeOnGameAwake();
-        }
+        // foreach (var it in OnGameAwakes)
+        // {
+        //     it.InitializeOnGameAwake();
+        // }
+        
+            MateManager.Instance,
+            UIManager.Instance,
 
     }
     public void OnLevelEnter()
     {
-        foreach (var it in OnLevelEnters)
-        {
-            it.InitializeOnLevelEnter();
-        }
+            DouguManager.Instance,
+            LevelManager.Instance,
+            DouguManager.Instance,
+            LevelManager.Instance,
+            //MapSaver.Instance,
+        // foreach (var it in OnLevelEnters)
+        // {
+        //     it.InitializeOnLevelEnter();
+        // }
     }
     // Update is called once per frame
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.Alpha0))
-        //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(0 , 0 , 0) , new Vector3Int(1,0,0));
-            // EventManager.Instance.AddCube(new Vector3Int(1,0,0));
-            // EventManager.Instance.RemoveCube(new Vector3Int(0,-1,-1));
-        //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,0,0), 1);
-        // if(Input.GetKeyDown(KeyCode.Alpha1))
-        //     EventManager.Instance.AddCube_ChangeDepth(new Vector3Int(1,1,0), 0);
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+                SaveManager.Instance.LoadLevelData();
+                foreach (Vector3Int cube in SaveManager.Instance.GetCubeList(0))
+                {
+                    EventManager.Instance.AddCube(cube);
+                }
+
+        }
     }
 }
