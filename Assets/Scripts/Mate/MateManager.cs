@@ -36,7 +36,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
             Destroy(transform.GetChild(i).gameObject);
         curMates = new();
         LoadJson();
-        Debug.Log("LoadJson");
+        Debug.Log("LoadJson" + " " + Time.time) ;
         for (int i = 0; i < 2; i++)
         {
             curMates.Add(Instantiate(Resources.Load<Mate>(rPath), gameObject.transform));
