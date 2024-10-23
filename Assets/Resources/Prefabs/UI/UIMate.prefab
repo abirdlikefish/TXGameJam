@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 6913947595136706030}
   - component: {fileID: 532571327210020189}
   m_Layer: 5
-  m_Name: Button Confirm
+  m_Name: Image RanColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,7 +806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6145e596a402a6048b54e79f3ef40107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  global: 0
   mateBase: {fileID: 4880320172345436316}
   mateName: {fileID: 1684306936113304669}
   mateNameInputHolder: {fileID: 5220208929193727830}
@@ -1382,7 +1381,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2107134338530026739, guid: ddb60b325280a044cb145675b6316a13, type: 3}
       propertyPath: m_Name
-      value: Text confirm
+      value: Text Confirm
       objectReference: {fileID: 0}
     - target: {fileID: 3996773902826322808, guid: ddb60b325280a044cb145675b6316a13, type: 3}
       propertyPath: m_Text

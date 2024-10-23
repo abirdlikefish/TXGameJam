@@ -18,6 +18,7 @@ public class MateDataList
 }
 public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<MateDataList>
 {
+    string rPath = "Prefabs/Mate";
     string dataPre = "MateData";
     string dataName = "AllMates";
     //Func<int,string> DataName = (int id) => { return "Mate" + id.ToString(); } ;
@@ -28,9 +29,9 @@ public class MateManager : Singleton<MateManager>, IOnGameAwakeInit, IJsonIO<Mat
     {
         curMates = new();
         LoadJson();
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < 2; i++)
         {
-            curMates.Add(transform.GetChild(i).GetComponent<Mate>());
+            curMates.Add(Instantiate(Resources.Load<Mate>(rPath),gameObject.transform));
             curMates[i].mateData = mateDatas[i];
         }
     }

@@ -8,7 +8,7 @@ public class DepthSetterMate : MonoBehaviour
     public int d2;
     public int d3;
     Vector3 ThisCenter => GetComponent<MateMover>().CurCenter;
-    //Vector3 NextCenter => GetComponent<MateMover>().Target; TODO
+    Vector3 NextCenter => GetComponent<MateMover>().CurCenter + GetComponent<MateMover>().flipDir;
     private void Start()
     {
         StartCoroutine(SetDepth());
@@ -17,40 +17,40 @@ public class DepthSetterMate : MonoBehaviour
     {
         while (true)
         {
-            int h1 = GetLeftCube(ThisCenter);
+            int h1 = GetLeftCubeD(ThisCenter);
             if(h1 == int.MinValue)
             {
                 yield return 0;
                 continue;
             }
-            int h2 = GetRightCube(ThisCenter);
+            int h2 = GetRightCubeD(ThisCenter);
             if(h2 == int.MinValue)
             {
                 yield return 0;
                 continue;
             }
             d1 = 3000 + h1 + h2;
-            //h1 = GetLeftCube(NextCenter);
-            //h2 = GetRightCube(NextCenter);
-            //d2 = 3000 + h1 + h2;
-            d3 = Mathf.Max(d1, d1) + 1;
+            h1 = GetLeftCubeD(NextCenter);
+            h2 = GetRightCubeD(NextCenter);
+            d2 = 3000 + h1 + h2;
+            if (!MateInput.CanTooruY0(ThisCenter,NextCenter))
+                d2 = 0;
+            d3 = Mathf.Max(d1, d2) + 1;
             GetComponent<NewMaterial>().Material.renderQueue = d3;
             yield return 0;
         }
     }
 
-    int GetLeftCube(Vector3 center)
+    int GetLeftCubeD(Vector3 center)
     {
-        Vector2Int screenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(center));
-        BaseCube cube = MapManager.Instance.MyCameraSpaceManager.GetCube_L(screenPos);
+        BaseCube cube = Test.GetCubeL(center);
         if (cube == null)
             return int.MinValue;
         return cube.Height;
     }
-    int GetRightCube(Vector3 center)
+    int GetRightCubeD(Vector3 center)
     {
-        Vector2Int screenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(center));
-        BaseCube cube = MapManager.Instance.MyCameraSpaceManager.GetCube_R(screenPos);
+        BaseCube cube = Test.GetCubeR(center);
         if (cube == null)
             return int.MinValue;
         return cube.Height;

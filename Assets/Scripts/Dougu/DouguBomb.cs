@@ -6,14 +6,11 @@ public class DouguBomb : Dougu
 {
     [Header("DouguBomb")]
     public int crossRange = 2;
-    public BombEntity bombEntity;
-    public float entityExistTime = 2f;
-    public BombEffect bombEffect;
-    public float effectTime = 0.5f;
-    public override int OnUse()
+    
+    public override int OnUse(Mate user = null)
     {
         base.OnUse();
-        GameObject go = MyInsBlock(bombEntity, user.CurCenter);
+        GameObject go = MyInsBlock(block, user.CurCenter);
         if (go == null)
             return 0;
         go.SetActive(true);

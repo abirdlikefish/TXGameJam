@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEnterInit
 {
+    string rPath = "Prefabs/Dougu";
     public Transform entityP;
+    [SerializeField]
     List<Dougu> prefabDougus;
     [SerializeField]
     List<Vector3> blocks;
@@ -13,15 +16,7 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     List<Effect> effects;
     public void InitializeOnGameAwake()
     {
-        prefabDougus = new();
-        for (int i=0;i<transform.childCount;i++)
-        {
-            GameObject go = transform.GetChild(i).gameObject;
-            if(go.activeSelf)
-            {
-                prefabDougus.Add(go.GetComponent<Dougu>());
-            }
-        }
+        prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
     }
     public void InitializeOnLevelEnter()
     {

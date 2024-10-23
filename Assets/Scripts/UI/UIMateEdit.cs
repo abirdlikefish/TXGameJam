@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMate:MonoBehaviour
+public class UIMateEdit:MonoBehaviour
 {
     public Image mateBase;
     public Text mateName;

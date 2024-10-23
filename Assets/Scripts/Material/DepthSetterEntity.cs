@@ -14,13 +14,13 @@ public class DepthSetterEntity : MonoBehaviour
     {
         while (true)
         {
-            int h1 = GetLeftCube(ThisCenter);
+            int h1 = GetLeftCubeD(ThisCenter);
             if (h1 == int.MinValue)
             {
                 yield return 0;
                 continue;
             }
-            int h2 = GetRightCube(ThisCenter);
+            int h2 = GetRightCubeD(ThisCenter);
             if (h2 == int.MinValue)
             {
                 yield return 0;
@@ -32,18 +32,16 @@ public class DepthSetterEntity : MonoBehaviour
         }
     }
 
-    int GetLeftCube(Vector3 center)
+    int GetLeftCubeD(Vector3 center)
     {
-        Vector2Int screenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(center));
-        BaseCube cube = MapManager.Instance.MyCameraSpaceManager.GetCube_L(screenPos);
+        BaseCube cube = Test.GetCubeL(center);
         if (cube == null)
             return int.MinValue;
         return cube.Height;
     }
-    int GetRightCube(Vector3 center)
+    int GetRightCubeD(Vector3 center)
     {
-        Vector2Int screenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(center));
-        BaseCube cube = MapManager.Instance.MyCameraSpaceManager.GetCube_R(screenPos);
+        BaseCube cube = Test.GetCubeR(center);
         if (cube == null)
             return int.MinValue;
         return cube.Height;

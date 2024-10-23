@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     List<IOnGameAwakeInit> OnGameAwakes;
     List<IOnLevelEnterInit> OnLevelEnters;
     private void Awake()
     {
         MapManager.AddListener();
-
         // EventManager.Instance.AddCube(new Vector3Int(0,0,0));
-        int midAns = EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(1,0,0)));
-        SaveManager.Instance.LoadLevelData();
+        //int midAns = EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(1,0,0)));
+        //SaveManager.Instance.LoadLevelData();
 
-        // Debug.Log("GameManager Start");
         OnGameAwakes = new()
         {
             MateManager.Instance,
             UIManager.Instance,
             DouguManager.Instance,
+            LevelManager.Instance,
             MapSaver.Instance,
         };
         OnGameAwake();
@@ -31,18 +30,6 @@ public class GameManager : Singleton<GameManager>
             DouguManager.Instance,
         };
         OnLevelEnter();
-        // MapManager.AddListener();
-        
-
-        // EventManager.Instance.AddCube(new Vector3Int(0, 0, 0));
-        // EventManager.Instance.AddCube(new Vector3Int(1, 0, 0));
-        // EventManager.Instance.AddCube(new Vector3Int(2, 0, 0));
-        // EventManager.Instance.AddCube(new Vector3Int(0, 0, 1));
-        // EventManager.Instance.AddCube(new Vector3Int(1, 0, 1));
-        // EventManager.Instance.AddCube(new Vector3Int(2, 0, 1));
-
-
-
     }
     
     void OnGameAwake()

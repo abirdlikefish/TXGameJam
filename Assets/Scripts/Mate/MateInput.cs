@@ -71,13 +71,8 @@ public class MateInput : Singleton<MateInput>
         int ret = EventManager.Instance.IsPassable(pos);
         bool can1 = DeliConfig.tooruTest ? ret != 0 : ret == 3;
 
-        Debug.Log(nextCenter + " " + pos + " " + ret);
+        //Debug.Log(nextCenter + " " + pos + " " + ret);
         return can1;
-    }
-    public static bool IsEmpty(Vector3 nextCenter)
-    {
-        Vector2Int pos = MyWorldToScreen(nextCenter);
-        return EventManager.Instance.IsPassable(pos) == 0;
     }
     Vector3 V2ToV3(Vector2Int v2)
     {
