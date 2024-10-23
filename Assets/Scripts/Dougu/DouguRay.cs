@@ -16,7 +16,7 @@ public class DouguRay : Dougu
 
         for (int i=1;i<=rayRange;i++)
         {
-            go = MyInsEffectRay(rayEffect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
+            go = MyInsEffect(rayEffect, user.transform.position + user.FlipDir * (i - 1), user.transform.position + user.FlipDir * i);
 
             if (go == null)
             {

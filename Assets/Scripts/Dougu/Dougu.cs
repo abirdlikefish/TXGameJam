@@ -27,16 +27,16 @@ public abstract class Dougu : MonoBehaviour
             return null;
         return MyIns(block.gameObject, posY0);
     }
-    public static GameObject MyInsEffectRay(RayEffect rayEffect,Vector3 lastPos, Vector3 thisPos)
-    {
-        Vector3 lastPosY0 = new(lastPos.x, 0, lastPos.z);
-        Vector3 thisPosY0 = new(thisPos.x, 0, thisPos.z);
-        int thisEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(thisPosY0));
-        Debug.Log("MyInsEffectRay + thisPosEmpty = " + thisEmpty);
-        if (MateInput.CanTooruY0(lastPosY0, thisPosY0))
-            return MyIns(rayEffect.gameObject, thisPosY0);
-        return null;
-    }
+    //public static GameObject MyInsEffectRay(RayEffect rayEffect,Vector3 lastPos, Vector3 thisPos)
+    //{
+    //    Vector3 lastPosY0 = new(lastPos.x, 0, lastPos.z);
+    //    Vector3 thisPosY0 = new(thisPos.x, 0, thisPos.z);
+    //    int thisEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(thisPosY0));
+    //    Debug.Log("MyInsEffectRay + thisPosEmpty = " + thisEmpty);
+    //    if (MateInput.CanTooruY0(lastPosY0, thisPosY0))
+    //        return MyIns(rayEffect.gameObject, thisPosY0);
+    //    return null;
+    //}
     public static GameObject MyInsEffect(Effect effect, Vector3 lastPos, Vector3 thisPos)
     {
         Vector3 lastPosY0 = new(lastPos.x, 0, lastPos.z);

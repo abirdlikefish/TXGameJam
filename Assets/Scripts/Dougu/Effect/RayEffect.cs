@@ -18,6 +18,7 @@ public class RayEffect : Effect
     }
     private void OnTriggerStay(Collider other)
     {
-        other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
+        if(other.gameObject.GetComponent<Mate>())
+            other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
     }
 }

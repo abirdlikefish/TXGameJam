@@ -8,7 +8,7 @@ public class BombEntity : Block
     float existTime => douguBase.entityExistTime;
     float existTimer = 0f;
     int crossRange => douguBase.crossRange;
-    BombEffect explosion => douguBase.explosion;
+    BombEffect explosion => douguBase.bombEffect;
     bool exploded = false;
     private void Update()
     {
