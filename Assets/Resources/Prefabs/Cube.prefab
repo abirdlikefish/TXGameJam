@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 482771543717772133}
   materialId: 0
+  spriteRenderer: {fileID: 0}
 --- !u!114 &-3070707168715461604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e62d1d260ed642b360783690b5478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  d: 0

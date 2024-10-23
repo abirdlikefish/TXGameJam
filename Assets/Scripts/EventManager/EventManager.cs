@@ -49,6 +49,7 @@ public class EventManager
         AddCube_ChangeDepthEvent_after?.Invoke(isSucceed);
     }
 
+
     public event Action<Vector3Int> ColorReactionEvent_1;
     public event Action<Vector3Int> ColorReactionEvent_2;
     public event Action<Vector3Int> ColorReactionEvent_4;
@@ -131,9 +132,12 @@ public class EventManager
     {
         BoomEvent?.Invoke(position);
     }
-#endregion
 
+
+    //Íæ¼Òid£¬HPÖµ
+    public Action<int,float> OnHPChange;
 
     public Func<Vector2Int , int> IsPassable;
     public Func<Vector2Int , int> IsEmpty;
+    #endregion
 }

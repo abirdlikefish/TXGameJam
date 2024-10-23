@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapSaver : Singleton<MapSaver>,IOnGameAwakeInit
+public class MapSaver : Singleton<MapSaver>
 {
     public List<Vector3Int> cubes = new();
     public List<Vector3Int> temp_cubes = new();
     public bool load = false;
-    public void InitializeOnGameAwake()
+    public override void Init()
     {
         EventManager.Instance.AddCubeEvent_before += (Vector3Int pos) =>
         {

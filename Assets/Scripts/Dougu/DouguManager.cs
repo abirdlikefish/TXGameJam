@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEnterInit
+public class DouguManager : Singleton<DouguManager>
 {
     string rPath = "Prefabs/Dougu";
     public Transform entityP;
@@ -14,11 +14,12 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     List<Vector3> blocks;
     [SerializeField]
     List<Effect> effects;
-    public void InitializeOnGameAwake()
+    public override void Init()
     {
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
+        EventManager.Instance.EnterLevelEvent += EnterLevel;
     }
-    public void InitializeOnLevelEnter()
+    public void EnterLevel(int id)
     {
         ClearChild(entityP);
         blocks = new();
@@ -47,13 +48,12 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
         for (int i = 0; i < p.transform.childCount; i++)
             Destroy(transform.GetChild(i).gameObject);
     }
-    public bool HasEntityBlock(Vector3 posY0)
+    public bool HasBlock(Vector3 posY0)
     {
         return blocks.Contains(posY0);
     }
-    //public bool HasSameEffect(Vector3 posY0, Type type)
+    //public bool HasEffect(Vector3 posY0, Type type)
     //{
-    //    return false;
     //    //TOTO ÌØÐ§ÖØµþ
     //    //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
     //}
@@ -61,5 +61,4 @@ public class DouguManager : Singleton<DouguManager>, IOnGameAwakeInit,IOnLevelEn
     {
         return prefabDougus.Find(d => d is T) as T;
     }
-
 }

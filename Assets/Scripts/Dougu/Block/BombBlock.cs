@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class BombEntity : Block
+public class BombBlock : Block
 {
     
     public int crossRange = 2;

@@ -20,7 +20,7 @@ public class Test : MonoBehaviour
         int ret = EventManager.Instance.IsPassable(pos);
         if (ret == 0)
             return null;
-        if(ret == 1 || ret == 3)
+        if(ret == 2 || ret == 3)
             return GetCubeL(worldPosY0);
         return GetCubeR(worldPosY0);
     }

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Entity : MonoBehaviour,IOnLevelEnterInit
+public class Entity : MonoBehaviour
 {
     float lastTakeDamageTime;
-    public float MaxHealth = 3f;
+    public float maxHealth = 3f;
     [SerializeField]
     float curHealth;
     public float CurHealth
@@ -18,15 +20,9 @@ public class Entity : MonoBehaviour,IOnLevelEnterInit
         }
         set
         {
-            if(value < curHealth)
+            if (value > maxHealth)
             {
-                if (Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval)
-                    return;
-                lastTakeDamageTime = Time.time;
-            }
-            if (value > MaxHealth)
-            {
-                curHealth = MaxHealth;
+                curHealth = maxHealth;
             }
             else if (value <= 0)
             {
@@ -35,24 +31,27 @@ public class Entity : MonoBehaviour,IOnLevelEnterInit
             }
             else
                 curHealth = value;
-            //healthBar.fillAmount = curHealth / MaxHealth;
+            //TODO: Send to HealthBar
             if (curHealth <= 0)
                 OnHealthZero();
         }
     }
-    public Image healthBar;
     public virtual void OnHealthZero()
     {
-        //TODO: Die
+        //TODO Send to HP 0
     }
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
+        if (Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval)
+            return;
+        lastTakeDamageTime = Time.time;
         CurHealth -= damage;
     }
-    public void InitializeOnLevelEnter()
+
+    public virtual void OnEnable()
     {
         lastTakeDamageTime = -DeliConfig.Instance.takeDamageInterval;
-        CurHealth = MaxHealth;
+        CurHealth = maxHealth;
     }
 
     public virtual void Update()

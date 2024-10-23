@@ -7,7 +7,7 @@ public class DouguRay : Dougu
     [Header("DouguRay")]
     public int rayRange = 5;
     public RayEffect rayEffect0;
-    public override int OnUse(Mate user = null)
+    public override int OnUse()
     {
         base.OnUse();
         GameObject go = MyInsEffect(rayEffect0, user.transform.position);
