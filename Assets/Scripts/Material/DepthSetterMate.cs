@@ -8,7 +8,7 @@ public class DepthSetterMate : MonoBehaviour
     public int d2;
     public int d3;
     Vector3 ThisCenter => GetComponent<MateMover>().CurCenter;
-    //Vector3 NextCenter => GetComponent<MateMover>().Target; TODO
+    Vector3 NextCenter => GetComponent<MateMover>().CurCenter + GetComponent<MateMover>().flipDir;
     private void Start()
     {
         StartCoroutine(SetDepth());
@@ -30,10 +30,12 @@ public class DepthSetterMate : MonoBehaviour
                 continue;
             }
             d1 = 3000 + h1 + h2;
-            //h1 = GetLeftCube(NextCenter);
-            //h2 = GetRightCube(NextCenter);
-            //d2 = 3000 + h1 + h2;
-            d3 = Mathf.Max(d1, d1) + 1;
+            h1 = GetLeftCube(NextCenter);
+            h2 = GetRightCube(NextCenter);
+            d2 = 3000 + h1 + h2;
+            if (!MateInput.CanTooruY0(ThisCenter,NextCenter))
+                d2 = 0;
+            d3 = Mathf.Max(d1, d2) + 1;
             GetComponent<NewMaterial>().Material.renderQueue = d3;
             yield return 0;
         }

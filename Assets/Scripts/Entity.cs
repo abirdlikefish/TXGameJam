@@ -35,7 +35,7 @@ public class Entity : MonoBehaviour,IOnLevelEnterInit
             }
             else
                 curHealth = value;
-            healthBar.fillAmount = curHealth / MaxHealth;
+            //healthBar.fillAmount = curHealth / MaxHealth;
             if (curHealth <= 0)
                 OnHealthZero();
         }
