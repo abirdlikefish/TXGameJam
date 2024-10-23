@@ -147,6 +147,11 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         return nodeMap[position.x, position.y].rightNode.cube;
     }
+    public void GetCube(Vector2Int position , out BaseCube baseCube_L, out BaseCube baseCube_R)
+    {
+        baseCube_L = GetCube_L(position);
+        baseCube_R = GetCube_R(position);
+    }
     public List<BaseCube> GetCubes(Vector2Int position)
     {
         List<BaseCube> cubes = new List<BaseCube>();

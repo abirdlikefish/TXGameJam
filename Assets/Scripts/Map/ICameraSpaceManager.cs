@@ -10,4 +10,6 @@ public interface ICameraSpaceManager
     int IsEmpty(Vector2Int position);
     public List<BaseCube> GetCubes(Vector2Int position);
     public bool IsCubeExposed(Vector2Int position);
+    public BaseCube GetCube_L(Vector2Int position);
+    public BaseCube GetCube_R(Vector2Int position);
 }
