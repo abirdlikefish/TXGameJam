@@ -82,14 +82,16 @@ public class EventManager
 
 
     public event Action<int> EnterTinyLevelEvent;
-    public event Action<int> ExitTinyLevelEvent;
+    public event Action ExitTinyLevelEvent;
+    // public void EnterTinyLevel()
     public void EnterTinyLevel(int level)
     {
         EnterTinyLevelEvent?.Invoke(level);
     }
-    public void ExitTinyLevel(int level)
+    public void ExitTinyLevel()
     {
-        ExitTinyLevelEvent?.Invoke(level);
+        ExitTinyLevelEvent?.Invoke();
+        ExitState(0);
     }
 
     public event Action<int> ExitStateEvent;

@@ -35,7 +35,7 @@ public class SelectLevelState : BaseState
         }
         else if(num == 1)
         {
-            gameStateMachine.ChangeState(gameStateMachine.inputNameState);
+            gameStateMachine.ChangeState(gameStateMachine.playState_1);
         }
         else
         {

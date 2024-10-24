@@ -26,7 +26,8 @@ public class MainState : BaseState
         EventManager.Instance.ExitStateEvent -= Exit;
         if(num == 0)
         {
-            gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
+            // gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
+            gameStateMachine.ChangeState(gameStateMachine.inputNameState);
         }
         else
         {
