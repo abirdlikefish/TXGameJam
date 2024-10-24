@@ -14,8 +14,8 @@ public class PlayState : BaseState
         base.Update();
     }
 
-    public override void Exit()
+    public override void Exit(int num)
     {
-        base.Exit();
+        base.Exit(num);
     }
 }

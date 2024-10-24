@@ -20,8 +20,6 @@ public class MapSaver : Singleton<MapSaver>
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            load = true;
         if (load)
         {
             load = false;

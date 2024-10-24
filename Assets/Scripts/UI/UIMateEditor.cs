@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIMateEditor : Singleton<UIMateEditor>
 {
-
     public override void Init()
     {
         EventManager.Instance.EnterLevelEvent += OnEnterBigLevel;
@@ -31,7 +30,6 @@ public class UIMateEditor : Singleton<UIMateEditor>
         uiMateEdit.mateName.text = mateData.name;
         uiMateEdit.mateWinCount.text = mateData.winCount.ToString();
         ChangeColor(mateData, uiMateEdit);
-        EventManager.Instance.SetMateMaterialColor(uiMateEdit.Id, mateData.color);
     }
     public void ChangeColor(MateData mateData, UIMateEditInfo uiMate)
     {

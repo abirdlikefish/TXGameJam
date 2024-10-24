@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BombEffect : Effect
 {
@@ -12,5 +11,11 @@ public class BombEffect : Effect
         if (other.gameObject.GetComponent<BombBlock>())
             other.gameObject.GetComponent<BombBlock>().Explode();
     }
-
+    public override void DyeCubeColor()
+    {
+        BaseCube cube = Test.GetCubeCanTooru(CurCenter);
+        if (cube == null)
+            return;
+        cube.GetComponent<NewMaterial>().Material.color = Color.red;
+    }
 }

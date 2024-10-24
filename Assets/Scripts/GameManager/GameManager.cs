@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         MapManager.AddListener();
-        Debug.Log("GGGAwake");
         InitTotal();
     }
     void Update()
@@ -15,11 +14,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             SaveManager.Instance.LoadLevelData();
-            foreach (Vector3Int cube in SaveManager.Instance.GetCubeList(0))
-            {
-                EventManager.Instance.AddCube(cube);
-            }
-
         }
     }
     void InitTotal()
