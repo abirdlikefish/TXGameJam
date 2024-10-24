@@ -20,9 +20,7 @@ public class MapSaver : Singleton<MapSaver>
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            load = true;
-        if (load)
+        if (load || Input.GetKeyDown(KeyCode.R))
         {
             load = false;
             for (int i = cubes.Count - 1; i >= 0; i--)
