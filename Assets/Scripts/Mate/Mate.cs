@@ -57,7 +57,7 @@ public class Mate : Entity
     }
     public void ResetDougu()
     {
-        AddDougu(DouguManager.Instance.GetDougu<DouguBomb>());
+        AddDougu(DouguManager.Instance.GetDougu<DouguHammer>());
     }
     public void AddDougu(Dougu dougu)
     {
