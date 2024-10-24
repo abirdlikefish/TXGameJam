@@ -8,14 +8,15 @@ public class UIInGame : Singleton<UIInGame>
     {
         EventManager.Instance.EnterTinyLevelEvent += (_) =>
         {
-
-
             for (int i = 0; i < uIMateProperties.Count && i < MateManager.Instance.curMates.Count; i++) 
             {
-                uIMateProperties[i].gameObject.SetActive(true);
                 uIMateProperties[i].mate = MateManager.Instance.curMates[i];
 
                 RefreshUI(MateManager.Instance.curMates[i]);
+            }
+            for(int i=0;i<transform.childCount;i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
             }
         };
     }
