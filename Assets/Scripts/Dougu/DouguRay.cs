@@ -18,9 +18,6 @@ public class DouguRay : Dougu
 
             if (go == null)
             {
-                Vector3 dir2 = MateInput.CameraDirInWorld(user.FlipDir);
-                Vector3 nextCenter = user.transform.position + user.FlipDir * i;
-                DyeBesideCudeColor(dir2, nextCenter);
                 break;
             }    
             go.transform.rotation = user.transform.rotation;

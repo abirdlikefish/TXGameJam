@@ -44,17 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f1aed4f0328364bbc14fe0d23c79ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  global: 0
   maxDistanceToCenterWhenBlocked: 0.4
   moveSpeed: 3
   takeDamageInterval: 3
   douguInterval: 0
-  colorMar_id:
-    list:
-    - Key: {fileID: 2100000, guid: 8a985a0165ad7e8459ac64c564a2ca17, type: 2}
-      Value: 0
-    - Key: {fileID: 2100000, guid: f19263eb63d3e1b4e8c844b379242da8, type: 2}
-      Value: 1
-    - Key: {fileID: 2100000, guid: c1e27ade4d1c87f4c82fbd6221c85431, type: 2}
-      Value: 2
-    - Key: {fileID: 2100000, guid: 9069f1b71f323c9408cf25eb7d8301b3, type: 2}
-      Value: 4

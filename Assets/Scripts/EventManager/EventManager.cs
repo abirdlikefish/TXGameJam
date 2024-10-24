@@ -79,6 +79,8 @@ public class EventManager
     {
         ExitLevelEvent?.Invoke(level);
     }
+
+
     public event Action<int> EnterTinyLevelEvent;
     public event Action<int> ExitTinyLevelEvent;
     public void EnterTinyLevel(int level)
@@ -89,6 +91,19 @@ public class EventManager
     {
         ExitTinyLevelEvent?.Invoke(level);
     }
+
+    public event Action<int> ExitStateEvent;
+    public void ExitState(int num)
+    {
+        ExitStateEvent?.Invoke(num);
+    }
+
+    public event Action ShowInputNameUIEvent;
+    public void ShowInputNameUI()
+    {
+        ShowInputNameUIEvent?.Invoke();
+    }
+
 #endregion
 
 #region color reaction event
@@ -134,14 +149,9 @@ public class EventManager
     }
 
 
-    //Íæ¼Òid£¬HPÖµ
-    public Action<int,float> OnHPChangeEvent;
+    //ï¿½ï¿½ï¿½idï¿½ï¿½HPÖµ
+    public Action<int,float> OnHPChange;
 
-    public Action<int, Color> SetMateMaterialColorEvent;
-    public void SetMateMaterialColor(int mateId, Color color)
-    {
-        SetMateMaterialColorEvent?.Invoke(mateId, color);
-    }
     public Func<Vector2Int , int> IsPassable;
     public Func<Vector2Int , int> IsEmpty;
     #endregion

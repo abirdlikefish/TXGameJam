@@ -7,7 +7,6 @@ using UnityEngine;
 [Serializable]
 public class MateData
 {
-    public int id;
     public string name;
     public Color color;
     public int winCount;
@@ -27,18 +26,17 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     public List<MateData> mateDatas => mateDataList.mateDatas;
     public override void Init()
     {
-        EventManager.Instance.EnterLevelEvent += EnterLevel;
+        EventManager.Instance.ShowInputNameUIEvent += OnShowInputLoad;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
-        EventManager.Instance.SetMateMaterialColorEvent += SetColor;
 
     }
-    public void EnterLevel(int levelId)
+    public void OnShowInputLoad()
     {
         for(int i=0;i<transform.childCount;i++)
             Destroy(transform.GetChild(i).gameObject);
         curMates = new();
         LoadJson();
-        Debug.Log("LoadJson" + " " + Time.time) ;
+        Debug.Log("LoadJson");
         for (int i = 0; i < 2; i++)
         {
             curMates.Add(Instantiate(Resources.Load<Mate>(rPath), gameObject.transform));
@@ -53,10 +51,6 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
             curMates[i].gameObject.SetActive(true);
 
         }
-    }
-    public void SetColor(int mateId,Color color)
-    {
-        curMates[mateId].GetComponent<NewMaterial>().Material.color = color;
     }
     public void SaveJson()
     {
@@ -91,7 +85,6 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         }
         MateData mateData = new()
         {
-            id = mateDatas.Count,
             name = newName,
             color = newColor,
             winCount = 0
