@@ -13,6 +13,8 @@ public class DepthSetterMate : MonoBehaviour
     {
         StartCoroutine(SetDepth());
     }
+
+    float trapTimer = 0;
     IEnumerator SetDepth()
     {
         while (true)
@@ -36,6 +38,28 @@ public class DepthSetterMate : MonoBehaviour
             if (!MateInput.CanTooruY0(ThisCenter,NextCenter))
                 d2 = 0;
             d3 = Mathf.Max(d1, d2) + 1;
+            Vector3Int curCenter = Vector3Int.RoundToInt(GetComponent<MateMover>().CurCenter);
+            int leftType = CubeGetter.GetNodeL(curCenter);
+            int rightType = CubeGetter.GetNodeR(curCenter);
+            if(leftType == 1 && rightType == 2)
+            {
+                EventManager.Instance.RemoveCube(curCenter);
+            }
+            else if(leftType == 2 && rightType == 1)
+            {
+                trapTimer += Time.deltaTime;
+                EventManager.Instance.StartTrap(GetComponent<Mate>(),transform.position, trapTimer);
+                d3 = 2000;
+            }
+            else
+            {
+                trapTimer = 0f;
+            }
+
+            if(trapTimer >= 3f)
+            {
+                EventManager.Instance.ExitTinyLevel();
+            }
             GetComponent<NewMaterial>().Material.renderQueue = d3;
             yield return 0;
         }

@@ -59,6 +59,7 @@ public class Mate : Entity
             }
         }
     }
+    
     public void ResetDougu()
     {
         AddDougu(DouguManager.Instance.GetDougu<DouguBomb>());

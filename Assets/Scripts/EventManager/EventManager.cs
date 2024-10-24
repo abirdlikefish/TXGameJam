@@ -83,10 +83,12 @@ public class EventManager
     // public void EnterTinyLevel()
     public void EnterTinyLevel(int level)
     {
+        Debug.Log($"{nameof(EnterTinyLevel)} {level}");
         EnterTinyLevelEvent?.Invoke(level);
     }
     public void ExitTinyLevel()
     {
+        Debug.Log(nameof(ExitTinyLevel));
         ExitTinyLevelEvent?.Invoke();
         ExitState(0);
     }
@@ -163,8 +165,13 @@ public class EventManager
     #endregion
 
     public event Action<Type,Vector3,int> GenerateDouguSphereEvent;
-    public void GenerateDouguSphere(Type type, Vector3 generatePosY0, int colorId)
+    public void GenerateDouguSphere(Type type, Vector3 posY0, int colorId)
     {
-        GenerateDouguSphereEvent?.Invoke(type, generatePosY0, colorId);
+        GenerateDouguSphereEvent?.Invoke(type, posY0, colorId);
+    }
+    public event Action<Mate,Vector3,float> StartTrapEvent;
+    public void StartTrap(Mate mate, Vector3 position, float timer)
+    {
+        StartTrapEvent?.Invoke(mate, position, timer);
     }
 }
