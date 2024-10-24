@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Profiling.Memory.Experimental;
 
 [Serializable]
 public class MateData
@@ -44,6 +45,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
             curMates.Add(Instantiate(Resources.Load<Mate>(rPath), gameObject.transform));
             curMates[i].gameObject.SetActive(false);
             curMates[i].mateData = mateDatas[i];
+            
         }
     }
     public void EnterTinyLevel(int levelId)
@@ -51,7 +53,6 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         for (int i = 0; i < 2; i++)
         {
             curMates[i].gameObject.SetActive(true);
-
         }
     }
     public void SetColor(int mateId,Color color)

@@ -19,6 +19,7 @@ public class Mate : Entity
     public override void OnEnable()
     {
         base.OnEnable();
+        GetComponent<NewMaterial>().Material.color = mateData.color;
         lastDouguTime = - DeliConfig.Instance.douguInterval;
     }
     public override void Update()
