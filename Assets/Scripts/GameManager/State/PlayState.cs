@@ -6,7 +6,9 @@ public class PlayState : BaseState
 {
     public override void Enter()
     {
+        Debug.Log("PlayState Enter");
         base.Enter();
+        EventManager.Instance.ExitStateEvent += Exit;
     }
 
     public override void Update()

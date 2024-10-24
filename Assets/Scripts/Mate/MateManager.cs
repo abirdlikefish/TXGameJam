@@ -26,11 +26,11 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     public List<MateData> mateDatas => mateDataList.mateDatas;
     public override void Init()
     {
-        EventManager.Instance.EnterLevelEvent += EnterLevel;
+        EventManager.Instance.ShowInputNameUIEvent += OnShowInputLoad;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
 
     }
-    public void EnterLevel(int levelId)
+    public void OnShowInputLoad()
     {
         for(int i=0;i<transform.childCount;i++)
             Destroy(transform.GetChild(i).gameObject);

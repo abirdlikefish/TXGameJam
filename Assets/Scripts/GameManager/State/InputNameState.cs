@@ -6,8 +6,11 @@ public class InputNameState : BaseState
 {
     public override void Enter()
     {
+        Debug.Log("InputNameState Enter");
         base.Enter();
         EventManager.Instance.ExitStateEvent += Exit;
+        
+        EventManager.Instance.ShowInputNameUI();
     }
 
     public override void Update()

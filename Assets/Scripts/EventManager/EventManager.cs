@@ -98,6 +98,12 @@ public class EventManager
         ExitStateEvent?.Invoke(num);
     }
 
+    public event Action ShowInputNameUIEvent;
+    public void ShowInputNameUI()
+    {
+        ShowInputNameUIEvent?.Invoke();
+    }
+
 #endregion
 
 #region color reaction event

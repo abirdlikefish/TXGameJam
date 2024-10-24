@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class UIMateEditor : Singleton<UIMateEditor>
 {
+    public GameObject panelEditMate;
     public override void Init()
     {
-        EventManager.Instance.EnterLevelEvent += OnEnterBigLevel;
+        // EventManager.Instance.EnterLevelEvent += OnEnterBigLevel;
+        EventManager.Instance.ShowInputNameUIEvent += ShowAllMates;
+
     }
-    public void OnEnterBigLevel(int levelId)
-    {
-        ShowAllMates();
-    }
+    // public void OnEnterBigLevel(int levelId)
+    // {
+    //     ShowAllMates();
+    // }
     #region UIMateEdit
     public List<UIMateEditInfo> uiMates;
 
 
     public void ShowAllMates()
     {
+        panelEditMate.SetActive(true);
         Debug.Log("ShowAllMates");
+        // Debug.Log(MateManager.Instance.mateDatas.Count);
         for (int i = 0; i < 2; i++)
         {
             ShowMate(MateManager.Instance.mateDatas[i], uiMates[i]);
