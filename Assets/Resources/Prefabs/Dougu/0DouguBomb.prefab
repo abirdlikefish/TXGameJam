@@ -343,7 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94dc67c1c228d243a8795612a31f0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: e12b1a9cee195fb4a9bc117f304cd9a6, type: 3}
   user: {fileID: 0}
   remainUseCount: 3
   damage: 1
@@ -351,7 +350,6 @@ MonoBehaviour:
   blockExistTime: 2
   effect: {fileID: 5723681579617257232}
   effectTime: 0.5
-  colorId: 0
   busy: []
   crossRange: 2
 --- !u!1 &7719508861164533494

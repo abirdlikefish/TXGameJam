@@ -13,10 +13,6 @@ public class UIMateEditor : Singleton<UIMateEditor>
     public void OnEnterBigLevel(int levelId)
     {
         ShowAllMates();
-        //btOnConfirmEdit.onClick.AddListener(delegate () { panelEditMate.gameObject.SetActive(false); });
-        //btOnConfirmEdit.onClick.AddListener(delegate () { EventManager.Instance.EnterTinyLevel(0); });
-        //EventManager.Instance.ShowInputNameUIEvent += ShowAllMates;
-
     }
     #region UIMateEdit
     public List<UIMateEditInfo> uiMates;
