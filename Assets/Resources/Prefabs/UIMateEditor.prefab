@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816a379f113391243ae7dd3b0626ba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelEditMate: {fileID: 8555028417595445277}
   uiMates:
   - {fileID: 3435779483078080529}
   - {fileID: 6034651682982415045}
@@ -451,7 +452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7620827234266466001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -935,7 +936,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6434659931001320683, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
       propertyPath: m_Name
-      value: UIMateEditInfo0
+      value: UIMateEditInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434659931001320683, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

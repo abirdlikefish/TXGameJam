@@ -7,8 +7,7 @@ public class Effect : MonoBehaviour
     public Dougu douguBase;
     public float EffectTime => douguBase.effectTime;
     public float existTimer = 0f;
-    Vector3Int curCenter;
-    public Vector3Int CurCenter => new(Mathf.RoundToInt(transform.position.x), 0, Mathf.RoundToInt(transform.position.z));
+    public Vector3Int CurCenter => new (Mathf.RoundToInt(transform.position.x), 0, Mathf.RoundToInt(transform.position.z));
     private void Update()
     {
         existTimer += Time.deltaTime;
@@ -27,7 +26,7 @@ public class Effect : MonoBehaviour
     {
         douguBase.busy.Add(gameObject);
         DouguManager.Instance.AddEffect(this);
-        DyeBelowCubeColor();
+        DyeCubeColor();
     }
 
     public void OnDisable()
@@ -35,12 +34,7 @@ public class Effect : MonoBehaviour
         douguBase.busy.Remove(gameObject);
         DouguManager.Instance.RemoveEffect(this);
     }
-    public virtual void DyeBelowCubeColor()
+    public virtual void DyeCubeColor()
     {
-        BaseCube cube = Test.GetCubeCanTooru(CurCenter);
-        if (cube == null)
-            return;
-        douguBase.DyeBase(cube);
     }
-    
 }

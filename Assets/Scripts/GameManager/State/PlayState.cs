@@ -6,7 +6,9 @@ public class PlayState : BaseState
 {
     public override void Enter()
     {
+        Debug.Log("PlayState Enter");
         base.Enter();
+        EventManager.Instance.ExitStateEvent += Exit;
     }
 
     public override void Update()
@@ -14,8 +16,8 @@ public class PlayState : BaseState
         base.Update();
     }
 
-    public override void Exit()
+    public override void Exit(int num)
     {
-        base.Exit();
+        base.Exit(num);
     }
 }
