@@ -7,7 +7,7 @@ public class GameStateMachine
     public MainState mainState;
     public InputNameState inputNameState;
     public SelectLevelState selectLevelState;
-    public PlayState playState;
+    public PlayState_1 playState_1;
     private BaseState currentState;
 
     public void Init()
@@ -16,7 +16,7 @@ public class GameStateMachine
         mainState = new MainState();
         inputNameState = new InputNameState();
         selectLevelState = new SelectLevelState();
-        playState = new PlayState();
+        playState_1 = new PlayState_1();
 
         // mainState
         ChangeState(mainState);

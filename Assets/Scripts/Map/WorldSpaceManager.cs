@@ -100,7 +100,7 @@ public class WorldSpaceManager : IWorldSpaceManager
     }
     public void MergeGroup(List<int> groupIDList)
     {
-        Debug.Log("mergeGroup :" + string.Join("," , groupIDList));
+        // Debug.Log("mergeGroup :" + string.Join("," , groupIDList));
         if(groupIDList.Count == 0)
         {
             // Debug.LogWarning("groupIDList.Count == 0");

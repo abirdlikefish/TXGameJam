@@ -28,7 +28,7 @@ public class InputNameState : BaseState
         }
         else if(num == 1)
         {
-            gameStateMachine.ChangeState(gameStateMachine.playState);
+            gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
         }
         else
         {
