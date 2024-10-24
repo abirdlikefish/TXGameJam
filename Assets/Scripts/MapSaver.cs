@@ -30,10 +30,12 @@ public class MapSaver : Singleton<MapSaver>
                 EventManager.Instance.RemoveCube(cubes[i]);
             }
             cubes.Clear();
+            Debug.Log("a" + cubes.Count);
             for (int i = temp_cubes.Count - 1; i >= 0; i--)
             {
                 EventManager.Instance.AddCube(temp_cubes[i]);
             }
+            Debug.Log("b" + cubes.Count);
         }
     }
 }
