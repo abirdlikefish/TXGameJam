@@ -14,8 +14,6 @@ public class UIMateEditInfo:MonoBehaviour
     public Text mateWinCount;
 
 
-    public Button btConfirmEdit;
-
     public Dropdown dropDown;
 
     string editName = null;
