@@ -19,4 +19,5 @@ public class Block:MonoBehaviour
         douguBase.busy.Remove(gameObject);
         DouguManager.Instance.RemoveBlock(transform.position);
     }
+    
 }

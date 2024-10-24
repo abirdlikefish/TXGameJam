@@ -16,6 +16,8 @@ public class UIMateEditInfo:MonoBehaviour
 
     public Button btConfirmEdit;
 
+    public Dropdown dropDown;//TODO 翘课已 之 已经实现了，但是没有显示出来
+
     string editName = null;
     Color editColor = Color.clear;
     public void OnEditChangeColor()
@@ -27,6 +29,8 @@ public class UIMateEditInfo:MonoBehaviour
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
+        //将名字中的空格转换为下划线
+        editName = editName.Replace(" ", "_");
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
         UIMateEditor.Instance.ShowMate(mateData, this);
     }

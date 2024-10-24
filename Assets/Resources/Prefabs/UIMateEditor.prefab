@@ -937,10 +937,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIMateEditInfo
       objectReference: {fileID: 0}
-    - target: {fileID: 6434659931001320683, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

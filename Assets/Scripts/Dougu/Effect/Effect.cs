@@ -40,34 +40,7 @@ public class Effect : MonoBehaviour
         BaseCube cube = Test.GetCubeCanTooru(CurCenter);
         if (cube == null)
             return;
-        DyeBase(cube);
+        douguBase.DyeBase(cube);
     }
-    public void DyeBase(BaseCube cube)
-    {
-        cube.GetComponent<NewMaterial>().Material.color = Color.red;
-        EventManager.Instance.SetCubeColor(new(CurCenter.x, CurCenter.z), douguBase.colorId);
-    }
-    public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
-    {
-        if(dirInWorld == new Vector3(1,0,0) || dirInWorld == new Vector3(0,0,-1))
-        {
-            BaseCube cube = Test.GetCubeR(center);
-            if (cube == null)
-            {
-                Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
-                return;
-            }
-            DyeBase(cube);
-        }
-        else
-        {
-            BaseCube cube = Test.GetCubeL(center);
-            if (cube == null)
-            {
-                Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
-                return;
-            }
-            DyeBase(cube);
-        }
-    }
+    
 }
