@@ -43,7 +43,7 @@ public class DepthSetterMate : MonoBehaviour
             int rightType = CubeGetter.GetNodeR(curCenter);
             if(leftType == 1 && rightType == 2)
             {
-                EventManager.Instance.RemoveCube(curCenter);
+                EventManager.Instance.RemoveCube(curCenter+Vector3Int.up);
             }
             else if(leftType == 2 && rightType == 1)
             {

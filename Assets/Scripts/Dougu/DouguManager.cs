@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -87,7 +88,10 @@ public class DouguManager : Singleton<DouguManager>
 
     public void GenerateDougu(Type type, Vector3 posY0,int cId)
     {
-        DouguSphere ds = Dougu.MyInsSphere(prefabDouguSphere.gameObject, posY0).GetComponent<DouguSphere>();
+        GameObject go = Dougu.MyInsSphere(prefabDouguSphere.gameObject, posY0);
+        if (go == null)
+            return;
+        DouguSphere ds = go.GetComponent<DouguSphere>();
         Dougu d = GetDougu(type);
         ds.Init(d, cId);
     }
