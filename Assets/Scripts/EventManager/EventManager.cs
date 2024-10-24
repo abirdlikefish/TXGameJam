@@ -90,14 +90,9 @@ public class EventManager
     {
         ExitTinyLevelEvent?.Invoke(level);
     }
-    public event Action ShowInputNameUIEvent;
-    public void ShowInputNameUI()
-    {
-        ShowInputNameUIEvent?.Invoke();
-    }
-    #endregion
-
-    #region color reaction event
+#endregion
+     
+#region color reaction event
     public event Action<int , int> AddNewColorReactionEvent;
     public void AddNewColorReaction(int color , int reaction)
     {
