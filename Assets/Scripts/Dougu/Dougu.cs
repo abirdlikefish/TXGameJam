@@ -91,6 +91,7 @@ public abstract class Dougu : MonoBehaviour
     }
     public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
     {
+        
         if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && CubeGetter.GetNodeR(center) == 2)
             ||
             ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && CubeGetter.GetNodeL(center) == 1))

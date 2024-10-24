@@ -21,8 +21,8 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     string rPath = "Prefabs/Mate";
     string dataPre = "MateData";
     string dataName = "AllMates";
-    public List<Mate> curMates;
-    public MateDataList mateDataList;
+    List<Mate> curMates;
+    MateDataList mateDataList;
     public List<MateData> mateDatas => mateDataList.mateDatas;
     public override void Init()
     {
