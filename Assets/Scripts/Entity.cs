@@ -32,6 +32,7 @@ public class Entity : MonoBehaviour
             else
                 curHealth = value;
             //TODO: Send to HealthBar
+            UIInGame.Instance.RefreshUI(this as Mate);
             if (curHealth <= 0)
                 OnHealthZero();
         }

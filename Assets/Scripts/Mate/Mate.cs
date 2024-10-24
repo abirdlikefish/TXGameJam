@@ -12,7 +12,8 @@ public class Mate : Entity
     // public Vector3 CurCenter => MateMover.CurCenter;
     public Vector3 FlipDir => GetComponent<MateMover>().flipDir;
     [SerializeField]
-    List<Dougu> onHeadDougu = new();
+    public List<Dougu> onHeadDougu = new();
+
 
 
     public float lastDouguTime;
@@ -20,6 +21,7 @@ public class Mate : Entity
     public override void OnEnable()
     {
         base.OnEnable();
+        ResetDougu();
         lastDouguTime = - DeliConfig.Instance.douguInterval;
         GetComponent<NewMaterial>().Material.color = mateData.color;
     }

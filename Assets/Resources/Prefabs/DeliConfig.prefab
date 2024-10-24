@@ -56,6 +56,8 @@ MonoBehaviour:
       Value: {fileID: 21300000, guid: ed7c90f1fbef8d44bbd2e1a0d43d039b, type: 3}
     - Key: DouguMiniCube
       Value: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - Key: DouguBomb
+      Value: {fileID: 21300000, guid: 808a21585ad717147909ebcf6257d3c0, type: 3}
   id_color:
     list:
     - Key: 0
