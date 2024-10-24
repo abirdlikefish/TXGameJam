@@ -259,34 +259,34 @@ public class MapManager
     }
 
 
-    public void SetCubeColor(Vector2Int position , int color)
-    {
-        int isPassable = cameraSpaceManager.IsPassable(position);
-        if(isPassable == 0)
-        {
-            cameraSpaceManager.GetCube_L(position).Color = color;
-        }
-        else if(isPassable == 1)
-        {
-            cameraSpaceManager.GetCube_R(position).Color = color;
-        }
-        else if(isPassable == 2)
-        {
-            cameraSpaceManager.GetCube_L(position).Color = color;
-        }
-        else
-        {
-            Debug.LogWarning("Error SetCubeColor");
-        }
-    }
-    public void SetCubeColor_L(Vector2Int position , int color)
-    {
-        cameraSpaceManager.GetCube_L(position).Color = color;
-    }
-    public void SetCubeColor_R(Vector2Int position , int color)
-    {
-        cameraSpaceManager.GetCube_R(position).Color = color;
-    }
+    // public void SetCubeColor(Vector2Int position , int color)
+    // {
+    //     int isPassable = cameraSpaceManager.IsPassable(position);
+    //     if(isPassable == 0)
+    //     {
+    //         cameraSpaceManager.GetCube_L(position).Color = color;
+    //     }
+    //     else if(isPassable == 1)
+    //     {
+    //         cameraSpaceManager.GetCube_R(position).Color = color;
+    //     }
+    //     else if(isPassable == 2)
+    //     {
+    //         cameraSpaceManager.GetCube_L(position).Color = color;
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning("Error SetCubeColor");
+    //     }
+    // }
+    // public void SetCubeColor_L(Vector2Int position , int color)
+    // {
+    //     cameraSpaceManager.GetCube_L(position).Color = color;
+    // }
+    // public void SetCubeColor_R(Vector2Int position , int color)
+    // {
+    //     cameraSpaceManager.GetCube_R(position).Color = color;
+    // }
 
     public int IsPassive(Vector2Int position)
     {
