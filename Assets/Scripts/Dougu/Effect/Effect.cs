@@ -21,20 +21,24 @@ public class Effect : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Mate>())
             other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
+        if (other.gameObject.GetComponent<DouguSphere>())
+            Destroy(other.gameObject);
     }
     public void OnEnable()
     {
         douguBase.busy.Add(gameObject);
-        DouguManager.Instance.AddEffect(this);
-        DyeCubeColor();
+        DouguManager.Instance.AddSth(gameObject);
+        DyeUnderCubeColor();
     }
 
     public void OnDisable()
     {
         douguBase.busy.Remove(gameObject);
-        DouguManager.Instance.RemoveEffect(this);
+        DouguManager.Instance.RemoveSth(gameObject);
     }
-    public virtual void DyeCubeColor()
+    
+    public virtual void DyeUnderCubeColor()
     {
     }
+    
 }

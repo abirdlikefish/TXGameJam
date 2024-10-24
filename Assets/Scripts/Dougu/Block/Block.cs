@@ -12,12 +12,12 @@ public class Block:MonoBehaviour
     public void OnEnable()
     {
         douguBase.busy.Add(gameObject);
-        DouguManager.Instance.AddBlock(transform.position);
+        DouguManager.Instance.AddSth(gameObject);
     }
 
     public void OnDisable()
     {
         douguBase.busy.Remove(gameObject);
-        DouguManager.Instance.RemoveBlock(transform.position);
+        DouguManager.Instance.RemoveSth(gameObject);
     }
 }

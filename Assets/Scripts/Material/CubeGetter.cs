@@ -2,8 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class CubeGetter : MonoBehaviour
 {
+    public static int GetNodeL(Vector3 worldPosY0)
+    {
+        Vector2Int screenPos = MateInput.MyWorldToScreen(worldPosY0);
+        return MapManager.Instance.MyCameraSpaceManager.GetNode_L(screenPos);
+    }
+    public static int GetNodeR(Vector3 worldPosY0)
+    {
+        Vector2Int screenPos = MateInput.MyWorldToScreen(worldPosY0);
+        return MapManager.Instance.MyCameraSpaceManager.GetNode_R(screenPos);
+    }
     public static BaseCube GetCubeL(Vector3 worldPosY0)
     {
         Vector2Int screenPos = MateInput.MyWorldToScreen(worldPosY0);

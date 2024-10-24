@@ -43,14 +43,14 @@ public class DepthSetterMate : MonoBehaviour
 
     int GetLeftCubeD(Vector3 center)
     {
-        BaseCube cube = Test.GetCubeL(center);
+        BaseCube cube = CubeGetter.GetCubeL(center);
         if (cube == null)
             return int.MinValue;
         return cube.Height;
     }
     int GetRightCubeD(Vector3 center)
     {
-        BaseCube cube = Test.GetCubeR(center);
+        BaseCube cube = CubeGetter.GetCubeR(center);
         if (cube == null)
             return int.MinValue;
         return cube.Height;

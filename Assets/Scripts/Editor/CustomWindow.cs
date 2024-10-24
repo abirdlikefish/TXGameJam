@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System;
 public class CustomWindow : EditorWindow
 {
     // 创建一个Vector3Int字段用于输入
     private Vector3Int m_position;
     private Vector3Int m_positionParent;
-
+    private int colorID;
     // 添加菜单项，打开自定义窗口
     [MenuItem("Window/Custom Cube Adder")]
     public static void ShowWindow()
@@ -28,6 +29,7 @@ public class CustomWindow : EditorWindow
         m_positionParent.x = EditorGUILayout.IntField("Parent X", m_positionParent.x);
         m_positionParent.y = EditorGUILayout.IntField("Parent Y", m_positionParent.y);
         m_positionParent.z = EditorGUILayout.IntField("Parent Z", m_positionParent.z);
+        colorID = EditorGUILayout.IntField("color id", colorID);
 
         // 按钮按下时调用AddCube方法
         if (GUILayout.Button("Add Cube"))
@@ -42,6 +44,15 @@ public class CustomWindow : EditorWindow
         //    List<BaseCube> cubes = MapManager.Instance.MyCameraSpaceManager.GetCubes(curMate1ScreenPos);
 
         //}
+
+        if (GUILayout.Button("Generate Dougu Hammer"))
+        {
+            EventManager.Instance.GenerateDouguSphere(typeof(DouguHammer), m_position, colorID);
+        }
+        if (GUILayout.Button("Generate Dougu Ray"))
+        {
+            EventManager.Instance.GenerateDouguSphere(typeof(DouguRay), m_position, colorID);
+        }
         if (GUILayout.Button("Remove Cube"))
         {
             EventManager.Instance.RemoveCube(m_position);

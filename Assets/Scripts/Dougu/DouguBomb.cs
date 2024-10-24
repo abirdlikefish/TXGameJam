@@ -10,7 +10,7 @@ public class DouguBomb : Dougu
     public override int OnUse()
     {
         base.OnUse();
-        GameObject go = MyInsBlock(block, user.CurCenter);
+        GameObject go = MyInsBlockOrSphere(block.gameObject, user.CurCenter);
         if (go == null)
             return 0;
         go.SetActive(true);

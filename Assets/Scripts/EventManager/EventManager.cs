@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 
 public class EventManager
@@ -155,4 +152,10 @@ public class EventManager
     public Func<Vector2Int , int> IsPassable;
     public Func<Vector2Int , int> IsEmpty;
     #endregion
+
+    public event Action<Type,Vector3,int> GenerateDouguSphereEvent;
+    public void GenerateDouguSphere(Type type, Vector3 generatePosY0, int colorId)
+    {
+        GenerateDouguSphereEvent?.Invoke(type, generatePosY0, colorId);
+    }
 }

@@ -7,6 +7,7 @@ using static UnityEditor.PlayerSettings;
 public abstract class Dougu : MonoBehaviour
 {
     public Mate user;
+    public int cID;
     public int remainUseCount = 3;
     public float damage = 1f;
     public Block block;
@@ -36,12 +37,12 @@ public abstract class Dougu : MonoBehaviour
             yield return 0;
         }
     }
-    public static GameObject MyInsBlock(Block block,Vector3 pos)
+    public static GameObject MyInsBlockOrSphere(GameObject go,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);
-        if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasBlock(posY0))
+        if (!MateInput.CanTooruY0(posY0) || DouguManager.Instance.HasEither<Block,DouguSphere>(posY0))
             return null;
-        return MyIns(block.gameObject, posY0);
+        return MyIns(go, posY0);
     }
     //public static GameObject MyInsEffectRay(RayEffect rayEffect,Vector3 lastPos, Vector3 thisPos)
     //{
@@ -73,10 +74,47 @@ public abstract class Dougu : MonoBehaviour
             return null;
         return MyIns(effect.gameObject, posY0);
     }
+    public static GameObject MyInsSphere(GameObject sphere,Vector3 pos)
+    {
+        return MyInsBlockOrSphere(sphere,pos);
+    }
     static GameObject MyIns(GameObject go, Vector3 posY0)
     {
         GameObject g = Instantiate(go, posY0, Quaternion.identity, DouguManager.Instance.entityP);
         g.SetActive(true);
         return g;
+    }
+    public void DyeBase(BaseCube cube)
+    {
+        cube.Color = cID;
+        cube.GetComponent<NewMaterial>().Material.color = Color.red;
+    }
+    public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
+    {
+        if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && CubeGetter.GetNodeR(center) == 2)
+            ||
+            ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && CubeGetter.GetNodeL(center) == 1))
+        {
+            if (dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1))
+            {
+                BaseCube cube = CubeGetter.GetCubeR(center);
+                if (cube == null)
+                {
+                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+                    return;
+                }
+                DyeBase(cube);
+            }
+            else
+            {
+                BaseCube cube = CubeGetter.GetCubeL(center);
+                if (cube == null)
+                {
+                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+                    return;
+                }
+                DyeBase(cube);
+            }
+        }
     }
 }

@@ -28,7 +28,12 @@ public class BombBlock : Block
                 if (DeliConfig.tooruTest)
                 {
                     if (!Dougu.MyInsEffect(Effect, transform.position + dir * (i - 1), transform.position + dir * i))
+                    {
+                        Vector3 dir2 = MateInput.CameraDirInWorld(dir);
+                        Vector3 nextCenter = transform.position + dir * i;
+                        douguBase.DyeBesideCudeColor(dir2, nextCenter);
                         break;
+                    }
                 }
                 else
                 {

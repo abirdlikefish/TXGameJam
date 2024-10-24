@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e12b1a9cee195fb4a9bc117f304cd9a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ca036545d7746f448dfc2f491666e3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7398620677521338776}
   - component: {fileID: 3084233214998596221}
   m_Layer: 0
-  m_Name: HammerTrueMesh
+  m_Name: DiffuseTrueMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 4052878687334587699}
   - component: {fileID: 6585269791159680597}
   - component: {fileID: 5863758587340465028}
+  - component: {fileID: -4133492519030418310}
   - component: {fileID: 6388549487544971007}
   m_Layer: 0
   m_Name: DouguSphere
@@ -209,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7894092571413341014}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -230,7 +231,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe2ea7d55f7a744bab73b9f3f5a34a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  class_sprite:
+    list:
+    - Key: DouguRay
+      Value: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - Key: DouguHammer
+      Value: {fileID: 21300000, guid: ed7c90f1fbef8d44bbd2e1a0d43d039b, type: 3}
+    - Key: DouguMiniCube
+      Value: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  id_color:
+    list:
+    - Key: 0
+      Value: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 1
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: 2
+      Value: {r: 0, g: 1, b: 0, a: 1}
+    - Key: 4
+      Value: {r: 0, g: 0, b: 1, a: 1}
   douguBase: {fileID: 0}
+  color: 0
+  spriteRenderer: {fileID: 4441343051287511024}
 --- !u!114 &6585269791159680597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,12 +274,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7894092571413341014}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f13cabd496e4e847bd28f445bf0f7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   d1: 0
+--- !u!54 &-4133492519030418310
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894092571413341014}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!135 &6388549487544971007
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -274,7 +322,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

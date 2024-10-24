@@ -35,5 +35,7 @@ public class MapSaver : Singleton<MapSaver>
             }
             Debug.Log("b" + cubes.Count);
         }
+
+
     }
 }

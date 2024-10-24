@@ -26,7 +26,8 @@ public class CameraSpaceManager : ICameraSpaceManager
     enum NodeType
     {
         top,
-        side
+        leftside,
+        rightside,
     }
     struct HalfNode
     {
@@ -96,12 +97,12 @@ public class CameraSpaceManager : ICameraSpaceManager
     {
         DrawGrid_L(cube.GetCameraSpacePosition(), cube, NodeType.top);
         DrawGrid_R(cube.GetCameraSpacePosition(), cube, NodeType.top);
-        
-        DrawGrid_L(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY(), cube, NodeType.side);
-        DrawGrid_R(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY(), cube, NodeType.side);
 
-        DrawGrid_L(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetY(), cube, NodeType.side);
-        DrawGrid_R(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX(), cube, NodeType.side);
+        DrawGrid_L(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY(), cube, NodeType.leftside);
+        DrawGrid_R(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX() + CameraManager.Instance.GetOffetY(), cube, NodeType.rightside);
+
+        DrawGrid_L(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetY(), cube, NodeType.rightside);
+        DrawGrid_R(cube.GetCameraSpacePosition() + CameraManager.Instance.GetOffetX(), cube, NodeType.leftside);
 
     }
     void DrawGrid_L(Vector2Int pos, BaseCube cube , NodeType type)
@@ -138,6 +139,14 @@ public class CameraSpaceManager : ICameraSpaceManager
     public int IsEmpty(Vector2Int position)
     {
         return nodeMap[position.x, position.y].isEmpty;
+    }
+    public int GetNode_L(Vector2Int position)
+    {
+        return (int)(nodeMap[position.x, position.y].leftNode.type);
+    }
+    public int GetNode_R(Vector2Int position)
+    {
+        return (int)(nodeMap[position.x, position.y].rightNode.type);
     }
     public BaseCube GetCube_L(Vector2Int position)
     {
