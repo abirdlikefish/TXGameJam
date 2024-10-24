@@ -91,7 +91,7 @@ public class EventManager
         ExitTinyLevelEvent?.Invoke(level);
     }
 #endregion
-
+     
 #region color reaction event
     public event Action<int , int> AddNewColorReactionEvent;
     public void AddNewColorReaction(int color , int reaction)
