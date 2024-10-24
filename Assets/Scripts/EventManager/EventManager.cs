@@ -135,8 +135,13 @@ public class EventManager
 
 
     //Íæ¼Òid£¬HPÖµ
-    public Action<int,float> OnHPChange;
+    public Action<int,float> OnHPChangeEvent;
 
+    public Action<int, Color> SetMateMaterialColorEvent;
+    public void SetMateMaterialColor(int mateId, Color color)
+    {
+        SetMateMaterialColorEvent?.Invoke(mateId, color);
+    }
     public Func<Vector2Int , int> IsPassable;
     public Func<Vector2Int , int> IsEmpty;
     #endregion

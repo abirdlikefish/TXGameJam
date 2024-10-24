@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIMateEditInfo:MonoBehaviour
 {
+    public int Id => name[name.Length^1] - '0';
     public Image mateBase;
     public Text mateName;
     public Text mateNameInputHolder;
@@ -28,9 +29,17 @@ public class UIMateEditInfo:MonoBehaviour
     }
     public void OnEditChangeName()
     {
-        editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
-        //将名字中的空格转换为下划线
-        editName = editName.Replace(" ", "_");
+        if(mateNameInput.text == "")
+        {
+            editName = mateNameInputHolder.text;
+        }
+        else
+        {
+            editName = mateNameInput.text;
+            //将名字中的空格转换为下划线
+            editName = editName.Replace(" ", "_");
+            mateNameInput.text = editName;
+        }
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
         UIMateEditor.Instance.ShowMate(mateData, this);
     }

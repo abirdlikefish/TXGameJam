@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class MateData
 {
+    public int id;
     public string name;
     public Color color;
     public int winCount;
@@ -28,6 +29,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     {
         EventManager.Instance.EnterLevelEvent += EnterLevel;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
+        EventManager.Instance.SetMateMaterialColorEvent += SetColor;
 
     }
     public void EnterLevel(int levelId)
@@ -51,6 +53,10 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
             curMates[i].gameObject.SetActive(true);
 
         }
+    }
+    public void SetColor(int mateId,Color color)
+    {
+        curMates[mateId].GetComponent<NewMaterial>().Material.color = color;
     }
     public void SaveJson()
     {
@@ -85,6 +91,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         }
         MateData mateData = new()
         {
+            id = mateDatas.Count,
             name = newName,
             color = newColor,
             winCount = 0
