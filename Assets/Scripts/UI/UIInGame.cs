@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIInGame : Singleton<UIInGame>
 {
@@ -19,9 +20,15 @@ public class UIInGame : Singleton<UIInGame>
                 transform.GetChild(i).gameObject.SetActive(true);
             }
         };
+
+        exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
+
+        EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
     }
 
     public List<UIMateProperty> uIMateProperties = new List<UIMateProperty>();
+
+    public Button exitButton;
 
     public void RefreshUI(Mate mate)
     {
