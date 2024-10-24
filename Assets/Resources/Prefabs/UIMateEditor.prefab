@@ -520,6 +520,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7620827234266466001}
     m_Modifications:
+    - target: {fileID: 72470701297319013, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72470701297319013, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72470701297319013, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541558187999602931, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541558187999602931, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4685758145851106589, guid: 050a4ca8898e3524cb60eec2e07f4c9d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

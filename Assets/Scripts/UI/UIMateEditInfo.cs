@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,12 @@ public class UIMateEditInfo:MonoBehaviour
         }
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
         UIMateEditor.Instance.ShowMate(mateData, this);
+    }
+
+    public void OnEditDropdownValueChanged()
+    {
+        mateNameInput.text = dropDown.captionText.text;
+        OnEditChangeName();
     }
 
     Color RandomColor()
