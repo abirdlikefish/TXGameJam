@@ -79,14 +79,16 @@ public class EventManager
 
 
     public event Action<int> EnterTinyLevelEvent;
-    public event Action<int> ExitTinyLevelEvent;
+    public event Action ExitTinyLevelEvent;
+    // public void EnterTinyLevel()
     public void EnterTinyLevel(int level)
     {
         EnterTinyLevelEvent?.Invoke(level);
     }
-    public void ExitTinyLevel(int level)
+    public void ExitTinyLevel()
     {
-        ExitTinyLevelEvent?.Invoke(level);
+        ExitTinyLevelEvent?.Invoke();
+        ExitState(0);
     }
 
     public event Action<int> ExitStateEvent;
@@ -116,22 +118,29 @@ public class EventManager
         ColorReactionEvent_4 = null;
     }
 
-    public event Action<Vector2Int , int> SetCubeColorEvent;
-    public void SetCubeColor(Vector2Int position , int color)
-    {
-        SetCubeColorEvent?.Invoke(position , color);
-    }
+    // public event Action<Vector2Int , int> SetCubeColorEvent;
+    // public event Action<BaseCube , int> SetCubeColorEvent;
+    // public void SetCubeColor(Vector2Int position , int color)
+    // public void SetCubeColor(BaseCube baseCube , int color)
+    // {
+    //     SetCubeColorEvent?.Invoke(baseCube , color);
+    // }
+    // public event Action<Vector2Int , int> SetCubeColorEvent;
+    // public void SetCubeColor(Vector2Int position , int color)
+    // {
+    //     SetCubeColorEvent?.Invoke(position , color);
+    // }
 
-    public event Action<Vector2Int , int> SetCubeColor_LEvent;
-    public void SetCubeColor_L(Vector2Int position , int color)
-    {
-        SetCubeColor_LEvent?.Invoke(position , color);
-    }
-    public event Action<Vector2Int , int> SetCubeColor_REvent;
-    public void SetCubeColor_R(Vector2Int position , int color)
-    {
-        SetCubeColor_REvent?.Invoke(position , color);
-    }
+    // public event Action<Vector2Int , int> SetCubeColor_LEvent;
+    // public void SetCubeColor_L(Vector2Int position , int color)
+    // {
+    //     SetCubeColor_LEvent?.Invoke(position , color);
+    // }
+    // public event Action<Vector2Int , int> SetCubeColor_REvent;
+    // public void SetCubeColor_R(Vector2Int position , int color)
+    // {
+    //     SetCubeColor_REvent?.Invoke(position , color);
+    // }
 
     public event Action<Vector3Int>  GenerateCubeDouguEvent;
     public void GenerateCubeDougu(Vector3Int position)

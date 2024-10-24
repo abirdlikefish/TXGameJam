@@ -1,31 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "LevelDataSO", menuName = "LevelDataSO", order = 0)]
 public class LevelDataSO : ScriptableObject
 {
-    List<Vector3Int>[] cubeList = new List<Vector3Int>[100];
+    [System.Serializable]
+    public struct midCubeList
+    {
+        public List<Vector3Int> cubeList;
+    }
+    [SerializeField]
+    private List<midCubeList> levelList = new List<midCubeList>();
+
+
+    [SerializeField]
+     List<int> CubeNum = new List<int>(100);
     public void AddLevelDataFromLastProject(LevelData levelData)
     {
-        if (cubeList[levelData.index] == null)
+        while(levelList.Count <= levelData.index)
         {
-            cubeList[levelData.index] = new List<Vector3Int>();
+            levelList.Add(new midCubeList(){cubeList = new List<Vector3Int>()});
         }
-        else
-        {
-            cubeList[levelData.index].Clear();
-        }
+        levelList[levelData.index].cubeList.Clear();
         for (int i = 0; i < levelData.cubeList.Count; i++)
         {
-            cubeList[levelData.index].Add(levelData.cubeList[i].position);
+            levelList[levelData.index].cubeList.Add(levelData.cubeList[i].position);
+            // levelList[levelData.index].Add(levelData.cubeList[i].position);
         }
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        return;
     }
+
 
     public List<Vector3Int> GetCubeList(int index)
     {
-        return cubeList[index];
+
+        return levelList[index].cubeList;
     }
     
 } 

@@ -13,14 +13,11 @@ public class GameManager : MonoBehaviour
         gameStateMachine = new GameStateMachine();
         gameStateMachine.Init();
         InitTotal();
+        Debug.Log("GameManager Awake");
     }
     void Update()
     {
         gameStateMachine.Update();
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            SaveManager.Instance.LoadLevelData();
-        }
     }
     void InitTotal()
     {
@@ -29,7 +26,5 @@ public class GameManager : MonoBehaviour
         DouguManager.Instance.Init();
         UIMateEditor.Instance.Init();
         MapSaver.Instance.Init();
-        // EventManager.Instance.EnterLevel(0);
-        // EventManager.Instance.EnterTinyLevel(0);
     }
 }
