@@ -11,7 +11,8 @@ public class UIMateEditor : Singleton<UIMateEditor>
     {
         btOnConfirmEdit.onClick.AddListener(delegate () { panelEditMate.gameObject.SetActive(false); });
         btOnConfirmEdit.onClick.AddListener(delegate () { EventManager.Instance.EnterTinyLevel(0); });
-        EventManager.Instance.ShowInputNameUIEvent += ShowAllMates; 
+        EventManager.Instance.ShowInputNameUIEvent += ShowAllMates;
+
     }
     // public void OnEnterBigLevel(int levelId)
     // {
