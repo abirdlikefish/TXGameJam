@@ -106,7 +106,7 @@ public class EventManager
     }
 
 #endregion
-
+     
 #region color reaction event
     public event Action<int , int> AddNewColorReactionEvent;
     public void AddNewColorReaction(int color , int reaction)
