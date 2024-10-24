@@ -9,6 +9,8 @@ public class HammerEffect : Effect
         Vector3 dir = douguBase.user.FlipDir;
         Vector3 dir2 = MateInput.CameraDirInWorld(dir);
         Vector3 nextCenter = douguBase.user.CurCenter + dir;
-        douguBase.DyeBesideCudeColor(dir2, nextCenter);
+        BaseCube cube = CubeGetter.GetCubeUpperFloor(dir2,nextCenter);
+        if (cube != null)
+            douguBase.DyeBase(cube);
     }
 }

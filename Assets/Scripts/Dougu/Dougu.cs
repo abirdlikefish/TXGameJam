@@ -87,35 +87,13 @@ public abstract class Dougu : MonoBehaviour
     public void DyeBase(BaseCube cube)
     {
         cube.Color = cID;
+        Debug.Log($"dye{cube.Position}");
         cube.GetComponent<NewMaterial>().Material.color = Color.red;
     }
     public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
     {
-        
-        if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && CubeGetter.GetNodeR(center) == 2)
-            ||
-            ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && CubeGetter.GetNodeL(center) == 1))
-        {
-            if (dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1))
-            {
-                BaseCube cube = CubeGetter.GetCubeR(center);
-                if (cube == null)
-                {
-                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
-                    return;
-                }
-                DyeBase(cube);
-            }
-            else
-            {
-                BaseCube cube = CubeGetter.GetCubeL(center);
-                if (cube == null)
-                {
-                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
-                    return;
-                }
-                DyeBase(cube);
-            }
-        }
+        BaseCube upperCube = CubeGetter.GetCubeUpperFloor(dirInWorld, center);
+        if (upperCube != null)
+            DyeBase(upperCube);
     }
 }

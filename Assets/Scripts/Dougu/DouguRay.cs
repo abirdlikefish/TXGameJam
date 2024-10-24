@@ -29,8 +29,4 @@ public class DouguRay : Dougu
         OnUseEnd();
         return 1;
     }
-    public override void OnUseEnd()
-    {
-        base.OnUseEnd();
-    }
 }

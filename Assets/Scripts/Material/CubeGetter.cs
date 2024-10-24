@@ -34,5 +34,60 @@ public class CubeGetter : MonoBehaviour
             return GetCubeL(worldPosY0);
         return GetCubeR(worldPosY0);
     }
-
+    public static BaseCube GetCubeUpperFloor(Vector3 dirInWorld, Vector3 center)
+    {
+        if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && GetNodeR(center) == 2)
+            ||
+            ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && GetNodeL(center) == 1))
+        {
+            if (dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1))
+            {
+                BaseCube cube = GetCubeR(center);
+                if (cube == null)
+                {
+                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+                    return null;
+                }
+                return cube;
+            }
+            else
+            {
+                BaseCube cube = GetCubeL(center);
+                if (cube == null)
+                {
+                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+                    return null;
+                }
+                return cube;
+            }
+        }
+        return null;
+    }
+    public static BaseCube GetCubeLowerFloor(Vector3 dirInWorld, Vector3 center)
+    {
+        if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && GetNodeR(center) == 1)
+            ||
+            ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && GetNodeL(center) == 2))
+        {
+            if (dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1))
+            {
+                BaseCube cube = GetCubeR(center);
+                if (cube == null)
+                {
+                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+                    return null;
+                }
+            }
+            else
+            {
+                BaseCube cube = GetCubeL(center);
+                if (cube == null)
+                {
+                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
 }
