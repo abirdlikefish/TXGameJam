@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DouguSphere : MonoBehaviour
 {
-    public SerializableDictionary<string, Sprite> class_sprite;
-    public SerializableDictionary<int, Color> id_color;
     public Dougu douguBase;
     public int color;
     public SpriteRenderer spriteRenderer;
@@ -15,8 +13,8 @@ public class DouguSphere : MonoBehaviour
     {
         douguBase = db;
         color = cl;
-        spriteRenderer.sprite = class_sprite[douguBase.GetType().ToString()];
-        spriteRenderer.material.color = id_color[douguBase.cID];
+        spriteRenderer.sprite = DeliConfig.Instance.class_sprite[douguBase.GetType().ToString()];
+        spriteRenderer.material.color = DeliConfig.Instance.id_color[douguBase.cID];
     }
 
     private void OnEnable()

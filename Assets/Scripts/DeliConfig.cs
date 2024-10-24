@@ -12,4 +12,8 @@ public class DeliConfig : Singleton<DeliConfig>
     public float douguInterval = 1f;
 
     public static bool tooruTest = true;
+
+
+    public SerializableDictionary<string, Sprite> class_sprite;
+    public SerializableDictionary<int, Color> id_color;
 }
