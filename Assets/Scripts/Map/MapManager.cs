@@ -44,8 +44,6 @@ public class MapManager
         EventManager.Instance.IsPassable += Instance.IsPassive;
         EventManager.Instance.IsEmpty += Instance.IsEmpty;
 
-        EventManager.Instance.ExitLevelEvent += (x) => Instance.RemoveCube_all();
-
     }
 
     public bool AddCube(Vector3Int position)
@@ -86,11 +84,6 @@ public class MapManager
         RefreshCameraSpace(true);
         RefreshGroup(new List<int>(){cube.groupID});
         return true;
-    }
-    public void RemoveCube_all()
-    {
-        worldSpaceManager.RemoveCube_all();
-        RefreshCameraSpace(true);
     }
     public bool AddCube_ChangeDepth(Vector3Int parentPosition , Vector3Int position)
     {

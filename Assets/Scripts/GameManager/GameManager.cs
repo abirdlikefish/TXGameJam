@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    GameStateMachine gameStateMachine;
     private void Awake()
     {
         MapManager.AddListener();
-        ColorReactionManager.AddListener();
-        SaveManager.AddListener();
-        gameStateMachine = new GameStateMachine();
-        gameStateMachine.Init();
+        Debug.Log("GGGAwake");
         InitTotal();
     }
     void Update()
     {
-        gameStateMachine.Update();
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             SaveManager.Instance.LoadLevelData();
+            foreach (Vector3Int cube in SaveManager.Instance.GetCubeList(0))
+            {
+                EventManager.Instance.AddCube(cube);
+            }
+
         }
     }
     void InitTotal()
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         DouguManager.Instance.Init();
         UIMateEditor.Instance.Init();
         MapSaver.Instance.Init();
-        // EventManager.Instance.EnterLevel(0);
-        // EventManager.Instance.EnterTinyLevel(0);
+        EventManager.Instance.EnterLevel(0);
+        EventManager.Instance.EnterTinyLevel(0);
     }
 }

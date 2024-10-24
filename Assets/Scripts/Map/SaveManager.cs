@@ -22,11 +22,6 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public static void AddListener()
-    {
-        EventManager.Instance.EnterLevelEvent += Instance.LoadMap;
-    }
-
     private string levelDataPath = "./LevelData/";
     public void LoadLevelData()
     {
@@ -44,13 +39,5 @@ public class SaveManager : MonoBehaviour
     public List<Vector3Int> GetCubeList(int index)
     {
         return levelDataSO.GetCubeList(index);
-    }
-
-    public void LoadMap(int levelIndex)
-    {
-        foreach (Vector3Int cube in Instance.GetCubeList(levelIndex))
-        {
-            EventManager.Instance.AddCube(cube);
-        }
     }
 }

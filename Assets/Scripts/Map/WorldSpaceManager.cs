@@ -61,8 +61,10 @@ public class WorldSpaceManager : IWorldSpaceManager
                 return false;
             }
             SetWorldMap(cube.Position , cube);
+            // worldMap[cube.Position.x, cube.Position.y, cube.Position.z] = cube;
             cubeList.Add(cube);
             cubeGroupList[cube.groupID].Add(cube);
+            // Debug.Log(cube.groupID);
             return true;
         }
         else
@@ -87,16 +89,6 @@ public class WorldSpaceManager : IWorldSpaceManager
             Debug.LogWarning("Cube is null");
             return false;
         }
-    }
-    public void RemoveCube_all()
-    {
-        foreach(BaseCube cube in cubeList)
-        {
-            GameObject.Destroy(cube.gameObject);
-        }
-        cubeList.Clear();
-        cubeGroupList.Clear();
-        worldMap = new BaseCube[200,200,200];
     }
     public void MergeGroup(List<int> groupIDList)
     {

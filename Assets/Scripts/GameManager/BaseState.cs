@@ -17,7 +17,7 @@ public class BaseState
     {
 
     }
-    public virtual void Exit(int num)
+    public virtual void Exit()
     {
 
     }

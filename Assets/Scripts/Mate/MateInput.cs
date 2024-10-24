@@ -51,6 +51,7 @@ public class MateInput : Singleton<MateInput>
         int ret2 = EventManager.Instance.IsPassable(pos2);
         Vector3 delta = nextCenter - thisCenter;
         delta = new Vector3(Mathf.RoundToInt(delta.x), 0, Mathf.RoundToInt(delta.z));
+        delta = CameraDirInWorld(delta);
         bool ret;
         if (delta == new Vector3(1, 0, 0) || delta == new Vector3(0, 0, -1))
         {
@@ -74,14 +75,18 @@ public class MateInput : Singleton<MateInput>
         //Debug.Log(nextCenter + " " + pos + " " + ret);
         return can1;
     }
-    Vector3 V2ToV3(Vector2Int v2)
+    public static Vector3 V2ToV3(Vector2Int v2)
     {
         return new(v2.x, 0, v2.y);
     }
     public Vector3 InputKeyToDir(int id,KeyCode key)
     {
-        return dir_vec[mate_key_dirs[id][key]].x * V2ToV3(CameraManager.Instance.GetOffetX())
-                    + dir_vec[mate_key_dirs[id][key]].z * V2ToV3(CameraManager.Instance.GetOffetY());
+        return CameraDirInWorld(dir_vec[mate_key_dirs[id][key]]);
+    }
+    public static Vector3 CameraDirInWorld(Vector3 dir)
+    {
+        return dir.x * V2ToV3(CameraManager.Instance.GetOffetX())
+                    + dir.z * V2ToV3(CameraManager.Instance.GetOffetY());
     }
     public static Vector2Int MyWorldToScreen(Vector3 pos)
     {

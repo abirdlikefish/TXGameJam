@@ -6,7 +6,6 @@ public interface IWorldSpaceManager
 {
     public bool AddCube(BaseCube cube);
     public bool RemoveCube(BaseCube cube);
-    public void RemoveCube_all();
     public List<BaseCube> GetCubes();
     public BaseCube FindByPosition(Vector3Int position);
     public void MergeGroup(List<int> groupIDList);
@@ -17,5 +16,4 @@ public interface IWorldSpaceManager
     public List<BaseCube> GetCubesByGroupID(int groupID);
     public void AddCubeToGroup(BaseCube cube);
     public int GetNewID();
-
 }

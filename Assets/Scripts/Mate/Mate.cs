@@ -16,7 +16,6 @@ public class Mate : Entity
 
 
     public float lastDouguTime;
-    
     public override void OnEnable()
     {
         base.OnEnable();
@@ -27,6 +26,7 @@ public class Mate : Entity
         base.Update();
         HandleInput();
     }
+    
     public void HandleInput()
     {
         if(Time.time - lastDouguTime < DeliConfig.Instance.douguInterval)
@@ -61,7 +61,7 @@ public class Mate : Entity
     }
     public void AddDougu(Dougu dougu)
     {
-        dougu.user = this;
+        dougu.Init(this);
         onHeadDougu = new() { Instantiate(dougu, transform) };
     }
     public int OnUseDougu()
