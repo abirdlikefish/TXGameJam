@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIMateEditInfo:MonoBehaviour
 {
+    public int id => name[^1]- '0';
     public Image mateBase;
     public Text mateName;
     public Text mateNameInputHolder;

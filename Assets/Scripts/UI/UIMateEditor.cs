@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class UIMateEditor : Singleton<UIMateEditor>
 {
+    public Button btOnConfirmEdit;
     public GameObject panelEditMate;
     public override void Init()
     {
-        // EventManager.Instance.EnterLevelEvent += OnEnterBigLevel;
+        btOnConfirmEdit.onClick.AddListener(delegate () { panelEditMate.gameObject.SetActive(false); });
+        btOnConfirmEdit.onClick.AddListener(delegate () { EventManager.Instance.EnterTinyLevel(0); });
         EventManager.Instance.ShowInputNameUIEvent += ShowAllMates;
 
     }
