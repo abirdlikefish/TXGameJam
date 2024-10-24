@@ -51,6 +51,7 @@ public class MateInput : Singleton<MateInput>
         int ret2 = EventManager.Instance.IsPassable(pos2);
         Vector3 delta = nextCenter - thisCenter;
         delta = new Vector3(Mathf.RoundToInt(delta.x), 0, Mathf.RoundToInt(delta.z));
+        delta = CameraDirInWorld(delta);
         bool ret;
         if (delta == new Vector3(1, 0, 0) || delta == new Vector3(0, 0, -1))
         {
