@@ -83,7 +83,6 @@ public class EventManager
     public event Action<int> ExitTinyLevelEvent;
     public void EnterTinyLevel(int level)
     {
-        Debug.Log($"{nameof(EnterTinyLevel)} {level}");
         EnterTinyLevelEvent?.Invoke(level);
     }
     public void ExitTinyLevel(int level)

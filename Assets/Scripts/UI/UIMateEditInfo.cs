@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIMateEditInfo:MonoBehaviour
 {
-    public int id => name[^1]- '0';
+    public int Id => name[name.Length^1] - '0';
     public Image mateBase;
     public Text mateName;
     public Text mateNameInputHolder;
@@ -17,6 +17,8 @@ public class UIMateEditInfo:MonoBehaviour
 
     public Button btConfirmEdit;
 
+    public Dropdown dropDown;//TODO 翘课已 之 已经实现了，但是没有显示出来
+
     string editName = null;
     Color editColor = Color.clear;
     public void OnEditChangeColor()
@@ -27,7 +29,17 @@ public class UIMateEditInfo:MonoBehaviour
     }
     public void OnEditChangeName()
     {
-        editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
+        if(mateNameInput.text == "")
+        {
+            editName = mateNameInputHolder.text;
+        }
+        else
+        {
+            editName = mateNameInput.text;
+            //将名字中的空格转换为下划线
+            editName = editName.Replace(" ", "_");
+            mateNameInput.text = editName;
+        }
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
         UIMateEditor.Instance.ShowMate(mateData, this);
     }

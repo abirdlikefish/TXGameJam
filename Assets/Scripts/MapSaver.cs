@@ -20,7 +20,9 @@ public class MapSaver : Singleton<MapSaver>
     }
     void Update()
     {
-        if (load || Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
+            load = true;
+        if (load)
         {
             load = false;
             for (int i = cubes.Count - 1; i >= 0; i--)
@@ -28,10 +30,12 @@ public class MapSaver : Singleton<MapSaver>
                 EventManager.Instance.RemoveCube(cubes[i]);
             }
             cubes.Clear();
+            Debug.Log("a" + cubes.Count);
             for (int i = temp_cubes.Count - 1; i >= 0; i--)
             {
                 EventManager.Instance.AddCube(temp_cubes[i]);
             }
+            Debug.Log("b" + cubes.Count);
         }
     }
 }
