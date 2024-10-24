@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         MateManager.Instance.Init();
         DouguManager.Instance.Init();
         UIMateEditor.Instance.Init();
+        UIInGame.Instance.Init();   
         MapSaver.Instance.Init();
     }
 }

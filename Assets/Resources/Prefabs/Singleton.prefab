@@ -703,6 +703,10 @@ MonoBehaviour:
   moveSpeed: 3
   takeDamageInterval: 3
   douguInterval: 0
+  class_sprite:
+    list: []
+  id_color:
+    list: []
 --- !u!1 &5286311050119775407
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 2543763289262060569}
+  cID: 0
   remainUseCount: 654
   damage: 1
   block: {fileID: 0}
@@ -888,6 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  cID: 0
   remainUseCount: 3
   damage: 3
   block: {fileID: 0}
@@ -1036,9 +1042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0efe9e7acc2944e9227046188c44bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMates: []
-  mateDataList:
-    mateDatas: []
 --- !u!1 &7723938125312887782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,8 +1325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityP: {fileID: 4172060536928761636}
   prefabDougus: []
-  blocks: []
-  effects: []
+  prefabDouguSphere: {fileID: 0}
+  sths: []
 --- !u!1 &8413711665068402553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  cID: 0
   remainUseCount: 3
   damage: 1
   block: {fileID: 0}
