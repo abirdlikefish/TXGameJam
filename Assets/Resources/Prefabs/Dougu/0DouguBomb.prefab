@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95d871b6d5f11a44b4bfe9debee901b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHurtUser: 1
   douguBase: {fileID: 6326522326333911046}
   existTimer: 0
 --- !u!114 &262786797889160760
