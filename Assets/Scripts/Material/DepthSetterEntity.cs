@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(NewMaterial))]
 public class DepthSetterEntity : MonoBehaviour
 {
     Vector3 ThisCenter => transform.position;
@@ -14,6 +14,15 @@ public class DepthSetterEntity : MonoBehaviour
     {
         while (true)
         {
+            int isPassable = EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter));
+            int isEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter));
+            if (isPassable == 0
+                ||
+                isEmpty != 0)
+            {
+                Debug.Log($"destroy {ThisCenter} {name} pass{isPassable} mt{isEmpty}");
+                Destroy(gameObject);
+            }
             int h1 = GetLeftCubeD(ThisCenter);
             if (h1 == int.MinValue)
             {

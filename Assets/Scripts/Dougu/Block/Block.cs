@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DepthSetterEntity))]
 public class Block:MonoBehaviour
 {
     public Dougu douguBase;
