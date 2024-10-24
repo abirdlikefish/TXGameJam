@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816a379f113391243ae7dd3b0626ba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btOnConfirmEdit: {fileID: 1397154411733387289}
   panelEditMate: {fileID: 8555028417595445277}
   uiMates:
   - {fileID: 3435779483078080529}
