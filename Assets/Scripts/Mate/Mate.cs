@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Mate : Entity
@@ -60,10 +61,18 @@ public class Mate : Entity
     {
         AddDougu(DouguManager.Instance.GetDougu<DouguBomb>());
     }
+    public void AddDougu(Dougu dougu,int cID)
+    {
+        Dougu d = Instantiate(dougu, transform);
+        d.user = this;
+        d.SetColor(cID);
+        onHeadDougu = new() { d };
+    }
     public void AddDougu(Dougu dougu)
     {
-        dougu.user = this;
-        onHeadDougu = new() { Instantiate(dougu, transform) };
+        Dougu d = Instantiate(dougu, transform);
+        d.user = this;
+        onHeadDougu = new() { d };
     }
     public int OnUseDougu()
     {
