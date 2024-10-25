@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewMaterial : MonoBehaviour
 {
+    // private MeshRenderer MeshRenderer;
     public MeshRenderer meshRenderer;
     public int materialId;
     public SpriteRenderer spriteRenderer;
@@ -24,10 +25,14 @@ public class NewMaterial : MonoBehaviour
     }
     private void Awake()
     {
-        
-        ////Éú³É²ÄÖÊÊµÀý
-        //Material material = Instantiate(Material);
-        ////¸³Öµ¸ømeshRenderer
-        //Material = material;
+        // if(name.Contains("Cube"))
+        // {
+        //     return;
+        // }
+        //ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½Êµï¿½ï¿½
+        Debug.Log("NewMaterial Awake");
+        Material material = Instantiate(Material);
+        //ï¿½ï¿½Öµï¿½ï¿½meshRenderer
+        Material = material;
     }
 }

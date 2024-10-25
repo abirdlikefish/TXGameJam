@@ -198,6 +198,7 @@ public class MapManager
         Queue<BaseCube> unSearchedCube = new Queue<BaseCube>();
         foreach(BaseCube cube in cubeList)
         {
+            // return ;
             if(cube.groupID != -1)
                 continue;
             List<BaseCube> connectedCubes = cameraSpaceManager.GetCubes(cube.GetCameraSpacePosition());
@@ -206,14 +207,15 @@ public class MapManager
                 if(connectedCubes[i] != null && connectedCubes[i].groupID != -1)
                 {
                     cube.groupID = connectedCubes[i].groupID;
+                    break;
                 }
-                if(connectedCubes[i] != null && connectedCubes[i].groupID == -1)
-                {
-                    if(cube.groupID != -1)
-                    {
-                        Debug.LogWarning("Error groupID");
-                    }
-                }
+                // if(connectedCubes[i] != null && connectedCubes[i].groupID == -1)
+                // {
+                //     if(cube.groupID != -1)
+                //     {
+                //         Debug.LogWarning("Error groupID");
+                //     }
+                // }
             }
             if(cube.groupID == -1)
                 cube.groupID = worldSpaceManager.GetNewID();

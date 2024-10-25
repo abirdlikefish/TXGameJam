@@ -18,6 +18,8 @@ public class GameStateMachine
         selectLevelState = new SelectLevelState();
         playState_1 = new PlayState_1();
 
+        EventManager.Instance.EnterLevelEvent += playState_1.OtherEnter;
+
         // mainState
         ChangeState(mainState);
         // ChangeState(mainState);
@@ -33,5 +35,23 @@ public class GameStateMachine
     {
         currentState.Update();
     }
+
+    // static GameStateMachine instance;
+    // public static GameStateMachine Instance
+    // {
+    //     get
+    //     {
+    //         if(instance == null)
+    //         {
+    //             instance = new GameStateMachine();
+    //         }
+    //         return instance;
+    //     }
+    // }
+
+    // public static void AddListener()
+    // {
+    //     EventManager.Instance.EnterLevelEvent += Instance.playState_1.OtherEnter;
+    // }
 
 }

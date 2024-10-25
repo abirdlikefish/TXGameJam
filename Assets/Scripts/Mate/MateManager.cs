@@ -33,7 +33,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     }
     void SetMatePos(int id,Vector3 pos)
     {
-
+        curMates[id].transform.position = pos;
     }
     void OnShowInputLoad()
     {
