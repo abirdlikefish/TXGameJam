@@ -174,4 +174,10 @@ public class EventManager
     {
         StartTrapEvent?.Invoke(mate, position, timer);
     }
+
+    public event Action<int, Vector3> SetMatePosEvent;
+    public void SetMatePos(int id, Vector3 position)
+    {
+        SetMatePosEvent?.Invoke(id, position);
+    }
 }

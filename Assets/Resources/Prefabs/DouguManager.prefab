@@ -49,6 +49,17 @@ MonoBehaviour:
   prefabDougus: []
   prefabDouguSphere: {fileID: 0}
   sths: []
+  emptys: []
+  douguClass_possibility:
+    list:
+    - Key: 10
+      Value: DouguBomb
+    - Key: 2
+      Value: DouguRay
+    - Key: 2
+      Value: DouguHammer
+    - Key: 2
+      Value: DouguMiniCube
 --- !u!1 &7457856804055564998
 GameObject:
   m_ObjectHideFlags: 0

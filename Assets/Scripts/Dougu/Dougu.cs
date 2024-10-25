@@ -18,7 +18,19 @@ public abstract class Dougu : MonoBehaviour
     public void SetColor(int cID)
     {
         this.cID = cID;
-        GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
+        
+    }
+    private void Awake()
+    {
+        if (block)
+        {
+            block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.Instance.id_color[cID];
+        }
+        if (effect)
+        {
+            effect.GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
+        }
+        StartCoroutine(nameof(TryDestroy));
     }
     public virtual int OnUse() {remainUseCount--;return 1; }
     public virtual void OnUseEnd()
@@ -26,7 +38,6 @@ public abstract class Dougu : MonoBehaviour
         if(remainUseCount <= 0)
         {
             user.ResetDougu();
-            StartCoroutine(nameof(TryDestroy));
         }
     }
     public List<GameObject> busy = new();
@@ -34,12 +45,14 @@ public abstract class Dougu : MonoBehaviour
     {
         while(true)
         {
-            if(busy.Count == 0)
+            if(remainUseCount > 0)
+                yield return new WaitForSeconds(0.2f);
+            if (busy.Count == 0)
             {
                 Destroy(gameObject);
                 break;
             }
-            yield return 0;
+            yield return new WaitForSeconds(0.2f);
         }
     }
     public static GameObject MyInsBlockOrSphere(GameObject go,Vector3 pos)

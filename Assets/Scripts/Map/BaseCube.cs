@@ -8,6 +8,7 @@ public class BaseCube : MonoBehaviour
     private Vector3Int position;
     public Vector3Int Position{ get => position; set {position = value; transform.position = value;}}
     public int Height{get => Mathf.RoundToInt(CameraManager.Instance.GetDepth(Position));}
+    [SerializeField]
     private int color;
     public int Color
     {

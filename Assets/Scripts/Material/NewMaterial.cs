@@ -25,9 +25,9 @@ public class NewMaterial : MonoBehaviour
     private void Awake()
     {
         
-        //生成材质实例
-        Material material = Instantiate(Material);
-        //赋值给meshRenderer
-        Material = material;
+        ////生成材质实例
+        //Material material = Instantiate(Material);
+        ////赋值给meshRenderer
+        //Material = material;
     }
 }

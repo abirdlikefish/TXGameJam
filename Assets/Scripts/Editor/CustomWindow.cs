@@ -57,6 +57,11 @@ public class CustomWindow : EditorWindow
         {
             EventManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube), m_position, colorID);
         }
+        if (GUILayout.Button("Generate Dougu Sphere"))
+        {
+            DouguManager.Instance.GenerateRandomDouguSphere();
+        }
+        
         if (GUILayout.Button("Remove Cube"))
         {
             EventManager.Instance.RemoveCube(m_position);

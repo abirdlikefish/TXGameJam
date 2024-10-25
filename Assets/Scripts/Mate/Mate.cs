@@ -12,7 +12,8 @@ public class Mate : Entity
     public Vector3 CurCenter => GetComponent<MateMover>().CurCenter;
     // public Vector3 CurCenter => MateMover.CurCenter;
     public Vector3 FlipDir => GetComponent<MateMover>().flipDir;
-    [SerializeField]
+
+
     public List<Dougu> onHeadDougu = new();
 
 
@@ -25,6 +26,12 @@ public class Mate : Entity
         ResetDougu();
         lastDouguTime = - DeliConfig.Instance.douguInterval;
         GetComponent<NewMaterial>().Material.color = mateData.color;
+        DouguManager.Instance.AddSth(gameObject);
+    }
+    public override void OnDisable()
+    {
+        DouguManager.Instance.RemoveSth(gameObject);
+
     }
     public override void Update()
     {
