@@ -174,4 +174,6 @@ public class EventManager
     {
         StartTrapEvent?.Invoke(mate, position, timer);
     }
+
+    public event Action<Mate> refreshUIEvent;
 }

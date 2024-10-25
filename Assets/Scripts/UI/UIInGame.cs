@@ -24,6 +24,7 @@ public class UIInGame : Singleton<UIInGame>
         exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
 
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
+        EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
     }
 
     public List<UIMateProperty> uIMateProperties = new List<UIMateProperty>();
