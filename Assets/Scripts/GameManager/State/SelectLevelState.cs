@@ -463,6 +463,7 @@ public class SelectLevelState : BaseState
 
     public override void Exit(int num)
     {
+        Hide();
         mate0.SetActive(false);
         mate1.SetActive(false);
         base.Exit(num);

@@ -27,6 +27,8 @@ public class SaveManager
     {
         EventManager.Instance.EnterLevelEvent += Instance.LoadMap;
         EventManager.Instance.SaveCurrentMapEvent += Instance.AddCubeList;
+
+        EventManager.Instance.ShowHeadLineMapEvent += () => Instance.LoadMap(0);
     }
 
     private string levelDataPath = "./LevelData/";

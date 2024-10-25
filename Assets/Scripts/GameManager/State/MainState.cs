@@ -10,6 +10,7 @@ public class MainState : BaseState
         base.Enter();
         EventManager.Instance.ExitStateEvent += Exit;
         EventManager.Instance.ShowMainMenu();
+        EventManager.Instance.ShowHeadLineMap();
     }
 
     public override void Update()
@@ -23,6 +24,7 @@ public class MainState : BaseState
 
     public override void Exit(int num)
     {
+        EventManager.Instance.HideHeadLineMap();
         Debug.Log("MainState Exit");
         base.Exit(num);
         EventManager.Instance.ExitStateEvent -= Exit;

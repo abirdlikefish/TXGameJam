@@ -48,6 +48,8 @@ public class MapManager
 
         EventManager.Instance.SaveCurrentMapEvent_beg += () => EventManager.Instance.SaveCurrentMap(Instance.worldSpaceManager.GetCubeListVector3Int());
 
+        EventManager.Instance.HideHeadLineMapEvent += Instance.RemoveCube_all;
+
     }
 
     public bool AddCube(Vector3Int position , int color)
@@ -94,6 +96,7 @@ public class MapManager
     {
         worldSpaceManager.RemoveCube_all();
         RefreshCameraSpace(true);
+        RefreshGroup_all();
     }
     public bool AddCube_ChangeDepth(Vector3Int parentPosition , Vector3Int position)
     {
