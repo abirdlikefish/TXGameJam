@@ -19,6 +19,7 @@ public class UIInGame : Singleton<UIInGame>
             winningPanel.SetActive(false);
             MapSavingPanel.SetActive(false);
             NamingPanel.SetActive(false);
+            ContinueGamePanel.SetActive(false);
         };
 
         exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
@@ -33,9 +34,9 @@ public class UIInGame : Singleton<UIInGame>
         RejectSave.onClick.AddListener(ReturnMainMenu);
         ConfirmNamingButton.onClick.AddListener(SaveMap);
 
-        //ÒòÎªÔÚInitÖÐ°ó¶¨ÁËÓÎÏ·µÄMate
-        //ËùÒÔ±ØÐëÔÚÍË³ö¹Ø¿¨µÄÊ±ºòÊ¹ÓÃDestroy
-        //ÖØÐÂ½øÈë¹Ø¿¨Ê±»áÖØÐÂ´´½¨UIInGame£¬´Ó¶øÖØÐÂ°ó¶¨Mate
+        //ï¿½ï¿½Îªï¿½ï¿½Initï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Mate
+        //ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¹ï¿½ï¿½Destroy
+        //ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½Ø¿ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½UIInGameï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½Â°ï¿½Mate
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
         EventManager.Instance.winningEvent += (mate) => ShowWinPanel(mate);
@@ -128,21 +129,23 @@ public class UIInGame : Singleton<UIInGame>
 
     public void ReturnMainMenu()
     {
-        //TODO ·µ»ØÖ÷²Ëµ¥
-        Debug.Log("·µ»ØÖ÷²Ëµ¥£¬Î´ÍêÉÆ");
+        //TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
+        // Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½");
         EventManager.Instance.ExitLevel(0);
     }
 
     public void ContinueGame()
     {
-        //TODO ¼ÌÐøÓÎÏ·
-        Debug.Log("¼ÌÐøÓÎÏ·£¬Î´ÊµÏÖ");
+        EventManager.Instance.ExitTinyLevel();
+        //TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·
+        // Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Î´Êµï¿½ï¿½");
     }
 
 
     public void SaveMap()
     {
-        Debug.Log("±£´æµØÍ¼");
+        EventManager.Instance.SaveCurrentMap_beg();
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Í¼");
         ReturnMainMenu();
     }
 }
