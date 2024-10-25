@@ -48,7 +48,7 @@ public class MapManager
 
     }
 
-    public bool AddCube(Vector3Int position)
+    public bool AddCube(Vector3Int position , int color)
     {
         if(worldSpaceManager.FindByPosition(position) != null)
         {
@@ -57,6 +57,7 @@ public class MapManager
         }
         BaseCube cube = GameObject.Instantiate(prefab_cube).GetComponent<BaseCube>();
         cube.Position = position;
+        cube.Color = color;
         List<BaseCube> cubes = cameraSpaceManager.GetCubes(cube.GetCameraSpacePosition());
         List<int> mergeID = new List<int>();
         for(int i = 0 ; i < 6; i++)

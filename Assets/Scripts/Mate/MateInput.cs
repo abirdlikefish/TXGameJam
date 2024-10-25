@@ -28,7 +28,7 @@ public class MateInput : Singleton<MateInput>
         return id == 0 ? mate1_dougu_keys : mate2_dougu_keys;
     }
 
-    [HelpBox("µÀ¾ß°´¼ü")]
+    [HelpBox("ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½")]
     public List<KeyCode> mate1_dougu_keys;
     public List<KeyCode> mate2_dougu_keys;
 
@@ -41,8 +41,8 @@ public class MateInput : Singleton<MateInput>
     {
         return x == 1 || x == 3;
     }
-    //ÈÕ±¾ÕZ¤ò¡¡Ô’¤·¡¡¤Þ¤·¤ç¤¦£¡
-    //Í¨¤ë
+    //ï¿½Õ±ï¿½ï¿½Zï¿½ï¿½Ô’ï¿½ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ç¤¦ï¿½ï¿½
+    //Í¨ï¿½ï¿½
     public static bool CanTooruY0(Vector3 thisCenter,Vector3 nextCenter)
     {
         Vector2Int pos1 = MyWorldToScreen(thisCenter);
@@ -85,8 +85,8 @@ public class MateInput : Singleton<MateInput>
     }
     public static Vector3 CameraDirInWorld(Vector3 dir)
     {
-        return dir.x * V2ToV3(CameraManager.Instance.GetOffetX()) +
-            dir.z * V2ToV3(CameraManager.Instance.GetOffetY());
+        return dir.x * V2ToV3(CameraManager.Instance.GetOffsetX()) +
+            dir.z * V2ToV3(CameraManager.Instance.GetOffsetY());
     }
     public static Vector2Int MyWorldToScreen(Vector3 pos)
     {

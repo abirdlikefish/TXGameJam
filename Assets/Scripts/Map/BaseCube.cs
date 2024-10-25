@@ -28,6 +28,10 @@ public class BaseCube : MonoBehaviour
                 meshRenderer.material = Instantiate(materials[0]);
                 Debug.Log(name + " " +materials[0].name);
             }
+            else if(color == value)
+            {
+                
+            }
             else if(color != 0)
             {
                 EventManager.Instance.ColorReaction(color + value , Position);

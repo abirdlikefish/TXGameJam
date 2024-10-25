@@ -15,7 +15,7 @@ public class UIInGame : Singleton<UIInGame>
 
                 RefreshUI(MateManager.Instance.curMates[i]);
             }
-            ShowAll();
+            ShowAllChildren();
             winningPanel.SetActive(false);
             MapSavingPanel.SetActive(false);
             NamingPanel.SetActive(false);
@@ -23,10 +23,11 @@ public class UIInGame : Singleton<UIInGame>
 
         exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
         ConfirmSave.onClick.AddListener(() => { 
-            CloseAll();
+            CloseAllChildren();
             NamingPanel.SetActive(true); 
         });
-        // RejectSave.onClick.AddListener(ReturnMainMenu);
+        RejectSave.onClick.AddListener(ReturnMainMenu);
+        ConfirmNamingButton.onClick.AddListener(SaveMap);
 
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
@@ -45,6 +46,8 @@ public class UIInGame : Singleton<UIInGame>
     public Button RejectSave;
 
     public GameObject NamingPanel;
+    public Text mapName;
+    public Button ConfirmNamingButton;
 
     public void RefreshUI(Mate mate)
     {
@@ -65,7 +68,7 @@ public class UIInGame : Singleton<UIInGame>
 
     IEnumerator ShowWinPanelCor(Mate mate)
     {
-        CloseAll();
+        CloseAllChildren();
         winningPanel.SetActive(true);
         winningText.text = mate.mateData.name + " Win!!";
 
@@ -76,7 +79,7 @@ public class UIInGame : Singleton<UIInGame>
         ShowMapSavingPanel();
     }
 
-    void ShowAll()
+    void ShowAllChildren()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -84,7 +87,7 @@ public class UIInGame : Singleton<UIInGame>
         }
     }
 
-    void CloseAll()
+    void CloseAllChildren()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -94,7 +97,7 @@ public class UIInGame : Singleton<UIInGame>
 
     public void ShowMapSavingPanel()
     {
-        CloseAll();
+        CloseAllChildren();
         MapSavingPanel.SetActive(true);
     }
 
@@ -108,6 +111,12 @@ public class UIInGame : Singleton<UIInGame>
 
     public void ReturnMainMenu()
     {
+        EventManager.Instance.ExitLevel(0);
+    }
 
+    public void SaveMap()
+    {
+        Debug.Log("±£´æµØÍ¼");
+        ReturnMainMenu();
     }
 }
