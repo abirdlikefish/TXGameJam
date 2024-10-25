@@ -20,6 +20,7 @@ public class UIInGame : Singleton<UIInGame>
             MapSavingPanel.SetActive(false);
             NamingPanel.SetActive(false);
             ContinueGamePanel.SetActive(false);
+            mixPanel.SetActive(false);
         };
 
         exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
@@ -38,8 +39,17 @@ public class UIInGame : Singleton<UIInGame>
         //���Ա������˳��ؿ���ʱ��ʹ��Destroy
         //���½���ؿ�ʱ�����´���UIInGame���Ӷ����°�Mate
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
+        EventManager.Instance.ExitTinyLevelEvent += () => ShowMixPanel(); 
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
         EventManager.Instance.winningEvent += (mate) => ShowWinPanel(mate);
+    }
+    void ShowMixPanel()
+    {
+        mixPanel.SetActive(true);
+    }
+    void HideMixPanel()
+    {
+        mixPanel.SetActive(false);
     }
 
     public List<UIMateProperty> uIMateProperties = new List<UIMateProperty>();
@@ -61,6 +71,7 @@ public class UIInGame : Singleton<UIInGame>
     public Text mapName;
     public Button ConfirmNamingButton;
 
+    public GameObject mixPanel;
     public void RefreshUI(Mate mate)
     {
         for(int i=0;i<uIMateProperties.Count;i++)
