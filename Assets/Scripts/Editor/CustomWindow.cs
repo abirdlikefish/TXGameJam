@@ -26,17 +26,17 @@ public class CustomWindow : EditorWindow
         m_position.y = EditorGUILayout.IntField("Y", m_position.y);
         m_position.z = EditorGUILayout.IntField("Z", m_position.z);
 
-        m_positionParent.x = EditorGUILayout.IntField("Parent X", m_positionParent.x);
-        m_positionParent.y = EditorGUILayout.IntField("Parent Y", m_positionParent.y);
-        m_positionParent.z = EditorGUILayout.IntField("Parent Z", m_positionParent.z);
+        //m_positionParent.x = EditorGUILayout.IntField("Parent X", m_positionParent.x);
+        //m_positionParent.y = EditorGUILayout.IntField("Parent Y", m_positionParent.y);
+        //m_positionParent.z = EditorGUILayout.IntField("Parent Z", m_positionParent.z);
         colorID = EditorGUILayout.IntField("color id", colorID);
 
         // 按钮按下时调用AddCube方法
-        if (GUILayout.Button("Add Cube"))
-        {
-            EventManager.Instance.AddCube(m_position);
+        //if (GUILayout.Button("Add Cube"))
+        //{
+        //    EventManager.Instance.AddCube(m_position);
 
-        }
+        //}
         //if(GUILayout.Button("Get Cube by curMate0"))
         //{
         //    Vector2Int curMate1ScreenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(MateManager.Instance.curMates[0].GetComponent<MateMover>().transform.position));

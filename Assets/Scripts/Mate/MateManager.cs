@@ -24,12 +24,20 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     public List<Mate> curMates;
     MateDataList mateDataList;
     public List<MateData> mateDatas => mateDataList.mateDatas;
+    bool hasOneDead = false;
     public override void Init()
     {
         EventManager.Instance.SetMatePosEvent += SetMatePos;
         EventManager.Instance.ShowInputNameUIEvent += OnShowInputLoad;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
 
+    }
+    public void OnOneDead(Mate deadMate)
+    {
+        if (hasOneDead)
+            return;
+        hasOneDead = true;
+        EventManager.Instance.Winning (curMates.Find(it => it != deadMate));
     }
     void SetMatePos(int id,Vector3 pos)
     {
@@ -51,6 +59,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     }
     void EnterTinyLevel(int levelId)
     {
+        hasOneDead = false;
         for (int i = 0; i < 2; i++)
         {
             curMates[i].gameObject.SetActive(true);

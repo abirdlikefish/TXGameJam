@@ -1333,8 +1333,7 @@ MonoBehaviour:
   prefabDouguSphere: {fileID: 0}
   sths: []
   emptys: []
-  douguClass_possibility:
-    list: []
+  douguPossibility: 
 --- !u!1 &8413711665068402553
 GameObject:
   m_ObjectHideFlags: 0

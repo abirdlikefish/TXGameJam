@@ -22,6 +22,10 @@ public class UIInGame : Singleton<UIInGame>
         };
 
         exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
+
+        ContinueButtn.onClick.AddListener(ContinueGame);
+        CancelButton.onClick.AddListener(ShowMapSavingPanel);
+
         ConfirmSave.onClick.AddListener(() => { 
             CloseAllChildren();
             NamingPanel.SetActive(true); 
@@ -29,6 +33,9 @@ public class UIInGame : Singleton<UIInGame>
         RejectSave.onClick.AddListener(ReturnMainMenu);
         ConfirmNamingButton.onClick.AddListener(SaveMap);
 
+        //因为在Init中绑定了游戏的Mate
+        //所以必须在退出关卡的时候使用Destroy
+        //重新进入关卡时会重新创建UIInGame，从而重新绑定Mate
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
         EventManager.Instance.winningEvent += (mate) => ShowWinPanel(mate);
@@ -44,6 +51,10 @@ public class UIInGame : Singleton<UIInGame>
     public GameObject MapSavingPanel;
     public Button ConfirmSave;
     public Button RejectSave;
+
+    public GameObject ContinueGamePanel;
+    public Button ContinueButtn;
+    public Button CancelButton;
 
     public GameObject NamingPanel;
     public Text mapName;
@@ -76,7 +87,7 @@ public class UIInGame : Singleton<UIInGame>
 
         yield return new WaitForSeconds(2f);
 
-        ShowMapSavingPanel();
+        ShowContinueGamePanel();
     }
 
     void ShowAllChildren()
@@ -95,6 +106,12 @@ public class UIInGame : Singleton<UIInGame>
         }
     }
 
+    public void ShowContinueGamePanel()
+    {
+        CloseAllChildren();
+        ContinueGamePanel.SetActive(true);
+    }
+
     public void ShowMapSavingPanel()
     {
         CloseAllChildren();
@@ -111,8 +128,17 @@ public class UIInGame : Singleton<UIInGame>
 
     public void ReturnMainMenu()
     {
+        //TODO 返回主菜单
+        Debug.Log("返回主菜单，未完善");
         EventManager.Instance.ExitLevel(0);
     }
+
+    public void ContinueGame()
+    {
+        //TODO 继续游戏
+        Debug.Log("继续游戏，未实现");
+    }
+
 
     public void SaveMap()
     {

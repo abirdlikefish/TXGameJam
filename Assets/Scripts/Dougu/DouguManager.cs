@@ -75,10 +75,10 @@ public class DouguManager : Singleton<DouguManager>
     {
         return prefabDougus[dId];
     }
-    public T GetDougu<T>() where T : Dougu
-    {
-        return prefabDougus.Find(d => d is T) as T;
-    }
+    //public T GetDougu<T>() where T : Dougu
+    //{
+    //    return prefabDougus.Find(d => d is T) as T;
+    //}
     public Dougu GetDougu(Type type)
     {
         if (!typeof(Dougu).IsAssignableFrom(type))

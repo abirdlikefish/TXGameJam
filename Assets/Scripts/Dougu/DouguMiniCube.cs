@@ -18,14 +18,14 @@ public class DouguMiniCube : Dougu
         {
             BaseCube besideCube = CubeGetter.GetCubeCanTooru(nextCenter);
             newPos = Vector3Int.RoundToInt(besideCube.Position + Vector3.up);
-            EventManager.Instance.AddCube(newPos);
+            EventManager.Instance.AddCube(newPos,cID);
         }
         else
         {
             //if (lowerCube != CubeGetter.GetCubeCanTooru(user.CurCenter))
             {
                newPos = Vector3Int.RoundToInt(CubeGetter.GetCubeCanTooru(thisCenter).Position + user.FlipDir);
-               EventManager.Instance.AddCube(newPos);
+               EventManager.Instance.AddCube(newPos, cID);
             }
         }
         base.OnUseEnd();
