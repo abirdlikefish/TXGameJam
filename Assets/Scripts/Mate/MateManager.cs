@@ -40,7 +40,10 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         hasOneDead = true;
         for (int i = 0; i < 2; i++)
             curMates[i].gameObject.SetActive(false);
-        EventManager.Instance.Winning (curMates.Find(it => it != deadMate));
+        Mate mate = curMates.Find(it => it != deadMate);
+        mate.mateData.winCount++;
+        SaveJson();
+        EventManager.Instance.Winning (mate);
     }
     void ExitTinyLevel(int x)
     {

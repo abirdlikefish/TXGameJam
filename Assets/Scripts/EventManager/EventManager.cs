@@ -138,7 +138,10 @@ public class EventManager
     {
         GenerateDouguSphereMiniCubeEvent?.Invoke(position);
     }
-
+    public void GenerateRandomDouguSphere()
+    {
+        DouguManager.Instance.GenerateRandomDouguSphere();
+    }
     public event Action<Vector3Int> BoomEvent;
     public void GenerateBoom(Vector3Int position)
     {
