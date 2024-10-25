@@ -61,6 +61,14 @@ public abstract class Dougu : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+    public static void MyInsInstantBoom(Vector3 pos)
+    {
+        Vector3 posY0 = new(pos.x, 0, pos.z);
+        GameObject go = MyIns(DouguManager.Instance.GetDougu(typeof(DouguBomb),0).gameObject, posY0);
+        DouguBomb db = go.GetComponent<DouguBomb>();
+        db.blockExistTime = 0f;
+        db.block.gameObject.SetActive(true);
+    }
     public static GameObject MyInsBlockOrSphere(GameObject go,Vector3 pos)
     {
         Vector3 posY0 = new(pos.x, 0, pos.z);

@@ -25,7 +25,8 @@ public class DouguManager : Singleton<DouguManager>
     public override void Init()
     {
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
-        EventManager.Instance.GenerateDouguSphereEvent += GenerateDougu;
+        EventManager.Instance.GenerateDouguSphereEvent += GenerateDouguSphere;
+        EventManager.Instance.BoomEvent += GenerateInstantBoom;
         prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
         EventManager.Instance.EnterLevelEvent += EnterLevel;
     }
@@ -71,6 +72,12 @@ public class DouguManager : Singleton<DouguManager>
     //    //TOTO ÌØÐ§ÖØµþ
     //    //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
     //}
+    public Dougu GetDougu(Type type,int cId)
+    {
+        Dougu d = GetDougu(type);
+        d.SetCID(cId);
+        return d;
+    }
     public Dougu GetDougu(int dId)
     {
         return prefabDougus[dId];
@@ -96,15 +103,15 @@ public class DouguManager : Singleton<DouguManager>
         }
         return null;
     }
-    public void GenerateDougu(Type type, Vector3 posY0, int colorId)
+    public void GenerateDouguSphere(Type type, Vector3 posY0, int colorId)
     {
-        GenerateDougu(GetDougu(type), posY0, colorId);
+        GenerateDouguSphere(GetDougu(type), posY0, colorId);
     }
-    public void GenerateDougu(Dougu douguPrefab, Vector3 posY0)
+    public void GenerateDouguSphere(Dougu douguPrefab, Vector3 posY0)
     {
-        GenerateDougu(douguPrefab, posY0,IntToColorId(UnityEngine.Random.Range(0, 4)));
+        GenerateDouguSphere(douguPrefab, posY0,IntToColorId(UnityEngine.Random.Range(0, 4)));
     }
-    public void GenerateDougu(Dougu douguPrefab, Vector3 posY0,int cId)
+    public void GenerateDouguSphere(Dougu douguPrefab, Vector3 posY0,int cId)
     {
         GameObject go = Dougu.MyInsSphere(prefabDouguSphere.gameObject, posY0);
         if (go == null)
@@ -161,7 +168,18 @@ public class DouguManager : Singleton<DouguManager>
         if (emptys.Count == 0)
             return;
         int emptyId = UnityEngine.Random.Range(0, emptys.Count);
-        GenerateDougu(GetDougu(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId]);
+        GenerateDouguSphere(GetDougu(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId]);
         emptys.RemoveAt(emptyId);
+    }
+
+    #region color reaction
+    public void GenerateInstantBoom(Vector3Int position)
+    {
+        Dougu.MyInsInstantBoom(position);
+    }
+    #endregion
+    public void GenerateCubeDougu(Vector3Int position)
+    {
+        GenerateDouguSphere(typeof(DouguMiniCube), position + Vector3Int.up, 0);
     }
 }
