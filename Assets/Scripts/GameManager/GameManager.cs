@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     GameStateMachine gameStateMachine;
     private void Awake()
     {
+        InitTotal();
         MapManager.AddListener();
         ColorReactionManager.AddListener();
         SaveManager.AddListener();
@@ -14,7 +15,6 @@ public class GameManager : MonoBehaviour
         // GameStateMachine.AddListener();
         gameStateMachine = new GameStateMachine();
         gameStateMachine.Init();
-        InitTotal();
         Debug.Log("GameManager Awake");
     }
     void Update()
@@ -34,5 +34,6 @@ public class GameManager : MonoBehaviour
         UIMateEditor.Instance.Init();
         UIInGame.Instance.Init();   
         MapSaver.Instance.Init();
+        UIMainMenu.Instance.Init();
     }
 }

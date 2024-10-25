@@ -3,31 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ColorReactionManager : Singleton<ColorReactionManager>
+public class ColorReactionManager
 {
-    static List<Action<Vector3Int>> ColorReactionList = new List<Action<Vector3Int>>(){ColorReaction_0 , ColorReaction_1 , ColorReaction_2};
-    public static void ColorReaction_0(Vector3Int position)
+    private static ColorReactionManager instance;
+    public static ColorReactionManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = new ColorReactionManager();
+            }
+            return instance;
+        }
+    }
+    // List<Action<Vector3Int>> ColorReactionList = new List<Action<Vector3Int>>(){ColorReaction_0 , ColorReaction_1 , ColorReaction_2};
+    List<Action<Vector3Int>> ColorReactionList ;
+    public void ColorReaction_0(Vector3Int position)
     {
         EventManager.Instance.RemoveCube(position);
     }
 
-    public static void ColorReaction_1(Vector3Int position)
+    public void ColorReaction_1(Vector3Int position)
     {
         EventManager.Instance.GenerateCubeDougu(position);
     }
 
-    public static void ColorReaction_2(Vector3Int position)
+    public void ColorReaction_2(Vector3Int position)
     {
         EventManager.Instance.Boom(position);
     }
 
     public static void AddListener()
     {
-        EventManager.Instance.AddNewColorReactionEvent += AddNewColorReaction;
-        EventManager.Instance.EnterLevelEvent += (x) => RemoveColorReaction();
+        EventManager.Instance.AddNewColorReactionEvent += Instance.AddNewColorReaction;
+        EventManager.Instance.EnterLevelEvent += (x) => Instance.RemoveColorReaction();
+        Instance.ColorReactionList = new List<Action<Vector3Int>>(){Instance.ColorReaction_0 , Instance.ColorReaction_1 , Instance.ColorReaction_2};
     }
 
-    public static void AddNewColorReaction(int color , int reactionID)
+    public void AddNewColorReaction(int color , int reactionID)
     {
         switch (color)
         {
@@ -42,7 +56,7 @@ public class ColorReactionManager : Singleton<ColorReactionManager>
                 break;
         }
     }
-    public static void RemoveColorReaction()
+    public void RemoveColorReaction()
     {
         EventManager.Instance.RemoveColorReaction_all();
     }
