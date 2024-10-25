@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
         MapManager.AddListener();
         ColorReactionManager.AddListener();
         SaveManager.AddListener();
+        SelectMatePosition.AddListener();
         // GameStateMachine.AddListener();
         gameStateMachine = new GameStateMachine();
         gameStateMachine.Init();

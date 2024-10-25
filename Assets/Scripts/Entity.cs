@@ -54,7 +54,8 @@ public class Entity : MonoBehaviour
         lastTakeDamageTime = -DeliConfig.Instance.takeDamageInterval;
         CurHealth = maxHealth;
     }
-
+    public virtual void OnDisable()
+    { }
     public virtual void Update()
     {
         GetComponent<Flash>().enabled = Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval;

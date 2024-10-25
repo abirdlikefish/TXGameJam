@@ -26,7 +26,7 @@ public class PlayState_1 : BaseState
         if(isFirstUpdate)
         {
             isFirstUpdate = false;
-            EventManager.Instance.EnterTinyLevel(levelIndex);
+            EventManager.Instance.EnterTinyLevel_bef(levelIndex);
             Debug.Log("PlayState Update");
         }
         // EventManager.Instance.EnterTinyLevel(1);

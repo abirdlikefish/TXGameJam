@@ -15,7 +15,7 @@ public class DepthSetterCube : MonoBehaviour
         while(true)
         {
             d = 3000 + GetComponent<BaseCube>().Height * 2;
-            Debug.Log("SetDepth d = " + d);
+            // Debug.Log("SetDepth d = " + d);
             // GetComponent<NewMaterial>().Material.renderQueue = d;
             // GetComponent<MeshRenderer>().material.renderQueue = d;
             GetComponent<MeshRenderer>().materials[0].renderQueue = d;

@@ -26,11 +26,16 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
     public List<MateData> mateDatas => mateDataList.mateDatas;
     public override void Init()
     {
+        EventManager.Instance.SetMatePosEvent += SetMatePos;
         EventManager.Instance.ShowInputNameUIEvent += OnShowInputLoad;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
 
     }
-    public void OnShowInputLoad()
+    void SetMatePos(int id,Vector3 pos)
+    {
+
+    }
+    void OnShowInputLoad()
     {
         for(int i=0;i<transform.childCount;i++)
             Destroy(transform.GetChild(i).gameObject);
@@ -44,7 +49,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
             curMates[i].mateData = mateDatas[i];
         }
     }
-    public void EnterTinyLevel(int levelId)
+    void EnterTinyLevel(int levelId)
     {
         for (int i = 0; i < 2; i++)
         {

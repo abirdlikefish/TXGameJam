@@ -9,6 +9,7 @@ public class DouguHammer : Dougu
         base.OnUse();
         GameObject go = MyInsEffectHammer(effect,user.CurCenter + user.FlipDir);
         go.transform.rotation = user.transform.rotation;
+        base.OnUseEnd();
         return 1;
     }
 }

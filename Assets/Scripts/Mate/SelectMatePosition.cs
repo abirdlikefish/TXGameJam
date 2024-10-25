@@ -37,8 +37,8 @@ public class SelectMatePosition : MonoBehaviour
     GameObject mate1;
     Vector2Int position0;
     Vector2Int position1;
-    Vector2Int Position0 { get => position0; set { position0 = value; mate0.transform.position = new Vector3(value.x, 0, value.y); } }
-    Vector2Int Position1 { get => position1; set { position1 = value; mate1.transform.position = new Vector3(value.x, 0, value.y); } }
+    Vector2Int Position0 { get => position0; set { position0 = value; mate0.transform.position = new Vector3(value.x, 1, value.y); } }
+    Vector2Int Position1 { get => position1; set { position1 = value; mate1.transform.position = new Vector3(value.x, 1, value.y); } }
     MeshRenderer meshRenderer0;
     MeshRenderer meshRenderer1;
     // Color redColor0;
@@ -159,7 +159,7 @@ public class SelectMatePosition : MonoBehaviour
                     meshRenderer1.material.color = redColor;
                 }
             }
-            if(Input.GetKeyDown(KeyCode.KeypadEnter) && EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
+            if(Input.GetKeyDown(KeyCode.Return) && EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
             {
                 isReady1 = true;
                 meshRenderer1.material.color = greenColor;
@@ -168,7 +168,9 @@ public class SelectMatePosition : MonoBehaviour
         if(isReady0 && isReady1)
         {
             Exit();
-            
+            Debug.Log("EnterTinyLevel");
+            EventManager.Instance.SetMatePos(0 , new Vector3Int(Position0.x, 0, Position0.y));
+            EventManager.Instance.SetMatePos(1 , new Vector3Int(Position1.x, 0, Position1.y));
             EventManager.Instance.EnterTinyLevel(levelIndex);
         }
     }
@@ -194,9 +196,9 @@ public class SelectMatePosition : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void AddListener()
+    public static void AddListener()
     {
-        EventManager.Instance.EnterTinyLevelEvent_bef += EnterTinyLevel;
+        EventManager.Instance.EnterTinyLevelEvent_bef += Instance.EnterTinyLevel;
     }
 
 }

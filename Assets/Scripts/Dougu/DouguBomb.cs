@@ -17,8 +17,4 @@ public class DouguBomb : Dougu
         OnUseEnd();
         return 0;
     }
-    public override void OnUseEnd()
-    {
-        base.OnUseEnd();
-    }
 }

@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280103e2fd0ff8d47a5c36800c5fcbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  global: 0
   cubes: []
   temp_cubes:
   - {x: 0, y: 0, z: 0}
