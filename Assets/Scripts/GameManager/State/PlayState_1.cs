@@ -36,6 +36,7 @@ public class PlayState_1 : BaseState
         base.Exit(num);
         if(num == 0)
         {
+            // CameraManager.Instance.ChangeCameraDirection(levelIndex);
             EventManager.Instance.EnterTinyLevel_bef(levelIndex);
         }
         else if(num == 1)
