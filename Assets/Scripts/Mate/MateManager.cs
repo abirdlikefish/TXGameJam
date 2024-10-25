@@ -37,6 +37,8 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         if (hasOneDead)
             return;
         hasOneDead = true;
+        for (int i = 0; i < 2; i++)
+            curMates[i].gameObject.SetActive(false);
         EventManager.Instance.Winning (curMates.Find(it => it != deadMate));
     }
     void SetMatePos(int id,Vector3 pos)
