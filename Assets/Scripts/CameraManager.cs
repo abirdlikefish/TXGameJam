@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
     {
         return Vector3.Dot(position, GetCameraDirection());
     }
-    public Vector2Int GetOffetX()
+    public Vector2Int GetOffsetX()
     {
         if(cameraDirectionIndex == 0)
         {
@@ -61,7 +61,7 @@ public class CameraManager : MonoBehaviour
             return new Vector2Int(0, 1);
         }
     }
-    public Vector2Int GetOffetY()
+    public Vector2Int GetOffsetY()
     {
         if(cameraDirectionIndex == 0)
         {
@@ -84,11 +84,11 @@ public class CameraManager : MonoBehaviour
         {
             return 0;
         }
-        if(midDir == -GetOffetX())
+        if(midDir == -GetOffsetX())
         {
             return 1;
         }
-        if(midDir == GetOffetY())
+        if(midDir == GetOffsetY())
         {
             return 2;
         }
@@ -96,11 +96,11 @@ public class CameraManager : MonoBehaviour
         {
             return 3;
         }
-        if(midDir == GetOffetX())
+        if(midDir == GetOffsetX())
         {
             return 4;
         }
-        if(midDir == -GetOffetY())
+        if(midDir == -GetOffsetY())
         {
             return 5;
         }

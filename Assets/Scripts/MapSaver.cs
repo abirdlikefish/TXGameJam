@@ -9,7 +9,7 @@ public class MapSaver : Singleton<MapSaver>
     public bool load = false;
     public override void Init()
     {
-        EventManager.Instance.AddCubeEvent_before += (Vector3Int pos) =>
+        EventManager.Instance.AddCubeEvent_before += (Vector3Int pos,int midNum) =>
         {
             cubes.Add(pos);
         };

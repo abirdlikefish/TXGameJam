@@ -112,7 +112,7 @@ public abstract class Dougu : MonoBehaviour
         //Debug.Log($"dye{cube.Position}");
         //cube.Color += 
     }
-    public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
+    public void DyeBesideCubeColor(Vector3 dirInWorld, Vector3 center)
     {
         BaseCube upperCube = CubeGetter.GetCubeUpperFloor(dirInWorld, center);
         if (upperCube != null)

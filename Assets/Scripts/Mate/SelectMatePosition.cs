@@ -25,7 +25,7 @@ public class SelectMatePosition : MonoBehaviour
 
                 instance.redColor = new Color(1, 0, 0, 0.5f);
                 instance.greenColor = new Color(0, 1, 0, 0.5f);
-                instance.selecetedGreenColor = new Color(0, 1, 0, 1);
+                instance.selectedGreenColor = new Color(0, 1, 0, 1);
                 // instance.mate0.transform.position = new Vector3(instance.position0.x, 0, instance.position0.y);
                 // instance.mate1.transform.position = new Vector3(instance.position1.x, 0, instance.position1.y);
             }
@@ -48,7 +48,7 @@ public class SelectMatePosition : MonoBehaviour
     // Color greenColor1;
     Color redColor;
     Color greenColor;
-    Color selecetedGreenColor;
+    Color selectedGreenColor;
 
     bool isReady0;
     bool isReady1;
@@ -59,7 +59,7 @@ public class SelectMatePosition : MonoBehaviour
         {    
             if(Input.GetKeyDown(KeyCode.A))
             {
-                Position0 += CameraManager.Instance.GetOffetX();
+                Position0 += CameraManager.Instance.GetOffsetX();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position0.x, 0, Position0.y))) == 3)
                 {
                     meshRenderer0.material.color = greenColor;
@@ -71,7 +71,7 @@ public class SelectMatePosition : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.D))
             {
-                Position0 -= CameraManager.Instance.GetOffetX();
+                Position0 -= CameraManager.Instance.GetOffsetX();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position0.x, 0, Position0.y))) == 3)
                 {
                     meshRenderer0.material.color = greenColor;
@@ -83,7 +83,7 @@ public class SelectMatePosition : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.W))
             {
-                Position0 -= CameraManager.Instance.GetOffetY();
+                Position0 -= CameraManager.Instance.GetOffsetY();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position0.x, 0, Position0.y))) == 3)
                 {
                     meshRenderer0.material.color = greenColor;
@@ -95,7 +95,7 @@ public class SelectMatePosition : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.S))
             {
-                Position0 += CameraManager.Instance.GetOffetY();
+                Position0 += CameraManager.Instance.GetOffsetY();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position0.x, 0, Position0.y))) == 3)
                 {
                     meshRenderer0.material.color = greenColor;
@@ -108,14 +108,14 @@ public class SelectMatePosition : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space)&& EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position0.x, 0, Position0.y))) == 3)
             {
                 isReady0 = true;
-                meshRenderer0.material.color = selecetedGreenColor;
+                meshRenderer0.material.color = selectedGreenColor;
             }
         }
         if(isReady1 == false)
         {
             if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                Position1 += CameraManager.Instance.GetOffetX();
+                Position1 += CameraManager.Instance.GetOffsetX();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
                 {
                     meshRenderer1.material.color = greenColor;
@@ -127,7 +127,7 @@ public class SelectMatePosition : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.RightArrow))
             {
-                Position1 -= CameraManager.Instance.GetOffetX();
+                Position1 -= CameraManager.Instance.GetOffsetX();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
                 {
                     meshRenderer1.material.color = greenColor;
@@ -139,7 +139,7 @@ public class SelectMatePosition : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Position1 -= CameraManager.Instance.GetOffetY();
+                Position1 -= CameraManager.Instance.GetOffsetY();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
                 {
                     meshRenderer1.material.color = greenColor;
@@ -151,7 +151,7 @@ public class SelectMatePosition : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {
-                Position1 += CameraManager.Instance.GetOffetY();
+                Position1 += CameraManager.Instance.GetOffsetY();
                 if(EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
                 {
                     meshRenderer1.material.color = greenColor;
@@ -164,13 +164,13 @@ public class SelectMatePosition : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Return )||Input.GetKeyDown(KeyCode.KeypadEnter) && EventManager.Instance.IsPassable(CameraManager.Instance.GetCameraSpacePosition(new Vector3Int(Position1.x, 0, Position1.y))) == 3)
             {
                 isReady1 = true;
-                meshRenderer1.material.color = selecetedGreenColor;
+                meshRenderer1.material.color = selectedGreenColor;
             }
         }
         if(isReady0 && isReady1)
         {
             Exit();
-            Debug.Log("EnterTinyLevel");
+            // Debug.Log("EnterTinyLevel");
             EventManager.Instance.SetMatePos(0 , new Vector3Int(Position0.x, 0, Position0.y));
             EventManager.Instance.SetMatePos(1 , new Vector3Int(Position1.x, 0, Position1.y));
             EventManager.Instance.EnterTinyLevel(levelIndex);

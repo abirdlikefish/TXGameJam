@@ -20,7 +20,7 @@ public class DouguRay : Dougu
             {
                 Vector3 dir2 = MateInput.CameraDirInWorld(user.FlipDir);
                 Vector3 nextCenter = user.CurCenter + user.FlipDir * i;
-                DyeBesideCudeColor(dir2, nextCenter);
+                DyeBesideCubeColor(dir2, nextCenter);
 
                 break;
             }    
