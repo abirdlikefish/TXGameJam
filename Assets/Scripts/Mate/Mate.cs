@@ -69,16 +69,7 @@ public class Mate : Entity
     
     public void ResetDougu()
     {
-        AddDougu(DouguManager.Instance.GetDougu<DouguBomb>());
-    }
-    public void AddDougu(Dougu dougu,int cID)
-    {
-        if (onHeadDougu.Count > 0)
-            onHeadDougu[0].remainUseCount = 0;
-        Dougu d = Instantiate(dougu, transform);
-        d.user = this;
-        d.SetColor(cID);
-        onHeadDougu = new() { d };
+        AddDouguWhite(DouguManager.Instance.GetDougu<DouguBomb>());
     }
     public void AddDougu(Dougu dougu)
     {
@@ -86,6 +77,15 @@ public class Mate : Entity
             onHeadDougu[0].remainUseCount = 0;
         Dougu d = Instantiate(dougu, transform);
         d.user = this;
+        onHeadDougu = new() { d };
+    }
+    public void AddDouguWhite(Dougu dougu)
+    {
+        if (onHeadDougu.Count > 0)
+            onHeadDougu[0].remainUseCount = 0;
+        Dougu d = Instantiate(dougu, transform);
+        d.user = this;
+        d.SetCID(0);
         onHeadDougu = new() { d };
     }
     public int OnUseDougu()
