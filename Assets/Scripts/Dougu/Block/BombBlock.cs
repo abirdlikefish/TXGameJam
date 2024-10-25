@@ -31,7 +31,7 @@ public class BombBlock : Block
                     {
                         Vector3 dir2 = MateInput.CameraDirInWorld(dir);
                         Vector3 nextCenter = transform.position + dir * i;
-                        douguBase.DyeBesideCudeColor(dir2, nextCenter);
+                        douguBase.DyeBesideCubeColor(dir2, nextCenter);
                         break;
                     }
                 }

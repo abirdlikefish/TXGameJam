@@ -16,14 +16,18 @@ public class EventManager
         }
     }
 
-    public event Action<Vector3Int> AddCubeEvent_before;
-    public event Func<Vector3Int , bool> AddCubeEvent_on;
+    public event Action<Vector3Int , int> AddCubeEvent_before;
+    public event Func<Vector3Int ,  int, bool> AddCubeEvent_on;
     public event Action<bool> AddCubeEvent_after;
+    public void AddCube(Vector3Int position , int color)
+    {
+        AddCubeEvent_before?.Invoke(position , color);
+        bool isSucceed = AddCubeEvent_on?.Invoke(position,color) ?? false;
+        AddCubeEvent_after?.Invoke(isSucceed);
+    }
     public void AddCube(Vector3Int position)
     {
-        AddCubeEvent_before?.Invoke(position);
-        bool isSucceed = AddCubeEvent_on?.Invoke(position) ?? false;
-        AddCubeEvent_after?.Invoke(isSucceed);
+        AddCube(position , 0);
     }
 
     public event Action<Vector3Int> RemoveCubeEvent_before;
@@ -209,5 +213,11 @@ public class EventManager
     {
         ShowMainMenuEvent?.Invoke();
         // Debug.Log("ShowMainMenu Event");
+    }
+
+    public event Action SaveCurrentMapEvent;
+    public void SaveCurrentMap()
+    {
+        SaveCurrentMapEvent?.Invoke();
     }
 }
