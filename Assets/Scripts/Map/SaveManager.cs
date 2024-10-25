@@ -51,6 +51,10 @@ public class SaveManager
         var cubeList = levelDataSO.GetCubeList(index);
         return levelDataSO.GetCubeList(index);
     }
+    public int GetLevelNum()
+    {
+        return levelDataSO.levelNum;
+    }
     // public List<Vector3Int> AddCubeList(List<Vector3Int> cubeList)
     public void AddCubeList(List<Vector3Int> cubeList)
     {

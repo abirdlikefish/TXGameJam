@@ -16,8 +16,6 @@ public class LevelDataSO : ScriptableObject
 
     public int levelNum = 0;
 
-    [SerializeField]
-     List<int> CubeNum = new List<int>();
     public void AddLevelDataFromLastProject(LevelData levelData)
     {
         while(levelList.Count <= levelData.index)
