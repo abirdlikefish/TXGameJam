@@ -33,7 +33,6 @@ public class PlayState_1 : BaseState
 
     public override void Exit(int num)
     {
-        Debug.Log("PlayState Exit");
         base.Exit(num);
         if(num == 0)
         {
@@ -41,6 +40,7 @@ public class PlayState_1 : BaseState
         }
         else if(num == 1)
         {
+            Debug.Log("PlayState Exit");
             EventManager.Instance.ExitStateEvent -= Exit;
             gameStateMachine.ChangeState(gameStateMachine.mainState);
         }
