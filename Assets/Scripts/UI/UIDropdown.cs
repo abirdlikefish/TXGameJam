@@ -9,7 +9,10 @@ using UnityEngine.UI;
 public class UIDropdown : MonoBehaviour, IPointerClickHandler
 {
     private Dropdown dropdown;
-    public Text metaName;
+    public Text mateName;
+    public Image ItemBG;
+    public Image ScrollBar;
+    public Image Handle;
 
     private List<string> oldList = new List<string>();
     private List<string> newList = new List<string>();
@@ -41,12 +44,17 @@ public class UIDropdown : MonoBehaviour, IPointerClickHandler
 
         for (int i = 0; i < dropdown.options.Count; i++)
         {
-            if (dropdown.options[i].text.Equals(metaName.text))
+            if (dropdown.options[i].text.Equals(mateName.text))
             {
                 dropdown.value = i;
                 break;
             }
         }
+
+        //¸Ä±äÑÕÉ«
+        ItemBG.color = mateName.color;
+        ScrollBar.color = mateName.color;
+        Handle.color = mateName.color;
     }
 
     

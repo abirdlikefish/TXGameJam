@@ -182,6 +182,21 @@ public class EventManager
         StartTrapEvent?.Invoke(mate, position, timer);
     }
 
+    public event Action<Mate> refreshUIEvent;
+
+    public void RefreshUI(Mate mate)
+    {
+        refreshUIEvent?.Invoke(mate);
+    }
+
+    /// <summary>
+    /// 胜利时执行的事件
+    /// </summary>
+    public event Action<Mate> winningEvent;
+
+    public void Winning(Mate mate)
+    {
+        winningEvent?.Invoke(mate);
     public event Action<int, Vector3> SetMatePosEvent;
     public void SetMatePos(int id, Vector3 position)
     {

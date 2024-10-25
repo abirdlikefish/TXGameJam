@@ -16,6 +16,8 @@ public class UIMateEditInfo:MonoBehaviour
 
     public Dropdown dropDown;
 
+    public Image mateNameBG;
+
     string editName = null;
     Color editColor = Color.clear;
     public void OnEditChangeColor()
@@ -29,6 +31,9 @@ public class UIMateEditInfo:MonoBehaviour
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
         UIMateEditor.Instance.ShowMate(mateData, this);
+
+        mateNameBG.color = new Color(mateName.color.r, mateName.color.g, mateName.color.b,
+            mateNameBG.color.a);
     }
 
     public void OnEditDropdownValueChanged()
