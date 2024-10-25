@@ -16,10 +16,6 @@ public class MainState : BaseState
     public override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            EventManager.Instance.ExitState(0);
-        }
     }
 
     public override void Exit(int num)

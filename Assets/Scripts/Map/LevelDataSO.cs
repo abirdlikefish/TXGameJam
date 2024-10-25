@@ -28,8 +28,8 @@ public class LevelDataSO : ScriptableObject
             levelList[levelData.index].cubeList.Add(levelData.cubeList[i].position);
             // levelList[levelData.index].Add(levelData.cubeList[i].position);
         }
-        EditorUtility.SetDirty(this);
-        AssetDatabase.SaveAssets();
+        // EditorUtility.SetDirty(this);
+        // AssetDatabase.SaveAssets();
         levelNum = levelList.Count;
         return;
     }
