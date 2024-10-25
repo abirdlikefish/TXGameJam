@@ -78,9 +78,16 @@ public class EventManager
     }
 
 
+    public event Action<int> EnterTinyLevelEvent_bef;
     public event Action<int> EnterTinyLevelEvent;
     public event Action ExitTinyLevelEvent;
     // public void EnterTinyLevel()
+    public void EnterTinyLevel_bef(int level)
+    {
+        EnterTinyLevelEvent_bef?.Invoke(level);
+        // EnterTinyLevelEvent?.Invoke(level);
+    }
+    // public void EnterTinyLevel(int level)
     public void EnterTinyLevel(int level)
     {
         Debug.Log($"{nameof(EnterTinyLevel)} {level}");

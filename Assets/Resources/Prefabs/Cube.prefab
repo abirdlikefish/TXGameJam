@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7343451337353292729}
   - component: {fileID: 482771543717772133}
   - component: {fileID: 1023352891805221240}
-  - component: {fileID: 3606303125722543428}
   - component: {fileID: -3070707168715461604}
   m_Layer: 0
   m_Name: Cube
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9069f1b71f323c9408cf25eb7d8301b3, type: 2}
+  - {fileID: 2100000, guid: c1e27ade4d1c87f4c82fbd6221c85431, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,21 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groupID: -1
---- !u!114 &3606303125722543428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7591641543643227791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3876d6ba7c1c64f8250cf26e86b65a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 482771543717772133}
-  materialId: 0
-  spriteRenderer: {fileID: 0}
 --- !u!114 &-3070707168715461604
 MonoBehaviour:
   m_ObjectHideFlags: 0

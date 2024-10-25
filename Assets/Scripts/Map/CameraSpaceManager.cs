@@ -83,7 +83,7 @@ public class CameraSpaceManager : ICameraSpaceManager
     private Node[,] nodeMap;
     public void ClearNodeMap()
     {
-        Debug.Log("ClearNodeMap");
+        // Debug.Log("ClearNodeMap");
         for(int i = 0 ; i < nodeMap.GetLength(0); i++)
         {
             for(int j = 0 ; j < nodeMap.GetLength(1); j++)

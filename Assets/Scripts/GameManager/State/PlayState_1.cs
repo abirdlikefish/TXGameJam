@@ -5,19 +5,31 @@ using UnityEngine;
 public class PlayState_1 : BaseState
 {
     int roundNum = 3;
-    public override void Enter()
+    int levelIndex;
+    
+    // public override void Enter()
+    public void OtherEnter(int levelIndex)
     {
         roundNum = 3;
+        this.levelIndex = levelIndex;
         Debug.Log("PlayState Enter");
-        base.Enter();
+        // base.Enter();
         EventManager.Instance.ExitStateEvent += Exit;
-        // EventManager.Instance.ExitTinyLevelEvent += TinyLevelEnd;
-        EventManager.Instance.EnterLevel(1);
-        EventManager.Instance.EnterTinyLevel(1);
+        EventManager.Instance.ExitTinyLevelEvent += TinyLevelEnd;
+        // EventManager.Instance.EnterLevel(1);
+        isFirstUpdate = true;
+        gameStateMachine.ChangeState(gameStateMachine.playState_1);
     }
-
+    bool isFirstUpdate;
     public override void Update()
     {
+        if(isFirstUpdate)
+        {
+            isFirstUpdate = false;
+            EventManager.Instance.EnterTinyLevel(levelIndex);
+            Debug.Log("PlayState Update");
+        }
+        // EventManager.Instance.EnterTinyLevel(1);
         base.Update();
     }
 
