@@ -73,6 +73,8 @@ public class Mate : Entity
     }
     public void AddDougu(Dougu dougu,int cID)
     {
+        if (onHeadDougu.Count > 0)
+            onHeadDougu[0].remainUseCount = 0;
         Dougu d = Instantiate(dougu, transform);
         d.user = this;
         d.SetColor(cID);
@@ -80,6 +82,8 @@ public class Mate : Entity
     }
     public void AddDougu(Dougu dougu)
     {
+        if (onHeadDougu.Count > 0)
+            onHeadDougu[0].remainUseCount = 0;
         Dougu d = Instantiate(dougu, transform);
         d.user = this;
         onHeadDougu = new() { d };
