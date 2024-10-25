@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,8 +17,8 @@ public class DouguManager : Singleton<DouguManager>
     [SerializeField]
     List<GameObject> sths = new();
     public List<Vector3> emptys = new();
-    public SerializableDictionary<int,string> douguClass_possibility;
-    int TotalPossibility => douguClass_possibility.Keys.Sum();
+    public List<int> douguPossibility;
+    int TotalPossibility => douguPossibility.Sum();
     //[SerializeField]
     //List<Effect> effects;
 
@@ -70,7 +71,10 @@ public class DouguManager : Singleton<DouguManager>
     //    //TOTO ÌØÐ§ÖØµþ
     //    //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
     //}
-
+    public Dougu GetDougu(int dId)
+    {
+        return prefabDougus[dId];
+    }
     public T GetDougu<T>() where T : Dougu
     {
         return prefabDougus.Find(d => d is T) as T;
@@ -92,19 +96,22 @@ public class DouguManager : Singleton<DouguManager>
         }
         return null;
     }
-    public void GenerateDougu(Type type, Vector3 posY0)
+    public void GenerateDougu(Type type, Vector3 posY0, int colorId)
     {
-        GenerateDougu(type, posY0,IntToColorId(UnityEngine.Random.Range(0, 4)));
+        GenerateDougu(GetDougu(type), posY0, colorId);
     }
-    public void GenerateDougu(Type type, Vector3 posY0,int cId)
+    public void GenerateDougu(Dougu douguPrefab, Vector3 posY0)
+    {
+        GenerateDougu(douguPrefab, posY0,IntToColorId(UnityEngine.Random.Range(0, 4)));
+    }
+    public void GenerateDougu(Dougu douguPrefab, Vector3 posY0,int cId)
     {
         GameObject go = Dougu.MyInsSphere(prefabDouguSphere.gameObject, posY0);
         if (go == null)
             return;
         DouguSphere ds = go.GetComponent<DouguSphere>();
-        Dougu d = GetDougu(type);
-        d.SetColor(cId);
-        ds.Init(d, cId);
+        douguPrefab.SetColor(cId);
+        ds.Init(douguPrefab, cId);
     }
     int IntToColorId(int ran)
     {
@@ -116,19 +123,20 @@ public class DouguManager : Singleton<DouguManager>
             return 2;
         if (ran == 3)
             return 4;
-        Debug.LogError(IntToDouguClass(ran) + " not found");
+        Debug.LogError(IntToDougu(ran) + " not found");
         return 0;
     }
-    Type IntToDouguClass(int ran)
+    Dougu IntToDougu(int ran)
     {
         int curSum = 0;
-        foreach(var key in douguClass_possibility.Keys)
+        for(int i=0;i<douguPossibility.Count;i++)
         {
-            if(ran < curSum + key)
+            int it = douguPossibility[i];
+            if (ran < curSum + it)
             {
-                return Type.GetType(douguClass_possibility[key]);
+                return GetDougu(i);
             }
-            curSum += key;
+            curSum += it;
         }
         Debug.LogError("possibility " + ran + " not found");
         return null;
@@ -152,6 +160,8 @@ public class DouguManager : Singleton<DouguManager>
         }
         if (emptys.Count == 0)
             return;
-        GenerateDougu(IntToDouguClass(UnityEngine.Random.Range(0, TotalPossibility)), emptys[UnityEngine.Random.Range(0, emptys.Count)]);
+        int emptyId = UnityEngine.Random.Range(0, emptys.Count);
+        GenerateDougu(GetDougu(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId]);
+        emptys.RemoveAt(emptyId);
     }
 }

@@ -20,7 +20,7 @@ public abstract class Dougu : MonoBehaviour
         this.cID = cID;
         
     }
-    private void Awake()
+    private void OnEnable()
     {
         if (block)
         {
@@ -32,6 +32,7 @@ public abstract class Dougu : MonoBehaviour
         }
         StartCoroutine(nameof(TryDestroy));
     }
+
     public virtual int OnUse() {remainUseCount--;return 1; }
     public virtual void OnUseEnd()
     {
@@ -46,7 +47,10 @@ public abstract class Dougu : MonoBehaviour
         while(true)
         {
             if(remainUseCount > 0)
+            {
                 yield return new WaitForSeconds(0.2f);
+                continue;
+            }
             if (busy.Count == 0)
             {
                 Destroy(gameObject);

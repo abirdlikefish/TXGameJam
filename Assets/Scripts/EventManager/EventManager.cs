@@ -164,7 +164,7 @@ public class EventManager
     public Func<Vector2Int , int> IsEmpty;
     #endregion
 
-    public event Action<Type,Vector3,int> GenerateDouguSphereEvent;
+    public event Action<Type, Vector3,int> GenerateDouguSphereEvent;
     public void GenerateDouguSphere(Type type, Vector3 posY0, int colorId)
     {
         GenerateDouguSphereEvent?.Invoke(type, posY0, colorId);
