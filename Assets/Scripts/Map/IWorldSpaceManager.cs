@@ -15,6 +15,7 @@ public interface IWorldSpaceManager
     public void CleanGroup(int groupID);
     public void CleanGroup_all();
     public List<BaseCube> GetCubesByGroupID(int groupID);
+    public List<Vector3Int> GetCubeListVector3Int();
     public void AddCubeToGroup(BaseCube cube);
     public int GetNewID();
 

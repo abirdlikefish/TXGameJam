@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayState_1 : BaseState
 {
-    int roundNum = 3;
     int levelIndex;
     
     // public override void Enter()
     public void OtherEnter(int levelIndex)
     {
-        roundNum = 3;
         this.levelIndex = levelIndex;
         Debug.Log("PlayState Enter");
         // base.Enter();
@@ -35,19 +33,32 @@ public class PlayState_1 : BaseState
 
     public override void Exit(int num)
     {
+        Debug.Log("PlayState Exit");
         base.Exit(num);
-        
-        roundNum--;
-        if(roundNum == 0)
+        if(num == 0)
+        {
+            EventManager.Instance.EnterTinyLevel_bef(levelIndex);
+        }
+        else if(num == 1)
         {
             EventManager.Instance.ExitStateEvent -= Exit;
-            EventManager.Instance.ExitLevel(1);
-            gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
+            gameStateMachine.ChangeState(gameStateMachine.mainState);
         }
         else
         {
-            EventManager.Instance.EnterTinyLevel(1);
+            Debug.LogWarning("PlayState Exit Error");
         }
+
+        // if(roundNum == 0)
+        // {
+        //     EventManager.Instance.ExitStateEvent -= Exit;
+        //     EventManager.Instance.ExitLevel(1);
+        //     gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
+        // }
+        // else
+        // {
+        //     EventManager.Instance.EnterTinyLevel(1);
+        // }
     }
     public void TinyLevelEnd()
     {

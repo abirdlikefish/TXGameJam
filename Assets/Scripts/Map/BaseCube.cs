@@ -26,7 +26,7 @@ public class BaseCube : MonoBehaviour
             {
                 color = 0;
                 meshRenderer.material = Instantiate(materials[0]);
-                Debug.Log(name + " " +materials[0].name);
+                // Debug.Log(name + " " +materials[0].name);
             }
             else if(color == value)
             {

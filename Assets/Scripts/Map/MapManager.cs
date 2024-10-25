@@ -46,6 +46,8 @@ public class MapManager
 
         EventManager.Instance.ExitLevelEvent += (x) => Instance.RemoveCube_all();
 
+        EventManager.Instance.SaveCurrentMapEvent_beg += () => EventManager.Instance.SaveCurrentMap(Instance.worldSpaceManager.GetCubeListVector3Int());
+
     }
 
     public bool AddCube(Vector3Int position , int color)

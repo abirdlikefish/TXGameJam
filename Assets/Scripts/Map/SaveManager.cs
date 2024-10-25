@@ -26,6 +26,7 @@ public class SaveManager
     public static void AddListener()
     {
         EventManager.Instance.EnterLevelEvent += Instance.LoadMap;
+        EventManager.Instance.SaveCurrentMapEvent += Instance.AddCubeList;
     }
 
     private string levelDataPath = "./LevelData/";
@@ -49,6 +50,12 @@ public class SaveManager
     {
         var cubeList = levelDataSO.GetCubeList(index);
         return levelDataSO.GetCubeList(index);
+    }
+    // public List<Vector3Int> AddCubeList(List<Vector3Int> cubeList)
+    public void AddCubeList(List<Vector3Int> cubeList)
+    {
+        levelDataSO.AddCubeList(cubeList);
+        // return cubeList;
     }
 
     public void LoadMap(int levelIndex)

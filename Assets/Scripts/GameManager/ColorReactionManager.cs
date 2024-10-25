@@ -31,7 +31,7 @@ public class ColorReactionManager
 
     public void ColorReaction_2(Vector3Int position)
     {
-        EventManager.Instance.Boom(position);
+        EventManager.Instance.GenerateBoom(position);
     }
 
     public static void AddListener()

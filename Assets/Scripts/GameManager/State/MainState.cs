@@ -23,6 +23,7 @@ public class MainState : BaseState
 
     public override void Exit(int num)
     {
+        Debug.Log("MainState Exit");
         base.Exit(num);
         EventManager.Instance.ExitStateEvent -= Exit;
         if(num == 0)
