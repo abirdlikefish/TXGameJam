@@ -26,7 +26,7 @@ public class ColorReactionManager
 
     public void ColorReaction_1(Vector3Int position)
     {
-        EventManager.Instance.GenerateCubeDougu(position);
+        EventManager.Instance.GenerateDouguSphereMiniCube(position);
     }
 
     public void ColorReaction_2(Vector3Int position)
@@ -45,13 +45,13 @@ public class ColorReactionManager
     {
         switch (color)
         {
-            case 1:
+            case 3:
                 EventManager.Instance.ColorReactionEvent_1 += ColorReactionList[reactionID];
                 break;
-            case 2:
+            case 6:
                 EventManager.Instance.ColorReactionEvent_2 += ColorReactionList[reactionID];
                 break;
-            case 4:
+            case 7:
                 EventManager.Instance.ColorReactionEvent_4 += ColorReactionList[reactionID];
                 break;
         }

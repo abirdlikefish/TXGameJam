@@ -43,7 +43,7 @@ public class MateInput : Singleton<MateInput>
     }
     //�ձ��Z��Ԓ�����ޤ��礦��
     //ͨ��
-    public static bool CanTooruY0(Vector3 thisCenter,Vector3 nextCenter)
+    public static bool CanTooru(Vector3 thisCenter,Vector3 nextCenter)
     {
         Vector2Int pos1 = MyWorldToScreen(thisCenter);
         int ret1 = EventManager.Instance.IsPassable(pos1);
@@ -66,7 +66,7 @@ public class MateInput : Singleton<MateInput>
         //Debug.Log($"delta : {delta} {thisCenter}{ret1} {nextCenter}{ret2} ret = {ret}");
         return ret;
     }
-    public static bool CanTooruY0(Vector3 nextCenter)
+    public static bool CanTooru(Vector3 nextCenter)
     {
         Vector2Int pos = MyWorldToScreen(nextCenter);
         int ret = EventManager.Instance.IsPassable(pos);
