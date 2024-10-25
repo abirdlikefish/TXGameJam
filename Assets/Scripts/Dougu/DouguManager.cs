@@ -110,7 +110,7 @@ public class DouguManager : Singleton<DouguManager>
         if (go == null)
             return;
         DouguSphere ds = go.GetComponent<DouguSphere>();
-        douguPrefab.SetColor(cId);
+        douguPrefab.SetCID(cId);
         ds.Init(douguPrefab, cId);
     }
     int IntToColorId(int ran)

@@ -15,25 +15,27 @@ public abstract class Dougu : MonoBehaviour
     public Effect effect;
     public float effectTime = 0.5f;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public void SetColor(int cID)
+    public void SetCID(int cID)
     {
         this.cID = cID;
         
     }
     private void OnEnable()
     {
+        StartCoroutine(nameof(TryDestroy));
+    }
+    void SetColor()
+    {
         if (block)
         {
             block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.Instance.id_color[cID];
         }
-        if (effect)
+        else if (effect)
         {
             effect.GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
         }
-        StartCoroutine(nameof(TryDestroy));
     }
-
-    public virtual int OnUse() {remainUseCount--;return 1; }
+    public virtual int OnUse() { SetColor(); remainUseCount--;return 1; }
     public virtual void OnUseEnd()
     {
         if(remainUseCount <= 0)
