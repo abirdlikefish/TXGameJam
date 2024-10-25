@@ -16,11 +16,17 @@ public class UIMainMenu : Singleton<UIMainMenu>
     public override void Init()
     {
         DuelButton.OnHighlight += () => duelAnimator.SetTrigger("Highlighted");
-        DuelButton.OnClick += () => duelAnimator.SetTrigger("Pressed");
+        DuelButton.OnClick += () => {
+            EventManager.Instance.ExitState(0);
+            Destroy(gameObject);
+        };
         DuelButton.OnExit += () => duelAnimator.SetTrigger("Normal");
 
         ExitButton.OnClick += () => exitAnimator.SetTrigger("Pressed");
         ExitButton.OnHighlight += () => exitAnimator.SetTrigger("Highlighted");
-        ExitButton.OnExit += () => exitAnimator.SetTrigger("Normal");
+        ExitButton.OnExit += () => {
+            Application.Quit();
+            exitAnimator.SetTrigger("Normal"); 
+        };
     }
 }
