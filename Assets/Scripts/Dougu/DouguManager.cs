@@ -60,18 +60,14 @@ public class DouguManager : Singleton<DouguManager>
     {
         return Vector3Int.RoundToInt(new Vector3(pos.x - pos.y, 0, pos.z - pos.y));
     }
+    public bool Has(Vector3 pos)
+    {
+        return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos))) != null;
+    }
+
     public bool Has<T>(Vector3 pos) where T : MonoBehaviour
     {
         Vector3Int posY0 = ToY0(pos);
-        foreach(var it in sths)
-        {
-            Debug.Log("it1 " + ToY0(it.transform.position));
-            Debug.Log("it2 " + pos);
-
-
-            if (it.transform.position == posY0 && it.GetComponent<T>() != null)
-                return true;
-        }
         return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos)) && (it.GetComponent<T>() != null)) != null;
     }
     public bool HasEither<T1,T2>(Vector3 posY0) where T1 : MonoBehaviour where T2 : MonoBehaviour
@@ -179,7 +175,7 @@ public class DouguManager : Singleton<DouguManager>
             for (int j = d1-d2; j <= d1+d2; j++)
             {
                 Vector3 pos = new(i, 0, j);
-                if (HasEither<Mate, Block>(pos) || HasEither<Effect, DouguSphere>(pos))
+                if (Has(pos))
                     continue;
                 if (CubeGetter.GetCubeCanTooru(pos) == null)
                     continue;
