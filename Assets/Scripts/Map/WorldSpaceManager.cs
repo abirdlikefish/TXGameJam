@@ -173,6 +173,15 @@ public class WorldSpaceManager : IWorldSpaceManager
         // Debug.Log("GetCubes");
         return cubeList;
     }
+    public List<Vector3Int> GetCubeListVector3Int()
+    {
+        List<Vector3Int> cubeList = new List<Vector3Int>();
+        foreach(BaseCube cube in GetCubes())
+        {
+            cubeList.Add(cube.Position);
+        }
+        return cubeList;
+    }
     public BaseCube FindByPosition(Vector3Int position)
     {
         return SearchWorldMap(position);

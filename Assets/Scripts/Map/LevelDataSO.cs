@@ -14,9 +14,10 @@ public class LevelDataSO : ScriptableObject
     [SerializeField]
     private List<midCubeList> levelList = new List<midCubeList>();
 
+    public int levelNum = 0;
 
     [SerializeField]
-     List<int> CubeNum = new List<int>(100);
+     List<int> CubeNum = new List<int>();
     public void AddLevelDataFromLastProject(LevelData levelData)
     {
         while(levelList.Count <= levelData.index)
@@ -31,14 +32,20 @@ public class LevelDataSO : ScriptableObject
         }
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
+        levelNum = levelList.Count;
         return;
     }
 
 
     public List<Vector3Int> GetCubeList(int index)
     {
-
         return levelList[index].cubeList;
+    }
+
+    public void AddCubeList(List<Vector3Int> cubeList)
+    {
+        levelList.Add(new midCubeList(){cubeList = cubeList});
+        levelNum = levelList.Count;
     }
     
 } 

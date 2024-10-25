@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager
@@ -215,9 +216,15 @@ public class EventManager
         // Debug.Log("ShowMainMenu Event");
     }
 
-    public event Action SaveCurrentMapEvent;
-    public void SaveCurrentMap()
+    public event Action SaveCurrentMapEvent_beg;
+    public event Action<List<Vector3Int>> SaveCurrentMapEvent;
+    public void SaveCurrentMap_beg()
     {
-        SaveCurrentMapEvent?.Invoke();
+        SaveCurrentMapEvent_beg?.Invoke();
     }
+    public void SaveCurrentMap(List<Vector3Int> cubeList)
+    {
+        SaveCurrentMapEvent?.Invoke(cubeList);
+    }
+
 }
