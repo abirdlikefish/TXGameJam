@@ -110,7 +110,7 @@ public abstract class Dougu : MonoBehaviour
     {
         cube.Color = cID;
         //Debug.Log($"dye{cube.Position}");
-        cube.GetComponent<NewMaterial>().Material.color = Color.red;
+        //cube.Color += 
     }
     public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
     {

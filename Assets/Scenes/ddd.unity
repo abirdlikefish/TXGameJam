@@ -994,6 +994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DouguSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 7894092571413341014, guid: d0de769a68c820e44bc81d157ffaef55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

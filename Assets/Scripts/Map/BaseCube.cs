@@ -39,6 +39,7 @@ public class BaseCube : MonoBehaviour
                 color = value;
                 meshRenderer.material = Instantiate(materials[value]);
             }
+            GetComponent<DepthSetterCube>().SetDepth();
         }
     }
 
