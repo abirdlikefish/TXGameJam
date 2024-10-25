@@ -19,6 +19,7 @@ public class GameStateMachine
         playState_1 = new PlayState_1();
 
         EventManager.Instance.EnterLevelEvent += playState_1.OtherEnter;
+        selectLevelState.Init();
 
         // mainState
         ChangeState(mainState);

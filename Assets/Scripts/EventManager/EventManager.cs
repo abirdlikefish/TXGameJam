@@ -204,4 +204,17 @@ public class EventManager
         SaveCurrentMapEvent?.Invoke(cubeList);
     }
 
+
+    public event Action ShowHeadLineMapEvent;
+    public void ShowHeadLineMap()
+    {
+        ShowHeadLineMapEvent?.Invoke();
+    }
+
+    public event Action HideHeadLineMapEvent;
+    public void HideHeadLineMap()
+    {
+        HideHeadLineMapEvent?.Invoke();
+    }
+
 }
