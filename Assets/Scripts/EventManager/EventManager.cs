@@ -176,4 +176,19 @@ public class EventManager
     }
 
     public event Action<Mate> refreshUIEvent;
+
+    public void RefreshUI(Mate mate)
+    {
+        refreshUIEvent?.Invoke(mate);
+    }
+
+    /// <summary>
+    /// 胜利时执行的事件
+    /// </summary>
+    public event Action<Mate> winningEvent;
+
+    public void Winning(Mate mate)
+    {
+        winningEvent?.Invoke(mate);
+    }
 }

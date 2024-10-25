@@ -15,21 +15,36 @@ public class UIInGame : Singleton<UIInGame>
 
                 RefreshUI(MateManager.Instance.curMates[i]);
             }
-            for(int i=0;i<transform.childCount;i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(true);
-            }
+            ShowAll();
+            winningPanel.SetActive(false);
+            MapSavingPanel.SetActive(false);
+            NamingPanel.SetActive(false);
         };
 
         exitButton.onClick.AddListener(() => EventManager.Instance.ExitLevel(1));
+        ConfirmSave.onClick.AddListener(() => { 
+            CloseAll();
+            NamingPanel.SetActive(true); 
+        });
+        RejectSave.onClick.AddListener(ReturnMainMenu);
 
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
+        EventManager.Instance.winningEvent += (mate) => ShowWinPanel(mate);
     }
 
     public List<UIMateProperty> uIMateProperties = new List<UIMateProperty>();
 
     public Button exitButton;
+
+    public GameObject winningPanel;
+    public Text winningText;
+
+    public GameObject MapSavingPanel;
+    public Button ConfirmSave;
+    public Button RejectSave;
+
+    public GameObject NamingPanel;
 
     public void RefreshUI(Mate mate)
     {
@@ -41,5 +56,58 @@ public class UIInGame : Singleton<UIInGame>
                 break;
             }
         }
+    }
+
+    public void ShowWinPanel(Mate mate)
+    {
+        StartCoroutine(ShowWinPanelCor(mate));
+    }
+
+    IEnumerator ShowWinPanelCor(Mate mate)
+    {
+        CloseAll();
+        winningPanel.SetActive(true);
+        winningText.text = mate.mateData.name + " Win!!";
+
+        RefreshUI(mate);
+
+        yield return new WaitForSeconds(2f);
+
+        ShowMapSavingPanel();
+    }
+
+    void ShowAll()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    void CloseAll()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowMapSavingPanel()
+    {
+        CloseAll();
+        MapSavingPanel.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
+        }
+    }
+
+    public void ReturnMainMenu()
+    {
+
     }
 }
