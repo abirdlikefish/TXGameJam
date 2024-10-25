@@ -30,6 +30,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         EventManager.Instance.SetMatePosEvent += SetMatePos;
         EventManager.Instance.ShowInputNameUIEvent += OnShowInputLoad;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
+        EventManager.Instance.ExitLevelEvent += ExitTinyLevel;
 
     }
     public void OnOneDead(Mate deadMate)
@@ -40,6 +41,11 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         for (int i = 0; i < 2; i++)
             curMates[i].gameObject.SetActive(false);
         EventManager.Instance.Winning (curMates.Find(it => it != deadMate));
+    }
+    void ExitTinyLevel(int x)
+    {
+        for (int i = 0; i < 2; i++)
+            curMates[i].gameObject.SetActive(false);
     }
     void SetMatePos(int id,Vector3 pos)
     {
@@ -65,7 +71,6 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         for (int i = 0; i < 2; i++)
         {
             curMates[i].gameObject.SetActive(true);
-
         }
     }
     public void SaveJson()
