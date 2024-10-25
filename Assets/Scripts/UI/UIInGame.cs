@@ -132,10 +132,10 @@ public class UIInGame : Singleton<UIInGame>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
-        }
+        // if(Input.GetKeyDown(KeyCode.V))
+        // {
+        //     EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
+        // }
     }
 
     public void ReturnMainMenu()
