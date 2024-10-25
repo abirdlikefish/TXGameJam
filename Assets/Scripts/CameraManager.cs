@@ -28,6 +28,8 @@ public class CameraManager : MonoBehaviour
         cameraDirectionIndex = 1^cameraDirectionIndex;
         instance.transform.position = instance.GetCameraDirection();
         Debug.Log("current camera direction = " + cameraDirectionIndex);
+
+        // RotateStart();
     }
 
     public Vector3Int GetCameraDirection()
@@ -107,4 +109,59 @@ public class CameraManager : MonoBehaviour
         Debug.LogWarning("Error direction");
         return -1;
     }
+
+
+    
+    bool isRotating ;
+    public Vector3 center; // 圆弧的中心点
+    public float radius = 5f; // 圆弧的半径
+    public float duration = 2f; // 完成四分之一圆旋转所需的时间
+
+    private float elapsedTime = 0f;
+    void Update()
+    {
+        if(isRotating)
+        {
+            // RotateOn();
+        }
+    }
+    private void RotateEnd()
+    {
+        isRotating = false;
+
+        transform.position = new Vector3(center.x + radius, center.y, center.z + radius);
+        transform.LookAt(Vector3.zero);
+    }
+    private void RotateStart()
+    {
+        isRotating = true;
+    }
+
+    private void RotateOn()
+    {
+        
+        // 计算当前时间的比例
+        elapsedTime += Time.deltaTime;
+        float t = elapsedTime / duration;
+        if(t > 1)
+        {
+            RotateEnd();
+            elapsedTime = 0f;
+            return ;
+        }
+
+        // 计算圆弧上的点
+        // float angle = Mathf.Lerp(0, Mathf.PI / 2, t); // 从0到90度（四分之一圆）
+        float angle = Mathf.Lerp(-Mathf.PI / 4, Mathf.PI / 4, t); // 从0到90度（四分之一圆）
+        float x = center.x + radius * Mathf.Cos(angle);
+        float z = center.z + radius * Mathf.Sin(angle);
+        float y = center.y; // 保持高度不变
+
+        // 设置摄像机的位置
+        transform.position = new Vector3(x, y, z);
+
+        // 让摄像机朝向目标点
+        transform.LookAt(Vector3.zero);
+    }
+
 }
