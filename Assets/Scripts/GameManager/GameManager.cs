@@ -34,5 +34,6 @@ public class GameManager : MonoBehaviour
         UIMateEditor.Instance.Init();
         UIInGame.Instance.Init();   
         MapSaver.Instance.Init();
+        UIMainMenu.Instance.Init();
     }
 }
