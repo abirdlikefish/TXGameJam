@@ -49,6 +49,8 @@ MonoBehaviour:
   prefabDougus: []
   prefabDouguSphere: {fileID: 0}
   sths: []
+  emptys: []
+  douguPossibility: 01000000010000000100000001000000
 --- !u!1 &7457856804055564998
 GameObject:
   m_ObjectHideFlags: 0

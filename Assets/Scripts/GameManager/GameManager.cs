@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
         MapManager.AddListener();
         ColorReactionManager.AddListener();
         SaveManager.AddListener();
+        SelectMatePosition.AddListener();
+        // GameStateMachine.AddListener();
         gameStateMachine = new GameStateMachine();
         gameStateMachine.Init();
         InitTotal();
@@ -18,6 +20,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         gameStateMachine.Update();
+
+        // if(Input.GetKeyDown(KeyCode.LeftControl))
+        // {
+        //     EventManager.Instance.RemoveCube(new Vector3Int(2,2,1));
+        // }
     }
     void InitTotal()
     {

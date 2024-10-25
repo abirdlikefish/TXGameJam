@@ -18,15 +18,27 @@ public abstract class Dougu : MonoBehaviour
     public void SetColor(int cID)
     {
         this.cID = cID;
-        GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
+        
     }
+    private void OnEnable()
+    {
+        if (block)
+        {
+            block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.Instance.id_color[cID];
+        }
+        if (effect)
+        {
+            effect.GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
+        }
+        StartCoroutine(nameof(TryDestroy));
+    }
+
     public virtual int OnUse() {remainUseCount--;return 1; }
     public virtual void OnUseEnd()
     {
         if(remainUseCount <= 0)
         {
             user.ResetDougu();
-            StartCoroutine(nameof(TryDestroy));
         }
     }
     public List<GameObject> busy = new();
@@ -34,12 +46,17 @@ public abstract class Dougu : MonoBehaviour
     {
         while(true)
         {
-            if(busy.Count == 0)
+            if(remainUseCount > 0)
+            {
+                yield return new WaitForSeconds(0.2f);
+                continue;
+            }
+            if (busy.Count == 0)
             {
                 Destroy(gameObject);
                 break;
             }
-            yield return 0;
+            yield return new WaitForSeconds(0.2f);
         }
     }
     public static GameObject MyInsBlockOrSphere(GameObject go,Vector3 pos)
@@ -92,8 +109,8 @@ public abstract class Dougu : MonoBehaviour
     public void DyeBase(BaseCube cube)
     {
         cube.Color = cID;
-        Debug.Log($"dye{cube.Position}");
-        cube.GetComponent<NewMaterial>().Material.color = Color.red;
+        //Debug.Log($"dye{cube.Position}");
+        //cube.Color += 
     }
     public void DyeBesideCudeColor(Vector3 dirInWorld, Vector3 center)
     {

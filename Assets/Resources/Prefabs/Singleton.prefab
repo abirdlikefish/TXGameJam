@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc686f63d70f6204eae1d670aa97c1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHurtUser: 0
   douguBase: {fileID: 0}
   existTimer: 0
 --- !u!114 &8236151509153724902
@@ -275,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc686f63d70f6204eae1d670aa97c1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHurtUser: 0
   douguBase: {fileID: 0}
   existTimer: 0
 --- !u!114 &218191144470377277
@@ -436,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc686f63d70f6204eae1d670aa97c1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHurtUser: 0
   douguBase: {fileID: 0}
   existTimer: 0
 --- !u!114 &5329714659866517904
@@ -1042,6 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0efe9e7acc2944e9227046188c44bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curMates: []
 --- !u!1 &7723938125312887782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95d871b6d5f11a44b4bfe9debee901b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHurtUser: 0
   douguBase: {fileID: 0}
   existTimer: 0
 --- !u!114 &175373181210183082
@@ -1327,6 +1332,9 @@ MonoBehaviour:
   prefabDougus: []
   prefabDouguSphere: {fileID: 0}
   sths: []
+  emptys: []
+  douguClass_possibility:
+    list: []
 --- !u!1 &8413711665068402553
 GameObject:
   m_ObjectHideFlags: 0

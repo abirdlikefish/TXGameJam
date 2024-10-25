@@ -78,9 +78,16 @@ public class EventManager
     }
 
 
+    public event Action<int> EnterTinyLevelEvent_bef;
     public event Action<int> EnterTinyLevelEvent;
     public event Action ExitTinyLevelEvent;
     // public void EnterTinyLevel()
+    public void EnterTinyLevel_bef(int level)
+    {
+        EnterTinyLevelEvent_bef?.Invoke(level);
+        // EnterTinyLevelEvent?.Invoke(level);
+    }
+    // public void EnterTinyLevel(int level)
     public void EnterTinyLevel(int level)
     {
         Debug.Log($"{nameof(EnterTinyLevel)} {level}");
@@ -164,7 +171,7 @@ public class EventManager
     public Func<Vector2Int , int> IsEmpty;
     #endregion
 
-    public event Action<Type,Vector3,int> GenerateDouguSphereEvent;
+    public event Action<Type, Vector3,int> GenerateDouguSphereEvent;
     public void GenerateDouguSphere(Type type, Vector3 posY0, int colorId)
     {
         GenerateDouguSphereEvent?.Invoke(type, posY0, colorId);
@@ -190,5 +197,9 @@ public class EventManager
     public void Winning(Mate mate)
     {
         winningEvent?.Invoke(mate);
+    public event Action<int, Vector3> SetMatePosEvent;
+    public void SetMatePos(int id, Vector3 position)
+    {
+        SetMatePosEvent?.Invoke(id, position);
     }
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
+    public bool canHurtUser = false;
     public Dougu douguBase;
     public float EffectTime => douguBase.effectTime;
+    [HideInInspector]
     public float existTimer = 0f;
     public Vector3Int CurCenter => new (Mathf.RoundToInt(transform.position.x), 0, Mathf.RoundToInt(transform.position.z));
     private void Update()
@@ -19,8 +21,15 @@ public class Effect : MonoBehaviour
     }
     public virtual void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<Mate>())
-            other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
+        Mate mate = other.gameObject.GetComponent<Mate>();
+        if(mate)
+        {
+            if ((canHurtUser && (mate == douguBase.user)) || mate != douguBase.user)
+            {
+                other.gameObject.GetComponent<Mate>().TakeDamage(douguBase.damage);
+            }
+        }
+           
         if (other.gameObject.GetComponent<DouguSphere>())
             Destroy(other.gameObject);
     }

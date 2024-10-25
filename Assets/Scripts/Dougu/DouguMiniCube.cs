@@ -28,6 +28,7 @@ public class DouguMiniCube : Dougu
                EventManager.Instance.AddCube(newPos);
             }
         }
+        base.OnUseEnd();
         return 1;
     }
 }
