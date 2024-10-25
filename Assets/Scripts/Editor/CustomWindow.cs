@@ -44,6 +44,15 @@ public class CustomWindow : EditorWindow
         //    List<BaseCube> cubes = MapManager.Instance.MyCameraSpaceManager.GetCubes(curMate1ScreenPos);
 
         //}
+        
+        //if (GUILayout.Button("Generate Dougu Bomb"))
+        //{
+        //    DouguManager.Instance.GenerateInstantBoom(m_position);
+        //}
+        //if (GUILayout.Button("Generate Dougu MiniCube"))
+        //{
+        //    EventManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube), m_position + Vector3Int.up, colorID);
+        //}
         if (GUILayout.Button("Generate Dougu Bomb"))
         {
             EventManager.Instance.GenerateDouguSphere(typeof(DouguBomb), m_position, colorID);

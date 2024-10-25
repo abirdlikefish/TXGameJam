@@ -14,7 +14,7 @@ public class DouguMiniCube : Dougu
         Vector3Int newPos;
         BaseCube lowerCube = CubeGetter.GetCubeLowerFloor(MateInput.CameraDirInWorld(user.FlipDir), nextCenter);
         
-        if (MateInput.CanTooruY0(thisCenter, nextCenter))
+        if (MateInput.CanTooru(thisCenter, nextCenter))
         {
             BaseCube besideCube = CubeGetter.GetCubeCanTooru(nextCenter);
             newPos = Vector3Int.RoundToInt(besideCube.Position + Vector3.up);

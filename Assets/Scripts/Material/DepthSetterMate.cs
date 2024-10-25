@@ -35,7 +35,7 @@ public class DepthSetterMate : MonoBehaviour
             h1 = GetLeftCubeD(NextCenter);
             h2 = GetRightCubeD(NextCenter);
             d2 = 3000 + h1 + h2;
-            if (!MateInput.CanTooruY0(ThisCenter,NextCenter))
+            if (!MateInput.CanTooru(ThisCenter,NextCenter))
                 d2 = 0;
             d3 = Mathf.Max(d1, d2) + 1;
             Vector3Int curCenter = Vector3Int.RoundToInt(GetComponent<MateMover>().CurCenter);

@@ -11,7 +11,8 @@ public class MateMover : MonoBehaviour
             Mathf.RoundToInt(transform.position.z));
     Vector3 nextCenter;
     Vector3 moveDir;
-    bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(CurCenter,nextCenter) : MateInput.CanTooruY0(nextCenter) )&& !DouguManager.Instance.Has<Block>(nextCenter);
+    //bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(CurCenter,nextCenter) : MateInput.CanTooru(nextCenter) )&& !DouguManager.Instance.Has<Block>(nextCenter);
+    bool CanTooru => MateInput.CanTooru(CurCenter, nextCenter);
     //public void SetNextMove
     public void SetNextMove(Vector3 moveDir)
     {

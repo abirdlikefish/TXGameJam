@@ -59,13 +59,13 @@ public class EventManager
     {
         switch (color)
         {
-            case 1:
+            case 3:
                 ColorReactionEvent_1?.Invoke(position);
                 break;
-            case 2:
+            case 6:
                 ColorReactionEvent_2?.Invoke(position);
                 break;
-            case 4:
+            case 7:
                 ColorReactionEvent_4?.Invoke(position);
                 break;
         }
@@ -133,10 +133,10 @@ public class EventManager
         ColorReactionEvent_4 = null;
     }
 
-    public event Action<Vector3Int>  GenerateCubeDouguEvent;
-    public void GenerateCubeDougu(Vector3Int position)
+    public event Action<Vector3Int>  GenerateDouguSphereMiniCubeEvent;
+    public void GenerateDouguSphereMiniCube(Vector3Int position)
     {
-        GenerateCubeDouguEvent?.Invoke(position);
+        GenerateDouguSphereMiniCubeEvent?.Invoke(position);
     }
 
     public event Action<Vector3Int> BoomEvent;
@@ -154,9 +154,9 @@ public class EventManager
     public Func<Vector2Int , int> IsEmpty;
 
     public event Action<Type, Vector3,int> GenerateDouguSphereEvent;
-    public void GenerateDouguSphere(Type type, Vector3 posY0, int colorId)
+    public void GenerateDouguSphere(Type type, Vector3 pos, int colorId)
     {
-        GenerateDouguSphereEvent?.Invoke(type, posY0, colorId);
+        GenerateDouguSphereEvent?.Invoke(type, pos, colorId);
     }
     public event Action<Mate,Vector3,float> StartTrapEvent;
     public void StartTrap(Mate mate, Vector3 position, float timer)
