@@ -18,15 +18,31 @@ public class UIMainMenu : Singleton<UIMainMenu>
         DuelButton.OnHighlight += () => duelAnimator.SetTrigger("Highlighted");
         DuelButton.OnClick += () => {
             EventManager.Instance.ExitState(0);
-            Destroy(gameObject);
+            // Destroy(gameObject);
         };
         DuelButton.OnExit += () => duelAnimator.SetTrigger("Normal");
 
-        ExitButton.OnClick += () => exitAnimator.SetTrigger("Pressed");
+        ExitButton.OnClick += () => {exitAnimator.SetTrigger("Pressed") ;Application.Quit();Debug.Log("Quit");};
         ExitButton.OnHighlight += () => exitAnimator.SetTrigger("Highlighted");
         ExitButton.OnExit += () => {
-            Application.Quit();
+            // Application.Quit();
             exitAnimator.SetTrigger("Normal"); 
         };
+
+        gameObject.SetActive(false);
+        EventManager.Instance.ShowMainMenuEvent += Show;
+    }
+
+    public void Show()
+    {
+        // Debug.Log("show");
+        gameObject.SetActive(true);
+        EventManager.Instance.ExitStateEvent += (x) => Close();
+    }
+    public void Close()
+    {
+        // Debug.Log("Close");
+        gameObject.SetActive(false);
+        EventManager.Instance.ExitStateEvent -= (x) => Close();
     }
 }

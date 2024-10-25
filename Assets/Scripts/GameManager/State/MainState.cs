@@ -9,6 +9,7 @@ public class MainState : BaseState
         Debug.Log("MainState Enter");
         base.Enter();
         EventManager.Instance.ExitStateEvent += Exit;
+        EventManager.Instance.ShowMainMenu();
     }
 
     public override void Update()

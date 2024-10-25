@@ -26,7 +26,7 @@ public class UIInGame : Singleton<UIInGame>
             CloseAll();
             NamingPanel.SetActive(true); 
         });
-        RejectSave.onClick.AddListener(ReturnMainMenu);
+        // RejectSave.onClick.AddListener(ReturnMainMenu);
 
         EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);

@@ -30,7 +30,7 @@ public class NewMaterial : MonoBehaviour
         //     return;
         // }
         //���ɲ���ʵ��
-        Debug.Log("NewMaterial Awake");
+        // Debug.Log("NewMaterial Awake");
         Material material = Instantiate(Material);
         //��ֵ��meshRenderer
         Material = material;
