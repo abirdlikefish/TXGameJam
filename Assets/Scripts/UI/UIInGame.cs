@@ -38,18 +38,31 @@ public class UIInGame : Singleton<UIInGame>
         //��Ϊ��Init�а�����Ϸ��Mate
         //���Ա������˳��ؿ���ʱ��ʹ��Destroy
         //���½���ؿ�ʱ�����´���UIInGame���Ӷ����°�Mate
-        EventManager.Instance.ExitLevelEvent += (_) => Destroy(gameObject);
+        EventManager.Instance.EnterLevelEvent += (x) => gameObject.SetActive(true);
+        EventManager.Instance.EnterLevelEvent += (x) => SetToggle();
+        EventManager.Instance.ExitLevelEvent += (_) => gameObject.SetActive(false);
+        EventManager.Instance.ExitLevelEvent +=(x) => gameObject.SetActive(false);
         EventManager.Instance.ExitTinyLevelEvent += () => ShowMixPanel(); 
         EventManager.Instance.refreshUIEvent += (mate) => RefreshUI(mate);
         EventManager.Instance.winningEvent += (mate) => ShowWinPanel(mate);
     }
+    void SetToggle()
+    {
+        foreach (var it in mixPanel.transform.GetComponentsInChildren<Toggle>())
+        {
+            it.isOn = false;
+            it.enabled = true;
+        }
+    }
     void ShowMixPanel()
     {
         mixPanel.SetActive(true);
+        myPanel.SetActive(false);
     }
     void HideMixPanel()
     {
         mixPanel.SetActive(false);
+        myPanel.SetActive(true);
     }
 
     public List<UIMateProperty> uIMateProperties = new List<UIMateProperty>();
@@ -72,6 +85,7 @@ public class UIInGame : Singleton<UIInGame>
     public Button ConfirmNamingButton;
 
     public GameObject mixPanel;
+    public GameObject myPanel;
     public void RefreshUI(Mate mate)
     {
         for(int i=0;i<uIMateProperties.Count;i++)

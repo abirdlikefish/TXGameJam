@@ -38,8 +38,8 @@ public class PlayState_1 : BaseState
             if(Time.time - lastTime > maxCD)
             {
                 lastTime = Time.time;
-                // EventManager.Instance.GenerateDouguSphere();
-                Debug.Log("GenerateDouguSphere");
+                EventManager.Instance.GenerateRandomDouguSphere();
+                // Debug.Log("GenerateDouguSphere");
             }
         }
     }
