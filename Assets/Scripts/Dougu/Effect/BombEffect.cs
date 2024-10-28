@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class BombEffect : Effect
 {
+    int goldFingerFrameTimer;
+    int goldFingerFrameTime = 2;
+
     
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        goldFingerFrameTimer = 0;
+    }
+    public override void Update()
+    {
+        base.Update();
+        goldFingerFrameTimer += 1;
+    }
     public override void OnTriggerStay(Collider other)
     {
         base.OnTriggerStay(other);
-        if (other.gameObject.GetComponent<BombBlock>())
-            other.gameObject.GetComponent<BombBlock>().Explode();
+        if (DeliConfig.Instance.goldFinger || goldFingerFrameTimer < goldFingerFrameTime)
+        {
+            if (other.gameObject.GetComponent<BombBlock>())
+                other.gameObject.GetComponent<BombBlock>().Explode();
+        }
+            
     }
     public override void DyeUnderCubeColor()
     {

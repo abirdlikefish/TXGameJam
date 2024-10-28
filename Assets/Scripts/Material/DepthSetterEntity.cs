@@ -16,7 +16,7 @@ public class DepthSetterEntity : MonoBehaviour
             && !GetComponent<HammerEffect>()
             )
         {
-            Debug.Log($"destroy {ThisCenter} {name} pass{isPassable} mt{isEmpty}");
+            //Debug.Log($"destroy {ThisCenter} {name} pass{isPassable} mt{isEmpty}");
             Destroy(gameObject);
         }
         int h1 = GetLeftCubeD(ThisCenter);

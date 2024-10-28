@@ -36,7 +36,7 @@ public class CubeGetter : MonoBehaviour
     }
     public static BaseCube GetCubeUpperFloor(Vector3 dirInWorld, Vector3 thisCenter)
     {
-        Debug.Log(nameof(GetCubeUpperFloor) + " " + dirInWorld + " " + thisCenter);
+        //Debug.Log(nameof(GetCubeUpperFloor) + " " + dirInWorld + " " + thisCenter);
         bool isUp = dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, -1);
         bool isDown = dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, 1);
         bool isX = dirInWorld.x != 0;

@@ -13,6 +13,7 @@ public class DeliConfig : Singleton<DeliConfig>
     public float dougeSphereInsCD = 7f;
     public static bool tooruTest = true;
 
+    public bool goldFinger = true;
 
     public SerializableDictionary<string, Sprite> class_sprite;
     public SerializableDictionary<int, Color> id_color;

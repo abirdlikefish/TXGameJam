@@ -10,7 +10,7 @@ public class Effect : MonoBehaviour
     [HideInInspector]
     public float existTimer = 0f;
     public Vector3Int CurCenter => new (Mathf.RoundToInt(transform.position.x), 0, Mathf.RoundToInt(transform.position.z));
-    private void Update()
+    public virtual void Update()
     {
         existTimer += Time.deltaTime;
         if (existTimer >= EffectTime)
@@ -33,14 +33,14 @@ public class Effect : MonoBehaviour
         if (other.gameObject.GetComponent<DouguSphere>())
             Destroy(other.gameObject);
     }
-    public void OnEnable()
+    public virtual void OnEnable()
     {
         douguBase.busy.Add(gameObject);
         DouguManager.Instance.AddSth(gameObject);
         DyeUnderCubeColor();
     }
 
-    public void OnDisable()
+    public virtual void OnDisable()
     {
         douguBase.busy.Remove(gameObject);
         DouguManager.Instance.RemoveSth(gameObject);

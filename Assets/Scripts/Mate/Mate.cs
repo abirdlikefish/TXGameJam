@@ -66,7 +66,14 @@ public class Mate : Entity
             }
         }
     }
-    
+    public void RemoveDougu(Dougu dougu)
+    {
+        onHeadDougu.Remove(dougu);
+        if(onHeadDougu.Count == 0)
+        {
+            ResetDougu();
+        }
+    }
     public void ResetDougu()
     {
         AddDougu(DouguManager.InsDougu(typeof(DouguBomb),0));
@@ -81,10 +88,6 @@ public class Mate : Entity
     }
     public int OnUseDougu()
     {
-        if (onHeadDougu.Count == 0)
-        {
-            ResetDougu();
-        }
         return onHeadDougu[0].OnUse();
     }
 }

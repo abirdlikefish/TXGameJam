@@ -12,7 +12,9 @@ public class DouguBomb : Dougu
         base.OnUse();
         GameObject go = MyInsBlockOrSphere(block.gameObject, user.CurCenter);
         if (go == null)
+        {
             return 0;
+        }
         go.SetActive(true);
         OnUseEnd();
         return 0;

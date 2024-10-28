@@ -34,12 +34,13 @@ public abstract class Dougu : MonoBehaviour
             effect.GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
         }
     }
-    public virtual int OnUse() { SetColor(); remainUseCount--;return 1; }
+    public virtual int OnUse() { SetColor();return 1; }
     public virtual void OnUseEnd()
     {
+        remainUseCount--;
         if(remainUseCount <= 0)
         {
-            user.ResetDougu();
+            user.RemoveDougu(this);
         }
     }
     public List<GameObject> busy = new();

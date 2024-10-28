@@ -13,8 +13,8 @@ public class DouguManager : Singleton<DouguManager>
     public static Transform entityP;
     void ClearChild(Transform p)
     {
-        for (int i = 0; i < p.transform.childCount; i++)
-            Destroy(transform.GetChild(i).gameObject);
+        for (int i = 0; i < p.childCount; i++)
+            Destroy(p.GetChild(i).gameObject);
     }
     static List<Dougu> prefabDougus;
     static DouguSphere prefabDouguSphere;
@@ -25,6 +25,9 @@ public class DouguManager : Singleton<DouguManager>
     //BY ²ß»®
     public List<int> douguPossibility;
     int TotalPossibility => douguPossibility.Sum();
+
+    
+
     public override void Init()
     {
         entityP = transform.Find("EntityPool");
@@ -94,7 +97,7 @@ public class DouguManager : Singleton<DouguManager>
     }
     void GenerateDouguSphere(Type type, Vector3 pos,int cId)
     {
-        Debug.Log($"{type} + {pos} + cid + {cId}");
+        //Debug.Log($"{type} + {pos} + cid + {cId}");
         GameObject go = Dougu.MyInsBlockOrSphere(prefabDouguSphere.gameObject, pos);
         if (go == null)
             return;
