@@ -31,7 +31,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         EventManager.Instance.ShowInputNameUIEvent += OnShowInputLoad;
         EventManager.Instance.EnterTinyLevelEvent += EnterTinyLevel;
         EventManager.Instance.ExitLevelEvent += ExitTinyLevel;
-
+        EventManager.Instance.StartTrapEvent += OnOneDead;
     }
     public void OnOneDead(Mate deadMate)
     {

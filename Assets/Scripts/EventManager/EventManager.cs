@@ -163,10 +163,10 @@ public class EventManager
     }
 
     //TODO 困住3s后结束本局
-    public event Action<Mate, Vector3, float> StartTrapEvent;
-    public void StartTrap(Mate mate, Vector3 position, float timer)
+    public event Action<Mate> StartTrapEvent;
+    public void StartTrap(Mate mate)
     {
-        StartTrapEvent?.Invoke(mate, position, timer);
+        StartTrapEvent?.Invoke(mate);
     }
 
     public event Action<Mate> refreshUIEvent;

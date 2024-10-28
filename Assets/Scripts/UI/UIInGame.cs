@@ -52,6 +52,7 @@ public class UIInGame : Singleton<UIInGame>
         {
             it.isOn = false;
             it.enabled = true;
+            it.interactable = true;
         }
     }
     void ShowMixPanel()
@@ -144,13 +145,6 @@ public class UIInGame : Singleton<UIInGame>
         MapSavingPanel.SetActive(true);
     }
 
-    //private void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.V))
-    //    {
-    //        EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
-    //    }
-    //}
 
     public void ReturnMainMenu()
     {

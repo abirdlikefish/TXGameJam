@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f1aed4f0328364bbc14fe0d23c79ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistanceToCenterWhenBlocked: 0.4
+  maxDistanceToCenterWhenBlocked: 0.3
   moveSpeed: 3
   takeDamageInterval: 3
   douguUseInterval: 0.5
   dougeSphereInsCD: 7
+  goldFinger: 0
   class_sprite:
     list:
     - Key: DouguBomb

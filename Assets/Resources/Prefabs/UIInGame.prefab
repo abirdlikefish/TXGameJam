@@ -3287,8 +3287,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4545,23 +4557,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882306868908128952, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6361275959316288208, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7230673201621676725, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_LocalScale.z

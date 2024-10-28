@@ -12,6 +12,11 @@ public class DepthSetterMate : MonoBehaviour
    
 
     float trapTimer = 0;
+    bool trapped;
+    private void OnEnable()
+    {
+        trapped = false;
+    }
     void Update()
     {
         int h1 = GetLeftCubeD(ThisCenter);
@@ -41,17 +46,17 @@ public class DepthSetterMate : MonoBehaviour
         else if(leftType == 2 && rightType == 1)
         {
             trapTimer += Time.deltaTime;
-            EventManager.Instance.StartTrap(GetComponent<Mate>(),transform.position, trapTimer);
             d3 = 2000;
+            if (trapTimer >= 3f && !trapped)
+            {
+                trapped = true;
+                EventManager.Instance.StartTrap(GetComponent<Mate>());
+            }
         }
         else
         {
             trapTimer = 0f;
-        }
-
-        if(trapTimer >= 3f)
-        {
-            EventManager.Instance.ExitTinyLevel();
+            trapped = false;
         }
         GetComponent<NewMaterial>().Material.renderQueue = d3;
         
