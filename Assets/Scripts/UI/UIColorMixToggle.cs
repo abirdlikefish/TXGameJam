@@ -14,6 +14,7 @@ public class UIColorMixToggle : MonoBehaviour
         toggle.onValueChanged.AddListener(delegate(bool b)
         {
             UIInGame.Instance.mixPanel.SetActive(false);
+            UIInGame.Instance.blockMixPanel.SetActive(true);
             toggle.interactable = false;
             EventManager.Instance.AddNewColorReaction(mixColorId, transform.GetSiblingIndex());
         });

@@ -272,7 +272,7 @@ MonoBehaviour:
   mapName: {fileID: 4470305627438781111}
   ConfirmNamingButton: {fileID: 1133032793494214715}
   mixPanel: {fileID: 5221717352648029734}
-  myPanel: {fileID: 5780000824029371235}
+  blockMixPanel: {fileID: 5780000824029371235}
 --- !u!1 &2189033512222036752
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +839,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 6704597589756778671}
         m_TargetAssemblyTypeName: UIActive, Assembly-CSharp
-        m_MethodName: AAA
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1382,7 +1382,7 @@ GameObject:
   - component: {fileID: 4982322687925223991}
   - component: {fileID: 6704597589756778671}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: blockMixPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3204,7 +3204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5776835625037436773, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5882306868908128952, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_Pivot.x
@@ -4449,7 +4449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5776835625037436773, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5882306868908128952, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_Pivot.x
@@ -4590,6 +4590,26 @@ PrefabInstance:
     - target: {fileID: 7230673201621676725, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604148147351369826, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604148147351369826, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604148147351369826, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604148147351369826, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604148147351369826, guid: e8a780beef28f354197e29646cbb85b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

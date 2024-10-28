@@ -43,7 +43,7 @@ public class MateManager : Singleton<MateManager>,IJsonIO<MateDataList>
         Mate mate = curMates.Find(it => it != deadMate);
         mate.mateData.winCount++;
         SaveJson();
-        EventManager.Instance.Winning (mate);
+        EventManager.Instance.Winning(mate);
     }
     void ExitTinyLevel(int x)
     {

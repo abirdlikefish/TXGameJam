@@ -18,24 +18,24 @@ public class MapSaver : Singleton<MapSaver>
             cubes.Remove(pos);
         };
     }
-    void Update()
-    {
-        if (load || Input.GetKeyDown(KeyCode.R))
-        {
-            load = false;
-            for (int i = cubes.Count - 1; i >= 0; i--)
-            {
-                EventManager.Instance.RemoveCube(cubes[i]);
-            }
-            cubes.Clear();
-            Debug.Log("a" + cubes.Count);
-            for (int i = temp_cubes.Count - 1; i >= 0; i--)
-            {
-                EventManager.Instance.AddCube(temp_cubes[i]);
-            }
-            Debug.Log("b" + cubes.Count);
-        }
+    //void Update()
+    //{
+    //    if (load || Input.GetKeyDown(KeyCode.R))
+    //    {
+    //        load = false;
+    //        for (int i = cubes.Count - 1; i >= 0; i--)
+    //        {
+    //            EventManager.Instance.RemoveCube(cubes[i]);
+    //        }
+    //        cubes.Clear();
+    //        Debug.Log("a" + cubes.Count);
+    //        for (int i = temp_cubes.Count - 1; i >= 0; i--)
+    //        {
+    //            EventManager.Instance.AddCube(temp_cubes[i]);
+    //        }
+    //        Debug.Log("b" + cubes.Count);
+    //    }
 
 
-    }
+    //}
 }

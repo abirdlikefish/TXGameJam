@@ -57,12 +57,12 @@ public class UIInGame : Singleton<UIInGame>
     void ShowMixPanel()
     {
         mixPanel.SetActive(true);
-        myPanel.SetActive(false);
+        blockMixPanel.SetActive(false);
     }
     void HideMixPanel()
     {
         mixPanel.SetActive(false);
-        myPanel.SetActive(true);
+        blockMixPanel.SetActive(true);
     }
 
     public List<UIMateProperty> uIMateProperties = new List<UIMateProperty>();
@@ -85,7 +85,7 @@ public class UIInGame : Singleton<UIInGame>
     public Button ConfirmNamingButton;
 
     public GameObject mixPanel;
-    public GameObject myPanel;
+    public GameObject blockMixPanel;
     public void RefreshUI(Mate mate)
     {
         for(int i=0;i<uIMateProperties.Count;i++)
@@ -144,13 +144,13 @@ public class UIInGame : Singleton<UIInGame>
         MapSavingPanel.SetActive(true);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.V))
+    //    {
+    //        EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
+    //    }
+    //}
 
     public void ReturnMainMenu()
     {
