@@ -146,10 +146,10 @@ public class UIInGame : Singleton<UIInGame>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
-        }
+        // if(Input.GetKeyDown(KeyCode.V))
+        // {
+        //     EventManager.Instance.Winning(MateManager.Instance.curMates[0]);    
+        // }
     }
 
     public void ReturnMainMenu()
@@ -161,6 +161,7 @@ public class UIInGame : Singleton<UIInGame>
 
     public void ContinueGame()
     {
+        ContinueGamePanel.SetActive(false);
         EventManager.Instance.ExitTinyLevel();
         //TODO ������Ϸ
         // Debug.Log("������Ϸ��δʵ��");
