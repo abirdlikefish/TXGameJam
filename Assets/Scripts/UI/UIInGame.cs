@@ -161,6 +161,7 @@ public class UIInGame : Singleton<UIInGame>
 
     public void ContinueGame()
     {
+        ContinueGamePanel.SetActive(false);
         EventManager.Instance.ExitTinyLevel();
         //TODO ������Ϸ
         // Debug.Log("������Ϸ��δʵ��");

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         DouguManager.Instance.Init();
         UIMateEditor.Instance.Init();
         UIInGame.Instance.Init();   
-        MapSaver.Instance.Init();
+        // MapSaver.Instance.Init();
         UIMainMenu.Instance.Init();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayState_1 : BaseState
 {
     int levelIndex;
-    
+    public bool isPlaying = false ;
     // public override void Enter()
     public void OtherEnter(int levelIndex)
     {
@@ -17,8 +17,11 @@ public class PlayState_1 : BaseState
         // EventManager.Instance.EnterLevel(1);
         isFirstUpdate = true;
         gameStateMachine.ChangeState(gameStateMachine.playState_1);
+
     }
     bool isFirstUpdate;
+    float maxCD = 7;
+    float lastTime;
     public override void Update()
     {
         if(isFirstUpdate)
@@ -29,18 +32,30 @@ public class PlayState_1 : BaseState
         }
         // EventManager.Instance.EnterTinyLevel(1);
         base.Update();
+
+        if(isPlaying)
+        {
+            if(Time.time - lastTime > maxCD)
+            {
+                lastTime = Time.time;
+                EventManager.Instance.GenerateRandomDouguSphere();
+                // Debug.Log("GenerateDouguSphere");
+            }
+        }
     }
 
     public override void Exit(int num)
     {
-        Debug.Log("PlayState Exit");
+        isPlaying = false;
         base.Exit(num);
         if(num == 0)
         {
+            // CameraManager.Instance.ChangeCameraDirection(levelIndex);
             EventManager.Instance.EnterTinyLevel_bef(levelIndex);
         }
         else if(num == 1)
         {
+            Debug.Log("PlayState Exit");
             EventManager.Instance.ExitStateEvent -= Exit;
             gameStateMachine.ChangeState(gameStateMachine.mainState);
         }
