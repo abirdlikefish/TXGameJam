@@ -10,25 +10,29 @@ using UnityEngine.UIElements;
 public class DouguManager : Singleton<DouguManager>
 {
     string rPath = "Prefabs/Dougu";
-    public Transform entityP;
-    public List<Dougu> prefabDougus;
-    [HideInInspector]
-    public DouguSphere prefabDouguSphere;
+    public static Transform entityP;
+    void ClearChild(Transform p)
+    {
+        for (int i = 0; i < p.transform.childCount; i++)
+            Destroy(transform.GetChild(i).gameObject);
+    }
+    static List<Dougu> prefabDougus;
+    static DouguSphere prefabDouguSphere;
     [SerializeField]
     List<GameObject> sths = new();
-    public List<Vector3> emptys = new();
+    [SerializeField]
+    List<Vector3> emptys = new();
+    //BY 策划
     public List<int> douguPossibility;
     int TotalPossibility => douguPossibility.Sum();
-    //[SerializeField]
-    //List<Effect> effects;
-
     public override void Init()
     {
+        entityP = transform.Find("EntityPool");
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
+        prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
         EventManager.Instance.GenerateDouguSphereEvent += GenerateDouguSphere;
         EventManager.Instance.GenerateDouguSphereMiniCubeEvent += GenerateDouguSphereMiniCube;
         EventManager.Instance.BoomEvent += GenerateInstantBoom;
-        prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
         EventManager.Instance.EnterLevelEvent += EnterLevel;
     }
 
@@ -40,8 +44,6 @@ public class DouguManager : Singleton<DouguManager>
         sths = new();
         //effects = new();
     }
-
-
     public void AddSth(GameObject go)
     {
         sths.Add(go);
@@ -50,61 +52,33 @@ public class DouguManager : Singleton<DouguManager>
     {
         sths.Remove(go);
     }
-
-    void ClearChild(Transform p)
-    {
-        for (int i = 0; i < p.transform.childCount; i++)
-            Destroy(transform.GetChild(i).gameObject);
-    }
     public static Vector3Int ToY0(Vector3 pos)
     {
         return Vector3Int.RoundToInt(new Vector3(pos.x - pos.y, 0, pos.z - pos.y));
     }
-    public bool Has(Vector3 pos)
+    public bool HasAny(Vector3 pos)
     {
         return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos))) != null;
     }
-
-    public bool Has<T>(Vector3 pos) where T : MonoBehaviour
+    public bool HasEither<T1,T2>(Vector3 pos) where T1 : MonoBehaviour where T2 : MonoBehaviour
     {
         Vector3Int posY0 = ToY0(pos);
-        return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos)) && (it.GetComponent<T>() != null)) != null;
+        return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos)) && (it.GetComponent<T1>() != null || it.GetComponent<T2>() != null)) != null;
     }
-    public bool HasEither<T1,T2>(Vector3 posY0) where T1 : MonoBehaviour where T2 : MonoBehaviour
-    {
-        return Has<T1>(posY0) || Has<T2>(posY0);
-    }
-    public bool HasEither<T1, T2, T3>(Vector3 posY0) where T1 : MonoBehaviour where T2 : MonoBehaviour where T3 : MonoBehaviour
-    {
-        return Has<T1>(posY0) || Has<T2>(posY0) || Has<T3>(posY0);
-    }
-    //public bool HasEffect(Vector3 posY0, Type type)
-    //{
-    //    //TOTO 特效重叠
-    //    //return effects.Find(it =>it.transform.position == posY0 && it.GetType() == type) != null;
-    //}
-    public Dougu GetDougu(Type type,int cId)
+    public static Dougu GetDougu(Type type,int cId)
     {
         Dougu d = GetDougu(type);
         d.SetCID(cId);
         return d;
     }
-    public Dougu GetDougu(int dId)
+    public static Dougu InsDougu(Type type,int cId)
     {
-        return prefabDougus[dId];
+        Dougu d = Instantiate(GetDougu(type),entityP);
+        d.SetCID(cId);
+        return d;
     }
-    //public T GetDougu<T>() where T : Dougu
-    //{
-    //    return prefabDougus.Find(d => d is T) as T;
-    //}
-    public Dougu GetDougu(Type type)
+    static Dougu GetDougu(Type type)
     {
-        if (!typeof(Dougu).IsAssignableFrom(type))
-        {
-            Debug.LogError("Type must be derived from Dougu.");
-            return null;
-        }
-
         foreach (var dougu in prefabDougus)
         {
             if (dougu.GetType() == type)
@@ -114,29 +88,21 @@ public class DouguManager : Singleton<DouguManager>
         }
         return null;
     }
-    public void GenerateDouguSphere(Type type, Vector3 pos, int colorId)
-    {
-        GenerateDouguSphere(GetDougu(type), pos, colorId);
-    }
-    public void GenerateDouguSphere(Dougu douguPrefab, Vector3 pos)
-    {
-        GenerateDouguSphere(douguPrefab, pos,IntToColorId(UnityEngine.Random.Range(0, 4)));
-    }
-    public void GenerateDouguSphere(Dougu douguPrefab, Vector3 pos,int cId)
-    {
-        Debug.Log("Try GenerateDouguSphere" + " pos ");
-        GameObject go = Dougu.MyInsSphere(prefabDouguSphere.gameObject, pos);
-        if (go == null)
-            return;
-        Debug.Log(nameof(GenerateDouguSphere) +" " +pos);
-        DouguSphere ds = go.GetComponent<DouguSphere>();
-        douguPrefab.SetCID(cId);
-        ds.Init(douguPrefab, cId);
-    }
-    public void GenerateDouguSphereMiniCube(Vector3Int pos)
+    void GenerateDouguSphereMiniCube(Vector3Int pos)
     {
         GenerateDouguSphere(typeof(DouguMiniCube), pos, 0);
     }
+    void GenerateDouguSphere(Type type, Vector3 pos,int cId)
+    {
+        Debug.Log($"{type} + {pos} + cid + {cId}");
+        GameObject go = Dougu.MyInsBlockOrSphere(prefabDouguSphere.gameObject, pos);
+        if (go == null)
+            return;
+        //Debug.Log(nameof(GenerateDouguSphere) +" " +pos);
+        DouguSphere ds = go.GetComponent<DouguSphere>();
+        ds.SetDougu(InsDougu(type,cId));
+    }
+    
     int IntToColorId(int ran)
     {
         if (ran == 0)
@@ -147,18 +113,18 @@ public class DouguManager : Singleton<DouguManager>
             return 2;
         if (ran == 3)
             return 4;
-        Debug.LogError(IntToDougu(ran) + " not found");
+        Debug.LogError(nameof(IntToColorId) + " not found");
         return 0;
     }
-    Dougu IntToDougu(int ran)
+    Type RanToDouguType(int ran)
     {
         int curSum = 0;
-        for(int i=0;i<douguPossibility.Count;i++)
+        for (int i = 0; i < douguPossibility.Count; i++)
         {
             int it = douguPossibility[i];
             if (ran < curSum + it)
             {
-                return GetDougu(i);
+                return prefabDougus[i].GetType();
             }
             curSum += it;
         }
@@ -175,17 +141,17 @@ public class DouguManager : Singleton<DouguManager>
             for (int j = d1-d2; j <= d1+d2; j++)
             {
                 Vector3 pos = new(i, 0, j);
-                if (Has(pos))
+                if (HasAny(pos))
                     continue;
                 if (CubeGetter.GetCubeCanTooru(pos) == null)
                     continue;
                 emptys.Add(pos);
             }
         }
-        if (emptys.Count == 0)
+        if (emptys.Count <= 3)
             return;
         int emptyId = UnityEngine.Random.Range(0, emptys.Count);
-        GenerateDouguSphere(GetDougu(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId]);
+        GenerateDouguSphere(RanToDouguType(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId], IntToColorId(UnityEngine.Random.Range(0, 4)));
         emptys.RemoveAt(emptyId);
     }
 

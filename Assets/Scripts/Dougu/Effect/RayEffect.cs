@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class RayEffect : Effect
 {
+    public override void OnTriggerStay(Collider other)
+    {
+        base.OnTriggerStay(other);
+        if (other.gameObject.GetComponent<BombBlock>())
+            other.gameObject.GetComponent<BombBlock>().Explode();
+    }
     public override void DyeUnderCubeColor()
     {
         BaseCube cube = CubeGetter.GetCubeCanTooru(CurCenter);

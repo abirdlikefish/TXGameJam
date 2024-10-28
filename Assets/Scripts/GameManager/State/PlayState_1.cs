@@ -20,7 +20,6 @@ public class PlayState_1 : BaseState
 
     }
     bool isFirstUpdate;
-    float maxCD = 7;
     float lastTime;
     public override void Update()
     {
@@ -35,7 +34,7 @@ public class PlayState_1 : BaseState
 
         if(isPlaying)
         {
-            if(Time.time - lastTime > maxCD)
+            if(Time.time - lastTime > DeliConfig.Instance.dougeSphereInsCD)
             {
                 lastTime = Time.time;
                 EventManager.Instance.GenerateRandomDouguSphere();

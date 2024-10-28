@@ -161,7 +161,9 @@ public class EventManager
     {
         GenerateDouguSphereEvent?.Invoke(type, pos, colorId);
     }
-    public event Action<Mate,Vector3,float> StartTrapEvent;
+
+    //TODO 困住3s后结束本局
+    public event Action<Mate, Vector3, float> StartTrapEvent;
     public void StartTrap(Mate mate, Vector3 position, float timer)
     {
         StartTrapEvent?.Invoke(mate, position, timer);

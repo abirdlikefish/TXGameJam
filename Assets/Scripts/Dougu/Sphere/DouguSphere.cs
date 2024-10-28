@@ -5,16 +5,14 @@ using UnityEngine;
 public class DouguSphere : MonoBehaviour
 {
     public Dougu douguBase;
-    public int color;
     public SpriteRenderer spriteRenderer;
 
     public Vector3 CurCenter => new Vector3(Mathf.RoundToInt(transform.position.x),0, Mathf.RoundToInt(transform.position.z));
-    public void Init(Dougu db,int cl)
+    public void SetDougu(Dougu db)
     {
         douguBase = db;
-        color = cl;
         spriteRenderer.sprite = DeliConfig.Instance.class_sprite[douguBase.GetType().ToString()];
-        spriteRenderer.material.color = DeliConfig.Instance.id_color[douguBase.cID];
+        spriteRenderer.material.color = DeliConfig.Instance.id_color[db.cID];
     }
 
     private void OnEnable()

@@ -9,8 +9,8 @@ public class DeliConfig : Singleton<DeliConfig>
     public float moveSpeed;
     public float takeDamageInterval = 1f;
 
-    public float douguInterval = 1f;
-
+    public float douguUseInterval = 1f;
+    public float dougeSphereInsCD = 7f;
     public static bool tooruTest = true;
 
 

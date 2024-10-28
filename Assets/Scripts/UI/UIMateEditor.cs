@@ -26,26 +26,26 @@ public class UIMateEditor : Singleton<UIMateEditor>
     {
         panelEditMate.SetActive(true);
         Debug.Log("ShowAllMates");
-        // Debug.Log(MateManager.Instance.mateDatas.Count);
         for (int i = 0; i < 2; i++)
         {
-            ShowMate(MateManager.Instance.mateDatas[i], uiMates[i]);
+            uiMates[i].SetMateId(i);
+            ShowMate(MateManager.Instance.mateDatas[i], i);
         }
     }
-    public void ShowMate(MateData mateData, UIMateEditInfo uiMateEdit)
+    public void ShowMate(MateData mateData,int ui_mid)
     {
-        uiMateEdit.mateName.text = mateData.name;
-        uiMateEdit.mateWinCount.text = mateData.winCount.ToString();
-        ChangeColor(mateData, uiMateEdit);
+        uiMates[ui_mid].mateName.text = mateData.name;
+        uiMates[ui_mid].mateWinCount.text = mateData.winCount.ToString();
+        ChangeColor(mateData, ui_mid);
     }
-    public void ChangeColor(MateData mateData, UIMateEditInfo uiMate)
+    public void ChangeColor(MateData mateData, int ui_mid)
     {
-        uiMate.mateBase.color = SetAlpha(mateData.color, 50 / 255f);
-        uiMate.mateName.color = mateData.color;
-        uiMate.mateNameInputHolder.color = mateData.color;
-        uiMate.mateNameInput.color = mateData.color;
-        uiMate.mateWinCountC.color = mateData.color;
-        uiMate.mateWinCount.color = mateData.color;
+        uiMates[ui_mid].mateBase.color = SetAlpha(mateData.color, 50 / 255f);
+        uiMates[ui_mid].mateName.color = mateData.color;
+        uiMates[ui_mid].mateNameInputHolder.color = mateData.color;
+        uiMates[ui_mid].mateNameInput.color = mateData.color;
+        uiMates[ui_mid].mateWinCountC.color = mateData.color;
+        uiMates[ui_mid].mateWinCount.color = mateData.color;
     }
     Color SetAlpha(Color c, float a)
     {

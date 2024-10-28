@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIMateEditInfo:MonoBehaviour
 {
+    int mateId;
     public Image mateBase;
     public Text mateName;
     public Text mateNameInputHolder;
@@ -20,18 +21,23 @@ public class UIMateEditInfo:MonoBehaviour
 
     string editName = null;
     Color editColor = Color.clear;
+    public void SetMateId(int id)
+    {
+        mateId = id;   
+    }
     public void OnEditChangeColor()
     {
         editColor = RandomColor();
         MateData mateData = MateManager.Instance.CreateMate(mateName.text,editColor);
-        UIMateEditor.Instance.ShowMate(mateData, this);
+        MateManager.Instance.curMates[mateId].mateData = mateData;
+        UIMateEditor.Instance.ShowMate(mateData, mateId);
     }
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
-        UIMateEditor.Instance.ShowMate(mateData, this);
-
+        MateManager.Instance.curMates[mateId].mateData = mateData;
+        UIMateEditor.Instance.ShowMate(mateData, mateId);
         mateNameBG.color = new Color(mateName.color.r, mateName.color.g, mateName.color.b,
             mateNameBG.color.a);
     }

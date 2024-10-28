@@ -30,8 +30,8 @@ public class BombBlock : Block
                     if (!Dougu.MyInsEffect(Effect, transform.position + dir * (i - 1), transform.position + dir * i))
                     {
                         Vector3 dir2 = MateInput.CameraDirInWorld(dir);
-                        Vector3 nextCenter = transform.position + dir * i;
-                        douguBase.DyeBesideCubeColor(dir2, nextCenter);
+                        Vector3 thisCenter = transform.position + dir * (i-1);
+                        douguBase.DyeBesideCubeColor(dir2, thisCenter);
                         break;
                     }
                 }

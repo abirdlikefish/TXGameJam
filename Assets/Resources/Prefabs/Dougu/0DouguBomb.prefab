@@ -383,7 +383,7 @@ MonoBehaviour:
   block: {fileID: 342450968211855346}
   blockExistTime: 2
   effect: {fileID: 5723681579617257232}
-  effectTime: 0.5
+  effectTime: 0.25
   busy: []
   crossRange: 2
 --- !u!1 &7719508861164533494

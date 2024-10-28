@@ -47,7 +47,8 @@ MonoBehaviour:
   maxDistanceToCenterWhenBlocked: 0.4
   moveSpeed: 3
   takeDamageInterval: 3
-  douguInterval: 0
+  douguUseInterval: 0.5
+  dougeSphereInsCD: 7
   class_sprite:
     list:
     - Key: DouguBomb

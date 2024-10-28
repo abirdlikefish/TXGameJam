@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   cID: 0
-  remainUseCount: 30
+  remainUseCount: 10
   damage: 1
   block: {fileID: 0}
   blockExistTime: 2
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1392fe9c7f0d2947b7dd12d5a0983fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHurtUser: 0
   douguBase: {fileID: 0}
   existTimer: 0
 --- !u!114 &2056298257607314311

@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
-  cID: 1
-  remainUseCount: 10
+  cID: 4
+  remainUseCount: 5
   damage: 3
   block: {fileID: 0}
   blockExistTime: 2

@@ -24,7 +24,7 @@ public class Mate : Entity
     {
         base.OnEnable();
         ResetDougu();
-        lastDouguTime = - DeliConfig.Instance.douguInterval;
+        lastDouguTime = - DeliConfig.Instance.douguUseInterval;
         GetComponent<NewMaterial>().Material.color = mateData.color;
         DouguManager.Instance.AddSth(gameObject);
     }
@@ -40,7 +40,7 @@ public class Mate : Entity
     }
     public void HandleInput()
     {
-        if(Time.time - lastDouguTime < DeliConfig.Instance.douguInterval)
+        if(Time.time - lastDouguTime < DeliConfig.Instance.douguUseInterval)
         {
             return;
         }
@@ -69,25 +69,15 @@ public class Mate : Entity
     
     public void ResetDougu()
     {
-        AddDouguWhite(DouguManager.Instance.GetDougu(typeof(DouguBomb)));
+        AddDougu(DouguManager.InsDougu(typeof(DouguBomb),0));
         EventManager.Instance.RefreshUI(this);
     }
     public void AddDougu(Dougu dougu)
     {
         if (onHeadDougu.Count > 0)
             onHeadDougu[0].remainUseCount = 0;
-        Dougu d = Instantiate(dougu, transform);
-        d.user = this;
-        onHeadDougu = new() { d };
-    }
-    public void AddDouguWhite(Dougu dougu)
-    {
-        if (onHeadDougu.Count > 0)
-            onHeadDougu[0].remainUseCount = 0;
-        Dougu d = Instantiate(dougu, transform);
-        d.user = this;
-        d.SetCID(0);
-        onHeadDougu = new() { d };
+        dougu.user = this;
+        onHeadDougu = new() { dougu };
     }
     public int OnUseDougu()
     {

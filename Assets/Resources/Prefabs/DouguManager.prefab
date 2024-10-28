@@ -45,9 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a08610221b9bf46a6695fb9a9ded91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityP: {fileID: 7258374577670002421}
-  prefabDougus: []
-  prefabDouguSphere: {fileID: 0}
   sths: []
   emptys: []
   douguPossibility: 01000000010000000100000001000000
