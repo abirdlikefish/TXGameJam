@@ -37,9 +37,6 @@ public class DepthSetterMate : MonoBehaviour
         if (!MateInput.CanTooru(ThisCenter,NextCenter))
             d2 = 0;
         d3 = Mathf.Max(d1, d2) + 1;
-
-        if (trapped)
-            d3 = 2000;
         GetComponent<NewMaterial>().Material.renderQueue = d3;
         
     }
@@ -50,9 +47,10 @@ public class DepthSetterMate : MonoBehaviour
         int rightType = CubeGetter.GetNodeR(curCenter);
         if (leftType == 1 && rightType == 2)
         {
-            EventManager.Instance.RemoveCube(curCenter + Vector3Int.up);
+            Debug.Log($"RemoveCube Pos{curCenter}");
+            EventManager.Instance.RemoveCube(CubeGetter.GetCubeL(curCenter).Position);
         }
-        else if (leftType == 2 && rightType == 1 || EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter)) == 3)
+        if (EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter)) == 0)
         {
             trapTimer += Time.deltaTime;
             if (trapTimer >= 3f && !trapped)

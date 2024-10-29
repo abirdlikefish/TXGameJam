@@ -7,20 +7,22 @@ using UnityEngine;
 public class Mate : Entity
 {
     public MateData mateData;
-    public MateMover MateMover => GetComponent<MateMover>();
-    public int mateId => transform.GetSiblingIndex();
+    MateMover MateMover => GetComponent<MateMover>();
+    int mateId => transform.GetSiblingIndex();
     public Vector3 CurCenter => GetComponent<MateMover>().CurCenter;
-    // public Vector3 CurCenter => MateMover.CurCenter;
     public Vector3 FlipDir => GetComponent<MateMover>().flipDir;
-
-
     public List<Dougu> onHeadDougu = new();
+    float lastDouguTime;
 
-
-
-    public float lastDouguTime;
-    
-    public override void OnEnable()
+    protected override void OnHealthSet()
+    {
+        UIInGame.Instance.RefreshUI(this);
+    }
+    protected override void OnHealthZero()
+    {
+        MateManager.Instance.OnOneDead(this);
+    }
+    protected override void OnEnable()
     {
         base.OnEnable();
         ResetDougu();
@@ -28,16 +30,16 @@ public class Mate : Entity
         GetComponent<NewMaterial>().Material.color = mateData.color;
         DouguManager.Instance.AddSth(gameObject);
     }
-    public override void OnDisable()
+    protected override void OnDisable()
     {
         DouguManager.Instance.RemoveSth(gameObject);
     }
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
         HandleInput();
     }
-    public void HandleInput()
+    void HandleInput()
     {
         if(Time.time - lastDouguTime < DeliConfig.Instance.douguUseInterval)
         {
@@ -65,6 +67,13 @@ public class Mate : Entity
             }
         }
     }
+    public void AddDougu(Dougu dougu)
+    {
+        if (onHeadDougu.Count > 0)
+            onHeadDougu[0].remainUseCount = 0;
+        dougu.user = this;
+        onHeadDougu = new() { dougu };
+    }
     public void RemoveDougu(Dougu dougu)
     {
         onHeadDougu.Remove(dougu);
@@ -73,19 +82,13 @@ public class Mate : Entity
             ResetDougu();
         }
     }
-    public void ResetDougu()
+    void ResetDougu()
     {
         AddDougu(DouguManager.InsDougu(typeof(DouguBomb),0));
         EventManager.Instance.RefreshUI(this);
     }
-    public void AddDougu(Dougu dougu)
-    {
-        if (onHeadDougu.Count > 0)
-            onHeadDougu[0].remainUseCount = 0;
-        dougu.user = this;
-        onHeadDougu = new() { dougu };
-    }
-    public int OnUseDougu()
+    
+    int OnUseDougu()
     {
         return onHeadDougu[0].OnUse();
     }

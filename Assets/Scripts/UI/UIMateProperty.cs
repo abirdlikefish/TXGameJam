@@ -25,7 +25,7 @@ public class UIMateProperty : MonoBehaviour
         mateName.text = mate.mateData.name;
 
         health.color = mate.mateData.color;
-        health.fillAmount = mate.CurHealth / mate.maxHealth;
+        health.fillAmount = mate.HealthPercent;
         winRnd.text = mate.mateData.winCount.ToString();
     }
 }

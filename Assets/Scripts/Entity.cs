@@ -5,12 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-public class Entity : MonoBehaviour
+[RequireComponent(typeof(Flash))]
+public abstract class Entity : MonoBehaviour
 {
     float lastTakeDamageTime;
-    public float maxHealth = 3f;
-    [SerializeField]
+    float maxHealth = 3f;
     float curHealth;
     public float CurHealth
     {
@@ -31,15 +30,15 @@ public class Entity : MonoBehaviour
             }
             else
                 curHealth = value;
-            UIInGame.Instance.RefreshUI(this as Mate);
+            OnHealthSet();
             if (curHealth <= 0)
                 OnHealthZero();
         }
     }
-    public virtual void OnHealthZero()
-    {
-        MateManager.Instance.OnOneDead(this as Mate);
-    }
+    public float HealthPercent => curHealth / maxHealth;
+    protected abstract void OnHealthSet();
+    protected abstract void OnHealthZero();
+
     public virtual void TakeDamage(float damage)
     {
         if (Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval)
@@ -48,14 +47,13 @@ public class Entity : MonoBehaviour
         CurHealth -= damage;
     }
 
-    public virtual void OnEnable()
+    protected virtual void OnEnable()
     {
         lastTakeDamageTime = -DeliConfig.Instance.takeDamageInterval;
         CurHealth = maxHealth;
     }
-    public virtual void OnDisable()
-    { }
-    public virtual void Update()
+    protected virtual void OnDisable() { }
+    protected virtual void Update()
     {
         GetComponent<Flash>().enabled = Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval;
     }

@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   cID: 0
-  remainUseCount: 10
+  remainUseCount: 20
   damage: 1
   block: {fileID: 0}
   blockExistTime: 2
