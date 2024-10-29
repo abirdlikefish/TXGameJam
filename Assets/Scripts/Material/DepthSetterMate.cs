@@ -19,6 +19,7 @@ public class DepthSetterMate : MonoBehaviour
     }
     void Update()
     {
+        TryTrap();
         int h1 = GetLeftCubeD(ThisCenter);
         if(h1 == int.MinValue)
         {
@@ -36,17 +37,24 @@ public class DepthSetterMate : MonoBehaviour
         if (!MateInput.CanTooru(ThisCenter,NextCenter))
             d2 = 0;
         d3 = Mathf.Max(d1, d2) + 1;
+
+        if (trapped)
+            d3 = 2000;
+        GetComponent<NewMaterial>().Material.renderQueue = d3;
+        
+    }
+    void TryTrap()
+    {
         Vector3Int curCenter = Vector3Int.RoundToInt(GetComponent<MateMover>().CurCenter);
         int leftType = CubeGetter.GetNodeL(curCenter);
         int rightType = CubeGetter.GetNodeR(curCenter);
-        if(leftType == 1 && rightType == 2)
+        if (leftType == 1 && rightType == 2)
         {
-            EventManager.Instance.RemoveCube(curCenter+Vector3Int.up);
+            EventManager.Instance.RemoveCube(curCenter + Vector3Int.up);
         }
-        else if(leftType == 2 && rightType == 1)
+        else if (leftType == 2 && rightType == 1 || EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter)) == 3)
         {
             trapTimer += Time.deltaTime;
-            d3 = 2000;
             if (trapTimer >= 3f && !trapped)
             {
                 trapped = true;
@@ -58,10 +66,7 @@ public class DepthSetterMate : MonoBehaviour
             trapTimer = 0f;
             trapped = false;
         }
-        GetComponent<NewMaterial>().Material.renderQueue = d3;
-        
     }
-
     int GetLeftCubeD(Vector3 center)
     {
         BaseCube cube = CubeGetter.GetCubeL(center);
