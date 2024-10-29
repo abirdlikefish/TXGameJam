@@ -63,21 +63,26 @@ public class DouguManager : Singleton<DouguManager>
     {
         return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos))) != null;
     }
+    public bool Has<T1>(Vector3 pos) where T1 : MonoBehaviour
+    {
+        Vector3Int posY0 = ToY0(pos);
+        return sths.Find(it => (ToY0(it.transform.position) == posY0) && (it.GetComponent<T1>() != null)) != null;
+    }
     public bool HasEither<T1,T2>(Vector3 pos) where T1 : MonoBehaviour where T2 : MonoBehaviour
     {
         Vector3Int posY0 = ToY0(pos);
-        return sths.Find(it => (ToY0(it.transform.position) == ToY0(pos)) && (it.GetComponent<T1>() != null || it.GetComponent<T2>() != null)) != null;
+        return sths.Find(it => (ToY0(it.transform.position) == posY0) && (it.GetComponent<T1>() != null || it.GetComponent<T2>() != null)) != null;
     }
     public static Dougu GetDougu(Type type,int cId)
     {
         Dougu d = GetDougu(type);
-        d.SetCID(cId);
+        d.SetColorAndBlock(cId);
         return d;
     }
     public static Dougu InsDougu(Type type,int cId)
     {
         Dougu d = Instantiate(GetDougu(type),entityP);
-        d.SetCID(cId);
+        d.SetColorAndBlock(cId);
         return d;
     }
     static Dougu GetDougu(Type type)

@@ -14,17 +14,9 @@ public abstract class Dougu : MonoBehaviour
     public Effect effect;
     public float effectTime = 0.5f;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public void SetCID(int cID)
+    public void SetColorAndBlock(int cID)
     {
         this.cID = cID;
-        
-    }
-    private void OnEnable()
-    {
-        StartCoroutine(nameof(TryDestroy));
-    }
-    void SetColor()
-    {
         if (block)
         {
             block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.Instance.id_color[cID];
@@ -34,21 +26,19 @@ public abstract class Dougu : MonoBehaviour
             effect.GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
         }
     }
-    public virtual int OnUse() { SetColor();return 1; }
-    public virtual void OnUseEnd()
+    private void OnEnable()
     {
-        remainUseCount--;
-        if(remainUseCount <= 0)
-        {
-            user.RemoveDougu(this);
-        }
+        StartCoroutine(nameof(TryDestroy));
     }
-    public List<GameObject> busy = new();
+    public virtual void OnDisable()
+    {
+        StopAllCoroutines();
+    }
     IEnumerator TryDestroy()
     {
-        while(true)
+        while (true)
         {
-            if(remainUseCount > 0)
+            if (remainUseCount > 0)
             {
                 yield return new WaitForSeconds(0.2f);
                 continue;
@@ -61,12 +51,26 @@ public abstract class Dougu : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+    //return 1 表示使用需要带CD
+    public abstract int OnUse();
+    public virtual void OnUseEnd()
+    {
+        remainUseCount--;
+        if(remainUseCount <= 0)
+        {
+            user.RemoveDougu(this);
+        }
+    }
+    
+    public List<GameObject> busy = new();
+
     public static void MyInsInstantBoom(Vector3 pos)
     {
-        GameObject go = MyIns(DouguManager.GetDougu(typeof(DouguBomb),0).gameObject, pos);
+        GameObject go = MyIns(DouguManager.GetDougu(typeof(DouguBomb), 0).gameObject, pos);
         DouguBomb db = go.GetComponent<DouguBomb>();
         db.blockExistTime = 0f;
         db.remainUseCount = 0;
+        Debug.Log(nameof(MyInsInstantBoom) + " " + pos);
         db.block.gameObject.SetActive(true);
     }
     public static GameObject MyInsBlockOrSphere(GameObject go,Vector3 pos)

@@ -6,7 +6,9 @@ public class DouguSphere : MonoBehaviour
 {
     public Dougu douguBase;
     public SpriteRenderer spriteRenderer;
-
+    float existTimer;
+    //ÎÞµÐÊ±¼ä
+    float invincibleTime = 0.2f;
     public Vector3 CurCenter => new Vector3(Mathf.RoundToInt(transform.position.x),0, Mathf.RoundToInt(transform.position.z));
     public void SetDougu(Dougu db)
     {
@@ -17,6 +19,7 @@ public class DouguSphere : MonoBehaviour
 
     private void OnEnable()
     {
+        existTimer = 0f;
         DouguManager.Instance.AddSth(gameObject);
     }
     private void OnDisable()
@@ -31,6 +34,17 @@ public class DouguSphere : MonoBehaviour
             EventManager.Instance.RefreshUI(mate);
             Destroy(gameObject);
         }
+    }
+    private void Update()
+    {
+        existTimer += Time.deltaTime;
+    }
+    public void TryDestroy()
+    {
+        if (existTimer <= invincibleTime)
+            return;
+        Destroy(douguBase.gameObject);
+        Destroy(gameObject);
     }
 }
 

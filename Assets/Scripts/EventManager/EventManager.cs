@@ -62,10 +62,10 @@ public class EventManager
             case 3:
                 ColorReactionEvent_1?.Invoke(position);
                 break;
-            case 6:
+            case 5:
                 ColorReactionEvent_2?.Invoke(position);
                 break;
-            case 7:
+            case 6:
                 ColorReactionEvent_4?.Invoke(position);
                 break;
         }

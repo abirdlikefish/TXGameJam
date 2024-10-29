@@ -48,10 +48,10 @@ public class ColorReactionManager
             case 3:
                 EventManager.Instance.ColorReactionEvent_1 += ColorReactionList[reactionID];
                 break;
-            case 6:
+            case 5:
                 EventManager.Instance.ColorReactionEvent_2 += ColorReactionList[reactionID];
                 break;
-            case 7:
+            case 6:
                 EventManager.Instance.ColorReactionEvent_4 += ColorReactionList[reactionID];
                 break;
         }

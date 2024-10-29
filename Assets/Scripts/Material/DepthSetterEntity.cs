@@ -8,17 +8,7 @@ public class DepthSetterEntity : MonoBehaviour
     public int d1;
     void Update()
     {
-        int isPassable = EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter));
-        int isEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter));
-        if ((isPassable == 0
-            ||
-            isEmpty != 0) 
-            && !GetComponent<HammerEffect>()
-            )
-        {
-            //Debug.Log($"destroy {ThisCenter} {name} pass{isPassable} mt{isEmpty}");
-            Destroy(gameObject);
-        }
+        TryTrap();
         int h1 = GetLeftCubeD(ThisCenter);
         if (h1 == int.MinValue)
         {
@@ -31,9 +21,21 @@ public class DepthSetterEntity : MonoBehaviour
         }
         d1 = 3000 + h1 + h2 + 2;
         GetComponent<NewMaterial>().Material.renderQueue = d1;
-        
     }
-
+    void TryTrap()
+    {
+        int isPassable = EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter));
+        int isEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter));
+        if ((isPassable == 0
+            ||
+            isEmpty != 0)
+            && !GetComponent<HammerEffect>()
+            )
+        {
+            Debug.Log($"destroy {ThisCenter} {name} pass{isPassable} mt{isEmpty}");
+            Destroy(gameObject);
+        }
+    }
     int GetLeftCubeD(Vector3 center)
     {
         BaseCube cube = CubeGetter.GetCubeL(center);

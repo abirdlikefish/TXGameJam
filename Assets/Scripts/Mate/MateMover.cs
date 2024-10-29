@@ -12,7 +12,7 @@ public class MateMover : MonoBehaviour
     Vector3 nextCenter;
     Vector3 moveDir;
     //bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(CurCenter,nextCenter) : MateInput.CanTooru(nextCenter) )&& !DouguManager.Instance.Has<Block>(nextCenter);
-    bool CanTooru => MateInput.CanTooru(CurCenter, nextCenter);
+    bool CanTooru => MateInput.CanTooru(CurCenter, nextCenter) && !DouguManager.Instance.Has<Block>(nextCenter);
     //public void SetNextMove
     public void SetNextMove(Vector3 moveDir)
     {

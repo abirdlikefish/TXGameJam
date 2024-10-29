@@ -31,7 +31,6 @@ public class Mate : Entity
     public override void OnDisable()
     {
         DouguManager.Instance.RemoveSth(gameObject);
-
     }
     public override void Update()
     {

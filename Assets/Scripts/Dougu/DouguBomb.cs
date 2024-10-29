@@ -9,7 +9,6 @@ public class DouguBomb : Dougu
     
     public override int OnUse()
     {
-        base.OnUse();
         GameObject go = MyInsBlockOrSphere(block.gameObject, user.CurCenter);
         if (go == null)
         {

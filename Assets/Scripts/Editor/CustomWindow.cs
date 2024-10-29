@@ -53,6 +53,10 @@ public class CustomWindow : EditorWindow
         //{
         //    EventManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube), m_position + Vector3Int.up, colorID);
         //}
+        if(GUILayout.Button("Generate Instant Bomb"))
+        {
+            Dougu.MyInsInstantBoom(m_position);
+        }
         if (GUILayout.Button("Generate Dougu Bomb"))
         {
             EventManager.Instance.GenerateDouguSphere(typeof(DouguBomb), m_position, colorID);

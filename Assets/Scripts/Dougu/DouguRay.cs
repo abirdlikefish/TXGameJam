@@ -9,7 +9,6 @@ public class DouguRay : Dougu
     public RayEffect rayEffect0;
     public override int OnUse()
     {
-        base.OnUse();
         GameObject go = MyInsEffect(rayEffect0, user.transform.position);
         go.transform.rotation = user.transform.rotation;
         for (int i=1;i<=rayRange;i++)

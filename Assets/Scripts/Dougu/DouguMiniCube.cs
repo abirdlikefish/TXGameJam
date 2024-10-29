@@ -8,7 +8,6 @@ public class DouguMiniCube : Dougu
     public MiniCubeEffect miniCubeEffect;
     public override int OnUse()
     {
-        base.OnUse();
         Vector3 thisCenter = user.CurCenter;
         Vector3 nextCenter = user.CurCenter + user.FlipDir;
         Vector3Int newPos;
@@ -29,6 +28,6 @@ public class DouguMiniCube : Dougu
             }
         }
         base.OnUseEnd();
-        return 1;
+        return 0;
     }
 }

@@ -21,7 +21,7 @@ public class Effect : MonoBehaviour
     }
     public virtual void OnTriggerStay(Collider other)
     {
-        Mate mate = other.gameObject.GetComponent<Mate>();
+        Mate mate = other.GetComponent<Mate>();
         if(mate)
         {
             if ((canHurtUser && (mate == douguBase.user)) || mate != douguBase.user)
@@ -30,14 +30,16 @@ public class Effect : MonoBehaviour
             }
         }
            
-        if (other.gameObject.GetComponent<DouguSphere>())
-            Destroy(other.gameObject);
+        if (other.GetComponent<DouguSphere>())
+        {
+            other.GetComponent<DouguSphere>().TryDestroy();
+        }
     }
     public virtual void OnEnable()
     {
         douguBase.busy.Add(gameObject);
         DouguManager.Instance.AddSth(gameObject);
-        DyeUnderCubeColor();
+        StartCoroutine(nameof(DelayDyeUnderCubeColor));
     }
 
     public virtual void OnDisable()
@@ -45,7 +47,11 @@ public class Effect : MonoBehaviour
         douguBase.busy.Remove(gameObject);
         DouguManager.Instance.RemoveSth(gameObject);
     }
-    
+    IEnumerator DelayDyeUnderCubeColor()
+    {
+        yield return 0;
+        DyeUnderCubeColor();
+    }
     public virtual void DyeUnderCubeColor()
     {
     }
