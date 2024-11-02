@@ -2,24 +2,22 @@ using UnityEngine;
 //单例
 //需要被继承 xxx : Singleton<xxx,Ixxx>,Ixxx
 //获取单例 xxx.Instance
-public class Singleton<T,TI> : MonoBehaviour where T : Singleton<T,TI>,TI
+public class Singleton1<T> : MonoBehaviour where T : Singleton1<T>
 {
     [Header("Singleton")]
     static T instance;
-    public static TI Instance
+    public static T Instance
     {
         get
         {
             if(instance == null)
             {
-                //instance = Instantiate(Resources.Load<T>("Prefabs/" + typeof(T).Name));
-                instance = new GameObject(typeof(T).Name).AddComponent<T>();
-                instance.Init();
+                instance = Instantiate(Resources.Load<T>("Prefabs/" + typeof(T).Name));
             }
             return instance;
         }
     }
-    protected virtual void Init(){ Debug.Log(name + " Init"); }
+    public virtual void Init(){ Debug.Log(name + " Init 1"); }
     private void OnValidate()
     {
 #if UNITY_EDITOR

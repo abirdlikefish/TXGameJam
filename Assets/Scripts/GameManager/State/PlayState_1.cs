@@ -34,7 +34,7 @@ public class PlayState_1 : BaseState
 
         if(isPlaying)
         {
-            if(Time.time - lastTime > DeliConfig.Instance.dougeSphereInsCD)
+            if(Time.time - lastTime > DeliConfig.dougeSphereInsCD)
             {
                 lastTime = Time.time;
                 EventManager.Instance.GenerateRandomDouguSphere();

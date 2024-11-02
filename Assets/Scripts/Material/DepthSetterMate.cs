@@ -7,14 +7,18 @@ public class DepthSetterMate : MonoBehaviour
     public int d1;
     public int d2;
     public int d3;
-    Vector3 ThisCenter => GetComponent<MateMover>().CurCenter;
-    Vector3 NextCenter => GetComponent<MateMover>().CurCenter + GetComponent<MateMover>().flipDir;
+    MateMover mateMover;
+    NewMaterial newMaterial;
+    Vector3 ThisCenter => mateMover.thisCenter;
+    Vector3 NextCenter => mateMover.thisCenter + mateMover.flipDir;
    
 
     float trapTimer = 0;
     bool trapped;
     private void OnEnable()
     {
+        mateMover = GetComponent<MateMover>();
+        newMaterial = GetComponent<NewMaterial>();
         trapped = false;
     }
     void Update()
@@ -37,12 +41,12 @@ public class DepthSetterMate : MonoBehaviour
         if (!MateInput.CanTooru(ThisCenter,NextCenter))
             d2 = 0;
         d3 = Mathf.Max(d1, d2) + 1;
-        GetComponent<NewMaterial>().Material.renderQueue = d3;
+        newMaterial.Material.renderQueue = d3;
         
     }
     void TryTrap()
     {
-        Vector3Int curCenter = Vector3Int.RoundToInt(GetComponent<MateMover>().CurCenter);
+        Vector3Int curCenter = Vector3Int.RoundToInt(ThisCenter);
         int leftType = CubeGetter.GetNodeL(curCenter);
         int rightType = CubeGetter.GetNodeR(curCenter);
         if (leftType == 1 && rightType == 2)

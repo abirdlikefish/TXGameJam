@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //音频管理器
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : Singleton1<AudioManager>
 {
     public GameObject emptyObject;
     // 整个游戏中，总的音源数量

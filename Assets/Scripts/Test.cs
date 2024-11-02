@@ -8,7 +8,8 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            MateManager.Instance.OnOneDead(MateManager.Instance.curMates[0]);
+            MateManager.Instance.OnOneDead(MateManager.Instance.GetMate(Random.Range(0,2)));
         }
     }
+
 }

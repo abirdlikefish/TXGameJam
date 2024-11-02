@@ -18,14 +18,14 @@ public class DouguRay : Dougu
             if (go == null)
             {
                 Vector3 dir2 = MateInput.CameraDirInWorld(user.FlipDir);
-                Vector3 thisCenter = user.CurCenter + user.FlipDir * (i-1);
+                Vector3 thisCenter = user.thisCenter + user.FlipDir * (i-1);
                 DyeBesideCubeColor(dir2, thisCenter);
 
                 break;
             }    
             go.transform.rotation = user.transform.rotation;
         }
-        OnUseEnd();
-        return 1;
+        remainUseCount--;
+        return USED_CD;
     }
 }

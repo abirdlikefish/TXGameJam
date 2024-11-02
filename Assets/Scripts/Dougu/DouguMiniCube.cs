@@ -8,26 +8,26 @@ public class DouguMiniCube : Dougu
     public MiniCubeEffect miniCubeEffect;
     public override int OnUse()
     {
-        Vector3 thisCenter = user.CurCenter;
-        Vector3 nextCenter = user.CurCenter + user.FlipDir;
+        Vector3 thisCenter = user.thisCenter;
+        Vector3 nextCenter = user.thisCenter + user.FlipDir;
         Vector3Int newPos;
-        BaseCube lowerCube = CubeGetter.GetCubeLowerFloor(MateInput.CameraDirInWorld(user.FlipDir), nextCenter);
+        //BaseCube lowerCube = CubeGetter.GetCubeLowerFloor(MateInput.CameraDirInWorld(user.FlipDir), nextCenter);
         
         if (MateInput.CanTooru(thisCenter, nextCenter))
         {
             BaseCube besideCube = CubeGetter.GetCubeCanTooru(nextCenter);
             newPos = Vector3Int.RoundToInt(besideCube.Position + Vector3.up);
-            EventManager.Instance.AddCube(newPos,cID);
+            EventManager.Instance.AddCube(newPos,CID);
         }
         else
         {
             //if (lowerCube != CubeGetter.GetCubeCanTooru(user.CurCenter))
             {
                newPos = Vector3Int.RoundToInt(CubeGetter.GetCubeCanTooru(thisCenter).Position + user.FlipDir);
-               EventManager.Instance.AddCube(newPos, cID);
+               EventManager.Instance.AddCube(newPos, CID);
             }
         }
-        base.OnUseEnd();
-        return 0;
+        remainUseCount--;
+        return NOT_USED_CD;
     }
 }

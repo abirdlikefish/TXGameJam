@@ -6,11 +6,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 [RequireComponent(typeof(Flash))]
+[RequireComponent(typeof(ThingCollector))]
 public abstract class Entity : MonoBehaviour
 {
     float lastTakeDamageTime;
     float maxHealth = 3f;
     float curHealth;
+    bool IsTakingDamage => Time.time - lastTakeDamageTime <= DeliConfig.takeDamageInterval;
     public float CurHealth
     {
         get
@@ -41,7 +43,7 @@ public abstract class Entity : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval)
+        if (IsTakingDamage)
             return;
         lastTakeDamageTime = Time.time;
         CurHealth -= damage;
@@ -49,12 +51,12 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        lastTakeDamageTime = -DeliConfig.Instance.takeDamageInterval;
+        lastTakeDamageTime = -DeliConfig.takeDamageInterval;
         CurHealth = maxHealth;
     }
     protected virtual void OnDisable() { }
     protected virtual void Update()
     {
-        GetComponent<Flash>().enabled = Time.time - lastTakeDamageTime <= DeliConfig.Instance.takeDamageInterval;
+        GetComponent<Flash>().enabled = IsTakingDamage;
     }
 }

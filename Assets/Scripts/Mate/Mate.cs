@@ -3,63 +3,63 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-
 public class Mate : Entity
 {
+    MateMover mateMover;
+
     public MateData mateData;
-    MateMover MateMover => GetComponent<MateMover>();
+
     int mateId => transform.GetSiblingIndex();
-    public Vector3 CurCenter => GetComponent<MateMover>().CurCenter;
-    public Vector3 FlipDir => GetComponent<MateMover>().flipDir;
-    public List<Dougu> onHeadDougu = new();
+    public Vector3 thisCenter => mateMover.thisCenter;
+    public Vector3 FlipDir => mateMover.flipDir;
+    List<Dougu> onHeadDougu = new();
     float lastDouguTime;
 
     protected override void OnHealthSet()
     {
-        UIInGame.Instance.RefreshUI(this);
+        UIManager.Instance.RefreshMateInLevel(this);
     }
     protected override void OnHealthZero()
     {
         MateManager.Instance.OnOneDead(this);
     }
-    protected override void OnEnable()
+    private void Awake()
     {
-        base.OnEnable();
-        ResetDougu();
-        lastDouguTime = - DeliConfig.Instance.douguUseInterval;
-        GetComponent<NewMaterial>().Material.color = mateData.color;
-        DouguManager.Instance.AddSth(gameObject);
-    }
-    protected override void OnDisable()
-    {
-        DouguManager.Instance.RemoveSth(gameObject);
+        mateMover = GetComponent<MateMover>();
     }
     protected override void Update()
     {
         base.Update();
         HandleInput();
     }
+    public void OnEnterLevel()
+    {
+        gameObject.SetActive(true);
+        ResetDougu();
+        lastDouguTime = -DeliConfig.douguUseInterval;
+        GetComponent<NewMaterial>().Material.color = mateData.color;
+    }
     void HandleInput()
     {
-        if(Time.time - lastDouguTime < DeliConfig.Instance.douguUseInterval)
+        if(Time.time - lastDouguTime < DeliConfig.douguUseInterval)
         {
             return;
         }
-        foreach (var key in MateInput.Instance.mate_key_dirs[mateId].Keys)
+        foreach (var key in MateInput.mate_key_dirs[mateId].Keys)
         {
             if (Input.GetKey(key))
             {
                 Vector3 ultiDelta = MateInput.Instance.InputKeyToDir(mateId,key);
-                MateMover.SetNextMove(ultiDelta);
+                mateMover.SetNextMove(ultiDelta);
                 break;
             }
         }
-        MateMover.Move();
+        mateMover.Move();
         foreach(var key in MateInput.Instance.Get_mate_dougu_keys(mateId))
         {
             if (Input.GetKeyDown(key))
             {
-                if(OnUseDougu() == 1)
+                if(OnUseDougu() == Dougu.USED_CD)
                 {
                     lastDouguTime = Time.time;
                 }
@@ -67,14 +67,18 @@ public class Mate : Entity
             }
         }
     }
+    public Dougu GetDougu()
+    {
+        return onHeadDougu[0];
+    }
     public void AddDougu(Dougu dougu)
     {
         if (onHeadDougu.Count > 0)
-            onHeadDougu[0].remainUseCount = 0;
+            Destroy(onHeadDougu[0].gameObject);
         dougu.user = this;
         onHeadDougu = new() { dougu };
     }
-    public void RemoveDougu(Dougu dougu)
+    void RemoveDougu(Dougu dougu)
     {
         onHeadDougu.Remove(dougu);
         if(onHeadDougu.Count == 0)
@@ -90,6 +94,9 @@ public class Mate : Entity
     
     int OnUseDougu()
     {
-        return onHeadDougu[0].OnUse();
+        int ret = onHeadDougu[0].OnUse();
+        if (onHeadDougu[0].remainUseCount <= 0)
+            RemoveDougu(onHeadDougu[0]);
+        return ret;
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 342450968211855346}
   - component: {fileID: 2965768968810391002}
   - component: {fileID: 7251888842213087421}
+  - component: {fileID: 5555711728399171076}
   m_Layer: 0
   m_Name: BombEntity
   m_TagString: Untagged
@@ -132,6 +133,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   d1: 0
+--- !u!114 &5555711728399171076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3104571028527146794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3566804281771349758
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
-  cID: 0
   remainUseCount: 6
   damage: 1
   block: {fileID: 342450968211855346}
@@ -399,6 +411,7 @@ GameObject:
   - component: {fileID: 5723681579617257232}
   - component: {fileID: 262786797889160760}
   - component: {fileID: 8819440393987982770}
+  - component: {fileID: 7858547654870176136}
   m_Layer: 0
   m_Name: BombEffect
   m_TagString: Untagged
@@ -489,6 +502,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   d1: 0
+--- !u!114 &7858547654870176136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719508861164533494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7974581536210997805
 GameObject:
   m_ObjectHideFlags: 0

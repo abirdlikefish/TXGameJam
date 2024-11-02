@@ -21,7 +21,7 @@ public class BombEffect : Effect
     public override void OnTriggerStay(Collider other)
     {
         base.OnTriggerStay(other);
-        if (DeliConfig.Instance.goldFinger || goldFingerFrameTimer < goldFingerFrameTime)
+        if (DeliConfig.goldFinger || goldFingerFrameTimer < goldFingerFrameTime)
         {
             if (other.gameObject.GetComponent<BombBlock>())
                 other.gameObject.GetComponent<BombBlock>().Explode();

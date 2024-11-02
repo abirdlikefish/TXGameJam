@@ -6,18 +6,18 @@ public class MateMover : MonoBehaviour
 {
     public Vector3 flipDir;
     public Vector3 Target => SpecialLerp();
-    public Vector3 CurCenter => new(Mathf.RoundToInt(transform.position.x),
+    public Vector3 thisCenter => new(Mathf.RoundToInt(transform.position.x),
             Mathf.RoundToInt(transform.position.y),
             Mathf.RoundToInt(transform.position.z));
     Vector3 nextCenter;
     Vector3 moveDir;
     //bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(CurCenter,nextCenter) : MateInput.CanTooru(nextCenter) )&& !DouguManager.Instance.Has<Block>(nextCenter);
-    bool CanTooru => MateInput.CanTooru(CurCenter, nextCenter) && !DouguManager.Instance.Has<Block>(nextCenter);
+    bool CanTooru => MateInput.CanTooru(thisCenter, nextCenter) && !DouguManager.Instance.Has<Block>(nextCenter);
     //public void SetNextMove
     public void SetNextMove(Vector3 moveDir)
     {
         this.moveDir = moveDir;
-        nextCenter = CurCenter + moveDir;
+        nextCenter = thisCenter + moveDir;
     }
 
     Vector3 SpecialLerp()
@@ -26,10 +26,10 @@ public class MateMover : MonoBehaviour
             return transform.position;
         if (moveDir.x != 0)
         {
-            float restrictX = CanTooru ? nextCenter.x : Mathf.Lerp(CurCenter.x, nextCenter.x, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
+            float restrictX = CanTooru ? nextCenter.x : Mathf.Lerp(thisCenter.x, nextCenter.x, DeliConfig.maxDistanceToCenterWhenBlocked);
             return new Vector3(restrictX,transform.position.y, transform.position.z);
         }
-        float restrictZ = CanTooru ? nextCenter.z : Mathf.Lerp(CurCenter.z, nextCenter.z, DeliConfig.Instance.maxDistanceToCenterWhenBlocked);
+        float restrictZ = CanTooru ? nextCenter.z : Mathf.Lerp(thisCenter.z, nextCenter.z, DeliConfig.maxDistanceToCenterWhenBlocked);
         return new Vector3(transform.position.x, transform.position.y, restrictZ);
     }
     
@@ -53,9 +53,9 @@ public class MateMover : MonoBehaviour
             return false;
         if(moveDir.x != 0)
         {
-            return Mathf.Abs(transform.position.x - (CurCenter.x + nextCenter.x) / 2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
+            return Mathf.Abs(transform.position.x - (thisCenter.x + nextCenter.x) / 2f) <= 0.5 - DeliConfig.maxDistanceToCenterWhenBlocked;
         }
-        return Mathf.Abs(transform.position.z - (CurCenter.z + nextCenter.z) / 2f) <= 0.5 - DeliConfig.Instance.maxDistanceToCenterWhenBlocked;
+        return Mathf.Abs(transform.position.z - (thisCenter.z + nextCenter.z) / 2f) <= 0.5 - DeliConfig.maxDistanceToCenterWhenBlocked;
     }
     void MoveByCurKey(bool isInput)
     {
@@ -65,6 +65,6 @@ public class MateMover : MonoBehaviour
             if(moveDir != Vector3.zero)
                 flipDir = moveDir;
         }
-        transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.Instance.moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.moveSpeed * Time.deltaTime);
     }
 }

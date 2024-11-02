@@ -9,13 +9,13 @@ public class DouguBomb : Dougu
     
     public override int OnUse()
     {
-        GameObject go = MyInsBlockOrSphere(block.gameObject, user.CurCenter);
+        GameObject go = MyInsBlockOrSphere(block.gameObject, user.thisCenter);
         if (go == null)
         {
-            return 0;
+            return NOT_USED_CD;
         }
         go.SetActive(true);
-        OnUseEnd();
-        return 0;
+        remainUseCount--;
+        return NOT_USED_CD;
     }
 }

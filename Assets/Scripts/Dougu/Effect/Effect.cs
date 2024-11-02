@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DepthSetterEntity))]
 public class Effect : MonoBehaviour
 {
     public bool canHurtUser = false;
@@ -38,14 +39,12 @@ public class Effect : MonoBehaviour
     public virtual void OnEnable()
     {
         douguBase.busy.Add(gameObject);
-        DouguManager.Instance.AddSth(gameObject);
         StartCoroutine(nameof(DelayDyeUnderCubeColor));
     }
 
     public virtual void OnDisable()
     {
         douguBase.busy.Remove(gameObject);
-        DouguManager.Instance.RemoveSth(gameObject);
     }
     IEnumerator DelayDyeUnderCubeColor()
     {

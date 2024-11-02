@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMateProperty : MonoBehaviour
+public class UIInLevelMate : MonoBehaviour
 {
     public Mate mate;
 
@@ -16,10 +16,10 @@ public class UIMateProperty : MonoBehaviour
     public Image winRndBG;
     public Text winRnd;
 
-    public void RefreshUI()
+    public void Refresh()
     {
-        douguBG.color = mate.onHeadDougu.Count > 0 ? DeliConfig.Instance.id_color[mate.onHeadDougu[0].cID] : Color.clear;
-        dougu.sprite = mate.onHeadDougu.Count > 0 ? DeliConfig.Instance.class_sprite[mate.onHeadDougu[0].GetType().ToString()] : null;
+        douguBG.color = DeliConfig.id_color[mate.GetDougu().CID];
+        dougu.sprite = DeliConfig.GetSpriteByDonguType(mate.GetDougu());
 
         nameBG.color = mate.mateData.color;
         mateName.text = mate.mateData.name;

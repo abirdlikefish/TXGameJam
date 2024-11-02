@@ -4,25 +4,18 @@ using UnityEngine;
 
 public class DepthSetterCube : MonoBehaviour
 {
-    public static float setInterval = 0.1f;
+    BaseCube baseCube;
+    MeshRenderer meshRenderer;
     [SerializeField]
-    private int d;
-
+    int d;
+    private void Awake()
+    {
+        baseCube = GetComponent<BaseCube>();
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
     void Update()
     {
-        d = 3000 + GetComponent<BaseCube>().Height * 2;
-        // Debug.Log("SetDepth d = " + d);
-        // GetComponent<NewMaterial>().Material.renderQueue = d;
-        // GetComponent<MeshRenderer>().material.renderQueue = d;
-        GetComponent<MeshRenderer>().materials[0].renderQueue = d;
-
-        //yield return new WaitForSeconds(setInterval);
+        d = 3000 + baseCube.Height * 2;
+        meshRenderer.materials[0].renderQueue = d;
     }
-
-    //public void SetDepth()
-    //{
-    //    Debug.Log($"{name}" + nameof(SetDepth) + " " +d);
-    //    d = 3000 + GetComponent<BaseCube>().Height * 2;
-    //    GetComponent<MeshRenderer>().material.renderQueue = d;
-    //}
 }

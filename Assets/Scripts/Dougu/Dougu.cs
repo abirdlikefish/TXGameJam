@@ -5,8 +5,23 @@ using UnityEngine;
 
 public abstract class Dougu : MonoBehaviour
 {
+    public static int USED_CD = 1;
+    public static int NOT_USED_CD = 0;
+
     public Mate user;
-    public int cID;
+    private int cID;
+    public int CID { get {  return cID; } set { cID = value; SetBlockAndEffectColor(cID); } }
+    void SetBlockAndEffectColor(int cID)
+    {
+        if (block)
+        {
+            block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.id_color[cID];
+        }
+        else if (effect)
+        {
+            effect.GetComponent<NewMaterial>().Material.color = DeliConfig.id_color[cID];
+        }
+    }
     public int remainUseCount = 3;
     public float damage = 1f;
     public Block block;
@@ -14,18 +29,6 @@ public abstract class Dougu : MonoBehaviour
     public Effect effect;
     public float effectTime = 0.5f;
     public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
-    public void SetColorAndBlock(int cID)
-    {
-        this.cID = cID;
-        if (block)
-        {
-            block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.Instance.id_color[cID];
-        }
-        else if (effect)
-        {
-            effect.GetComponent<NewMaterial>().Material.color = DeliConfig.Instance.id_color[cID];
-        }
-    }
     private void OnEnable()
     {
         StartCoroutine(nameof(TryDestroy));
@@ -53,14 +56,6 @@ public abstract class Dougu : MonoBehaviour
     }
     //return 1 表示使用需要带CD
     public abstract int OnUse();
-    public virtual void OnUseEnd()
-    {
-        remainUseCount--;
-        if(remainUseCount <= 0)
-        {
-            user.RemoveDougu(this);
-        }
-    }
     
     public List<GameObject> busy = new();
 
@@ -104,7 +99,7 @@ public abstract class Dougu : MonoBehaviour
     }
     public void DyeBase(BaseCube cube)
     {
-        cube.Color = cID;
+        cube.Color = CID;
         //Debug.Log($"dye{cube.Position}");
         //cube.Color += 
     }
