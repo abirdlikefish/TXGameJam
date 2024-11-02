@@ -25,20 +25,12 @@ public class BombBlock : Block
         {
             for (int i = 1; i <= crossRange; i++)
             {
-                if (DeliConfig.tooruTest)
+                if (!Dougu.MyInsEffect(Effect, transform.position + dir * (i - 1), transform.position + dir * i))
                 {
-                    if (!Dougu.MyInsEffect(Effect, transform.position + dir * (i - 1), transform.position + dir * i))
-                    {
-                        Vector3 dir2 = MateInput.CameraDirInWorld(dir);
-                        Vector3 thisCenter = transform.position + dir * (i-1);
-                        douguBase.DyeBesideCubeColor(dir2, thisCenter);
-                        break;
-                    }
-                }
-                else
-                {
-                    if (!Dougu.MyInsEffect(Effect, transform.position + dir * i))
-                        break;
+                    Vector3 dir2 = MateInput.CameraDirInWorld(dir);
+                    Vector3 thisCenter = transform.position + dir * (i-1);
+                    douguBase.DyeBesideCubeColor(dir2, thisCenter);
+                    break;
                 }
             }
         }

@@ -13,18 +13,12 @@ public class DouguSphere : MonoBehaviour
     public void SetDougu(Dougu db)
     {
         douguBase = db;
-        spriteRenderer.sprite = DeliConfig.Instance.class_sprite[douguBase.GetType().ToString()];
-        spriteRenderer.material.color = DeliConfig.Instance.id_color[db.cID];
+        spriteRenderer.sprite = DeliConfig.GetSpriteByDonguType(douguBase);
+        spriteRenderer.material.color = DeliConfig.id_color[db.CID];
     }
-
     private void OnEnable()
     {
         existTimer = 0f;
-        DouguManager.Instance.AddSth(gameObject);
-    }
-    private void OnDisable()
-    {
-        DouguManager.Instance.RemoveSth(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMateEditInfo:MonoBehaviour
+public class UIEditMateInfo:MonoBehaviour
 {
     int mateId;
     public Image mateBase;
@@ -18,6 +18,7 @@ public class UIMateEditInfo:MonoBehaviour
     public Dropdown dropDown;
 
     public Image mateNameBG;
+    public Image dropDownScrollBar;
 
     string editName = null;
     Color editColor = Color.clear;
@@ -29,17 +30,15 @@ public class UIMateEditInfo:MonoBehaviour
     {
         editColor = RandomColor();
         MateData mateData = MateManager.Instance.CreateMate(mateName.text,editColor);
-        MateManager.Instance.curMates[mateId].mateData = mateData;
-        UIMateEditor.Instance.ShowMate(mateData, mateId);
+        MateManager.Instance.GetMate(mateId).mateData = mateData;
+        UIManager.Instance.ShowMate(mateData, mateId);
     }
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
-        MateManager.Instance.curMates[mateId].mateData = mateData;
-        UIMateEditor.Instance.ShowMate(mateData, mateId);
-        mateNameBG.color = new Color(mateName.color.r, mateName.color.g, mateName.color.b,
-            mateNameBG.color.a);
+        MateManager.Instance.GetMate(mateId).mateData = mateData;
+        UIManager.Instance.ShowMate(mateData, mateId);
     }
 
     public void OnEditDropdownValueChanged()

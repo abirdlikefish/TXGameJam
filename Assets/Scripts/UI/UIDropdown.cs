@@ -32,9 +32,9 @@ public class UIDropdown : MonoBehaviour, IPointerClickHandler
             oldList.Add(dropdown.options[i].text);
         }
 
-        for(int i=0;i< MateManager.Instance.mateDatas.Count;i++)
+        for(int i=0;i< MateManager.Instance.GetAllMateDatas().Count;i++)
         {
-            string option =  MateManager.Instance.mateDatas[i].name;
+            string option =  MateManager.Instance.GetMateData(i).name;
             if(!oldList.Contains(option))
             {
                 newList.Add(option);

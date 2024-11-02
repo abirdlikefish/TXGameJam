@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3494609093708676594}
   - component: {fileID: 3421699711210887829}
+  - component: {fileID: 6471337196117311145}
   m_Layer: 0
   m_Name: 1DouguRay
   m_TagString: Untagged
@@ -213,7 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
-  cID: 0
   remainUseCount: 5
   damage: 1
   block: {fileID: 0}
@@ -223,6 +223,18 @@ MonoBehaviour:
   busy: []
   rayRange: 5
   rayEffect0: {fileID: 4331112066361114541}
+--- !u!114 &6471337196117311145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162141475676801894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5630080909328271807
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +249,7 @@ GameObject:
   - component: {fileID: 5483787881047912202}
   - component: {fileID: 6546763412660780221}
   - component: {fileID: 7011769420119539718}
+  - component: {fileID: 3424618173124939336}
   m_Layer: 0
   m_Name: RayEffect
   m_TagString: Untagged
@@ -354,6 +367,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3424618173124939336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630080909328271807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5941867072310160828
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +391,7 @@ GameObject:
   - component: {fileID: 4331112066361114541}
   - component: {fileID: 5571612570809070482}
   - component: {fileID: 5356428880676109498}
+  - component: {fileID: 8645924796877136834}
   m_Layer: 0
   m_Name: RayEffect0
   m_TagString: Untagged
@@ -432,6 +458,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   d1: 0
+--- !u!114 &8645924796877136834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941867072310160828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8366070132513935575
 GameObject:
   m_ObjectHideFlags: 0

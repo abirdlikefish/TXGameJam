@@ -25,14 +25,7 @@ public class NewMaterial : MonoBehaviour
     }
     private void Awake()
     {
-        // if(name.Contains("Cube"))
-        // {
-        //     return;
-        // }
-        //���ɲ���ʵ��
-        // Debug.Log("NewMaterial Awake");
         Material material = Instantiate(Material);
-        //��ֵ��meshRenderer
         Material = material;
     }
 }

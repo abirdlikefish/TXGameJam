@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeGetter : MonoBehaviour
+public class CubeGetter
 {
     public static int GetNodeL(Vector3 worldPosY0)
     {
@@ -38,7 +38,7 @@ public class CubeGetter : MonoBehaviour
     {
         //Debug.Log(nameof(GetCubeUpperFloor) + " " + dirInWorld + " " + thisCenter);
         bool isUp = dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, -1);
-        bool isDown = dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, 1);
+        //bool isDown = dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, 1);
         bool isX = dirInWorld.x != 0;
         int thisHalfType;
         int nextHalfType;
@@ -53,37 +53,37 @@ public class CubeGetter : MonoBehaviour
                 return isX ? GetCubeR(thisCenter + new Vector3(-1, 0, -1)) : GetCubeL(thisCenter + new Vector3(-1, 0, -1));
             return null;
         }
-        thisHalfType = isX ? GetNodeL(thisCenter) : GetNodeR(thisCenter);
+        //thisHalfType = isX ? GetNodeL(thisCenter) : GetNodeR(thisCenter);
+        //isDown
         if(isX && GetNodeL(thisCenter) == 2 || !isX && GetNodeR(thisCenter) == 1)
             return isX ? GetCubeL(thisCenter) : GetCubeR(thisCenter);
-        //isDown
         return null;
     }
-    public static BaseCube GetCubeLowerFloor(Vector3 dirInWorld, Vector3 center)
-    {
-        if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && GetNodeR(center) == 1)
-            ||
-            ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && GetNodeL(center) == 2))
-        {
-            if (dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1))
-            {
-                BaseCube cube = GetCubeR(center);
-                if (cube == null)
-                {
-                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
-                    return null;
-                }
-            }
-            else
-            {
-                BaseCube cube = GetCubeL(center);
-                if (cube == null)
-                {
-                    Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
-                    return null;
-                }
-            }
-        }
-        return null;
-    }
+    //public static BaseCube GetCubeLowerFloor(Vector3 dirInWorld, Vector3 center)
+    //{
+    //    if (((dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1)) && GetNodeR(center) == 1)
+    //        ||
+    //        ((dirInWorld == new Vector3(-1, 0, 0) || dirInWorld == new Vector3(0, 0, 1)) && GetNodeL(center) == 2))
+    //    {
+    //        if (dirInWorld == new Vector3(1, 0, 0) || dirInWorld == new Vector3(0, 0, -1))
+    //        {
+    //            BaseCube cube = GetCubeR(center);
+    //            if (cube == null)
+    //            {
+    //                Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+    //                return null;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            BaseCube cube = GetCubeL(center);
+    //            if (cube == null)
+    //            {
+    //                Debug.LogError($"WTF!! dir {dirInWorld},center {center}");
+    //                return null;
+    //            }
+    //        }
+    //    }
+    //    return null;
+    //}
 }

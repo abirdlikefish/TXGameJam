@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 5863758587340465028}
   - component: {fileID: -4133492519030418310}
   - component: {fileID: 6388549487544971007}
+  - component: {fileID: 4221871417981153839}
   m_Layer: 0
   m_Name: DouguSphere
   m_TagString: Untagged
@@ -232,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   douguBase: {fileID: 0}
-  color: 0
   spriteRenderer: {fileID: 4441343051287511024}
 --- !u!114 &6585269791159680597
 MonoBehaviour:
@@ -310,3 +310,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.35
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &4221871417981153839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894092571413341014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

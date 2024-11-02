@@ -4,8 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(NewMaterial))]
 public class DepthSetterEntity : MonoBehaviour
 {
+    NewMaterial newMaterial;
+    HammerEffect hammerEffect;
     Vector3 ThisCenter => transform.position;
     public int d1;
+    private void Awake()
+    {
+        newMaterial = GetComponent<NewMaterial>();
+        hammerEffect = GetComponent<HammerEffect>();
+    }
     void Update()
     {
         TryTrap();
@@ -20,7 +27,7 @@ public class DepthSetterEntity : MonoBehaviour
             return;
         }
         d1 = 3000 + h1 + h2 + 2;
-        GetComponent<NewMaterial>().Material.renderQueue = d1;
+        newMaterial.Material.renderQueue = d1;
     }
     void TryTrap()
     {
@@ -29,7 +36,7 @@ public class DepthSetterEntity : MonoBehaviour
         if ((isPassable == 0
             ||
             isEmpty != 0)
-            && !GetComponent<HammerEffect>()
+            && hammerEffect == null
             )
         {
             Debug.Log($"destroy {ThisCenter} {name} pass{isPassable} mt{isEmpty}");

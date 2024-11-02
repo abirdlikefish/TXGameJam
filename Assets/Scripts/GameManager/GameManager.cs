@@ -28,12 +28,8 @@ public class GameManager : MonoBehaviour
     }
     void InitTotal()
     {
-        DeliConfig.Instance.Init();
-        MateManager.Instance.Init();
-        DouguManager.Instance.Init();
         UIMateEditor.Instance.Init();
-        UIInGame.Instance.Init();   
-        // MapSaver.Instance.Init();
+        UIManager.Instance.Init();   
         UIMainMenu.Instance.Init();
     }
 }

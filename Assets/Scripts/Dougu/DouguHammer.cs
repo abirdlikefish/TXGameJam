@@ -6,9 +6,9 @@ public class DouguHammer : Dougu
 {
     public override int OnUse()
     {
-        GameObject go = MyInsEffectHammer(effect,user.CurCenter + user.FlipDir);
+        GameObject go = MyInsEffectHammer(effect,user.thisCenter + user.FlipDir);
         go.transform.rotation = user.transform.rotation;
-        base.OnUseEnd();
+        remainUseCount--;
         return 1;
     }
 }

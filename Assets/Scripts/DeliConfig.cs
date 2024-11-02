@@ -1,20 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DeliConfig : Singleton<DeliConfig>
+public class DeliConfig
 {
-    public float maxDistanceToCenterWhenBlocked = 0.4f;
-    public float moveSpeed;
-    public float takeDamageInterval = 1f;
+    public static float maxDistanceToCenterWhenBlocked = 0.4f;
+    public static float moveSpeed;
+    public static float takeDamageInterval = 1f;
 
-    public float douguUseInterval = 1f;
-    public float dougeSphereInsCD = 7f;
-    public static bool tooruTest = true;
+    public static float douguUseInterval = 1f;
+    public static float dougeSphereInsCD = 7f;
 
-    public bool goldFinger = true;
+    public static bool goldFinger = true;
 
-    public SerializableDictionary<string, Sprite> class_sprite;
-    public SerializableDictionary<int, Color> id_color;
+    static SerializableDictionary<Type, Sprite> class_sprite = new()
+    {
+        {typeof(DouguBomb), Resources.Load<Sprite>("Sprite/UIDougu/d0")},
+        {typeof(DouguRay), Resources.Load<Sprite>("Sprite/UIDougu/d1")},
+        {typeof(DouguHammer), Resources.Load<Sprite>("Sprite/UIDougu/d2")},
+        {typeof(DouguMiniCube), Resources.Load<Sprite>("Sprite/UIDougu/d3")},
+    };
+    public static Sprite GetSpriteByDonguType(Dougu dougu)
+    {
+        return class_sprite[dougu.GetType()];
+    }
+    public static SerializableDictionary<int, Color> id_color;
+
 }

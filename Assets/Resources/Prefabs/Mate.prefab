@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 6583328336149927052}
   - component: {fileID: 1401112189195100702}
   - component: {fileID: 8007440257228018225}
+  - component: {fileID: 2373271899649641996}
   m_Layer: 0
   m_Name: Mate
   m_TagString: Untagged
@@ -231,14 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adefda5d73e918d41aead6c17d212087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  curHealth: 0
   mateData:
     name: 
     color: {r: 0, g: 0, b: 0, a: 0}
     winCount: 0
-  onHeadDougu: []
-  lastDouguTime: 0
 --- !u!135 &3110820751028259553
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -320,3 +317,15 @@ MonoBehaviour:
   d1: 0
   d2: 0
   d3: 0
+--- !u!114 &2373271899649641996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159397266882043168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c368e02edb638243a696c5aa8fc3e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

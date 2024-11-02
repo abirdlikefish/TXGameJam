@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a08610221b9bf46a6695fb9a9ded91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sths: []
-  emptys: []
   douguPossibility: 01000000010000000100000001000000
+  emptys: []
 --- !u!1 &7457856804055564998
 GameObject:
   m_ObjectHideFlags: 0

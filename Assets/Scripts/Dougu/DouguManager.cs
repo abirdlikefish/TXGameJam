@@ -7,29 +7,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DouguManager : Singleton<DouguManager>
+public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
 {
-    string rPath = "Prefabs/Dougu";
-    public static Transform entityP;
-    void ClearChild(Transform p)
+    protected override void Init()
     {
-        for (int i = 0; i < p.childCount; i++)
-            Destroy(p.GetChild(i).gameObject);
-    }
-    static List<Dougu> prefabDougus;
-    static DouguSphere prefabDouguSphere;
-    [SerializeField]
-    List<GameObject> sths = new();
-    [SerializeField]
-    List<Vector3> emptys = new();
-    //BY 策划
-    public List<int> douguPossibility;
-    int TotalPossibility => douguPossibility.Sum();
+        base.Init();
+        douguPossibility = new()
+        {
+            1,1,1,1
+        };
 
-    
-
-    public override void Init()
-    {
         entityP = transform.Find("EntityPool");
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
         prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
@@ -38,26 +25,41 @@ public class DouguManager : Singleton<DouguManager>
         EventManager.Instance.BoomEvent += GenerateInstantBoom;
         EventManager.Instance.EnterLevelEvent += EnterLevel;
     }
-
-    
-
-    public void EnterLevel(int id)
+    public void GenerateRandomDouguSphere()
     {
-        ClearChild(entityP);
-        sths = new();
-        //effects = new();
+        emptys = new();
+        int d1 = (int)MateManager.Instance.GetMate(UnityEngine.Random.Range(0, 2)).thisCenter.x;
+        int d2 = 10;
+        for (int i = d1 - d2; i <= d1 + d2; i++)
+        {
+            for (int j = d1 - d2; j <= d1 + d2; j++)
+            {
+                Vector3 pos = new(i, 0, j);
+                if (HasAny(pos))
+                    continue;
+                if (CubeGetter.GetCubeCanTooru(pos) == null)
+                    continue;
+                emptys.Add(pos);
+            }
+        }
+        if (emptys.Count <= 3)
+            return;
+        int emptyId = UnityEngine.Random.Range(0, emptys.Count);
+        GenerateDouguSphere(RanToDouguType(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId], IntToColorId(UnityEngine.Random.Range(0, 4)));
+        emptys.RemoveAt(emptyId);
     }
-    public void AddSth(GameObject go)
+    [SerializeField]
+    List<GameObject> sths = new();
+    public bool AddSth(GameObject go)
     {
         sths.Add(go);
+        return true;
     }
-    public void RemoveSth(GameObject go)
+
+    public bool RemoveSth(GameObject go)
     {
         sths.Remove(go);
-    }
-    public static Vector3Int ToY0(Vector3 pos)
-    {
-        return Vector3Int.RoundToInt(new Vector3(pos.x - pos.y, 0, pos.z - pos.y));
+        return true;
     }
     public bool HasAny(Vector3 pos)
     {
@@ -68,21 +70,72 @@ public class DouguManager : Singleton<DouguManager>
         Vector3Int posY0 = ToY0(pos);
         return sths.Find(it => (ToY0(it.transform.position) == posY0) && (it.GetComponent<T1>() != null)) != null;
     }
-    public bool HasEither<T1,T2>(Vector3 pos) where T1 : MonoBehaviour where T2 : MonoBehaviour
+    public bool HasEither<T1, T2>(Vector3 pos) where T1 : MonoBehaviour where T2 : MonoBehaviour
     {
         Vector3Int posY0 = ToY0(pos);
         return sths.Find(it => (ToY0(it.transform.position) == posY0) && (it.GetComponent<T1>() != null || it.GetComponent<T2>() != null)) != null;
     }
-    public static Dougu GetDougu(Type type,int cId)
+    
+    public void OnEnterLevel()
+    {
+        ClearChild(entityP);
+        sths = new();
+    }
+    public void OnExitLevel()
+    {
+        ClearChild(entityP);
+    }
+    public void OnEnterTinyLevel()
+    {
+
+    }
+    public void OnExitTinyLevel()
+    {
+
+    }
+
+    public static Vector3Int ToY0(Vector3 pos)
+    {
+        return Vector3Int.RoundToInt(new Vector3(pos.x - pos.y, 0, pos.z - pos.y));
+    }
+
+
+
+    string rPath = "Prefabs/Dougu";
+    public static Transform entityP;
+    void ClearChild(Transform p)
+    {
+        for (int i = 0; i < p.childCount; i++)
+            Destroy(p.GetChild(i).gameObject);
+    }
+    static List<Dougu> prefabDougus;
+    static DouguSphere prefabDouguSphere;
+    //TODO 道具概率
+    public List<int> douguPossibility;
+    int TotalPossibility => douguPossibility.Sum();
+    [SerializeField]
+    List<Vector3> emptys = new();
+
+
+    
+
+    public void EnterLevel(int id)
+    {
+        ClearChild(entityP);
+        //TODO 进入关卡初始化
+        //sths = new();
+    }
+    
+    public static Dougu GetDougu(Type type,int cID)
     {
         Dougu d = GetDougu(type);
-        d.SetColorAndBlock(cId);
+        d.CID = cID;
         return d;
     }
-    public static Dougu InsDougu(Type type,int cId)
+    public static Dougu InsDougu(Type type,int cID)
     {
         Dougu d = Instantiate(GetDougu(type),entityP);
-        d.SetColorAndBlock(cId);
+        d.CID = cID;
         return d;
     }
     static Dougu GetDougu(Type type)
@@ -139,29 +192,7 @@ public class DouguManager : Singleton<DouguManager>
         Debug.LogError("possibility " + ran + " not found");
         return null;
     }
-    public void GenerateRandomDouguSphere()
-    {
-        emptys = new();
-        int d1 = (int)MateManager.Instance.curMates[0].CurCenter.x;
-        int d2 = 10;
-        for (int i = d1-d2; i <= d1+d2; i++)
-        {
-            for (int j = d1-d2; j <= d1+d2; j++)
-            {
-                Vector3 pos = new(i, 0, j);
-                if (HasAny(pos))
-                    continue;
-                if (CubeGetter.GetCubeCanTooru(pos) == null)
-                    continue;
-                emptys.Add(pos);
-            }
-        }
-        if (emptys.Count <= 3)
-            return;
-        int emptyId = UnityEngine.Random.Range(0, emptys.Count);
-        GenerateDouguSphere(RanToDouguType(UnityEngine.Random.Range(0, TotalPossibility)), emptys[emptyId], IntToColorId(UnityEngine.Random.Range(0, 4)));
-        emptys.RemoveAt(emptyId);
-    }
+    
 
     #region color reaction
     public void GenerateInstantBoom(Vector3Int position)
