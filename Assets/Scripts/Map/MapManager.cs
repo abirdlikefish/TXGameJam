@@ -140,4 +140,9 @@ public class MapManager : IMapManager
         position += Mathf.Ceil(((float)depth - CameraManager.Instance.GetHeight(position)) / 3.0f) * (Vector3)CameraManager.Instance.GetCameraDirection();
         return position;
     }
+    int IMapManager.GetNode_L(Vector3Int position) => cameraSpaceManager.GetNode_L(CameraManager.Instance.GetCameraSpacePosition(position));
+    int IMapManager.GetNode_R(Vector3Int position) => cameraSpaceManager.GetNode_R(CameraManager.Instance.GetCameraSpacePosition(position));
+    BaseCube IMapManager.GetCubeL(Vector3Int position) => cameraSpaceManager.GetCube_L(CameraManager.Instance.GetCameraSpacePosition(position));
+    BaseCube IMapManager.GetCubeR(Vector3Int position) => cameraSpaceManager.GetCube_R(CameraManager.Instance.GetCameraSpacePosition(position));
+
 }

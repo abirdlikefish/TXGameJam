@@ -216,10 +216,11 @@ public class SelectPosition : BasePlayState
         playList = new List<GameObject>();
         positionList = new List<Vector3Int>();
         meshRendererList = new List<MeshRenderer>();
+        isSelectedList = new List<bool>();
         base.Init(playState);
         for(int i = 0 ; i < 2 ; i ++)
         {
-            playList.Add(GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/SelectMateCube")));
+            playList.Add(GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/SelectMateCube0")));
             positionList.Add(Vector3Int.zero);
             meshRendererList.Add(playList[i].GetComponent<MeshRenderer>());
             isSelectedList.Add(false);

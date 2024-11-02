@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MateMover : MonoBehaviour
 {
-    public Vector3 flipDir;
+    public Vector3Int flipDir;
     public Vector3 Target => SpecialLerp();
-    public Vector3 thisCenter => new(Mathf.RoundToInt(transform.position.x),
+    public Vector3Int thisCenter => new(Mathf.RoundToInt(transform.position.x),
             Mathf.RoundToInt(transform.position.y),
             Mathf.RoundToInt(transform.position.z));
-    Vector3 nextCenter;
-    Vector3 moveDir;
+    Vector3Int nextCenter;
+    Vector3Int moveDir;
     //bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(CurCenter,nextCenter) : MateInput.CanTooru(nextCenter) )&& !DouguManager.Instance.Has<Block>(nextCenter);
     bool CanTooru => MateInput.CanTooru(thisCenter, nextCenter) && !DouguManager.Instance.Has<Block>(nextCenter);
     //public void SetNextMove
-    public void SetNextMove(Vector3 moveDir)
+    public void SetNextMove(Vector3Int moveDir)
     {
         this.moveDir = moveDir;
         nextCenter = thisCenter + moveDir;
@@ -22,7 +22,7 @@ public class MateMover : MonoBehaviour
 
     Vector3 SpecialLerp()
     {
-        if (moveDir == Vector3.zero)
+        if (moveDir == Vector3Int.zero)
             return transform.position;
         if (moveDir.x != 0)
         {
@@ -43,7 +43,7 @@ public class MateMover : MonoBehaviour
             if (IsInDeadZone())
                 MoveByCurKey(isInput:false);
         }
-        SetNextMove(Vector3.zero);
+        SetNextMove(Vector3Int.zero);
         #endregion
     }
 

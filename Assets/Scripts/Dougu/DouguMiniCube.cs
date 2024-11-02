@@ -8,8 +8,8 @@ public class DouguMiniCube : Dougu
     public MiniCubeEffect miniCubeEffect;
     public override int OnUse()
     {
-        Vector3 thisCenter = user.thisCenter;
-        Vector3 nextCenter = user.thisCenter + user.FlipDir;
+        Vector3Int thisCenter = user.thisCenter;
+        Vector3Int nextCenter = user.thisCenter + user.FlipDir;
         Vector3Int newPos;
         //BaseCube lowerCube = CubeGetter.GetCubeLowerFloor(MateInput.CameraDirInWorld(user.FlipDir), nextCenter);
         

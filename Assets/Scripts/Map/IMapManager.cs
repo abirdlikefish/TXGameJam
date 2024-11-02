@@ -14,4 +14,8 @@ public interface IMapManager
     public BaseCube GetExposedCube(Vector3Int position);
     public Vector3 ModifyPosition_lowerBound(Vector3 position , int depth);
 
+    public int GetNode_L(Vector3Int position);
+    public int GetNode_R(Vector3Int position);
+    public BaseCube GetCubeL(Vector3Int position);
+    public BaseCube GetCubeR(Vector3Int position);
 }

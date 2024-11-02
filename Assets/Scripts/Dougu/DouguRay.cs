@@ -17,9 +17,10 @@ public class DouguRay : Dougu
 
             if (go == null)
             {
-                Vector3 dir2 = MateInput.CameraDirInWorld(user.FlipDir);
-                Vector3 thisCenter = user.thisCenter + user.FlipDir * (i-1);
-                DyeBesideCubeColor(dir2, thisCenter);
+                // Vector3 dir2 = MateInput.CameraDirInWorld(user.FlipDir);
+                Vector3Int thisCenter = user.thisCenter + user.FlipDir * (i-1);
+                // DyeBesideCubeColor(dir2, thisCenter);
+                DyeBesideCubeColor(user.FlipDir, thisCenter);
 
                 break;
             }    

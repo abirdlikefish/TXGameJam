@@ -6,7 +6,7 @@ public class DepthSetterEntity : MonoBehaviour
 {
     NewMaterial newMaterial;
     HammerEffect hammerEffect;
-    Vector3 ThisCenter => transform.position;
+    Vector3Int ThisCenter => Vector3Int.RoundToInt(transform.position);
     public int d1;
     private void Awake()
     {
@@ -43,18 +43,26 @@ public class DepthSetterEntity : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    int GetLeftCubeD(Vector3 center)
+    int GetLeftCubeD(Vector3Int center)
     {
-        BaseCube cube = CubeGetter.GetCubeL(center);
-        if (cube == null)
+        if(MapManager.Instance.GetCubeL(center) == null)
+        {
             return int.MinValue;
-        return cube.Height;
+        }
+        else
+        {
+            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+        }
     }
-    int GetRightCubeD(Vector3 center)
-    {
-        BaseCube cube = CubeGetter.GetCubeR(center);
-        if (cube == null)
+    int GetRightCubeD(Vector3Int center)
+    {        
+        if(MapManager.Instance.GetCubeR(center) == null)
+        {
             return int.MinValue;
-        return cube.Height;
+        }
+        else
+        {
+            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+        }
     }
 }
