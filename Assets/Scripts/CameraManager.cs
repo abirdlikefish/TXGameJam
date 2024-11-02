@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
         mid += Vector3Int.one * 100;
         return new Vector2Int(mid.x, mid.z);
     }
-    public float GetDepth(Vector3 position)
+    public float GetHeight(Vector3 position)
     {
         return Vector3.Dot(position, GetCameraDirection());
     }

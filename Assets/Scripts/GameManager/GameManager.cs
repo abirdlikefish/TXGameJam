@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         InitTotal();
-        MapManager.AddListener();
+        // MapManager.AddListener();
         ColorReactionManager.AddListener();
-        SaveManager.AddListener();
+        // SaveManager.AddListener();
         SelectMatePosition.AddListener();
         // GameStateMachine.AddListener();
         gameStateMachine = new GameStateMachine();

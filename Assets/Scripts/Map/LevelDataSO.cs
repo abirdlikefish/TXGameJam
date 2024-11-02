@@ -6,44 +6,47 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "LevelDataSO", menuName = "LevelDataSO", order = 0)]
 public class LevelDataSO : ScriptableObject
 {
-    [System.Serializable]
-    public struct midCubeList
-    {
-        public List<Vector3Int> cubeList;
-    }
-    [SerializeField]
-    private List<midCubeList> levelList = new List<midCubeList>();
+    // [System.Serializable]
+    // public struct midCubeList
+    // {
+    //     public List<Vector3Int> cubeList;
+    // }
+    // [SerializeField]
+    // private List<midCubeList> levelList = new List<midCubeList>();
 
-    public int levelNum = 0;
+    public List<LevelData> levelDataList ;
+
+    public int levelNum => levelDataList.Count;
 
     public void AddLevelDataFromLastProject(LevelData levelData)
     {
-        while(levelList.Count <= levelData.index)
-        {
-            levelList.Add(new midCubeList(){cubeList = new List<Vector3Int>()});
-        }
-        levelList[levelData.index].cubeList.Clear();
-        for (int i = 0; i < levelData.cubeList.Count; i++)
-        {
-            levelList[levelData.index].cubeList.Add(levelData.cubeList[i].position);
-            // levelList[levelData.index].Add(levelData.cubeList[i].position);
-        }
+        levelDataList.Add(levelData);
+
+        // while(levelList.Count <= levelData.index)
+        // {
+        //     levelList.Add(new midCubeList(){cubeList = new List<Vector3Int>()});
+        // }
+        // levelList[levelData.index].cubeList.Clear();
+        // for (int i = 0; i < levelData.cubeList.Count; i++)
+        // {
+        //     levelList[levelData.index].cubeList.Add(levelData.cubeList[i].position);
+        //     // levelList[levelData.index].Add(levelData.cubeList[i].position);
+        // }
         // EditorUtility.SetDirty(this);
         // AssetDatabase.SaveAssets();
-        levelNum = levelList.Count;
+        // levelNum = levelList.Count;
         return;
     }
 
 
-    public List<Vector3Int> GetCubeList(int index)
+    public LevelData GetLevelData(int index)
     {
-        return levelList[index].cubeList;
+        return levelDataList[index];
     }
 
-    public void AddCubeList(List<Vector3Int> cubeList)
+    public void AddLevelData(LevelData levelData)
     {
-        levelList.Add(new midCubeList(){cubeList = cubeList});
-        levelNum = levelList.Count;
+        levelDataList.Add(levelData);
     }
     
 } 

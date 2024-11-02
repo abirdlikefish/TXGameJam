@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class BaseCube : MonoBehaviour
 {
-    public int groupID = -1;
+    // public int groupID = -1;
     private Vector3Int position;
     public Vector3Int Position{ get => position; set {position = value; transform.position = value;}}
-    public int Height{get => Mathf.RoundToInt(CameraManager.Instance.GetDepth(Position));}
+    public int Height{get => Mathf.RoundToInt(CameraManager.Instance.GetHeight(Position));}
     private MeshRenderer meshRenderer;
-    private Material[] materials;
+    private static List<Material> materials;
+
     private int color;
     public int Color
     {
         get => color;
-        // set => color = value;
         set
         {
             if(meshRenderer == null)
             {
-                // newMaterial = GetComponent<NewMaterial>();
-                InitMaterial();
+                // InitMaterial();
+                meshRenderer = GetComponent<MeshRenderer>();
             }
             if(value == -1)
             {
                 color = 0;
                 meshRenderer.material = Instantiate(materials[0]);
-                // Debug.Log(name + " " +materials[0].name);
+                Debug.LogWarning("error: Color is -1");
             }
             else if(color == value)
             {
@@ -51,22 +51,24 @@ public class BaseCube : MonoBehaviour
         return CameraManager.Instance.GetCameraSpacePosition(Position);
     }
 
-    public void Awake()
-    {
-        // newMaterial = GetComponent<NewMaterial>();
-        InitMaterial();
-        Color = -1;
-    }
+    // public void Awake()
+    // {
+    //     meshRenderer = GetComponent<MeshRenderer>();
+    //     // newMaterial = GetComponent<NewMaterial>();
+    //     // InitMaterial();
+    //     // Color = -1;
+    // }
 
-    private void InitMaterial()
+    public static void InitMaterial(List<Material> materialList)
     {
+        materials = materialList;
         // newMaterial = GetComponent<NewMaterial>();
-        meshRenderer = GetComponent<MeshRenderer>();
-        materials = new Material[5];
-        materials[0] = Resources.Load<Material>("Material/ColorWhite");
-        materials[1] = Resources.Load<Material>("Material/ColorRed");
-        materials[2] = Resources.Load<Material>("Material/ColorGreen");
-        materials[4] = Resources.Load<Material>("Material/ColorBlue");
+        // meshRenderer = GetComponent<MeshRenderer>();
+        // materials = new Material[5];
+        // materials[0] = Resources.Load<Material>("Material/ColorWhite");
+        // materials[1] = Resources.Load<Material>("Material/ColorRed");
+        // materials[2] = Resources.Load<Material>("Material/ColorGreen");
+        // materials[4] = Resources.Load<Material>("Material/ColorBlue");
     }
     
 }

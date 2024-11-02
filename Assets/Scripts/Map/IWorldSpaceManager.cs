@@ -9,14 +9,15 @@ public interface IWorldSpaceManager
     public void RemoveCube_all();
     public List<BaseCube> GetCubes();
     public BaseCube FindByPosition(Vector3Int position);
-    public void MergeGroup(List<int> groupIDList);
-    public void IncreaseDepth(int groupID, int depth);
-    public void DecreaseDepth(int groupID, int depth);
-    public void CleanGroup(int groupID);
-    public void CleanGroup_all();
-    public List<BaseCube> GetCubesByGroupID(int groupID);
+    public bool IsOutRange(Vector3Int position);
+    // public void MergeGroup(List<int> groupIDList);
+    // public void IncreaseDepth(int groupID, int depth);
+    // public void DecreaseDepth(int groupID, int depth);
+    // public void CleanGroup(int groupID);
+    // public void CleanGroup_all();
+    // public List<BaseCube> GetCubesByGroupID(int groupID);
     public List<Vector3Int> GetCubeListVector3Int();
-    public void AddCubeToGroup(BaseCube cube);
-    public int GetNewID();
+    // public void AddCubeToGroup(BaseCube cube);
+    // public int GetNewID();
 
 }
