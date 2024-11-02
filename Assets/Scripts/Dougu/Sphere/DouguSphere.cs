@@ -25,7 +25,6 @@ public class DouguSphere : MonoBehaviour
         if (other.TryGetComponent<Mate>(out var mate))
         {
             mate.AddDougu(douguBase);
-            EventManager.Instance.RefreshUI(mate);
             Destroy(gameObject);
         }
     }

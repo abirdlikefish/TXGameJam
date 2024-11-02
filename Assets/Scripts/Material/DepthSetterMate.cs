@@ -60,7 +60,7 @@ public class DepthSetterMate : MonoBehaviour
             if (trapTimer >= 3f && !trapped)
             {
                 trapped = true;
-                EventManager.Instance.StartTrap(GetComponent<Mate>());
+                MateManager.Instance.OnOneDead(GetComponent<Mate>());
             }
         }
         else

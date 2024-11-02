@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMateEditor : Singleton1<UIMateEditor>
+public class UIMateEditor : MonoBehaviour
 {
     public Button btOnConfirmEdit;
     public GameObject panelEditMate;

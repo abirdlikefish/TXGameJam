@@ -9,7 +9,7 @@ public class SelectLevelState : BaseState
     {
         Debug.Log("SelectLevelState Enter");
         base.Enter();
-        EventManager.Instance.ExitStateEvent += Exit;
+        // EventManager.Instance.ExitStateEvent += Exit;
         Show(SaveManager.Instance.GetLevelNum());
         mate0.SetActive(true);
         mate1.SetActive(true);
@@ -462,30 +462,31 @@ public class SelectLevelState : BaseState
         }
     }
 
-    public override void Exit(int num)
-    {
-        Hide();
-        mate0.SetActive(false);
-        mate1.SetActive(false);
-        base.Exit(num);
-        EventManager.Instance.ExitStateEvent -= Exit;
-        if(num == 0)
-        {
-            gameStateMachine.ChangeState(gameStateMachine.mainState);
-        }
-        else
-        {
-            EventManager.Instance.EnterLevel(num);
+    // public override void Exit(int num)
+    // // public override void Exit(int num)
+    // {
+    //     Hide();
+    //     mate0.SetActive(false);
+    //     mate1.SetActive(false);
+    //     // base.Exit(num);
+    //     EventManager.Instance.ExitStateEvent -= Exit;
+    //     if(num == 0)
+    //     {
+    //         // gameStateMachine.ChangeState(gameStateMachine.mainState);
+    //     }
+    //     else
+    //     {
+    //         EventManager.Instance.EnterLevel(num);
 
-        }
+    //     }
 
-        // else if(num == 1)
-        // {
-        //     EventManager.Instance.EnterLevel(1);
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("SelectLevelState Exit Error");
-        // }
-    }
+    //     // else if(num == 1)
+    //     // {
+    //     //     EventManager.Instance.EnterLevel(1);
+    //     // }
+    //     // else
+    //     // {
+    //     //     Debug.LogWarning("SelectLevelState Exit Error");
+    //     // }
+    // }
 }

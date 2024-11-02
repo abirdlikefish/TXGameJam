@@ -34,10 +34,12 @@ public class Mate : Entity
     }
     public void OnEnterLevel()
     {
-        gameObject.SetActive(true);
+        GetComponent<NewMaterial>().Material.color = mateData.color;
+    }
+    public void OnEnterTinyLevel()
+    {
         ResetDougu();
         lastDouguTime = -DeliConfig.douguUseInterval;
-        GetComponent<NewMaterial>().Material.color = mateData.color;
     }
     void HandleInput()
     {
@@ -77,6 +79,7 @@ public class Mate : Entity
             Destroy(onHeadDougu[0].gameObject);
         dougu.user = this;
         onHeadDougu = new() { dougu };
+        UIManager.Instance.RefreshMateInLevel(this);
     }
     void RemoveDougu(Dougu dougu)
     {
@@ -89,7 +92,6 @@ public class Mate : Entity
     void ResetDougu()
     {
         AddDougu(DouguManager.InsDougu(typeof(DouguBomb),0));
-        EventManager.Instance.RefreshUI(this);
     }
     
     int OnUseDougu()

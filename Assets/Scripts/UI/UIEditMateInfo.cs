@@ -30,14 +30,12 @@ public class UIEditMateInfo:MonoBehaviour
     {
         editColor = RandomColor();
         MateData mateData = MateManager.Instance.CreateMate(mateName.text,editColor);
-        MateManager.Instance.GetMate(mateId).mateData = mateData;
         UIManager.Instance.ShowMate(mateData, mateId);
     }
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
-        MateManager.Instance.GetMate(mateId).mateData = mateData;
         UIManager.Instance.ShowMate(mateData, mateId);
     }
 

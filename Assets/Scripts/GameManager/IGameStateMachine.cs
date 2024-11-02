@@ -10,7 +10,7 @@ public interface IGameStateMachine
     void ChangeStateToPlayState();
     int LevelIndex { get; set; }
     void Update();
-    void SetVictoryMate(Mate mate);
+    // void SetVictoryMate(Mate mate);
     Mate VictoryMate{get; set;}
 
     void ContinuePlay();

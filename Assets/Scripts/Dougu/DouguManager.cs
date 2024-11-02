@@ -20,10 +20,15 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
         entityP = transform.Find("EntityPool");
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
         prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
-        EventManager.Instance.GenerateDouguSphereEvent += GenerateDouguSphere;
-        EventManager.Instance.GenerateDouguSphereMiniCubeEvent += GenerateDouguSphereMiniCube;
-        EventManager.Instance.BoomEvent += GenerateInstantBoom;
-        EventManager.Instance.EnterLevelEvent += EnterLevel;
+        //TODO EventManager.Instance.BoomEvent += GenerateInstantBoom;
+    }
+    IEnumerator Co_GenerateRandomDouguSphere()
+    {
+        while(true)
+        {
+            GenerateRandomDouguSphere();
+            yield return new WaitForSeconds(DeliConfig.dougeSphereInsCD);
+        }
     }
     public void GenerateRandomDouguSphere()
     {
@@ -87,11 +92,11 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
     }
     public void OnEnterTinyLevel()
     {
-
+        StartCoroutine(nameof(Co_GenerateRandomDouguSphere));
     }
     public void OnExitTinyLevel()
     {
-
+        StopCoroutine(nameof(Co_GenerateRandomDouguSphere));
     }
 
     public static Vector3Int ToY0(Vector3 pos)
@@ -110,22 +115,10 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
     }
     static List<Dougu> prefabDougus;
     static DouguSphere prefabDouguSphere;
-    //TODO 道具概率
-    public List<int> douguPossibility;
+    List<int> douguPossibility;
     int TotalPossibility => douguPossibility.Sum();
     [SerializeField]
     List<Vector3> emptys = new();
-
-
-    
-
-    public void EnterLevel(int id)
-    {
-        ClearChild(entityP);
-        //TODO 进入关卡初始化
-        //sths = new();
-    }
-    
     public static Dougu GetDougu(Type type,int cID)
     {
         Dougu d = GetDougu(type);
@@ -149,11 +142,7 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
         }
         return null;
     }
-    void GenerateDouguSphereMiniCube(Vector3Int pos)
-    {
-        GenerateDouguSphere(typeof(DouguMiniCube), pos, 0);
-    }
-    void GenerateDouguSphere(Type type, Vector3 pos,int cId)
+    public void GenerateDouguSphere(Type type, Vector3 pos,int cId)
     {
         //Debug.Log($"{type} + {pos} + cid + {cId}");
         GameObject go = Dougu.MyInsBlockOrSphere(prefabDouguSphere.gameObject, pos);
