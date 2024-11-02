@@ -32,12 +32,12 @@ public class ColorReactionManager : IColorReactionManager
 
     private void ColorReaction_1(Vector3Int position)
     {
-        EventManager.Instance.GenerateDouguSphereMiniCube(position);
+        DouguManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube),position,0);
     }
 
     private void ColorReaction_2(Vector3Int position)
     {
-        EventManager.Instance.GenerateBoom(position);
+        DouguManager.GenerateInstantBoom(position);
     }
 
 

@@ -61,15 +61,6 @@ public abstract class Dougu : MonoBehaviour
     
     public List<GameObject> busy = new();
 
-    public static void MyInsInstantBoom(Vector3 pos)
-    {
-        GameObject go = MyIns(DouguManager.GetDougu(typeof(DouguBomb), 0).gameObject, pos);
-        DouguBomb db = go.GetComponent<DouguBomb>();
-        db.blockExistTime = 0f;
-        db.remainUseCount = 0;
-        Debug.Log(nameof(MyInsInstantBoom) + " " + pos);
-        db.block.gameObject.SetActive(true);
-    }
     public static GameObject MyInsBlockOrSphere(GameObject go,Vector3 pos)
     {
         if (!MateInput.CanTooru(pos) || DouguManager.Instance.HasEither<Block,DouguSphere>(pos))
@@ -92,7 +83,7 @@ public abstract class Dougu : MonoBehaviour
             return null;
         return MyIns(effect.gameObject, pos);
     }
-    static GameObject MyIns(GameObject go, Vector3 pos)
+    public static GameObject MyIns(GameObject go, Vector3 pos)
     {
         Vector3Int posY0 = DouguManager.ToY0(pos);
         GameObject g = Instantiate(go, posY0, Quaternion.identity, DouguManager.entityP);

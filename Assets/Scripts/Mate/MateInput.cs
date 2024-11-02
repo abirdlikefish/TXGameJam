@@ -58,15 +58,15 @@ public class MateInput
     public static bool CanTooru(Vector3 center)
     {
         Vector2Int pos = MyWorldToScreen(center);
-        int ret = EventManager.Instance.IsPassable(pos);
+        int ret = MapManager.Instance.IsPassable(pos);
         return ret != 0;
     }
     public static bool CanTooru(Vector3 thisCenter,Vector3 nextCenter)
     {
         Vector2Int pos1 = MyWorldToScreen(thisCenter);
-        int ret1 = EventManager.Instance.IsPassable(pos1);
+        int ret1 = MapManager.Instance.IsPassable(pos1);
         Vector2Int pos2 = MyWorldToScreen(nextCenter);
-        int ret2 = EventManager.Instance.IsPassable(pos2);
+        int ret2 = MapManager.Instance.IsPassable(pos2);
         Vector3 delta = nextCenter - thisCenter;
         delta = new Vector3(Mathf.RoundToInt(delta.x), 0, Mathf.RoundToInt(delta.z));
         delta = CameraDirInWorld(delta);

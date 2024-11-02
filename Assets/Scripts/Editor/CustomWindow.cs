@@ -46,7 +46,7 @@ public class CustomWindow : EditorWindow
         //}
         if(GUILayout.Button("Generate Instant Bomb"))
         {
-            Dougu.MyInsInstantBoom(m_position);
+            DouguManager.GenerateInstantBoom(m_position);
         }
         if (GUILayout.Button("Generate Dougu Bomb"))
         {
@@ -68,10 +68,10 @@ public class CustomWindow : EditorWindow
         {
             DouguManager.Instance.GenerateRandomDouguSphere();
         }
-        
-        //if (GUILayout.Button("Remove Cube"))
-        //{
-        //    EventManager.Instance.RemoveCube(m_position);
-        //}
+
+        if (GUILayout.Button("Remove Cube"))
+        {
+            MapManager.Instance.RemoveCube(m_position);
+        }
     }
 }

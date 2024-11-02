@@ -2086,7 +2086,7 @@ GameObject:
   - component: {fileID: 8265407314592602089}
   - component: {fileID: 6821371301004294096}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: LevelExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

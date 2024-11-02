@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
         // if(Input.GetKeyDown(KeyCode.LeftControl))
         // {
-        //     EventManager.Instance.RemoveCube(new Vector3Int(2,2,1));
+        //     MapManager.Instance.RemoveCube(new Vector3Int(2,2,1));
         // }
     }
     void InitTotal()

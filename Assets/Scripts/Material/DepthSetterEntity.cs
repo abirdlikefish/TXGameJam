@@ -31,8 +31,8 @@ public class DepthSetterEntity : MonoBehaviour
     }
     void TryTrap()
     {
-        int isPassable = EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter));
-        int isEmpty = EventManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter));
+        int isPassable = MapManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter));
+        int isEmpty = MapManager.Instance.IsEmpty(MateInput.MyWorldToScreen(ThisCenter));
         if ((isPassable == 0
             ||
             isEmpty != 0)
