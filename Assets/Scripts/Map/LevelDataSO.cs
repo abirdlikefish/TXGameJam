@@ -18,9 +18,24 @@ public class LevelDataSO : ScriptableObject
 
     public int levelNum => levelDataList.Count;
 
-    public void AddLevelDataFromLastProject(LevelData levelData)
+    public void AddLevelDataFromLastProject(LevelData_mid levelData_mid)
     {
-        levelDataList.Add(levelData);
+        // levelDataList.Add(levelData);
+        while(levelDataList.Count <= levelData_mid.index)
+        {
+            levelDataList.Add(new LevelData());
+        }
+
+        if(levelDataList[levelData_mid.index].cubeList == null)
+        {
+            levelDataList[levelData_mid.index].cubeList = new();
+        }
+        levelDataList[levelData_mid.index].cubeList.Clear();
+        levelDataList[levelData_mid.index].index = levelData_mid.index;
+        for(int i = 0 ; i < levelData_mid.cubeList.Count; i++)
+        {
+            levelDataList[levelData_mid.index].cubeList.Add(new LevelData.s_Cube(){position = levelData_mid.cubeList[i].position, color = 0});
+        }
 
         // while(levelList.Count <= levelData.index)
         // {

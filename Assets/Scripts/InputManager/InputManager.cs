@@ -31,6 +31,12 @@ public class InputManager : IInputManager
         inputControls.Select.SetCallbacks(selectActionsReader);
         moveInput = new List<Vector2>();
         useInput = new List<float>();
+        moveInput.Add(Vector2.zero);
+        moveInput.Add(Vector2.zero);
+        useInput.Add(0);
+        useInput.Add(0);
+
+        inputControls.Play.Enable();
     }
 
     public Vector2Int GetInput_move(int playerIndex)

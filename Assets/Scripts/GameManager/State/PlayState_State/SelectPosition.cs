@@ -50,7 +50,7 @@ public class SelectPosition : BasePlayState
             {
                 lastMoveTimeList[i] = Time.time;
                 SetPosition(i , positionList[i] + InputManager.Instance.GetInput_move_vector3(i));
-                playList[i].transform.position = Vector3Int.RoundToInt(playList[i].transform.position) + InputManager.Instance.GetInput_move_vector3(i);
+                // playList[i].transform.position = Vector3Int.RoundToInt(playList[i].transform.position) + InputManager.Instance.GetInput_move_vector3(i);
                 ChangeColor(i);
                 isSelectedList[i] = false;
             }
@@ -112,7 +112,7 @@ public class SelectPosition : BasePlayState
     List<MeshRenderer> meshRendererList;
     List<bool> isSelectedList;
     List<float> lastMoveTimeList;
-    float moveInterval = 0.3f;
+    float moveInterval = 0.2f;
     void SetPosition(int playerIndex , Vector3Int position)
     {
         playList[playerIndex].transform.position = position + Vector3Int.up;
@@ -217,6 +217,7 @@ public class SelectPosition : BasePlayState
         positionList = new List<Vector3Int>();
         meshRendererList = new List<MeshRenderer>();
         isSelectedList = new List<bool>();
+        lastMoveTimeList = new List<float>();
         base.Init(playState);
         for(int i = 0 ; i < 2 ; i ++)
         {
@@ -225,6 +226,7 @@ public class SelectPosition : BasePlayState
             meshRendererList.Add(playList[i].GetComponent<MeshRenderer>());
             isSelectedList.Add(false);
             playList[i].SetActive(false);
+            lastMoveTimeList.Add(0);
         }
         // player0 = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/SelectMateCube0"));
         // player1 = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/SelectMateCube1"));

@@ -23,7 +23,11 @@ public class CubeFactory
         prefab_cube = Resources.Load<GameObject>("Prefabs/Cube");
         cubePool = new List<BaseCube>();
 
-        List<Material> materials = new List<Material>(50);
+        List<Material> materials = new List<Material>();
+        for(int i = 0 ; i < 50 ; i ++)
+        {
+            materials.Add(null);
+        }
         materials[0] = Resources.Load<Material>("Material/ColorWhite");
         materials[1] = Resources.Load<Material>("Material/ColorRed");
         materials[2] = Resources.Load<Material>("Material/ColorGreen");
@@ -68,6 +72,7 @@ public class CubeFactory
 
     public void DestroyCube(BaseCube cube)
     {
+        cube.Destroy();
         cube.gameObject.SetActive(false);
         cubePool.Add(cube);
     }

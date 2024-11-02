@@ -17,7 +17,7 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
             1,1,1,1
         };
 
-        entityP = transform.Find("EntityPool");
+        entityP = transform;
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
         prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
         //TODO EventManager.Instance.BoomEvent += GenerateInstantBoom;

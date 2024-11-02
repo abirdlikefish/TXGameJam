@@ -7,7 +7,7 @@ public class CubeGetter
     public static BaseCube GetCubeCanTooru(Vector3Int worldPosY0)
     {
         Vector2Int pos = MateInput.MyWorldToScreen(worldPosY0);
-        int ret = EventManager.Instance.IsPassable(pos);
+        int ret = MapManager.Instance.IsPassable(pos);
         if (ret == 0)
             return null;
         if(ret == 2 || ret == 3)

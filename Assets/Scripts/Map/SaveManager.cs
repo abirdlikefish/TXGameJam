@@ -38,9 +38,9 @@ public class SaveManager
         {
             Debug.Log("Load LevelData from json");
             string levelDataJson = File.ReadAllText(fileInfo.FullName);
-            LevelData levelData = JsonUtility.FromJson<LevelData>(levelDataJson);
-            
-            levelDataSO.AddLevelDataFromLastProject(levelData);
+            LevelData_mid levelData_mid = JsonUtility.FromJson<LevelData_mid>(levelDataJson);
+            // Debug.Log("Load LevelData succeed");            
+            levelDataSO.AddLevelDataFromLastProject(levelData_mid);
         }
     }
 
