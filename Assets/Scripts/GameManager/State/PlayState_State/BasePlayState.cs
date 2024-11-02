@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BasePlayState
 {
-    protected static PlayState playState;
+    protected
+     static PlayState playState;
     public virtual void Init(PlayState playState)
     {
         if(BasePlayState.playState == null)
