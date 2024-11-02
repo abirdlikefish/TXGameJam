@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    GameStateMachine gameStateMachine;
+    // GameStateMachine gameStateMachine;
     private void Awake()
     {
         InitTotal();
-        // MapManager.AddListener();
-        ColorReactionManager.AddListener();
-        // SaveManager.AddListener();
-        SelectMatePosition.AddListener();
-        // GameStateMachine.AddListener();
-        gameStateMachine = new GameStateMachine();
-        gameStateMachine.Init();
         Debug.Log("GameManager Awake");
     }
     void Update()
     {
-        gameStateMachine.Update();
+        // gameStateMachine.Update();
+        GameStateMachine.Instance.Update();
 
         // if(Input.GetKeyDown(KeyCode.LeftControl))
         // {
@@ -28,8 +22,8 @@ public class GameManager : MonoBehaviour
     }
     void InitTotal()
     {
-        UIMateEditor.Instance.Init();
-        UIManager.Instance.Init();   
-        UIMainMenu.Instance.Init();
+        // UIMateEditor.Instance.Init();
+        UIManager.Instance.Init();
+        // UIMainMenu.Instance.Init();
     }
 }

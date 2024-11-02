@@ -2,58 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateMachine 
+
+public class GameStateMachine : IGameStateMachine
 {
-    public MainState mainState;
-    public InputNameState inputNameState;
-    public SelectLevelState selectLevelState;
-    public PlayState_1 playState_1;
+    private static GameStateMachine instance;
+    public static IGameStateMachine Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameStateMachine();
+                instance.Init();
+            }
+            return instance;
+        }
+    }
+    private MainState mainState;
+    private InputNameState inputNameState;
+    private LevelSelectState levelSelectState;
+    private PlayState playState;
     private BaseState currentState;
 
-    public void Init()
+    private int levelIndex;
+    public int LevelIndex {get ; set;}
+
+    private void Init()
     {
-        BaseState.Init(this);
         mainState = new MainState();
         inputNameState = new InputNameState();
-        selectLevelState = new SelectLevelState();
-        playState_1 = new PlayState_1();
+        levelSelectState = new LevelSelectState();
+        playState = new PlayState();
 
-        EventManager.Instance.EnterLevelEvent += playState_1.OtherEnter;
-        EventManager.Instance.EnterTinyLevelEvent += (x) => playState_1.isPlaying = true ;
-        selectLevelState.Init();
-
-        // mainState
+        mainState.Init(this);
+        inputNameState.Init(this);
+        levelSelectState.Init(this);
+        playState.Init(this);
         ChangeState(mainState);
-        // ChangeState(mainState);
     }
 
     public void ChangeState(BaseState newState)
     {
+        currentState?.Exit();
         currentState = newState;
         currentState.Enter();
     }
 
-    public void Update()
+    void IGameStateMachine.Update()
     {
         currentState.Update();
     }
 
-    // static GameStateMachine instance;
-    // public static GameStateMachine Instance
-    // {
-    //     get
-    //     {
-    //         if(instance == null)
-    //         {
-    //             instance = new GameStateMachine();
-    //         }
-    //         return instance;
-    //     }
-    // }
-
-    // public static void AddListener()
-    // {
-    //     EventManager.Instance.EnterLevelEvent += Instance.playState_1.OtherEnter;
-    // }
+    void IGameStateMachine.ChangeStateToMainState()
+    {
+        ChangeState(mainState);
+    }
+    void IGameStateMachine.ChangeStateToInputNameState()
+    {
+        ChangeState(inputNameState);
+    }
+    void IGameStateMachine.ChangeStateToLevelSelectState()
+    {
+        ChangeState(levelSelectState);
+    }
+    void IGameStateMachine.ChangeStateToPlayState()
+    {
+        ChangeState(playState);
+    }
+    
 
 }

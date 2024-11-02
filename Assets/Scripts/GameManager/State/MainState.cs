@@ -8,10 +8,8 @@ public class MainState : BaseState
     {
         Debug.Log("MainState Enter");
         base.Enter();
-        // EventManager.Instance.ExitStateEvent += Exit;
         EventManager.Instance.ShowMainMenu();
-        // EventManager.Instance.ShowHeadLineMap();
-        UIManager.Instance.ShowMainMenu();
+        UIManager.Instance.OnEnterMain();
         SaveManager.Instance.LoadMap(0);
     }
 
@@ -31,17 +29,5 @@ public class MainState : BaseState
         // EventManager.Instance.HideHeadLineMap();
         Debug.Log("MainState Exit");
         base.Exit();
-        
-        // base.Exit(num);
-        // EventManager.Instance.ExitStateEvent -= Exit;
-        // if(num == 0)
-        // {
-        //     // gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
-        //     gameStateMachine.ChangeState(gameStateMachine.inputNameState);
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("MainState Exit Error");
-        // }
     }
 }
