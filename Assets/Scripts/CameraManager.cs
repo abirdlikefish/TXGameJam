@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
         mid += Vector3Int.one * 100;
         return new Vector2Int(mid.x, mid.z);
     }
-    public float GetDepth(Vector3 position)
+    public float GetHeight(Vector3 position)
     {
         return Vector3.Dot(position, GetCameraDirection());
     }
@@ -112,7 +112,14 @@ public class CameraManager : MonoBehaviour
         return -1;
     }
 
-
+    public Vector3Int GetOffsetX_vector3()
+    {
+        return new Vector3Int(GetOffsetX().x, 0, GetOffsetX().y);
+    }
+    public Vector3Int GetOffsetY_vector3()
+    {
+        return new Vector3Int(GetOffsetY().x, 0, GetOffsetY().y);
+    }
     
     // bool isRotating ;
     // public Vector3 center; // 圆弧的中心点
