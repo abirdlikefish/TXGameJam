@@ -8,9 +8,11 @@ public class MainState : BaseState
     {
         Debug.Log("MainState Enter");
         base.Enter();
-        EventManager.Instance.ExitStateEvent += Exit;
+        // EventManager.Instance.ExitStateEvent += Exit;
         EventManager.Instance.ShowMainMenu();
-        EventManager.Instance.ShowHeadLineMap();
+        // EventManager.Instance.ShowHeadLineMap();
+        UIManager.Instance.ShowMainMenu();
+        SaveManager.Instance.LoadMap(0);
     }
 
     public override void Update()
@@ -24,18 +26,22 @@ public class MainState : BaseState
 
     public override void Exit(int num)
     {
-        EventManager.Instance.HideHeadLineMap();
+        UIManager.Instance.CloseMainMenu();
+        MapManager.Instance.RemoveCube_all();
+        // EventManager.Instance.HideHeadLineMap();
         Debug.Log("MainState Exit");
-        base.Exit(num);
-        EventManager.Instance.ExitStateEvent -= Exit;
-        if(num == 0)
-        {
-            // gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
-            gameStateMachine.ChangeState(gameStateMachine.inputNameState);
-        }
-        else
-        {
-            Debug.LogWarning("MainState Exit Error");
-        }
+        base.Exit();
+        
+        // base.Exit(num);
+        // EventManager.Instance.ExitStateEvent -= Exit;
+        // if(num == 0)
+        // {
+        //     // gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
+        //     gameStateMachine.ChangeState(gameStateMachine.inputNameState);
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("MainState Exit Error");
+        // }
     }
 }

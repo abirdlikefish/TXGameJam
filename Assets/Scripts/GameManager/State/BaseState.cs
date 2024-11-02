@@ -5,9 +5,10 @@ using UnityEngine;
 public class BaseState 
 {
     static protected GameStateMachine gameStateMachine;
-    static public void Init(GameStateMachine gameStateMachine)
+    public virtual void Init(GameStateMachine gameStateMachine)
     {
-        BaseState.gameStateMachine = gameStateMachine;
+        if(BaseState.gameStateMachine == null)
+            BaseState.gameStateMachine = gameStateMachine;
     }
     public virtual void Enter()
     {
@@ -17,7 +18,8 @@ public class BaseState
     {
 
     }
-    public virtual void Exit(int num)
+    // public virtual void Exit(int num)
+    public virtual void Exit()
     {
 
     }

@@ -21,8 +21,10 @@ public class BaseCube : MonoBehaviour
             {
                 // InitMaterial();
                 meshRenderer = GetComponent<MeshRenderer>();
+                color = value;
+                meshRenderer.material = Instantiate(materials[value]);
             }
-            if(value == -1)
+            else if(value == -1)
             {
                 color = 0;
                 meshRenderer.material = Instantiate(materials[0]);
@@ -34,7 +36,8 @@ public class BaseCube : MonoBehaviour
             }
             else if(color != 0)
             {
-                EventManager.Instance.ColorReaction(color + value , Position);
+                // EventManager.Instance.ColorReaction(color + value , Position);
+                ColorReactionManager.Instance.InvokeColorReaction(color + value , Position);
                 color = 0;
                 meshRenderer.material = Instantiate(materials[0]);
             }

@@ -56,6 +56,11 @@ public class InputManager : IInputManager
             return Vector2Int.zero;
         }
     }
+    public Vector3Int GetInput_move_vector3(int playerIndex)
+    {
+        Vector2Int offset = GetInput_move(playerIndex);
+        return new Vector3Int(offset.x, 0, offset.y);
+    }
 
     public bool GetInput_use(int playerIndex)
     {
@@ -71,8 +76,14 @@ public class InputManager : IInputManager
         }
     }
 
+    // public bool GetInput_IsSelected(int playerIndex)
+    // {
+    //     return isSelected[playerIndex];
+    // }
+
     List<Vector2> moveInput ;
     List<float> useInput ;
+    // List<bool> isSelected;
     PlayActionsReader playActionsReader ;
     UIActionsReader uiActionsReader ;
     SelectActionsReader selectActionsReader ;
@@ -109,10 +120,10 @@ public class InputManager : IInputManager
             {
                 instance.useInput[0] = Time.time;
             }
-            else if(context.canceled)
-            {
-                instance.useInput[0] = 0;
-            }
+            // else if(context.canceled)
+            // {
+            //     instance.useInput[0] = 0;
+            // }
         }
 
         void InputControls.IPlayActions.OnUse_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -121,10 +132,10 @@ public class InputManager : IInputManager
             {
                 instance.useInput[1] = Time.time;
             }
-            else if(context.canceled)
-            {
-                instance.useInput[1] = 0;
-            }
+            // else if(context.canceled)
+            // {
+            //     instance.useInput[1] = 0;
+            // }
         }
     }
     private class UIActionsReader : InputControls.IUIActions
@@ -135,22 +146,46 @@ public class InputManager : IInputManager
     {
         void InputControls.ISelectActions.OnMove_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if(context.started)
+            {
+                instance.moveInput[0] = context.ReadValue<Vector2>();
+            }
+            else if(context.canceled)
+            {
+                instance.moveInput[0] = Vector2.zero;
+            }
+            // instance.isSelected[0] = false;
         }
 
         void InputControls.ISelectActions.OnMove_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if(context.started)
+            {
+                instance.moveInput[1] = context.ReadValue<Vector2>();
+            }
+            else if(context.canceled)
+            {
+                instance.moveInput[1] = Vector2.zero;
+            }
+            // instance.isSelected[1] = false;
         }
 
         void InputControls.ISelectActions.OnUse_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if(context.started)
+            {
+                // instance.isSelected[0] = true;
+                instance.useInput[0] = Time.time;
+            }
         }
 
         void InputControls.ISelectActions.OnUse_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if(context.started)
+            {
+                // instance.isSelected[1] = true;
+                instance.useInput[1] = Time.time;
+            }
         }
     }
 
