@@ -1,6 +1,7 @@
 using Pec;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,10 +59,15 @@ public class UIManager : Singleton1<UIManager>
         Application.Quit();
 #endif
     }
+    public void OnExitMain()
+    {
+        Debug.Log("UI" + nameof(OnExitMain));
+        mainPanel.SetActive(false);
+    }
     void WillEnterEditName()
     {
         Debug.Log("UI" + nameof(WillEnterEditName));
-        mainPanel.SetActive(false);
+        OnExitMain();
         //TODO 切换状态
     }
 
@@ -102,17 +108,22 @@ public class UIManager : Singleton1<UIManager>
     {
         return new Color(c.r, c.g, c.b, a);
     }
+    public void OnExitEditName()
+    {
+        Debug.Log("UI" + nameof(OnExitEditName));
+        editNamePanel.SetActive(false);
+    }
     void WillEnterLevel()
     {
         Debug.Log("UI" + nameof(WillEnterLevel));
-        editNamePanel.SetActive(false);
+        OnExitEditName();
         //TODO 切换状态
     }
     #endregion
     #region Func - In Level
-    public void OnEnterLevel()
+    public void OnEnterInLevel()
     {
-        Debug.Log("UI" + nameof(OnEnterLevel));
+        Debug.Log("UI" + nameof(OnEnterInLevel));
         inLevelPanel.SetActive(true);
         ReSetMixToggle();
     }
@@ -162,9 +173,14 @@ public class UIManager : Singleton1<UIManager>
     void WillExitLevelFromInLevel()
     {
         Debug.Log("UI" + nameof(WillExitLevelFromInLevel));
-        inLevelPanel.SetActive(false);
-        WillExitLevel();
+        OnExitInLevel();
+        //WillExitLevel();
         //TODO 切换状态
+    }
+    public void OnExitInLevel()
+    {
+        Debug.Log("UI" + nameof(OnExitInLevel));
+        inLevelPanel.SetActive(false);
     }
     void WillExitLevel()
     {
@@ -173,9 +189,9 @@ public class UIManager : Singleton1<UIManager>
     }
     #endregion
     #region Func - Winning
-    public void OnWinning(Mate mate)
+    public void OnEnterWinning(Mate mate)
     {
-        Debug.Log("UI" + nameof(OnWinning));
+        Debug.Log("UI" + nameof(OnEnterWinning));
         StartCoroutine(ShowWinPanelCor(mate));
     }
     IEnumerator ShowWinPanelCor(Mate mate)
@@ -197,50 +213,65 @@ public class UIManager : Singleton1<UIManager>
         Debug.Log("UI" + nameof(OnIfContinueTinyLevel));
         ContinueGamePanel.SetActive(true);
     }
+    public void OnExitWinning()
+    {
+        Debug.Log("UI" + nameof(OnExitWinning));
+        ContinueGamePanel.SetActive(false);
+    }
     void WillContinueTinyLevel()
     {
         Debug.Log("UI" + nameof(WillContinueTinyLevel));
-        ContinueGamePanel.SetActive(false);
+        OnExitWinning();
         //TODO 切换状态
     }
     void WillIfSaveMap()
     {
         Debug.Log("UI" + nameof(WillIfSaveMap));
-        ContinueGamePanel.SetActive(false);
-        OnIfSaveMap();
+        OnExitWinning();
+        OnEnterIfSaveMap();
     }
     #endregion
     #region Func - IfSaveMap
-    void OnIfSaveMap()
+    void OnEnterIfSaveMap()
     {
-        Debug.Log("UI" + nameof(OnIfSaveMap));
+        Debug.Log("UI" + nameof(OnEnterIfSaveMap));
         ifSaveMapPanel.SetActive(true);
+    }
+    public void OnExitIfSaveMap()
+    {
+        Debug.Log("UI" + nameof(OnExitIfSaveMap));
+        ifSaveMapPanel.SetActive(false);
     }
     void WillMapEdit()
     {
         Debug.Log("UI" + nameof(WillMapEdit));
-        ifSaveMapPanel.SetActive(false);
-        OnMapEdit();
+        OnExitIfSaveMap();
+        OnEnterMapEdit();
     }
     void WillExitLevelFromIfSaveMap()
     {
         Debug.Log("UI" + nameof(WillExitLevelFromIfSaveMap));
-        ifSaveMapPanel.SetActive(false);
+        OnExitIfSaveMap();
         WillExitLevel();
     }
     #endregion
     #region Func - MapEdit
-    void OnMapEdit()
+    void OnEnterMapEdit()
     {
-        Debug.Log("UI" + nameof(OnMapEdit));
+        Debug.Log("UI" + nameof(OnEnterMapEdit));
         mapEditPanel.SetActive(true);
     }
     void WillConfirmMapEdit()
     {
         Debug.Log("UI" + nameof(WillConfirmMapEdit));
-        mapEditPanel.SetActive(false);
+        OnExitMapEdit();
         //TODO call SaveMap
         OnConfirmMapEdit();
+    }
+    public void OnExitMapEdit()
+    {
+        Debug.Log("UI" + nameof(OnExitMapEdit));
+        mapEditPanel.SetActive(false);
     }
     void OnConfirmMapEdit()
     {
