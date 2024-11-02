@@ -32,26 +32,17 @@ public class CustomWindow : EditorWindow
         colorID = EditorGUILayout.IntField("color id", colorID);
 
         // 按钮按下时调用AddCube方法
-        //if (GUILayout.Button("Add Cube"))
-        //{
-        //    EventManager.Instance.AddCube(m_position);
 
-        //}
         //if(GUILayout.Button("Get Cube by curMate0"))
         //{
         //    Vector2Int curMate1ScreenPos = Vector2Int.RoundToInt(CameraManager.Instance.GetCameraSpacePosition(MateManager.Instance.curMates[0].GetComponent<MateMover>().transform.position));
 
         //    List<BaseCube> cubes = MapManager.Instance.MyCameraSpaceManager.GetCubes(curMate1ScreenPos);
-
         //}
         
         //if (GUILayout.Button("Generate Dougu Bomb"))
         //{
         //    DouguManager.Instance.GenerateInstantBoom(m_position);
-        //}
-        //if (GUILayout.Button("Generate Dougu MiniCube"))
-        //{
-        //    EventManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube), m_position + Vector3Int.up, colorID);
         //}
         if(GUILayout.Button("Generate Instant Bomb"))
         {
@@ -59,28 +50,28 @@ public class CustomWindow : EditorWindow
         }
         if (GUILayout.Button("Generate Dougu Bomb"))
         {
-            EventManager.Instance.GenerateDouguSphere(typeof(DouguBomb), m_position, colorID);
+            DouguManager.Instance.GenerateDouguSphere(typeof(DouguBomb), m_position, colorID);
         }
         if (GUILayout.Button("Generate Dougu Ray"))
         {
-            EventManager.Instance.GenerateDouguSphere(typeof(DouguRay), m_position, colorID);
+            DouguManager.Instance.GenerateDouguSphere(typeof(DouguRay), m_position, colorID);
         }
         if (GUILayout.Button("Generate Dougu Hammer"))
         {
-            EventManager.Instance.GenerateDouguSphere(typeof(DouguHammer), m_position, colorID);
+            DouguManager.Instance.GenerateDouguSphere(typeof(DouguHammer), m_position, colorID);
         }
         if (GUILayout.Button("Generate Dougu MiniCube"))
         {
-            EventManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube), m_position, colorID);
+            DouguManager.Instance.GenerateDouguSphere(typeof(DouguMiniCube), m_position, colorID);
         }
         if (GUILayout.Button("Generate Random Dougu"))
         {
             DouguManager.Instance.GenerateRandomDouguSphere();
         }
         
-        if (GUILayout.Button("Remove Cube"))
-        {
-            EventManager.Instance.RemoveCube(m_position);
-        }
+        //if (GUILayout.Button("Remove Cube"))
+        //{
+        //    EventManager.Instance.RemoveCube(m_position);
+        //}
     }
 }

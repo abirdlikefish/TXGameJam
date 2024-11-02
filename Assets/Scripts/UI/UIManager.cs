@@ -206,7 +206,6 @@ public class UIManager : Singleton1<UIManager>
     {
         winPanel.SetActive(true);
         winText.text = mate.mateData.name + " Win!!";
-        RefreshMateInLevel(mate);
         yield return new WaitForSeconds(2f);
         WillIfContinueTinyLevel();
     }

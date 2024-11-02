@@ -79,6 +79,7 @@ public class Mate : Entity
             Destroy(onHeadDougu[0].gameObject);
         dougu.user = this;
         onHeadDougu = new() { dougu };
+        UIManager.Instance.RefreshMateInLevel(this);
     }
     void RemoveDougu(Dougu dougu)
     {
@@ -91,7 +92,6 @@ public class Mate : Entity
     void ResetDougu()
     {
         AddDougu(DouguManager.InsDougu(typeof(DouguBomb),0));
-        EventManager.Instance.RefreshUI(this);
     }
     
     int OnUseDougu()

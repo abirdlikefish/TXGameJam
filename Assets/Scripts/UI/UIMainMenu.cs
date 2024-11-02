@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMainMenu : Singleton1<UIMainMenu>
+public class UIMainMenu : MonoBehaviour
 {
     public Animator duelAnimator;
     public Animator exitAnimator;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public interface IDouguManager
 {
     public void GenerateRandomDouguSphere();
-
+    public void GenerateDouguSphere(Type type, Vector3 pos, int cId);
     public bool AddSth(GameObject go);
     public bool RemoveSth(GameObject go);
     public bool HasAny(Vector3 pos);

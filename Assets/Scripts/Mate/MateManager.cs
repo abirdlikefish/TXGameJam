@@ -113,6 +113,7 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
         Mate winnerMate = curMates.Find(it => it != deadMate);
         winnerMate.mateData.winCount++;
         SaveJson();
+        UIManager.Instance.RefreshMateInLevel(winnerMate);
         //TODO show victory
         //GameStateMachine.Instance.VictoryMate(winnerMate);
     }

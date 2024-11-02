@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
     }
     void InitTotal()
     {
-        UIMateEditor.Instance.Init();
+        //UIMateEditor.Instance.Init();
         UIManager.Instance.Init();   
-        UIMainMenu.Instance.Init();
+        //UIMainMenu.Instance.Init();
     }
 }
