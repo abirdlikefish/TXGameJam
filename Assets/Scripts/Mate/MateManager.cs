@@ -88,11 +88,15 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
     }
     public void OnExitLevel()
     {
-        throw new NotImplementedException();
+
     }
     public void OnEnterTinyLevel()
     {
         hasOneDead = false;
+        foreach (var mate in curMates)
+        {
+            mate.OnEnterTinyLevel();
+        }
         ShowAllMates();
     }
     public void OnExitTinyLevel()
@@ -106,10 +110,11 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
         hasOneDead = true;
         //for (int i = 0; i < 2; i++)
         //    curMates[i].gameObject.SetActive(false);
-        Mate mate = curMates.Find(it => it != deadMate);
-        mate.mateData.winCount++;
+        Mate winnerMate = curMates.Find(it => it != deadMate);
+        winnerMate.mateData.winCount++;
         SaveJson();
-        EventManager.Instance.Winning(mate);
+        //TODO show victory
+        //GameStateMachine.Instance.VictoryMate(winnerMate);
     }
     #endregion
 

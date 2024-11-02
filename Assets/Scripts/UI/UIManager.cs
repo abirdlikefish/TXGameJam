@@ -67,7 +67,7 @@ public class UIManager : Singleton1<UIManager>
     void WillEnterEditName()
     {
         Debug.Log("UI" + nameof(WillEnterEditName));
-        OnExitMain();
+        //OnExitMain();
         //TODO 切换状态
     }
 
@@ -116,16 +116,17 @@ public class UIManager : Singleton1<UIManager>
     void WillEnterLevel()
     {
         Debug.Log("UI" + nameof(WillEnterLevel));
-        OnExitEditName();
+        //OnExitEditName();
         //TODO 切换状态
     }
     #endregion
     #region Func - In Level
-    public void OnEnterInLevel()
+    public void OnEnterLevel()
     {
-        Debug.Log("UI" + nameof(OnEnterInLevel));
-        inLevelPanel.SetActive(true);
+        Debug.Log("UI" + nameof(OnEnterLevel));
+        levelPanel.SetActive(true);
         ReSetMixToggle();
+        //OnEnterTinyLevel();
     }
     public void RefreshMateInLevel(Mate mate)
     {
@@ -159,33 +160,40 @@ public class UIManager : Singleton1<UIManager>
         mixPanel.SetActive(false);
         blockMixPanel.SetActive(false);
     }
-    public void OnEnterTinyLevel()
-    {
-        Debug.Log("UI" + nameof(OnEnterTinyLevel));
-        HideMixPanel();
-        for (int i = 0; i < uIMateProperties.Count; i++)
-        {
-            uIMateProperties[i].mate = MateManager.Instance.GetMate(i);
-            RefreshMateInLevel(MateManager.Instance.GetMate(i));
-        }
-    }
+   
     
     void WillExitLevelFromInLevel()
     {
         Debug.Log("UI" + nameof(WillExitLevelFromInLevel));
-        OnExitInLevel();
+        //OnExitInLevel();
         //WillExitLevel();
         //TODO 切换状态
     }
-    public void OnExitInLevel()
+    public void OnExitLevel()
     {
-        Debug.Log("UI" + nameof(OnExitInLevel));
-        inLevelPanel.SetActive(false);
+        Debug.Log("UI" + nameof(OnExitLevel));
+        levelPanel.SetActive(false);
     }
     void WillExitLevel()
     {
         Debug.Log("UI" + nameof(WillExitLevel));
         //TODO 切换状态
+    }
+    void OnEnterTinyLevel()
+    {
+        Debug.Log("UI" + nameof(OnEnterTinyLevel));
+        HideMixPanel();
+        for (int i = 0; i < 2; i++)
+        {
+            uIMateProperties[i].mate = MateManager.Instance.GetMate(i);
+            RefreshMateInLevel(MateManager.Instance.GetMate(i));
+        }
+        tinyLevelPanel.SetActive(true);
+    }
+    public void OnExitTinyLevel()
+    {
+        Debug.Log("UI" + nameof(OnExitTinyLevel));
+        tinyLevelPanel.SetActive(false);
     }
     #endregion
     #region Func - Winning
@@ -296,7 +304,8 @@ public class UIManager : Singleton1<UIManager>
     public List<UIEditMateInfo> uiEditMates;
 
     [Header("InLevel")]
-    public GameObject inLevelPanel;
+    public GameObject levelPanel;
+    public GameObject tinyLevelPanel;
     public List<UIInLevelMate> uIMateProperties = new List<UIInLevelMate>();
 
     public Button inLevelBtExit;

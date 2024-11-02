@@ -34,10 +34,12 @@ public class Mate : Entity
     }
     public void OnEnterLevel()
     {
-        gameObject.SetActive(true);
+        GetComponent<NewMaterial>().Material.color = mateData.color;
+    }
+    public void OnEnterTinyLevel()
+    {
         ResetDougu();
         lastDouguTime = -DeliConfig.douguUseInterval;
-        GetComponent<NewMaterial>().Material.color = mateData.color;
     }
     void HandleInput()
     {

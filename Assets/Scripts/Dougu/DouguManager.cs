@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
 {
+    bool generating = false;
     protected override void Init()
     {
         base.Init();
@@ -24,6 +25,14 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
         EventManager.Instance.GenerateDouguSphereMiniCubeEvent += GenerateDouguSphereMiniCube;
         EventManager.Instance.BoomEvent += GenerateInstantBoom;
         EventManager.Instance.EnterLevelEvent += EnterLevel;
+    }
+    IEnumerator Co_GenerateRandomDouguSphere()
+    {
+        while(true)
+        {
+            GenerateRandomDouguSphere();
+            yield return new WaitForSeconds(DeliConfig.dougeSphereInsCD);
+        }
     }
     public void GenerateRandomDouguSphere()
     {
@@ -87,11 +96,11 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
     }
     public void OnEnterTinyLevel()
     {
-
+        StartCoroutine(nameof(Co_GenerateRandomDouguSphere));
     }
     public void OnExitTinyLevel()
     {
-
+        StopCoroutine(nameof(Co_GenerateRandomDouguSphere));
     }
 
     public static Vector3Int ToY0(Vector3 pos)
@@ -110,8 +119,7 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
     }
     static List<Dougu> prefabDougus;
     static DouguSphere prefabDouguSphere;
-    //TODO 道具概率
-    public List<int> douguPossibility;
+    List<int> douguPossibility;
     int TotalPossibility => douguPossibility.Sum();
     [SerializeField]
     List<Vector3> emptys = new();
@@ -121,9 +129,6 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
 
     public void EnterLevel(int id)
     {
-        ClearChild(entityP);
-        //TODO 进入关卡初始化
-        //sths = new();
     }
     
     public static Dougu GetDougu(Type type,int cID)
