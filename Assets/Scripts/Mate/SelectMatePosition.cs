@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// need delete
 public class SelectMatePosition : MonoBehaviour
 {
 

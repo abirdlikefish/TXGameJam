@@ -67,8 +67,8 @@ public class UIManager : Singleton1<UIManager>
     void WillEnterEditName()
     {
         Debug.Log("UI" + nameof(WillEnterEditName));
-        //OnExitMain();
-        //TODO 切换状态
+        // OnExitMain();
+        GameStateMachine.Instance.ChangeStateToInputNameState();
     }
 
     #endregion
@@ -116,7 +116,8 @@ public class UIManager : Singleton1<UIManager>
     void WillEnterLevel()
     {
         Debug.Log("UI" + nameof(WillEnterLevel));
-        //OnExitEditName();
+        // OnExitEditName();
+        GameStateMachine.Instance.ChangeStateToLevelSelectState();
         //TODO 切换状态
     }
     #endregion
@@ -179,7 +180,7 @@ public class UIManager : Singleton1<UIManager>
         Debug.Log("UI" + nameof(WillExitLevel));
         //TODO 切换状态
     }
-    void OnEnterTinyLevel()
+    public void OnEnterTinyLevel()
     {
         Debug.Log("UI" + nameof(OnEnterTinyLevel));
         HideMixPanel();
