@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MateInput : Singleton<MateInput,IMateInput>, IMateInput
+public class MateInput
+// public class MateInput : Singleton<MateInput,IMateInput>, IMateInput
 {
     public List<KeyCode> Get_mate_dougu_keys(int id)
     {
@@ -26,14 +27,20 @@ public class MateInput : Singleton<MateInput,IMateInput>, IMateInput
         new() { { KeyCode.W, MoveDir.LeftUp }, { KeyCode.S, MoveDir.RightDown }, { KeyCode.A, MoveDir.LeftDown }, { KeyCode.D, MoveDir.RightUp } },
         new() { { KeyCode.UpArrow, MoveDir.LeftUp }, { KeyCode.DownArrow, MoveDir.RightDown }, { KeyCode.LeftArrow, MoveDir.LeftDown }, { KeyCode.RightArrow, MoveDir.RightUp } }
     };
-    public static Dictionary<MoveDir, Vector3> dir_vec =
+    public static Dictionary<MoveDir, Vector3Int> dir_vec =
         new()
         {
-            { MoveDir.LeftUp, new Vector3(0,0, -1) },
-            { MoveDir.RightDown, new Vector3(0,0, 1) },
-            { MoveDir.LeftDown, new Vector3(1,0, 0) },
-            { MoveDir.RightUp, new Vector3(-1,0, 0) },
+            { MoveDir.LeftUp, -CameraManager.Instance.GetOffsetY_vector3() },
+            { MoveDir.RightDown, CameraManager.Instance.GetOffsetY_vector3() },
+            { MoveDir.LeftDown, CameraManager.Instance.GetOffsetX_vector3() },
+            { MoveDir.RightUp, -CameraManager.Instance.GetOffsetX_vector3() },
         };
+        // {
+        //     { MoveDir.LeftUp, new Vector3(0,0, -1) },
+        //     { MoveDir.RightDown, new Vector3(0,0, 1) },
+        //     { MoveDir.LeftDown, new Vector3(1,0, 0) },
+        //     { MoveDir.RightUp, new Vector3(-1,0, 0) },
+        // };
     List<KeyCode> mate1_dougu_keys = new() {KeyCode.Space};
     List<KeyCode> mate2_dougu_keys = new() { KeyCode.Return, KeyCode.KeypadEnter };
     static bool IsPassableLeft(int x)

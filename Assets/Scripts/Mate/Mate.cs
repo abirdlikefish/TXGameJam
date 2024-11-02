@@ -10,8 +10,8 @@ public class Mate : Entity
     public MateData mateData;
 
     int mateId => transform.GetSiblingIndex();
-    public Vector3 thisCenter => mateMover.thisCenter;
-    public Vector3 FlipDir => mateMover.flipDir;
+    public Vector3Int thisCenter => mateMover.thisCenter;
+    public Vector3Int FlipDir => mateMover.flipDir;
     List<Dougu> onHeadDougu = new();
     float lastDouguTime;
 
@@ -47,27 +47,32 @@ public class Mate : Entity
         {
             return;
         }
+        
+        InputManager.Instance.GetInput_move_vector3(mateId);
+
         foreach (var key in MateInput.mate_key_dirs[mateId].Keys)
         {
             if (Input.GetKey(key))
             {
-                Vector3 ultiDelta = MateInput.Instance.InputKeyToDir(mateId,key);
+                // Vector3 ultiDelta = MateInput.Instance.InputKeyToDir(mateId,key);
+                Vector3Int ultiDelta = InputManager.Instance.GetInput_move_vector3(mateId);
                 mateMover.SetNextMove(ultiDelta);
                 break;
             }
         }
         mateMover.Move();
-        foreach(var key in MateInput.Instance.Get_mate_dougu_keys(mateId))
-        {
-            if (Input.GetKeyDown(key))
+        // InputManager.Instance.GetInput_use(mateId);
+        // foreach(var key in MateInput.Instance.Get_mate_dougu_keys(mateId))
+        // {
+            if (InputManager.Instance.GetInput_use(mateId))
             {
                 if(OnUseDougu() == Dougu.USED_CD)
                 {
                     lastDouguTime = Time.time;
                 }
-                break;
+                // break;
             }
-        }
+        // }
     }
     public Dougu GetDougu()
     {

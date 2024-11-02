@@ -28,7 +28,7 @@ public abstract class Dougu : MonoBehaviour
     public float blockExistTime = 2f;
     public Effect effect;
     public float effectTime = 0.5f;
-    public static List<Vector3> Dirs => MateInput.dir_vec.Values.ToList();
+    public static List<Vector3Int> Dirs => MateInput.dir_vec.Values.ToList();
     private void OnEnable()
     {
         StartCoroutine(nameof(TryDestroy));
@@ -54,7 +54,7 @@ public abstract class Dougu : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-    //return 1 表示使用需要带CD
+    //return 1 锟斤拷示使锟斤拷锟斤拷要锟斤拷CD
     public abstract int OnUse();
     
     public List<GameObject> busy = new();
@@ -103,7 +103,7 @@ public abstract class Dougu : MonoBehaviour
         //Debug.Log($"dye{cube.Position}");
         //cube.Color += 
     }
-    public void DyeBesideCubeColor(Vector3 dirInWorld, Vector3 thisCenter)
+    public void DyeBesideCubeColor(Vector3Int dirInWorld, Vector3Int thisCenter)
     {
         BaseCube upperCube = CubeGetter.GetCubeUpperFloor(dirInWorld, thisCenter);
         if (upperCube != null)

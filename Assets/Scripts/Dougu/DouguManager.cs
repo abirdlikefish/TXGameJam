@@ -39,7 +39,7 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
         {
             for (int j = d1 - d2; j <= d1 + d2; j++)
             {
-                Vector3 pos = new(i, 0, j);
+                Vector3Int pos = new(i, 0, j);
                 if (HasAny(pos))
                     continue;
                 if (CubeGetter.GetCubeCanTooru(pos) == null)

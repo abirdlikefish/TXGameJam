@@ -9,8 +9,8 @@ public class DepthSetterMate : MonoBehaviour
     public int d3;
     MateMover mateMover;
     NewMaterial newMaterial;
-    Vector3 ThisCenter => mateMover.thisCenter;
-    Vector3 NextCenter => mateMover.thisCenter + mateMover.flipDir;
+    Vector3Int ThisCenter => Vector3Int.RoundToInt(mateMover.thisCenter);
+    Vector3Int NextCenter => Vector3Int.RoundToInt(mateMover.thisCenter + mateMover.flipDir);
    
 
     float trapTimer = 0;
@@ -47,12 +47,14 @@ public class DepthSetterMate : MonoBehaviour
     void TryTrap()
     {
         Vector3Int curCenter = Vector3Int.RoundToInt(ThisCenter);
-        int leftType = CubeGetter.GetNodeL(curCenter);
-        int rightType = CubeGetter.GetNodeR(curCenter);
+        int leftType = MapManager.Instance.GetNode_L(curCenter);
+        int rightType = MapManager.Instance.GetNode_R(curCenter);
+        // int leftType = CubeGetter.GetNodeL(curCenter);
+        // int rightType = CubeGetter.GetNodeR(curCenter);
         if (leftType == 1 && rightType == 2)
         {
             Debug.Log($"RemoveCube Pos{curCenter}");
-            EventManager.Instance.RemoveCube(CubeGetter.GetCubeL(curCenter).Position);
+            EventManager.Instance.RemoveCube(MapManager.Instance.GetCubeL(curCenter).Position);
         }
         if (EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter)) == 0)
         {
@@ -69,18 +71,41 @@ public class DepthSetterMate : MonoBehaviour
             trapped = false;
         }
     }
-    int GetLeftCubeD(Vector3 center)
+    // int GetLeftCubeD(Vector3 center)
+    // {
+    //     BaseCube cube = CubeGetter.GetCubeL(center);
+    //     if (cube == null)
+    //         return int.MinValue;
+    //     return cube.Height;
+    // }
+    // int GetRightCubeD(Vector3 center)
+    // {
+    //     BaseCube cube = CubeGetter.GetCubeR(center);
+    //     if (cube == null)
+    //         return int.MinValue;
+    //     return cube.Height;
+    // }
+    
+    int GetLeftCubeD(Vector3Int center)
     {
-        BaseCube cube = CubeGetter.GetCubeL(center);
-        if (cube == null)
+        if(MapManager.Instance.GetCubeL(center) == null)
+        {
             return int.MinValue;
-        return cube.Height;
+        }
+        else
+        {
+            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+        }
     }
-    int GetRightCubeD(Vector3 center)
-    {
-        BaseCube cube = CubeGetter.GetCubeR(center);
-        if (cube == null)
+    int GetRightCubeD(Vector3Int center)
+    {        
+        if(MapManager.Instance.GetCubeR(center) == null)
+        {
             return int.MinValue;
-        return cube.Height;
+        }
+        else
+        {
+            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+        }
     }
 }
