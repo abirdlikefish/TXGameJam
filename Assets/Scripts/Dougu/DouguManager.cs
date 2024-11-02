@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
 {
@@ -20,7 +21,7 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
         entityP = transform.Find("EntityPool");
         prefabDougus = Resources.LoadAll<Dougu>(rPath).ToList();
         prefabDouguSphere = Resources.Load<DouguSphere>("Prefabs/DouguSphere/DouguSphere");
-        //TODO EventManager.Instance.BoomEvent += GenerateInstantBoom;
+        // EventManager.Instance.BoomEvent += GenerateInstantBoom;
     }
     IEnumerator Co_GenerateRandomDouguSphere()
     {
@@ -184,9 +185,14 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
     
 
     #region color reaction
-    public void GenerateInstantBoom(Vector3Int position)
+    public static void GenerateInstantBoom(Vector3Int position)
     {
-        Dougu.MyInsInstantBoom(position);
+        GameObject go = Dougu.MyIns(GetDougu(typeof(DouguBomb), 0).gameObject, position);
+        DouguBomb db = go.GetComponent<DouguBomb>();
+        db.blockExistTime = 0f;
+        db.remainUseCount = 0;
+        Debug.Log(nameof(GenerateInstantBoom) + " " + position);
+        db.block.gameObject.SetActive(true);
     }
     #endregion
 }

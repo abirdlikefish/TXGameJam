@@ -54,9 +54,9 @@ public class DepthSetterMate : MonoBehaviour
         if (leftType == 1 && rightType == 2)
         {
             Debug.Log($"RemoveCube Pos{curCenter}");
-            EventManager.Instance.RemoveCube(MapManager.Instance.GetCubeL(curCenter).Position);
+            MapManager.Instance.RemoveCube(MapManager.Instance.GetCubeL(curCenter).Position);
         }
-        if (EventManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter)) == 0)
+        if (MapManager.Instance.IsPassable(MateInput.MyWorldToScreen(ThisCenter)) == 0)
         {
             trapTimer += Time.deltaTime;
             if (trapTimer >= 3f && !trapped)
