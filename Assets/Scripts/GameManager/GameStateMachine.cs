@@ -25,7 +25,38 @@ public class GameStateMachine : IGameStateMachine
     private BaseState currentState;
 
     private int levelIndex;
-    public int LevelIndex {get ; set;}
+    public int LevelIndex {get => levelIndex ; set => levelIndex = value;}
+
+    Mate victoryMate;
+    // public Mate VictoryMate { get => victoryMate; set => victoryMate = value; }
+    public Mate VictoryMate 
+    { 
+        get => victoryMate; 
+        set
+        {
+            if(currentState is PlayState)
+            {
+                ((PlayState)currentState).VictoryMate = value;
+            }
+            else
+            {
+                Debug.LogError("GameStateMachine VictoryMate Error , not in playState");
+            }
+            victoryMate = value;
+        }
+    }
+
+    void IGameStateMachine.ContinuePlay()
+    {
+        if(currentState is PlayState)
+        {
+            ((PlayState)currentState).ContinuePlay();
+        }
+        else
+        {
+            Debug.LogError("GameStateMachine ContinuePlay Error , not in playState");
+        }
+    }
 
     private void Init()
     {

@@ -54,24 +54,9 @@ public class BaseCube : MonoBehaviour
         return CameraManager.Instance.GetCameraSpacePosition(Position);
     }
 
-    // public void Awake()
-    // {
-    //     meshRenderer = GetComponent<MeshRenderer>();
-    //     // newMaterial = GetComponent<NewMaterial>();
-    //     // InitMaterial();
-    //     // Color = -1;
-    // }
-
     public static void InitMaterial(List<Material> materialList)
     {
         materials = materialList;
-        // newMaterial = GetComponent<NewMaterial>();
-        // meshRenderer = GetComponent<MeshRenderer>();
-        // materials = new Material[5];
-        // materials[0] = Resources.Load<Material>("Material/ColorWhite");
-        // materials[1] = Resources.Load<Material>("Material/ColorRed");
-        // materials[2] = Resources.Load<Material>("Material/ColorGreen");
-        // materials[4] = Resources.Load<Material>("Material/ColorBlue");
     }
     
 }

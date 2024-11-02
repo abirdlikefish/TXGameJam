@@ -10,8 +10,6 @@ public class LevelSelectState : BaseState
         base.Enter();
 
         ShowCube(SaveManager.Instance.GetLevelNum());
-        red_tp = Resources.Load<Material>("Material/selectCube_r");
-        green_tp = Resources.Load<Material>("Material/selectCube_g");
         player0.SetActive(true);
         player1.SetActive(true);
         isSelected_0 = 0;
@@ -61,14 +59,18 @@ public class LevelSelectState : BaseState
         if(InputManager.Instance.GetInput_use(0) && GetLevelIndex(Vector3Int.RoundToInt(player0.transform.position)) > 0)
         {
             isSelected_0 = GetLevelIndex(Vector3Int.RoundToInt(player0.transform.position));
+            player0.GetComponent<MeshRenderer>().material = green;
         }
         if(InputManager.Instance.GetInput_use(1) && GetLevelIndex(Vector3Int.RoundToInt(player1.transform.position)) > 0)
         {
             isSelected_1 = GetLevelIndex(Vector3Int.RoundToInt(player1.transform.position));
+            player1.GetComponent<MeshRenderer>().material = green;
         }
         if(isSelected_0 > 0 && isSelected_1 == isSelected_0)
         {
-            Debug.Log("select level " + isSelected_0);
+            // Debug.Log("select level " + isSelected_0);
+            GameStateMachine.Instance.LevelIndex = isSelected_0;
+            GameStateMachine.Instance.ChangeStateToPlayState();
         }
 
         
@@ -86,6 +88,7 @@ public class LevelSelectState : BaseState
 
     Material red_tp;
     Material green_tp;
+    Material green;
     // Material green;
 
     private void ShowCube(int levelCnt)
@@ -145,6 +148,9 @@ public class LevelSelectState : BaseState
         player1 = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/SelectMateCube1"));
         player0.SetActive(false);
         player1.SetActive(false);
+        red_tp = Resources.Load<Material>("Material/selectCube_r_tp");
+        green_tp = Resources.Load<Material>("Material/selectCube_g_tp");
+        green = Resources.Load<Material>("Material/selectCube_g");
 
     }
 }

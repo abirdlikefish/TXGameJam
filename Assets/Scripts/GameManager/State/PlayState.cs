@@ -6,9 +6,9 @@ public class PlayState : BaseState
 {
 
     BasePlayState currentState;
-    BasePlayState selectPosition;
-    BasePlayState playing;
-    BasePlayState end;
+    public BasePlayState selectPosition;
+    public BasePlayState playing;
+    public BasePlayState end;
 
     public override void Init(GameStateMachine gameStateMachine)
     {
@@ -26,9 +26,11 @@ public class PlayState : BaseState
     {
         Debug.Log("PlayState_1 Enter");
         base.Enter();
-        SaveManager.Instance.LoadMap(gameStateMachine.levelIndex);
+        SaveManager.Instance.LoadMap(gameStateMachine.LevelIndex);
+        DouguManager.Instance.OnEnterLevel();
+        MateManager.Instance.OnEnterLevel();
+        UIManager.Instance.OnEnterLevel();
         ChangePlayState(selectPosition);
-        UIManager.Instance.ShowPlayUI();
     }
 
     public void ChangePlayState(BasePlayState newState)
@@ -46,14 +48,46 @@ public class PlayState : BaseState
 
     public override void Exit()
     {
+        MateManager.Instance.OnExitLevel();
         MapManager.Instance.RemoveCube_all();
-        UIManager.Instance.ClosePlayUI();
-        DouguManager.Instance.CleanAll();
+        // UIManager.Instance.ClosePlayUI();
+        UIManager.Instance.OnExitLevel();
+        // DouguManager.Instance.CleanAll();
+        DouguManager.Instance.OnExitLevel();
         ColorReactionManager.Instance.CleanColorReaction();
         currentState.Exit();
         base.Exit();
     }
 
+    private Mate victoryMate;
+    public Mate VictoryMate
+    {
+        get => victoryMate;
+        set
+        {
+            if (currentState is Playing)
+            {
+                ChangePlayState(end);
+            }
+            else
+            {
+                Debug.LogError("PlayState VictoryMate Error , not in playing");
+            }
+            victoryMate = value;
+        }
+    }
+
+    public void ContinuePlay()
+    {
+        if (currentState is End)
+        {
+            ChangePlayState(selectPosition);
+        }
+        else
+        {
+            Debug.LogError("PlayState ContinuePlay Error , not in end");
+        }
+    }
 
 
 

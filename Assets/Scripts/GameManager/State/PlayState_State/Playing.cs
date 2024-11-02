@@ -8,17 +8,23 @@ public class Playing : BasePlayState
     public override void Enter()
     {
         base.Enter();
-        MateManager.Instance.ShowMate();
-        UIManager.Instance.ShowPlayingUI();
-        DouguManager.Instance.Begin();
+        // MateManager.Instance.ShowMate();
+        MateManager.Instance.OnEnterTinyLevel();
+        UIManager.Instance.OnEnterTinyLevel();
+        // UIManager.Instance.ShowPlayingUI();
+        // DouguManager.Instance.Begin();
+        DouguManager.Instance.OnEnterTinyLevel();
+
     }
 
     public override void Exit()
     {
         base.Exit();
-        UIManager.Instance.ClosePlayingUI();
-        MateManager.Instance.HideMate();
-        DouguManager.Instance.End();
+        UIManager.Instance.OnExitTinyLevel();
+        MateManager.Instance.OnExitTinyLevel();
+        // UIManager.Instance.ClosePlayingUI();
+        // MateManager.Instance.HideMate();
+        DouguManager.Instance.OnExitTinyLevel();
     }
 
 }

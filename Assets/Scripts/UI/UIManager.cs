@@ -67,8 +67,8 @@ public class UIManager : Singleton1<UIManager>
     void WillEnterEditName()
     {
         Debug.Log("UI" + nameof(WillEnterEditName));
-        OnExitMain();
-        //TODO 切换状态
+        // OnExitMain();
+        GameStateMachine.Instance.ChangeStateToInputNameState();
     }
 
     #endregion
@@ -116,7 +116,8 @@ public class UIManager : Singleton1<UIManager>
     void WillEnterLevel()
     {
         Debug.Log("UI" + nameof(WillEnterLevel));
-        OnExitEditName();
+        // OnExitEditName();
+        GameStateMachine.Instance.ChangeStateToLevelSelectState();
         //TODO 切换状态
     }
     #endregion

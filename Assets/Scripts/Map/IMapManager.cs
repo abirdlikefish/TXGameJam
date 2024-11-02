@@ -8,6 +8,7 @@ public interface IMapManager
     public bool RemoveCube(Vector3Int position);
     public void RemoveCube_all();
     public int IsPassable(Vector2Int position);
+    public int IsPassable(Vector3Int position);
     public int IsEmpty(Vector2Int position);
     public BaseCube GetCube(Vector3Int position);
     public BaseCube GetExposedCube(Vector3Int position);

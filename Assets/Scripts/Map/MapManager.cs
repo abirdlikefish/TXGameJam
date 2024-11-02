@@ -100,6 +100,10 @@ public class MapManager : IMapManager
     {
         return cameraSpaceManager.IsPassable(position);
     }
+    public int IsPassable(Vector3Int position)
+    {
+        return IsPassable(CameraManager.Instance.GetCameraSpacePosition(position));
+    }
     public int IsEmpty(Vector2Int position)
     {
         return cameraSpaceManager.IsEmpty(position);

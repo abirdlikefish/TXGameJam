@@ -9,9 +9,10 @@ public class InputNameState : BaseState
         Debug.Log("InputNameState Enter");
         base.Enter();
         // EventManager.Instance.ExitStateEvent += Exit;
-        UIManager.Instance.ShowInputNameUI();
+        // UIManager.Instance.ShowInputNameUI();
+        UIManager.Instance.OnEnterEditName();
 
-        EventManager.Instance.ShowInputNameUI();
+        // EventManager.Instance.ShowInputNameUI();
     }
 
     public override void Update()
@@ -24,7 +25,8 @@ public class InputNameState : BaseState
     {
         // base.Exit(num);
         base.Exit();
-        EventManager.Instance.HideInputNameUI();
+        // EventManager.Instance.HideInputNameUI();
+        UIManager.Instance.OnExitEditName();
         // EventManager.Instance.ExitStateEvent -= Exit;
         // if(num == 0)
         // {

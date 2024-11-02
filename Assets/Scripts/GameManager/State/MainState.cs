@@ -22,9 +22,11 @@ public class MainState : BaseState
         //}
     }
 
-    public override void Exit(int num)
+    // public override void Exit(int num)
+    public override void Exit()
     {
-        UIManager.Instance.CloseMainMenu();
+        UIManager.Instance.OnExitMain();
+        // UIManager.Instance.CloseMainMenu();
         MapManager.Instance.RemoveCube_all();
         // EventManager.Instance.HideHeadLineMap();
         Debug.Log("MainState Exit");
