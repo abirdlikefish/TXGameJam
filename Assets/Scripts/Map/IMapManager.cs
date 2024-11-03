@@ -18,4 +18,5 @@ public interface IMapManager
     public int GetNode_R(Vector3Int position);
     public BaseCube GetCubeL(Vector3Int position);
     public BaseCube GetCubeR(Vector3Int position);
+    public void SaveMap();
 }

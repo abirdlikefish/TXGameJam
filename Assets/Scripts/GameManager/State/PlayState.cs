@@ -30,6 +30,7 @@ public class PlayState : BaseState
         DouguManager.Instance.OnEnterLevel();
         MateManager.Instance.OnEnterLevel();
         UIManager.Instance.OnEnterLevel();
+        ColorReactionManager.Instance.CleanColorReaction();
         ChangePlayState(selectPosition);
     }
 

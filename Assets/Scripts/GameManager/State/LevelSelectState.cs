@@ -186,8 +186,8 @@ public class LevelSelectState : BaseState
                 midPos = (offsetX - 1) * CameraManager.Instance.GetOffsetX_vector3() * factor;
                 MapManager.Instance.AddCube(midPos, 10);
 
-                midPos = (offsetX - 2) * CameraManager.Instance.GetOffsetX_vector3() * factor;
-                MapManager.Instance.AddCube(midPos, 10);
+                // midPos = (offsetX - 2) * CameraManager.Instance.GetOffsetX_vector3() * factor;
+                // MapManager.Instance.AddCube(midPos, 10);
             }
             
             offsetX ++;
@@ -198,9 +198,9 @@ public class LevelSelectState : BaseState
             pos = offsetX * CameraManager.Instance.GetOffsetX_vector3() * factor;
             MapManager.Instance.AddCube(pos, 10);
 
-            offsetX ++;
-            pos = offsetX * CameraManager.Instance.GetOffsetX_vector3() * factor;
-            MapManager.Instance.AddCube(pos, 10);
+            // offsetX ++;
+            // pos = offsetX * CameraManager.Instance.GetOffsetX_vector3() * factor;
+            // MapManager.Instance.AddCube(pos, 10);
 
             pos += factorY * CameraManager.Instance.GetOffsetY_vector3();
             MapManager.Instance.AddCube(pos, 10 + i);
