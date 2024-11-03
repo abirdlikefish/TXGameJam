@@ -21,7 +21,13 @@ public class ColorReactionManager : IColorReactionManager
     private void Init()
     {
         instance.ColorReactionList = new List<Action<Vector3Int>>(){instance.ColorReaction_0 , instance.ColorReaction_1 , instance.ColorReaction_2};
-        instance.ColorReaction = new List<Action<Vector3Int>>(8);
+        instance.ColorReaction = new List<Action<Vector3Int>>();
+        for(int i = 0 ; i < 8 ; i ++)
+        {
+            instance.ColorReaction.Add(null);
+        }
+        // if(ColorReactionList[0] == null);
+        // ColorReaction[6] += ColorReactionList[0];
     }
 
     private List<Action<Vector3Int>> ColorReactionList ;
@@ -44,16 +50,21 @@ public class ColorReactionManager : IColorReactionManager
     private List<Action<Vector3Int>> ColorReaction ;
     public void InvokeColorReaction(int color , Vector3Int position)
     {
-        ColorReaction[color].Invoke(position);
+        ColorReaction[color]?.Invoke(position);
     }
 
     public void AddNewColorReaction(int color , int reactionID)
     {
+        Debug.Log("AddNewColorReaction" + color + " " + reactionID);
         ColorReaction[color] += ColorReactionList[reactionID];
     }
     public void CleanColorReaction()
     {
         // EventManager.Instance.RemoveColorReaction_all();
         ColorReaction.Clear();
+        for(int i = 0 ; i < 8 ; i ++)
+        {
+            instance.ColorReaction.Add(null);
+        }
     }
 }

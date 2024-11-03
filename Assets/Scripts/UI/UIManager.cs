@@ -182,7 +182,10 @@ public class UIManager : Singleton1<UIManager>
     public void OnExitLevel()
     {
         Debug.Log("UI" + nameof(OnExitLevel));
+        HideMixPanel();
         levelPanel.SetActive(false);
+        ifSaveMapPanel.SetActive(false);
+        mapEditPanel.SetActive(false);
     }
     void WillExitLevel()
     {
@@ -199,6 +202,7 @@ public class UIManager : Singleton1<UIManager>
             RefreshMateInLevel(MateManager.Instance.GetMate(i));
         }
         tinyLevelPanel.SetActive(true);
+        textCantSelectMix.SetActive(true);
     }
     public void OnExitTinyLevel()
     {
@@ -239,13 +243,32 @@ public class UIManager : Singleton1<UIManager>
     {
         Debug.Log("UI" + nameof(WillContinueTinyLevel));
         OnExitWinning();
-        GameStateMachine.Instance.ContinuePlay();
+        OnEnterSelectMix();
     }
     void WillIfSaveMap()
     {
         Debug.Log("UI" + nameof(WillIfSaveMap));
         OnExitWinning();
         OnEnterIfSaveMap();
+    }
+    public void OnEnterSelectMix()
+    {
+        Debug.Log("UI" + nameof(OnEnterSelectMix));
+        mixBt.interactable = false;
+        blockMixPanel.SetActive(false);
+        textSelectMix.SetActive(true);
+        textCantSelectMix.SetActive(false);
+        mixPanel.SetActive(true);
+    }
+    public void OnExitSelectMix()
+    {
+        Debug.Log("UI" + nameof(OnExitSelectMix));
+        mixBt.interactable = true;
+        blockMixPanel.SetActive(true);
+        textSelectMix.SetActive(false);
+        textCantSelectMix.SetActive(true);
+        mixPanel.SetActive(false);
+        GameStateMachine.Instance.ContinuePlay();
     }
     #endregion
     #region Func - IfSaveMap
@@ -268,7 +291,6 @@ public class UIManager : Singleton1<UIManager>
     void WillExitLevelFromIfSaveMap()
     {
         Debug.Log("UI" + nameof(WillExitLevelFromIfSaveMap));
-        OnExitIfSaveMap();
         GameStateMachine.Instance.ChangeStateToMainState();
     }
     #endregion
@@ -281,21 +303,7 @@ public class UIManager : Singleton1<UIManager>
     void WillConfirmMapEdit()
     {
         Debug.Log("UI" + nameof(WillConfirmMapEdit));
-        OnExitMapEdit();
-        OnConfirmMapEdit();
-        MapManager.Instance.SaveMap();
-        // Debug.LogWarning("SaveMap succeed");
         GameStateMachine.Instance.ChangeStateToMainState();
-    }
-    public void OnExitMapEdit()
-    {
-        Debug.Log("UI" + nameof(OnExitMapEdit));
-        mapEditPanel.SetActive(false);
-    }
-    void OnConfirmMapEdit()
-    {
-        Debug.Log("UI" + nameof(OnConfirmMapEdit));
-        // WillExitLevel();
     }
     
     #endregion
@@ -320,8 +328,12 @@ public class UIManager : Singleton1<UIManager>
     public List<UIInLevelMate> uIMateProperties = new List<UIInLevelMate>();
 
     public Button inLevelBtExit;
+
+
     [Header("Mix Color")]
 
+    public GameObject textSelectMix;
+    public GameObject textCantSelectMix;
     public GameObject mixPanel;
     public GameObject blockMixPanel;
     public Button mixBt;

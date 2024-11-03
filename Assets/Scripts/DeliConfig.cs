@@ -7,7 +7,7 @@ using UnityEngine;
 public class DeliConfig
 {
     public static float maxDistanceToCenterWhenBlocked = 0.4f;
-    public static float moveSpeed = 2f;
+    public static float moveSpeed = 3f;
     public static float takeDamageInterval = 1f;
 
     public static float douguUseInterval = 1f;
