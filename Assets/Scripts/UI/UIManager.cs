@@ -283,7 +283,8 @@ public class UIManager : Singleton1<UIManager>
         Debug.Log("UI" + nameof(WillConfirmMapEdit));
         OnExitMapEdit();
         OnConfirmMapEdit();
-        // MapManager.Instance.SaveMap();
+        MapManager.Instance.SaveMap();
+        // Debug.LogWarning("SaveMap succeed");
         GameStateMachine.Instance.ChangeStateToMainState();
     }
     public void OnExitMapEdit()

@@ -47,28 +47,9 @@ public class ColorReactionManager : IColorReactionManager
         ColorReaction[color].Invoke(position);
     }
 
-    // public static void AddListener()
-    // {
-    //     EventManager.Instance.AddNewColorReactionEvent += Instance.AddNewColorReaction;
-    //     EventManager.Instance.EnterLevelEvent += (x) => Instance.RemoveColorReaction();
-    //     Instance.ColorReactionList = new List<Action<Vector3Int>>(){Instance.ColorReaction_0 , Instance.ColorReaction_1 , Instance.ColorReaction_2};
-    // }
-
     public void AddNewColorReaction(int color , int reactionID)
     {
         ColorReaction[color] += ColorReactionList[reactionID];
-        // switch (color)
-        // {
-        //     case 3:
-        //         EventManager.Instance.ColorReactionEvent_1 += ColorReactionList[reactionID];
-        //         break;
-        //     case 5:
-        //         EventManager.Instance.ColorReactionEvent_2 += ColorReactionList[reactionID];
-        //         break;
-        //     case 6:
-        //         EventManager.Instance.ColorReactionEvent_4 += ColorReactionList[reactionID];
-        //         break;
-        // }
     }
     public void CleanColorReaction()
     {

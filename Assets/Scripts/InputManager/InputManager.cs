@@ -45,8 +45,8 @@ public class InputManager : IInputManager
     {
         if(-1 < moveInput[playerIndex].x && moveInput[playerIndex].x <= 0 && 0 < moveInput[playerIndex].y && moveInput[playerIndex].y <= 1)
         {
-            if(playerIndex == 0)
-                Debug.Log(playerIndex + ": " + moveInput[playerIndex]);
+            // if(playerIndex == 0)
+            //     Debug.Log(playerIndex + ": " + moveInput[playerIndex]);
             return CameraManager.Instance.GetOffsetY() * -1;
         }
         else if(0 < moveInput[playerIndex].x && moveInput[playerIndex].x <= 1 && 0 <= moveInput[playerIndex].y && moveInput[playerIndex].y < 1)
@@ -102,7 +102,7 @@ public class InputManager : IInputManager
     {
         void InputControls.IPlayActions.OnMove_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            Debug.Log(context.ReadValue<Vector2>());
+            // Debug.Log(context.ReadValue<Vector2>());
             if(context.performed)
             {
                 instance.moveInput[0] = context.ReadValue<Vector2>();

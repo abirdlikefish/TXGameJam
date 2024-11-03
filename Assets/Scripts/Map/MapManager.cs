@@ -145,4 +145,16 @@ public class MapManager : IMapManager
     BaseCube IMapManager.GetCubeL(Vector3Int position) => cameraSpaceManager.GetCube_L(CameraManager.Instance.GetCameraSpacePosition(position));
     BaseCube IMapManager.GetCubeR(Vector3Int position) => cameraSpaceManager.GetCube_R(CameraManager.Instance.GetCameraSpacePosition(position));
 
+    void IMapManager.SaveMap()
+    {
+        LevelData midLevelData = new LevelData();
+        midLevelData.cubeList = new List<LevelData.s_Cube>();
+        foreach(BaseCube cube in worldSpaceManager.GetCubes())
+        {
+            midLevelData.cubeList.Add(new LevelData.s_Cube(){position = cube.Position , color = cube.Color});
+        }
+        // Debug.LogWarning("SaveMap " + midLevelData.cubeList.Count);
+        SaveManager.Instance.AddLevelData(midLevelData);
+    }
+
 }
