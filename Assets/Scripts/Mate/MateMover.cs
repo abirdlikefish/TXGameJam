@@ -9,17 +9,17 @@ public class MateMover : MonoBehaviour
     public Vector3Int thisCenter => new(Mathf.RoundToInt(transform.position.x),
             Mathf.RoundToInt(transform.position.y),
             Mathf.RoundToInt(transform.position.z));
-    [SerializeField]
+    // [SerializeField]
     Vector3Int nextCenter;
-    [SerializeField]
+    // [SerializeField]
     Vector3Int moveDir;
-    public Vector3 tempTarget;
-    public Vector3 tempThisCenter;
-    private void Update()
-    {
-        tempThisCenter = thisCenter;
-        tempTarget = Target;
-    }
+    // public Vector3 tempTarget;
+    // public Vector3 tempThisCenter;
+    // private void Update()
+    // {
+    //     tempThisCenter = thisCenter;
+    //     tempTarget = Target;
+    // }
     //bool CanTooru => (DeliConfig.tooruTest  ? MateInput.CanTooruY0(CurCenter,nextCenter) : MateInput.CanTooru(nextCenter) )&& !DouguManager.Instance.Has<Block>(nextCenter);
     bool CanTooru => MateInput.CanTooru(thisCenter, nextCenter) && !DouguManager.Instance.Has<Block>(nextCenter);
     //public void SetNextMove
@@ -74,6 +74,7 @@ public class MateMover : MonoBehaviour
             if(moveDir != Vector3.zero)
                 flipDir = moveDir;
         }
+        // Debug.Log("isInput : " + isInput + " moveDir:" + moveDir + "  canTooru:" + CanTooru + " Tar:" + Target);
         transform.position = Vector3.MoveTowards(transform.position, Target, DeliConfig.moveSpeed * Time.deltaTime);
     }
 }

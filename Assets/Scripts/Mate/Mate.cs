@@ -48,18 +48,19 @@ public class Mate : Entity
             return;
         }
         
-        InputManager.Instance.GetInput_move_vector3(mateId);
+        
 
-        foreach (var key in MateInput.mate_key_dirs[mateId].Keys)
-        {
-            if (Input.GetKey(key))
-            {
-                // Vector3 ultiDelta = MateInput.Instance.InputKeyToDir(mateId,key);
-                Vector3Int ultiDelta = InputManager.Instance.GetInput_move_vector3(mateId);
-                mateMover.SetNextMove(ultiDelta);
-                break;
-            }
-        }
+        // foreach (var key in MateInput.mate_key_dirs[mateId].Keys)
+        // {
+        //     if (Input.GetKey(key))
+        //     {
+        //         // Vector3 ultiDelta = MateInput.Instance.InputKeyToDir(mateId,key);
+        //         Vector3Int ultiDelta = InputManager.Instance.GetInput_move_vector3(mateId);
+        //         mateMover.SetNextMove(ultiDelta);
+        //         break;
+        //     }
+        // }
+        mateMover.SetNextMove(InputManager.Instance.GetInput_move_vector3(mateId));
         mateMover.Move();
         // InputManager.Instance.GetInput_use(mateId);
         // foreach(var key in MateInput.Instance.Get_mate_dougu_keys(mateId))

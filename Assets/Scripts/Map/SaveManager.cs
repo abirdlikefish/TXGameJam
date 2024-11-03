@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor;
 
 public class SaveManager
 {
@@ -42,6 +43,9 @@ public class SaveManager
             // Debug.Log("Load LevelData succeed");            
             levelDataSO.AddLevelDataFromLastProject(levelData_mid);
         }
+        
+        EditorUtility.SetDirty(levelDataSO);
+        AssetDatabase.SaveAssets();
     }
 
     public LevelData GetLevelData(int index)

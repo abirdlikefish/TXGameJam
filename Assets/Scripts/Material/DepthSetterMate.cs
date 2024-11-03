@@ -38,6 +38,7 @@ public class DepthSetterMate : MonoBehaviour
         h1 = GetLeftCubeD(NextCenter);
         h2 = GetRightCubeD(NextCenter);
         d2 = 3000 + h1 + h2;
+        // Debug.Log(ThisCenter + " " + NextCenter + " " + d1 + " " + d2);
         if (!MateInput.CanTooru(ThisCenter,NextCenter))
             d2 = 0;
         d3 = Mathf.Max(d1, d2) + 1;
@@ -94,7 +95,8 @@ public class DepthSetterMate : MonoBehaviour
         }
         else
         {
-            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            // return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            return MapManager.Instance.GetCubeL(center).Height;
         }
     }
     int GetRightCubeD(Vector3Int center)
@@ -105,7 +107,8 @@ public class DepthSetterMate : MonoBehaviour
         }
         else
         {
-            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            // return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            return MapManager.Instance.GetCubeR(center).Height;
         }
     }
 }
