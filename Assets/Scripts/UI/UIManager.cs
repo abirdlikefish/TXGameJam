@@ -118,7 +118,6 @@ public class UIManager : Singleton1<UIManager>
         Debug.Log("UI" + nameof(WillEnterLevel));
         // OnExitEditName();
         GameStateMachine.Instance.ChangeStateToLevelSelectState();
-        //TODO 切换状态
     }
     #endregion
     #region Func - In Level
@@ -177,9 +176,8 @@ public class UIManager : Singleton1<UIManager>
     void WillExitLevelFromInLevel()
     {
         Debug.Log("UI" + nameof(WillExitLevelFromInLevel));
-        //OnExitInLevel();
-        //WillExitLevel();
-        //TODO 切换状态
+        
+        GameStateMachine.Instance.ChangeStateToMainState();
     }
     public void OnExitLevel()
     {
@@ -242,7 +240,7 @@ public class UIManager : Singleton1<UIManager>
     {
         Debug.Log("UI" + nameof(WillContinueTinyLevel));
         OnExitWinning();
-        //TODO 切换状态
+        GameStateMachine.Instance.ContinuePlay();
     }
     void WillIfSaveMap()
     {
@@ -272,7 +270,7 @@ public class UIManager : Singleton1<UIManager>
     {
         Debug.Log("UI" + nameof(WillExitLevelFromIfSaveMap));
         OnExitIfSaveMap();
-        WillExitLevel();
+        GameStateMachine.Instance.ChangeStateToMainState();
     }
     #endregion
     #region Func - MapEdit
@@ -285,8 +283,9 @@ public class UIManager : Singleton1<UIManager>
     {
         Debug.Log("UI" + nameof(WillConfirmMapEdit));
         OnExitMapEdit();
-        //TODO call SaveMap
         OnConfirmMapEdit();
+        // MapManager.Instance.SaveMap();
+        GameStateMachine.Instance.ChangeStateToMainState();
     }
     public void OnExitMapEdit()
     {
@@ -296,7 +295,7 @@ public class UIManager : Singleton1<UIManager>
     void OnConfirmMapEdit()
     {
         Debug.Log("UI" + nameof(OnConfirmMapEdit));
-        WillExitLevel();
+        // WillExitLevel();
     }
     
     #endregion

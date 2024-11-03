@@ -114,8 +114,8 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
         winnerMate.mateData.winCount++;
         SaveJson();
         UIManager.Instance.RefreshMateInLevel(winnerMate);
-        //TODO show victory
-        //GameStateMachine.Instance.VictoryMate(winnerMate);
+        
+        GameStateMachine.Instance.VictoryMate = winnerMate;
     }
     #endregion
 
