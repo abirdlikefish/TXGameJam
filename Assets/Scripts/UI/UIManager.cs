@@ -173,6 +173,7 @@ public class UIManager : Singleton1<UIManager>
     public void OnExitLevel()
     {
         Debug.Log("UI" + nameof(OnExitLevel));
+        HideMixPanel();
         levelPanel.SetActive(false);
     }
     void WillExitLevel()
