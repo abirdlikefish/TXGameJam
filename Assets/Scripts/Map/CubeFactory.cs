@@ -43,11 +43,14 @@ public class CubeFactory
         materials[17] = Resources.Load<Material>("Material/blue_num7");
         materials[18] = Resources.Load<Material>("Material/blue_num8");
         materials[19] = Resources.Load<Material>("Material/blue_num9");
-
         BaseCube.InitMaterial(materials);
+
+        cubeParent = new GameObject("CubeParent");
+
     }
     private GameObject prefab_cube ;
     private List<BaseCube> cubePool ;
+    private GameObject cubeParent;
 
     public BaseCube CreateCube(Vector3Int position , int color = 0)
     {
@@ -62,7 +65,7 @@ public class CubeFactory
         }
         else
         {
-            GameObject go = GameObject.Instantiate(prefab_cube);
+            GameObject go = GameObject.Instantiate(prefab_cube , cubeParent.transform);
             BaseCube cube = go.GetComponent<BaseCube>();
             cube.Position = position;
             cube.Color = color;
