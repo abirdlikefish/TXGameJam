@@ -67,13 +67,13 @@ public class PlayState : BaseState
         {
             if (currentState is Playing)
             {
+                victoryMate = value;
                 ChangePlayState(end);
             }
             else
             {
                 Debug.LogError("PlayState VictoryMate Error , not in playing");
             }
-            victoryMate = value;
         }
     }
 
