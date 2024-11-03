@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
+// using static UnityEditor.PlayerSettings;
 
 public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
 {
@@ -34,7 +34,7 @@ public class DouguManager : Singleton<DouguManager,IDouguManager>,IDouguManager
     public void GenerateRandomDouguSphere()
     {
         emptys = new();
-        int d1 = (int)MateManager.Instance.GetMate(UnityEngine.Random.Range(0, 2)).thisCenter.x;
+        int d1 = (int)MateManager.Instance.GetCurMate(UnityEngine.Random.Range(0, 2)).thisCenter.x;
         int d2 = 10;
         for (int i = d1 - d2; i <= d1 + d2; i++)
         {

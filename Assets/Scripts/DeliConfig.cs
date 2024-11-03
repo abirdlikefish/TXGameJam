@@ -10,7 +10,7 @@ public class DeliConfig
     public static float moveSpeed = 3f;
     public static float takeDamageInterval = 1f;
 
-    public static float douguUseInterval = 1f;
+    public static float douguUseInterval = 0.3f;
     public static float dougeSphereInsCD = 7f;
 
     public static bool goldFinger = true;

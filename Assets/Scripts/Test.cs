@@ -9,7 +9,7 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            MateManager.Instance.OnOneDead(MateManager.Instance.GetMate(Random.Range(0,2)));
+            MateManager.Instance.OnOneDead(MateManager.Instance.GetCurMate(Random.Range(0,2)));
         }
     }
     public bool GUA = false;

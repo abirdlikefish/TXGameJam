@@ -84,7 +84,7 @@ public class UIManager : Singleton1<UIManager>
         for (int i = 0; i < 2; i++)
         {
             uiEditMates[i].SetMateId(i);
-            ShowMate(MateManager.Instance.GetMateData(i), i);
+            ShowMate(MateManager.Instance.GetCurMateData(i), i);
         }
     }
     public void ShowMate(MateData mateData, int ui_mid)
@@ -198,8 +198,8 @@ public class UIManager : Singleton1<UIManager>
         HideMixPanel();
         for (int i = 0; i < 2; i++)
         {
-            uIMateProperties[i].mate = MateManager.Instance.GetMate(i);
-            RefreshMateInLevel(MateManager.Instance.GetMate(i));
+            uIMateProperties[i].mate = MateManager.Instance.GetCurMate(i);
+            RefreshMateInLevel(MateManager.Instance.GetCurMate(i));
         }
         tinyLevelPanel.SetActive(true);
         textCantSelectMix.SetActive(true);
@@ -303,6 +303,7 @@ public class UIManager : Singleton1<UIManager>
     void WillConfirmMapEdit()
     {
         Debug.Log("UI" + nameof(WillConfirmMapEdit));
+        MapManager.Instance.SaveMap();
         GameStateMachine.Instance.ChangeStateToMainState();
     }
     

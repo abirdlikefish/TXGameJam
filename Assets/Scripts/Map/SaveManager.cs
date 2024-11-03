@@ -44,8 +44,8 @@ public class SaveManager
             levelDataSO.AddLevelDataFromLastProject(levelData_mid);
         }
         
-        EditorUtility.SetDirty(levelDataSO);
-        AssetDatabase.SaveAssets();
+        // EditorUtility.SetDirty(levelDataSO);
+        // AssetDatabase.SaveAssets();
     }
 
     public LevelData GetLevelData(int index)
