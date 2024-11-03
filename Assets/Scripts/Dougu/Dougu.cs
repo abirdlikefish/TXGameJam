@@ -43,7 +43,7 @@ public abstract class Dougu : MonoBehaviour
         {
             if (remainUseCount > 0)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return 0;
                 continue;
             }
             if (busy.Count == 0)
@@ -51,7 +51,7 @@ public abstract class Dougu : MonoBehaviour
                 Destroy(gameObject);
                 break;
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return 0;
         }
     }
     //return 1 ��ʾʹ����Ҫ��CD

@@ -105,7 +105,7 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
     }
     public void OnOneDead(Mate deadMate)
     {
-        if (hasOneDead)
+        if (hasOneDead || Test.Instance.GUA)
             return;
         hasOneDead = true;
         //for (int i = 0; i < 2; i++)

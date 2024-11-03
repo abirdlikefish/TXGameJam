@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -11,5 +12,17 @@ public class Test : MonoBehaviour
             MateManager.Instance.OnOneDead(MateManager.Instance.GetMate(Random.Range(0,2)));
         }
     }
-
+    public bool GUA = false;
+    static Test instance;
+    public static Test Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<Test>();
+            }
+            return instance;
+        }
+    }
 }
