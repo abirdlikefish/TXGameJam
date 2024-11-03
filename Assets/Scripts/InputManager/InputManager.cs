@@ -37,13 +37,16 @@ public class InputManager : IInputManager
         useInput.Add(0);
 
         inputControls.Play.Enable();
+        inputControls.UI.Disable();
+        inputControls.Select.Disable();
     }
 
     public Vector2Int GetInput_move(int playerIndex)
     {
-        Debug.Log(playerIndex + ": " + moveInput[playerIndex]);
         if(-1 < moveInput[playerIndex].x && moveInput[playerIndex].x <= 0 && 0 < moveInput[playerIndex].y && moveInput[playerIndex].y <= 1)
         {
+            if(playerIndex == 0)
+                Debug.Log(playerIndex + ": " + moveInput[playerIndex]);
             return CameraManager.Instance.GetOffsetY() * -1;
         }
         else if(0 < moveInput[playerIndex].x && moveInput[playerIndex].x <= 1 && 0 <= moveInput[playerIndex].y && moveInput[playerIndex].y < 1)
@@ -100,7 +103,7 @@ public class InputManager : IInputManager
         void InputControls.IPlayActions.OnMove_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
             Debug.Log(context.ReadValue<Vector2>());
-            if(context.started)
+            if(context.performed)
             {
                 instance.moveInput[0] = context.ReadValue<Vector2>();
             }
@@ -113,7 +116,7 @@ public class InputManager : IInputManager
         void InputControls.IPlayActions.OnMove_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
             // Debug.Log(context.ReadValue<Vector2>());
-            if(context.started)
+            if(context.performed)
             {
                 instance.moveInput[1] = context.ReadValue<Vector2>();
             }
@@ -125,7 +128,7 @@ public class InputManager : IInputManager
 
         void InputControls.IPlayActions.OnUse_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(context.started)
+            if(context.performed)
             {
                 instance.useInput[0] = Time.time;
             }
@@ -137,7 +140,7 @@ public class InputManager : IInputManager
 
         void InputControls.IPlayActions.OnUse_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(context.started)
+            if(context.performed)
             {
                 instance.useInput[1] = Time.time;
             }
@@ -155,7 +158,7 @@ public class InputManager : IInputManager
     {
         void InputControls.ISelectActions.OnMove_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(context.started)
+            if(context.performed)
             {
                 instance.moveInput[0] = context.ReadValue<Vector2>();
             }
@@ -168,7 +171,7 @@ public class InputManager : IInputManager
 
         void InputControls.ISelectActions.OnMove_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(context.started)
+            if(context.performed)
             {
                 instance.moveInput[1] = context.ReadValue<Vector2>();
             }
@@ -181,7 +184,7 @@ public class InputManager : IInputManager
 
         void InputControls.ISelectActions.OnUse_0(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(context.started)
+            if(context.performed)
             {
                 // instance.isSelected[0] = true;
                 instance.useInput[0] = Time.time;
@@ -190,7 +193,7 @@ public class InputManager : IInputManager
 
         void InputControls.ISelectActions.OnUse_1(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(context.started)
+            if(context.performed)
             {
                 // instance.isSelected[1] = true;
                 instance.useInput[1] = Time.time;
