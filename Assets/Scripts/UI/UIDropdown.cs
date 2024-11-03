@@ -35,7 +35,7 @@ public class UIDropdown : MonoBehaviour, IPointerClickHandler
         for(int i=0;i< MateManager.Instance.GetAllMateDatas().Count;i++)
         {
             // Debug.Log(i);
-            string option =  MateManager.Instance.GetMateData(i).name;
+            string option =  MateManager.Instance.GetCurMateData(i).name;
             if(!oldList.Contains(option))
             {
                 newList.Add(option);

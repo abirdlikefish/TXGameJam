@@ -30,12 +30,14 @@ public class UIEditMateInfo:MonoBehaviour
     {
         editColor = RandomColor();
         MateData mateData = MateManager.Instance.CreateMate(mateName.text,editColor);
+        // MateManager.Instance.SetCurMateDate(mateId, mateData);
         UIManager.Instance.ShowMate(mateData, mateId);
     }
     public void OnEditChangeName()
     {
         editName = mateNameInput.text == "" ? mateNameInputHolder.text : mateNameInput.text;
         MateData mateData = MateManager.Instance.CreateMate(editName, mateName.color);
+        MateManager.Instance.SetCurMateDate(mateId, mateData);
         UIManager.Instance.ShowMate(mateData, mateId);
     }
 
@@ -47,16 +49,16 @@ public class UIEditMateInfo:MonoBehaviour
 
     Color RandomColor()
     {
-        // H·¶Î§Îª0µ½1£¬±íÊ¾É«ÏàÈ«·¶Î§
+        // Hï¿½ï¿½Î§Îª0ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½Ê¾É«ï¿½ï¿½È«ï¿½ï¿½Î§
         float hue = Random.Range(0f, 1f);
 
-        // S·¶Î§Îª0.5µ½1£¬È·±£ÓÐÒ»¶¨±¥ºÍ¶È£¬±ÜÃâ»ÒÉ«
+        // Sï¿½ï¿½Î§Îª0.5ï¿½ï¿½1ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Í¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
         float saturation = Random.Range(0.5f, 1f);
 
-        // V·¶Î§Îª0.7µ½1£¬È·±£ÑÕÉ«±È½ÏÇ³£¬±ÜÃâÌ«°µ
+        // Vï¿½ï¿½Î§Îª0.7ï¿½ï¿½1ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½É«ï¿½È½ï¿½Ç³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½
         float value = Random.Range(0.7f, 1f);
 
-        // Ê¹ÓÃHSV×ª»»ÎªRGBÑÕÉ«
+        // Ê¹ï¿½ï¿½HSV×ªï¿½ï¿½ÎªRGBï¿½ï¿½É«
         return Color.HSVToRGB(hue, saturation, value);
     }
 }

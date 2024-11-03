@@ -28,11 +28,15 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
         //EventManager.Instance.ExitLevelEvent += ExitTinyLevel;
         //EventManager.Instance.StartTrapEvent += OnOneDead;
     }
-    public Mate GetMate(int mID)
+    public void SetCurMateDate(int mID,MateData mateData)
+    {
+        curMates[mID].mateData = mateData;
+    }
+    public Mate GetCurMate(int mID)
     {
         return curMates[mID];
     }
-    public MateData GetMateData(int mID)
+    public MateData GetCurMateData(int mID)
     {
         return mateDatas[mID];
     }
@@ -105,7 +109,7 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
     }
     public void OnOneDead(Mate deadMate)
     {
-        if (hasOneDead || Test.Instance.GUA)
+        if (hasOneDead)
             return;
         hasOneDead = true;
         //for (int i = 0; i < 2; i++)
