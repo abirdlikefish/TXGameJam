@@ -34,6 +34,7 @@ public class UIDropdown : MonoBehaviour, IPointerClickHandler
 
         for(int i=0;i< MateManager.Instance.GetAllMateDatas().Count;i++)
         {
+            // Debug.Log(i);
             string option =  MateManager.Instance.GetMateData(i).name;
             if(!oldList.Contains(option))
             {
@@ -51,7 +52,7 @@ public class UIDropdown : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        //¸Ä±äÑÕÉ«
+        //ï¿½Ä±ï¿½ï¿½ï¿½É«
         ItemBG.color = mateName.color;
         ScrollBar.color = mateName.color;
         Handle.color = mateName.color;

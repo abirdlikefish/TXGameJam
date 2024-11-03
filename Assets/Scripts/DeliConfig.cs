@@ -26,6 +26,12 @@ public class DeliConfig
     {
         return class_sprite[dougu.GetType()];
     }
-    public static SerializableDictionary<int, Color> id_color;
+    public static SerializableDictionary<int, Color> id_color = new()
+    {
+        {0, new Color(0, 0, 0, 1)},
+        {1, new Color(1, 0, 0, 1)},
+        {2, new Color(0, 1, 0, 1)},
+        {4, new Color(0, 0, 1, 1)},
+    };
 
 }

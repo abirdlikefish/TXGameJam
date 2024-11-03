@@ -10,6 +10,7 @@ public class InputNameState : BaseState
         base.Enter();
         // EventManager.Instance.ExitStateEvent += Exit;
         // UIManager.Instance.ShowInputNameUI();
+        MateManager.Instance.OnEnterEditName();
         UIManager.Instance.OnEnterEditName();
 
         // EventManager.Instance.ShowInputNameUI();
@@ -25,21 +26,8 @@ public class InputNameState : BaseState
     {
         // base.Exit(num);
         base.Exit();
-        // EventManager.Instance.HideInputNameUI();
         UIManager.Instance.OnExitEditName();
-        // EventManager.Instance.ExitStateEvent -= Exit;
-        // if(num == 0)
-        // {
-        //     gameStateMachine.ChangeState(gameStateMachine.mainState);
-        // }
-        // else if(num == 1)
-        // {
-        //     gameStateMachine.ChangeState(gameStateMachine.selectLevelState);
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("InputNameState Exit Error");
-        // }
+        // MateManager.Instance.OnExitEditName();
         
     }
 }

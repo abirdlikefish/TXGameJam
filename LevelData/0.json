@@ -1,18 +1,5 @@
 {
     "index": 0,
-    "player": {
-        "position": {
-            "x": 9,
-            "y": 10,
-            "z": 13
-        },
-        "destination": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-        }
-    },
-    "parentChildList": [],
     "cubeList": [
         {
             "position": {
@@ -2226,7 +2213,5 @@
                 "z": -3
             }
         }
-    ],
-    "cubeRotateList": [],
-    "cubeTranslateList": []
+    ]
 }

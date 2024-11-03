@@ -10,6 +10,9 @@ public class MainState : BaseState
         base.Enter();
         EventManager.Instance.ShowMainMenu();
         UIManager.Instance.OnEnterMain();
+// SaveManager.Instance.LoadLevelData();
+// Debug.Log("Load LevelData");
+// return;
         SaveManager.Instance.LoadMap(0);
     }
 

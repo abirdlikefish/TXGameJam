@@ -34,7 +34,7 @@ public class MateManager : Singleton<MateManager, IMateManager>, IMateManager,IJ
     }
     public MateData GetMateData(int mID)
     {
-        return curMates[mID].mateData;
+        return mateDatas[mID];
     }
     public List<MateData> GetAllMateDatas()
     {

@@ -30,6 +30,11 @@ public class BaseCube : MonoBehaviour
                 meshRenderer.material = Instantiate(materials[0]);
                 Debug.LogWarning("error: Color is -1");
             }
+            else if(value == 0)
+            {
+                color = value;
+                meshRenderer.material = Instantiate(materials[value]);
+            }
             else if(color == value)
             {
                 
@@ -59,4 +64,8 @@ public class BaseCube : MonoBehaviour
         materials = materialList;
     }
     
+    public void Destroy()
+    {
+        Color = 0;
+    }
 }

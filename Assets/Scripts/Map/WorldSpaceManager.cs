@@ -12,7 +12,7 @@ public class WorldSpaceManager : IWorldSpaceManager
         if(instance == null)
         {
             instance = new WorldSpaceManager();
-            instance.maxGroupID = 0;
+            // instance.maxGroupID = 0;
             instance.mapManager = mapManager;
             instance.worldMap = new BaseCube[maxWorldSpaceSize.x,maxWorldSpaceSize.y,maxWorldSpaceSize.z];
             instance.cubeList = new List<BaseCube>();
@@ -25,7 +25,7 @@ public class WorldSpaceManager : IWorldSpaceManager
         }
     }
     MapManager mapManager;
-    int maxGroupID;
+    // int maxGroupID;
     BaseCube[,,] worldMap;
     List<BaseCube> cubeList;
     // List<List<BaseCube>> cubeGroupList;
@@ -79,10 +79,10 @@ public class WorldSpaceManager : IWorldSpaceManager
         if(cube != null)
         {
             cubeList.Remove(cube);
+            CubeFactory.Instance.DestroyCube(cube);
             // cubeGroupList[cube.groupID].Remove(cube);
             SetWorldMap(cube.Position , null);
             // GameObject.Destroy(cube.gameObject);
-            CubeFactory.Instance.DestroyCube(cube);
             return true;
         }
         else
