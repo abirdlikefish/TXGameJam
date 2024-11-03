@@ -12,6 +12,7 @@ public class Mate : Entity
     int mateId => transform.GetSiblingIndex();
     public Vector3Int thisCenter => mateMover.thisCenter;
     public Vector3Int FlipDir => mateMover.flipDir;
+    [SerializeField]
     List<Dougu> onHeadDougu = new();
     float lastDouguTime;
 
