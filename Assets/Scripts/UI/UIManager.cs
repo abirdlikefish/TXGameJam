@@ -23,7 +23,7 @@ public class UIManager : Singleton1<UIManager>
         editNameBtConfirm.onClick.AddListener(WillEnterLevel);
 
         //In Level
-        mixBt.onClick.AddListener(ShowMixPanel);
+        mixBt.onClick.AddListener(ReverseMixPanel);
         inLevelBtExit.onClick.AddListener(WillExitLevelFromInLevel);
 
         //Winning
@@ -161,7 +161,18 @@ public class UIManager : Singleton1<UIManager>
         mixPanel.SetActive(false);
         blockMixPanel.SetActive(false);
     }
-   
+    void ReverseMixPanel()
+    {
+        Debug.Log("UI" + nameof(ReverseMixPanel));
+        if (mixPanel.activeSelf)
+        {
+            HideMixPanel();
+        }
+        else
+        {
+            ShowMixPanel();
+        }
+    }
     
     void WillExitLevelFromInLevel()
     {

@@ -7,7 +7,7 @@ using UnityEngine;
 public class DeliConfig
 {
     public static float maxDistanceToCenterWhenBlocked = 0.4f;
-    public static float moveSpeed;
+    public static float moveSpeed = 2f;
     public static float takeDamageInterval = 1f;
 
     public static float douguUseInterval = 1f;
@@ -28,7 +28,7 @@ public class DeliConfig
     }
     public static SerializableDictionary<int, Color> id_color = new()
     {
-        {0, new Color(0, 0, 0, 1)},
+        {0, new Color(1, 1, 1, 1)},
         {1, new Color(1, 0, 0, 1)},
         {2, new Color(0, 1, 0, 1)},
         {4, new Color(0, 0, 1, 1)},
