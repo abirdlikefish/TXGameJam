@@ -51,7 +51,8 @@ public class DepthSetterEntity : MonoBehaviour
         }
         else
         {
-            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            // return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            return MapManager.Instance.GetCubeL(center).Height;
         }
     }
     int GetRightCubeD(Vector3Int center)
@@ -62,7 +63,8 @@ public class DepthSetterEntity : MonoBehaviour
         }
         else
         {
-            return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            // return Mathf.RoundToInt(CameraManager.Instance.GetHeight(center));
+            return MapManager.Instance.GetCubeR(center).Height;
         }
     }
 }

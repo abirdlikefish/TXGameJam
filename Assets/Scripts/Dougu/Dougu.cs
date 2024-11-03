@@ -15,8 +15,6 @@ public abstract class Dougu : MonoBehaviour
     {
         if (block)
         {
-            Debug.Log(block.GetComponent<NewMaterial>().spriteRenderer);
-            Debug.Log(DeliConfig.id_color[cID]);
             block.GetComponent<NewMaterial>().spriteRenderer.color = DeliConfig.id_color[cID];
         }
         else if (effect)
