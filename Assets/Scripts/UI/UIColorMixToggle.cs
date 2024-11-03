@@ -15,7 +15,8 @@ public class UIColorMixToggle : MonoBehaviour
         {
             toggle.interactable = false;
             UIManager.Instance.OnExitSelectMix();
-            //TODO ColorReactionManager EventManager.Instance.AddNewColorReaction(mixColorId, transform.GetSiblingIndex());
+
+             ColorReactionManager.Instance.AddNewColorReaction(mixColorId, transform.GetSiblingIndex());
         });
     }
 }

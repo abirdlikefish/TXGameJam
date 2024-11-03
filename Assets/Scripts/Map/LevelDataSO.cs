@@ -61,7 +61,9 @@ public class LevelDataSO : ScriptableObject
 
     public void AddLevelData(LevelData levelData)
     {
+        // Debug.Log("AddLevelData before " + levelDataList.Count);
         levelDataList.Add(levelData);
+        // Debug.Log("AddLevelData after " + levelDataList.Count);
     }
     
 } 

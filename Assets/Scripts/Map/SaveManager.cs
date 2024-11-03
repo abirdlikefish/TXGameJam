@@ -58,12 +58,11 @@ public class SaveManager
     {
         return levelDataSO.levelNum;
     }
-    // public List<Vector3Int> AddCubeList(List<Vector3Int> cubeList)
-    // public void AddCubeList(LevelData levelData)
-    // {
-    //     levelDataSO.AddLevelData(levelData);
-    //     // return cubeList;
-    // }
+    public void AddLevelData(LevelData levelData)
+    {
+        levelDataSO.AddLevelData(levelData);
+        // return cubeList;
+    }
 
     public void LoadMap(int levelIndex)
     {
