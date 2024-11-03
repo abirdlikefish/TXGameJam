@@ -81,7 +81,7 @@ public class MateInput
         }
         else//delta == Vector3.zero
             ret = true;
-        //Debug.Log($"delta : {delta} {thisCenter}{ret1} {nextCenter}{ret2} ret = {ret}");
+        Debug.Log($"delta : {delta} {thisCenter}{ret1} {nextCenter}{ret2} ret = {ret}");
         return ret;
     }
     public static Vector3 CameraDirInWorld(Vector3 dir)
