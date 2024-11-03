@@ -97,7 +97,9 @@ public class SelectPosition : BasePlayState
         {
             for(int i = 0 ; i < 2 ; i++)
             {
-                SetPosition(i , Vector3Int.RoundToInt(positionList[i]));
+                // SetPosition(i , Vector3Int.RoundToInt(positionList[i]));
+                // Debug.Log("SetMatePos " + i + " " + positionList[i]);
+                MateManager.Instance.SetMatePos(i , positionList[i]);
             }
             // MateManager.Instance.SetMatePos(0 , player0.transform.position);
             // MateManager.Instance.SetMatePos(1 , player1.transform.position);
