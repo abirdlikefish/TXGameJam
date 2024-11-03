@@ -13,9 +13,8 @@ public class UIColorMixToggle : MonoBehaviour
         toggle = GetComponent<Toggle>();
         toggle.onValueChanged.AddListener(delegate(bool b)
         {
-            UIManager.Instance.mixPanel.SetActive(false);
-            UIManager.Instance.blockMixPanel.SetActive(true);
             toggle.interactable = false;
+            UIManager.Instance.OnExitSelectMix();
             //TODO ColorReactionManager EventManager.Instance.AddNewColorReaction(mixColorId, transform.GetSiblingIndex());
         });
     }
