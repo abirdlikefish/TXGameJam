@@ -23,12 +23,6 @@ public class CameraSpaceManager : ICameraSpaceManager
     // static Vector3Int[] cameraDirection = new Vector3Int[2]{new Vector3Int(1, 1, 1), new Vector3Int(-1, 1, 1)};
     // static int cameraDirectionIndex;
     static CameraSpaceManager instance;
-    enum NodeType
-    {
-        top,
-        leftSide,
-        rightSide,
-    }
     struct HalfNode
     {
         public NodeType type;
@@ -194,3 +188,12 @@ public class CameraSpaceManager : ICameraSpaceManager
 
 
 }
+
+
+    public enum NodeType
+    {
+        top,
+        leftSide,
+        empty
+        // rightSide,
+    }

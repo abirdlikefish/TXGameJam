@@ -112,29 +112,29 @@ public class MapManager : IMapManager
     {
         return worldSpaceManager.FindByPosition(position);
     }
-    public BaseCube GetExposedCube(Vector3Int position)
-    {
-        BaseCube targetCube = null;
-        Vector3Int midPosition = position;
-        while(worldSpaceManager.IsOutRange(midPosition) == false)
-        {
-            midPosition += CameraManager.Instance.GetCameraDirection();
-        }
-        while(worldSpaceManager.IsOutRange(midPosition) == true)
-        {
-            midPosition -= CameraManager.Instance.GetCameraDirection();
-        }
-        while(worldSpaceManager.IsOutRange(midPosition) == false)
-        {
-            targetCube = worldSpaceManager.FindByPosition(midPosition);
-            if(targetCube != null)
-                return targetCube;
-            else
-                midPosition -= CameraManager.Instance.GetCameraDirection();
-        }
-        Debug.LogWarning("Error GetExposedCube");
-        return targetCube;
-    }
+    // public BaseCube GetExposedCube(Vector3Int position)
+    // {
+    //     BaseCube targetCube = null;
+    //     Vector3Int midPosition = position;
+    //     while(worldSpaceManager.IsOutRange(midPosition) == false)
+    //     {
+    //         midPosition += CameraManager.Instance.GetCameraDirection();
+    //     }
+    //     while(worldSpaceManager.IsOutRange(midPosition) == true)
+    //     {
+    //         midPosition -= CameraManager.Instance.GetCameraDirection();
+    //     }
+    //     while(worldSpaceManager.IsOutRange(midPosition) == false)
+    //     {
+    //         targetCube = worldSpaceManager.FindByPosition(midPosition);
+    //         if(targetCube != null)
+    //             return targetCube;
+    //         else
+    //             midPosition -= CameraManager.Instance.GetCameraDirection();
+    //     }
+    //     Debug.LogWarning("Error GetExposedCube");
+    //     return targetCube;
+    // }
     public Vector3 ModifyPosition_lowerBound(Vector3 position , int depth)
     {
         position += Mathf.Ceil(((float)depth - CameraManager.Instance.GetHeight(position)) / 3.0f) * (Vector3)CameraManager.Instance.GetCameraDirection();
