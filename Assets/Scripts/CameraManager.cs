@@ -4,10 +4,10 @@ using System.Collections.Generic;
 // using System.Numerics;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : MonoBehaviour , ICameraManager
 {
     private static CameraManager instance;
-    public static CameraManager Instance
+    public static ICameraManager Instance
     {
         get
         {
@@ -76,6 +76,7 @@ public class CameraManager : MonoBehaviour
             return new Vector2Int(-1, 0);
         }
     }
+
     public int GetDirection_WorldDirectionInCamera(Vector3Int direction)
     {
         if(Math.Abs(direction.x) + Math.Abs(direction.y) + Math.Abs(direction.z) != 1)
@@ -175,4 +176,27 @@ public class CameraManager : MonoBehaviour
     //     transform.LookAt(Vector3.zero);
     // }
 
+}
+
+public interface ICameraManager
+{
+    Vector2Int GetDir_2(int index);
+    Vector3Int GetDir_3(int index);
+    Vector2Int GetDir_2(DirType index);
+    Vector3Int GetDir_3(DirType index);
+
+    public Vector3Int GetCameraDirection();
+    public Vector2 GetCameraSpacePosition(Vector3 position);
+    public Vector2Int GetCameraSpacePosition(Vector3Int position);
+    public float GetHeight(Vector3 position);
+
+    // Vector2Int GetDir_2_LD();
+}
+
+public enum DirType
+{
+    LeftDown,
+    RightDown,
+    RightUp,
+    LeftUp
 }
